@@ -1,0 +1,28 @@
+parameters:
+  buildtag: 'v999999999999999'  # does not exist so should error
+
+jobs:
+- job: linux_python37
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  timeoutInMinutes: 360
+  steps:
+
+  - checkout: self
+    clean: true
+
+  - bash: |
+        sudo apt-get remove -y --auto-remove gcc
+        sudo apt-get purge -y --auto-remove gcc
+        sed -h
+        echo `uname -s`
+    displayName:
+      removing system compilers
+
+  - bash: .ci_scripts/install_miniconda.sh
+    displayName: install miniconda
+
+  - bash: .ci_scripts/build.sh cos6-x86_64
+    displayName: build cdts
+    env:
+      ANACONDA_TOKEN: $(anaconda.token)
