@@ -65,4 +65,3 @@ compilers that depend on the `sysroot_{conda subdir}` packages.
   `sysroot_{subdir}` package so that it is only installed with CDTs from the
   right version of CentOS
 - the versions of `sysroot_{conda subdir}` are 2.12 for CentOS 6 and 2.17 for CentOS 7.
-
