@@ -84,8 +84,6 @@ CONDA_FORGE_STYLE = False
 SINGLE_SYSROOT = False
 
 RPM_META = """\
-{{% set cdt_build_number = "4" %}}
-
 package:
   name: {packagename}
   version: {version}

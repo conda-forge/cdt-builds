@@ -118,7 +118,10 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
                     ):
                         futures[exec.submit(
                             subprocess.run,
-                            "conda build --use-local " + cdt_meta[node]["recipe_path"],
+                            (
+                                "conda build --use-local -m conda_build_config.yaml "
+                                + cdt_meta[node]["recipe_path"]
+                            ),
                             stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT,
                             text=True,

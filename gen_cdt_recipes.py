@@ -11,13 +11,12 @@ from cdt_config import (
     LEGACY_CUSTOM_CDT_PATH,
     CDT_PATH,
     CUSTOM_CDT_PATH,
-    BUILD_NUM,
 )
 
 yaml = YAML()
 
 
-def _make_cdt_recipes(*, extra, cdt_path, arch_dist_tuples, cdts, build_num, exec):
+def _make_cdt_recipes(*, extra, cdt_path, arch_dist_tuples, cdts, exec):
     futures = {}
     for arch, dist in arch_dist_tuples:
         for cdt, cfg in cdts.items():
@@ -31,7 +30,6 @@ def _make_cdt_recipes(*, extra, cdt_path, arch_dist_tuples, cdts, build_num, exe
                 (
                     f"python rpm.py {cdt} --output-dir={cdt_path} "
                     + f"--architecture={arch} --distro={dist} "
-                    + f"--build-number={build_num} "
                     + _extra
                 ),
                 stdout=subprocess.PIPE,
@@ -109,7 +107,6 @@ def _main(no_legacy):
                     cdt_path=LEGACY_CDT_PATH,
                     arch_dist_tuples=arch_dist_tuples,
                     cdts=cdts,
-                    build_num=BUILD_NUM,
                     exec=exec)
                 )
 
@@ -125,7 +122,6 @@ def _main(no_legacy):
                 cdt_path=CDT_PATH,
                 arch_dist_tuples=arch_dist_tuples,
                 cdts=cdts,
-                build_num=BUILD_NUM,
                 exec=exec)
             )
 
