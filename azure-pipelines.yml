@@ -30,12 +30,13 @@ jobs:
     displayName: install miniconda
 
   - bash: |
-        set -ex
+        set -e
 
         source $HOME/miniforge3/etc/profile.d/conda.sh
         conda activate base
 
         cat .ci_scripts/condarc > $HOME/.condarc
 
+        echo "cmd args: ${DISTARCH} ${LEGACYCDT}"
         python build_cdt_recipes.py ${DISTARCH} ${LEGACYCDT}
     displayName: build cdts
