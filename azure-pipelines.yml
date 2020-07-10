@@ -17,15 +17,15 @@ jobs:
       # cos6_x86_64:
       #   DISTARCH: 'cos6-x86_64'
       #   LEGACYCDT: ''
-      # cos7_x86_64:
-      #   DISTARCH: 'cos7-x86_64'
-      #   LEGACYCDT: ''
-      # cos7_aarch64:
-      #   DISTARCH: 'cos7-aarch64'
-      #   LEGACYCDT: ''
-      # cos7_ppc64le:
-      #   DISTARCH: 'cos7-ppc64le'
-      #   LEGACYCDT: ''
+      cos7_x86_64:
+        DISTARCH: 'cos7-x86_64'
+        LEGACYCDT: ''
+      cos7_aarch64:
+        DISTARCH: 'cos7-aarch64'
+        LEGACYCDT: ''
+      cos7_ppc64le:
+        DISTARCH: 'cos7-ppc64le'
+        LEGACYCDT: ''
     maxParallel: 0
 
   steps:
