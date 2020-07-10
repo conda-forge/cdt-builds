@@ -24,7 +24,7 @@ requirements:
     - mesa-libgbm-cos7-x86_64 ==18.3.4
   run:
     - mesa-libgbm-cos7-x86_64 ==18.3.4
-    - sysroot_linux-64 2.17 conda_variant_*
+    - sysroot_linux-64 2.17
 
 about:
   home: http://www.mesa3d.org

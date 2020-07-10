@@ -7,9 +7,9 @@ source:
     sha256: 83ef76e2a89c1fb3832b58dcafa9d32045fdad432e9d450c119e054ba1af849a
     no_hoist: true
     folder: binary
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-libGL-18.3.4-7.el7.aarch64.rpm
-    no_hoist: true
-    folder: source
+  # - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-libGL-18.3.4-7.el7.aarch64.rpm
+  #   no_hoist: true
+  #   folder: source
 
 build:
   number: 3
@@ -27,7 +27,7 @@ requirements:
   run:
     - libdrm-cos7-aarch64 >=2.4.83
     - mesa-libglapi-cos7-aarch64 ==18.3.4
-    - sysroot_linux-aarch64 ==2.17
+    - sysroot_linux-aarch64 2.17
 
 about:
   home: http://www.mesa3d.org

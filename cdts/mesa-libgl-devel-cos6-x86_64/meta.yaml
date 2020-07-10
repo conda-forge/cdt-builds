@@ -24,7 +24,7 @@ requirements:
     - mesa-libgl-cos6-x86_64 ==11.0.7
   run:
     - mesa-libgl-cos6-x86_64 ==11.0.7
-    - sysroot_linux-64 2.12 conda_variant_*
+    - sysroot_linux-64 2.12
 
 about:
   home: http://www.mesa3d.org

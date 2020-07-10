@@ -19,7 +19,7 @@ build:
 
 requirements:
   run:
-    - sysroot_linux-64 2.12 conda_variant_*
+    - sysroot_linux-64 2.12
 
 about:
   home: http://www.x.org

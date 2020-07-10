@@ -7,9 +7,9 @@ source:
     sha256: 6061908e6a12b5dd427facff2380672233a3ae25205b633718ce82327172578f
     no_hoist: true
     folder: binary
-  - url: http://vault.centos.org/6.10/os/Source/SPackages/mesa-11.0.7-4.el6.src.rpm
-    no_hoist: true
-    folder: source
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/mesa-11.0.7-4.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
 
 build:
   number: 3
@@ -24,11 +24,10 @@ requirements:
   host:
     - libx11-cos6-x86_64 >1.6
     - libdrm-cos6-x86_64 >=2.4.24
-    - sysroot_linux-64 ==2.12
   run:
     - libx11-cos6-x86_64 >1.6
     - libdrm-cos6-x86_64 >=2.4.24
-    - sysroot_linux-64 ==2.12
+    - sysroot_linux-64 2.12
 
 about:
   home: http://www.mesa3d.org

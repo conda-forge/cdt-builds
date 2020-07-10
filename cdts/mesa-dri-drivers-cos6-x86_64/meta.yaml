@@ -24,7 +24,7 @@ requirements:
     - mesa-dri1-drivers-cos6-x86_64 >=7.11
   run:
     - mesa-dri1-drivers-cos6-x86_64 >=7.11
-    - sysroot_linux-64 2.12 conda_variant_*
+    - sysroot_linux-64 2.12
 
 about:
   home: http://www.mesa3d.org

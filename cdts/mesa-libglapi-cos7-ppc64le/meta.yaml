@@ -19,7 +19,7 @@ build:
 
 requirements:
   run:
-    - sysroot_linux-ppc64le 2.17 conda_variant_*
+    - sysroot_linux-ppc64le 2.17
 
 about:
   home: http://www.mesa3d.org
