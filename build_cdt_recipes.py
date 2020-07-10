@@ -14,6 +14,12 @@ from cdt_config import (
     CUSTOM_CDT_PATH,
 )
 
+LINE_SEP = """\
+===============================================================================
+===============================================================================
+===============================================================================\
+"""
+
 yaml = YAML()
 
 
@@ -75,6 +81,7 @@ def _is_buildable(node, cdt_meta, pkgs):
 
 
 def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
+    build_logs = ""
     with ThreadPoolExecutor(max_workers=16) as exec:
         # legacy CDTs for the old compiler sysroots
         recipes = (
@@ -121,14 +128,23 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
                 for fut in as_completed(futures):
                     node = futures[fut]
                     c = fut.result()
+                    build_logs += (
+                        "\n"
+                        + LINE_SEP
+                        + "\n"
+                        + c.stdout
+                        + "\n"
+                        + LINE_SEP
+                    )
                     if c.returncode == 0:
                         tqdm.tqdm.write("%s: built" % node)
-                        tqdm.tqdm.write(c.stdout)
                         built.add(node)
                         pbar.update(1)
                     else:
-                        tqdm.tqdm.write(c.stdout)
+                        tqdm.tqdm.write(build_logs)
                         raise RuntimeError("Could not build CDT %s!" % node)
+
+            print(build_logs, flush=True)
 
 
 @click.command()
