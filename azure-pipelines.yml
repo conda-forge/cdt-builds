@@ -6,8 +6,8 @@ jobs:
   strategy:
     matrix:
       cos6_x86_64_legacy:
-        distarch: 'cos6-x86_64'
-        legacycdt: '--legacy'
+        DISTARCH: 'cos6-x86_64'
+        LEGACYCDT: '--legacy'
     maxParallel: 2
 
   steps:
@@ -36,6 +36,3 @@ jobs:
 
         python build_cdt_recipes.py ${DISTARCH} ${LEGACYCDT}
     displayName: build cdts
-    env:
-      DISTARCH: ${{ distarch }}
-      LEGACYCDT: ${{ legaycdt }}
