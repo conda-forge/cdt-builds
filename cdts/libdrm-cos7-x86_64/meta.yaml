@@ -1,0 +1,37 @@
+package:
+  name: libdrm-cos7-x86_64
+  version: 2.4.97
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libdrm-2.4.97-2.el7.x86_64.rpm
+    sha256: cc11c6badf5727a5d0d3153df66de9a7f9a5957540beb085dc1915a231adbe7f
+    no_hoist: true
+    folder: binary
+  - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libdrm-2.4.97-2.el7.src.rpm
+    no_hoist: true
+    folder: source
+
+build:
+  number: 3
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-64 ==2.17
+  run:
+    - sysroot_linux-64 ==2.17
+
+about:
+  home: http://dri.sourceforge.net
+  license: MIT
+  license_family: MIT
+  # license_file: in the rpm source
+  summary: "(CDT) Direct Rendering Manager runtime library"
+  description: |
+        Direct Rendering Manager runtime library
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

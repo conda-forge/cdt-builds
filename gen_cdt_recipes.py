@@ -110,7 +110,10 @@ def _main(no_legacy):
             c = fut.result()
             pkg = futures[fut]
             nm = "-".join([pkg["cdt"], pkg["dist"].replace("ent", ""), pkg["arch"]])
-            if c.returncode != 0:
+            if (
+                c.returncode != 0
+                or "WARNING: Did not find package called (or another one providing)" in c.stdout  # noqa
+            ):
                 tqdm.tqdm.write("WARNING: making CDT recipe %s failed!" % nm)
 
 

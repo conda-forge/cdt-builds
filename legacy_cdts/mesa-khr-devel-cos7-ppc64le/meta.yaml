@@ -1,0 +1,35 @@
+package:
+  name: mesa-khr-devel-cos7-ppc64le
+  version: 18.3.4
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/mesa-khr-devel-18.3.4-7.el7.ppc64le.rpm
+    sha256: da6b96656b08165f4faf3484d067cbe416aa753aa75d07180c8d3bae929bb370
+    no_hoist: true
+    folder: binary
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/mesa-khr-devel-18.3.4-7.el7.ppc64le.rpm
+    no_hoist: true
+    folder: source
+
+build:
+  number: 3
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+about:
+  home: http://www.mesa3d.org
+  license: MIT
+  license_family: MIT
+  # license_file: in the rpm source
+  summary: "(CDT) Mesa Khronos development headers"
+  description: |
+        Mesa Khronos development headers
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

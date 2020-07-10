@@ -1,0 +1,44 @@
+package:
+  name: mesa-libgl-cos7-ppc64le
+  version: 18.3.4
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/mesa-libGL-18.3.4-7.el7.ppc64le.rpm
+    sha256: 16f23536f80b81516be6d94e3536732572edfc44d8b1e012a37a89e8d958def1
+    no_hoist: true
+    folder: binary
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/mesa-libGL-18.3.4-7.el7.ppc64le.rpm
+    no_hoist: true
+    folder: source
+
+build:
+  number: 3
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libdrm-cos7-ppc64le >=2.4.83
+    - mesa-libglapi-cos7-ppc64le ==18.3.4
+  host:
+    - libdrm-cos7-ppc64le >=2.4.83
+    - mesa-libglapi-cos7-ppc64le ==18.3.4
+    - sysroot_linux-ppc64le ==2.17
+  run:
+    - libdrm-cos7-ppc64le >=2.4.83
+    - mesa-libglapi-cos7-ppc64le ==18.3.4
+    - sysroot_linux-ppc64le ==2.17
+
+about:
+  home: http://www.mesa3d.org
+  license: MIT
+  license_family: MIT
+  # license_file: in the rpm source
+  summary: "(CDT) Mesa libGL runtime libraries and DRI drivers"
+  description: |
+        Mesa libGL runtime library.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
