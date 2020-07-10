@@ -90,7 +90,7 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
         )
         cdt_meta = _build_cdt_meta(recipes, dist_arch_slug)
         print("cdts to build:", flush=True)
-        for cdt in cdt_meta:
+        for cdt in sorted(cdt_meta):
             print("    %s" % cdt, flush=True)
 
         skipped = set()
@@ -129,12 +129,10 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
                     node = futures[fut]
                     c = fut.result()
                     build_logs += (
-                        "\n"
+                        "\n\n"
                         + LINE_SEP
                         + "\n"
                         + c.stdout
-                        + "\n"
-                        + LINE_SEP
                     )
                     if c.returncode == 0:
                         tqdm.tqdm.write("%s: built" % node)
