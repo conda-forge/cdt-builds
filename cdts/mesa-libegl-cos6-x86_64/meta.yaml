@@ -7,9 +7,9 @@ source:
     sha256: 1b5638595636d26590e1a2140c9d64a452b63d985a507197206d0e85b7796753
     no_hoist: true
     folder: binary
-  - url: http://vault.centos.org/6.10/os/Source/SPackages/mesa-11.0.7-4.el6.src.rpm
-    no_hoist: true
-    folder: source
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/mesa-11.0.7-4.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
 
 build:
   number: 3

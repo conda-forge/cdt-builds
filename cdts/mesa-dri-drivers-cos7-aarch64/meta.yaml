@@ -7,9 +7,9 @@ source:
     sha256: c00b692f2a08850099a9f58f2b505c5030078de883e2c63ec2e2f7152de0f52b
     no_hoist: true
     folder: binary
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-dri-drivers-18.3.4-7.el7.aarch64.rpm
-    no_hoist: true
-    folder: source
+  # - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-dri-drivers-18.3.4-7.el7.aarch64.rpm
+  #   no_hoist: true
+  #   folder: source
 
 build:
   number: 3

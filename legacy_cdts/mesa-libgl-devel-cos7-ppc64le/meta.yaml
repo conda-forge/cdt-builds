@@ -7,9 +7,9 @@ source:
     sha256: e015a38b2814dfea845756c42dc686e1d47880a910c76af8be5d5537ab5fdf68
     no_hoist: true
     folder: binary
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/mesa-libGL-devel-18.3.4-7.el7.ppc64le.rpm
-    no_hoist: true
-    folder: source
+  # - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/mesa-libGL-devel-18.3.4-7.el7.ppc64le.rpm
+  #   no_hoist: true
+  #   folder: source
 
 build:
   number: 3

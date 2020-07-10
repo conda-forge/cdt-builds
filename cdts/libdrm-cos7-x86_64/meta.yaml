@@ -7,9 +7,9 @@ source:
     sha256: cc11c6badf5727a5d0d3153df66de9a7f9a5957540beb085dc1915a231adbe7f
     no_hoist: true
     folder: binary
-  - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libdrm-2.4.97-2.el7.src.rpm
-    no_hoist: true
-    folder: source
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libdrm-2.4.97-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
 
 build:
   number: 3

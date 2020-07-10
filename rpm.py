@@ -93,9 +93,9 @@ source:
     {checksum_name}: {checksum}
     no_hoist: true
     folder: binary
-  - url: {srcrpmurl}
-    no_hoist: true
-    folder: source
+  # - url: {srcrpmurl}
+  #   no_hoist: true
+  #   folder: source
 
 build:
   number: {build_number}

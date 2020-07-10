@@ -7,9 +7,9 @@ source:
     sha256: 10a698d15cfef14bb09a2ce4e569e8f42dca5c7197dacc04978f86d7b01c2224
     no_hoist: true
     folder: binary
-  - url: http://vault.centos.org/6.10/os/Source/SPackages/libX11-1.6.4-3.el6.src.rpm
-    no_hoist: true
-    folder: source
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/libX11-1.6.4-3.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
 
 build:
   number: 3

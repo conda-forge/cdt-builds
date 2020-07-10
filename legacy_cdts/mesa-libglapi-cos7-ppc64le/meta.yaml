@@ -7,9 +7,9 @@ source:
     sha256: 5c87e0a0f9b1bad2d04ce189f32033a70986762d769d2bfd0d19215716cb0e2d
     no_hoist: true
     folder: binary
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/mesa-libglapi-18.3.4-7.el7.ppc64le.rpm
-    no_hoist: true
-    folder: source
+  # - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/mesa-libglapi-18.3.4-7.el7.ppc64le.rpm
+  #   no_hoist: true
+  #   folder: source
 
 build:
   number: 3

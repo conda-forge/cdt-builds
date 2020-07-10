@@ -7,9 +7,9 @@ source:
     sha256: c1badb5ab3fdd9f66eee7814edcb54628fb96b15a401bb980efee2a7709b0308
     no_hoist: true
     folder: binary
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-libgbm-18.3.4-7.el7.aarch64.rpm
-    no_hoist: true
-    folder: source
+  # - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-libgbm-18.3.4-7.el7.aarch64.rpm
+  #   no_hoist: true
+  #   folder: source
 
 build:
   number: 3
