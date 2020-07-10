@@ -99,7 +99,7 @@ source:
 
 build:
   number: {{{{ cdt_build_number }}}}
-  string: {build_string}_h{{{{ os.environ['PKG_HASH'] }}}}_{{{{ cdt_build_number }}}}
+  string: {build_string}_h{{{{ PKG_HASH }}}}_{{{{ cdt_build_number }}}}
   noarch: generic
   missing_dso_whitelist:
     - '*'

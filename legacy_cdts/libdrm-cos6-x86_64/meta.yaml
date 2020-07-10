@@ -13,7 +13,7 @@ source:
 
 build:
   number: {{ cdt_build_number }}
-  string: multi_sysroot_h{{ os.environ['PKG_HASH'] }}_{{ cdt_build_number }}
+  string: multi_sysroot_h{{ PKG_HASH }}_{{ cdt_build_number }}
   noarch: generic
   missing_dso_whitelist:
     - '*'
