@@ -27,7 +27,7 @@ jobs:
     displayName: install miniconda
 
   - bash: |
-        set -e
+        set -ex
 
         source $HOME/miniforge3/etc/profile.d/conda.sh
         conda activate base
