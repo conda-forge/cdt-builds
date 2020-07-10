@@ -665,7 +665,8 @@ def write_conda_recipes(
                     dependsstr_run = "  run:\n"
                 dependsstr_run += (
                     "    - "
-                    "sysroot_%s ==%s" % (cdt["host_subdir"], cdt["glibc_ver"]))
+                    "sysroot_%s %s conda_variant_*" % (
+                        cdt["host_subdir"], cdt["glibc_ver"]))
             else:
                 dependsstr_run += (
                     "  run_constrained:\n    - "
@@ -676,7 +677,8 @@ def write_conda_recipes(
                     dependsstr_host = "  host:\n"
                 dependsstr_host += (
                     "    - "
-                    "sysroot_%s ==%s" % (cdt["host_subdir"], cdt["glibc_ver"]))
+                    "sysroot_%s %s conda_variant_*" % (
+                        cdt["host_subdir"], cdt["glibc_ver"]))
                 dependsstr_host += "\n"
 
         dependsstr = (

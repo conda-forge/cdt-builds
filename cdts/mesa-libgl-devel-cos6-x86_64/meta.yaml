@@ -22,10 +22,10 @@ requirements:
     - mesa-libgl-cos6-x86_64 ==11.0.7
   host:
     - mesa-libgl-cos6-x86_64 ==11.0.7
-    - sysroot_linux-64 ==2.12
+    - sysroot_linux-64 2.12 conda_variant_*
   run:
     - mesa-libgl-cos6-x86_64 ==11.0.7
-    - sysroot_linux-64 ==2.12
+    - sysroot_linux-64 2.12 conda_variant_*
 
 about:
   home: http://www.mesa3d.org
