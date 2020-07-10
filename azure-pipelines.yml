@@ -1,6 +1,3 @@
-parameters:
-  buildtag: 'v999999999999999'  # does not exist so should error
-
 jobs:
 - job: linux_python37
   pool:
