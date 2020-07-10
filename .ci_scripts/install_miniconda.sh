@@ -11,6 +11,8 @@ then
     os="MacOSX"
 fi
 
+# it seems azure holds onto info across runs?
+# this solves build issues
 rm -rf ${HOME}/miniforge3
 
 curl -L https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh > miniforge3.sh

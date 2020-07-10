@@ -22,7 +22,6 @@ requirements:
     - mesa-libegl-cos6-x86_64 ==11.0.7
   host:
     - mesa-libegl-cos6-x86_64 ==11.0.7
-    - sysroot_linux-64 2.12 conda_variant_*
   run:
     - mesa-libegl-cos6-x86_64 ==11.0.7
     - sysroot_linux-64 2.12 conda_variant_*

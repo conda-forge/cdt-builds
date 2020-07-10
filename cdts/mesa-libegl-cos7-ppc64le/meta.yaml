@@ -22,7 +22,6 @@ requirements:
     - mesa-libgbm-cos7-ppc64le ==18.3.4
   host:
     - mesa-libgbm-cos7-ppc64le ==18.3.4
-    - sysroot_linux-ppc64le 2.17 conda_variant_*
   run:
     - mesa-libgbm-cos7-ppc64le ==18.3.4
     - sysroot_linux-ppc64le 2.17 conda_variant_*
