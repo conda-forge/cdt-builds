@@ -24,15 +24,7 @@ def _make_cdt_recipes(*, extra, cdt_path, arch_dist_tuples, cdts, build_num, exe
             if cfg["custom"]:
                 continue
 
-            pth = os.path.join(
-                cdt_path,
-                cdt + "-" + dist.replace("ent", "") + "-" + arch,
-            )
-
-            if not os.path.exists(pth):
-                _extra = extra + " --recursive"
-            else:
-                _extra = extra
+            _extra = extra + " --recursive"
 
             futures[exec.submit(
                 subprocess.run,

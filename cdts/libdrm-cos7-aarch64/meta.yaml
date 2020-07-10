@@ -19,9 +19,9 @@ build:
 
 requirements:
   host:
-    - sysroot_linux-aarch64 ==2.17
+    - sysroot_linux-aarch64 2.17 conda_variant_*
   run:
-    - sysroot_linux-aarch64 ==2.17
+    - sysroot_linux-aarch64 2.17 conda_variant_*
 
 about:
   home: http://dri.sourceforge.net

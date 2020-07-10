@@ -22,10 +22,10 @@ requirements:
     - libx11-common-cos6-x86_64 ==1.6.4
   host:
     - libx11-common-cos6-x86_64 ==1.6.4
-    - sysroot_linux-64 ==2.12
+    - sysroot_linux-64 2.12 conda_variant_*
   run:
     - libx11-common-cos6-x86_64 ==1.6.4
-    - sysroot_linux-64 ==2.12
+    - sysroot_linux-64 2.12 conda_variant_*
 
 about:
   home: http://www.x.org
