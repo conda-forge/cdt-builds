@@ -15,4 +15,10 @@ if [[ -d usr/lib64 ]]; then
 fi
 pushd "${PREFIX}"/aarch64-conda-linux-gnu/sysroot > /dev/null 2>&1
 cp -Rf "${SRC_DIR}"/binary/* .
+
+pushd usr/lib64
+rm libGLX_system.so.0
+ln -s libGLX_mesa.so.0 libGLX_system.so.0
+popd
+
 popd
