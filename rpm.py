@@ -99,6 +99,7 @@ source:
 
 build:
   number: {build_number}
+  string: {build_string}
   noarch: generic
   missing_dso_whitelist:
     - '*'
@@ -683,6 +684,7 @@ def write_conda_recipes(
         {
             "version": entry["version"]["ver"],
             "build_number": build_number,
+            "build_string": "single_sysroot" if SINGLE_SYSROOT else "multi_sysroot",
             "packagename": package_cdt_name,
             "hostmachine": cdt["host_machine"],
             "hostsubdir": cdt["host_subdir"],

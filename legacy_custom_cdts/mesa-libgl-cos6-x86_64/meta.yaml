@@ -14,6 +14,7 @@ source:
 build:
   number: 3
   noarch: generic
+  string: multi_sysroot
   missing_dso_whitelist:
     - '*'
 
