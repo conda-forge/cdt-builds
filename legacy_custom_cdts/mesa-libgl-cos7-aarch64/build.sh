@@ -2,7 +2,7 @@
 
 set -o errexit -o pipefail
 
-mkdir -p "${PREFIX}"/x86_64-conda-linux-gnu/sysroot
+mkdir -p "${PREFIX}"/aarch64-conda_cos7-linux-gnu/sysroot
 if [[ -d usr/lib ]]; then
   if [[ ! -d lib ]]; then
     ln -s usr/lib lib
@@ -13,6 +13,12 @@ if [[ -d usr/lib64 ]]; then
     ln -s usr/lib64 lib64
   fi
 fi
-pushd "${PREFIX}"/x86_64-conda-linux-gnu/sysroot > /dev/null 2>&1
+pushd "${PREFIX}"/aarch64-conda_cos7-linux-gnu/sysroot > /dev/null 2>&1
 cp -Rf "${SRC_DIR}"/binary/* .
+
+pushd usr/lib64
+rm libGLX_system.so.0
+ln -s libGLX_mesa.so.0 libGLX_system.so.0
+popd
+
 popd

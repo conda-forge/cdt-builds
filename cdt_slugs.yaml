@@ -147,12 +147,8 @@ mesa-khr-devel:
 mesa-libEGL-devel:
   custom: false
 mesa-libGL:
-  custom: false
+  custom: true
 mesa-libGL-devel:
-  custom: false
-mesa-libgbm:
-  custom: false
-mesa-libglapi:
   custom: false
 # nspr:
 #   custom: false
