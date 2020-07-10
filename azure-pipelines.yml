@@ -1,8 +1,15 @@
 jobs:
-- job: linux_python37
+- job: build
   pool:
     vmImage: 'Ubuntu-16.04'
   timeoutInMinutes: 360
+  strategy:
+    matrix:
+      cos6_x86_64_legacy:
+        distarch: 'cos6-x86_64'
+        legacycdt: '--legacy'
+    maxParallel: 2
+
   steps:
 
   - checkout: self
@@ -19,7 +26,16 @@ jobs:
   - bash: .ci_scripts/install_miniconda.sh
     displayName: install miniconda
 
-  - bash: .ci_scripts/build.sh cos6-x86_64
+  - bash: |
+        set -e
+
+        source $HOME/miniforge3/etc/profile.d/conda.sh
+        conda activate base
+
+        cat .ci_scripts/condarc > $HOME/.condarc
+
+        python build_cdt_recipes.py ${DISTARCH} ${LEGACYCDT}
     displayName: build cdts
     env:
-      ANACONDA_TOKEN: $(anaconda.token)
+      DISTARCH: ${{ parameters.distarch }}
+      LEGACYCDT: ${{ parameters.legaycdt }}
