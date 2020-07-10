@@ -17,7 +17,7 @@ bash miniforge3.sh -b -p ${HOME}/miniforge3
 source $HOME/miniforge3/etc/profile.d/conda.sh
 conda activate base
 
-cat conda-package-tools/condarc > $HOME/.condarc
+cat .ci_scripts/condarc > $HOME/.condarc
 
 conda install -yq \
   python=3.7 \
