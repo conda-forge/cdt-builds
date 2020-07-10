@@ -84,6 +84,8 @@ CONDA_FORGE_STYLE = False
 SINGLE_SYSROOT = False
 
 RPM_META = """\
+{{% set cdt_build_number = "4" %}}
+
 package:
   name: {packagename}
   version: {version}
@@ -98,8 +100,8 @@ source:
   #   folder: source
 
 build:
-  number: {build_number}
-  string: {build_string}
+  number: {{{{ cdt_build_number }}}}
+  string: {build_string}_h{{{{ os.environ['PKG_HASH'] }}}}_{{{{ cdt_build_number }}}}
   noarch: generic
   missing_dso_whitelist:
     - '*'

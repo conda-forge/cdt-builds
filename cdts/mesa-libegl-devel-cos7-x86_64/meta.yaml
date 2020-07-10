@@ -1,3 +1,5 @@
+{% set cdt_build_number = "4" %}
+
 package:
   name: mesa-libegl-devel-cos7-x86_64
   version: 18.3.4
@@ -12,8 +14,8 @@ source:
   #   folder: source
 
 build:
-  number: 3
-  string: single_sysroot
+  number: {{ cdt_build_number }}
+  string: single_sysroot_h{{ os.environ['PKG_HASH'] }}_{{ cdt_build_number }}
   noarch: generic
   missing_dso_whitelist:
     - '*'
