@@ -61,7 +61,7 @@ compilers that depend on the `sysroot_{conda subdir}` packages.
 **new-style CDT specs**
 - needs to have `no_hoist` in the source sections
 - sysroot directory has `conda` only in the path
-- needs to have `host` and `run` requirement on the proper version of the
+- needs to have a `run` requirement on the proper version of the
   `sysroot_{subdir}` package so that it is only installed with CDTs from the
   right version of CentOS
 - the versions of `sysroot_{conda subdir}` are 2.12 for CentOS 6 and 2.17 for CentOS 7.
