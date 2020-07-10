@@ -47,30 +47,30 @@ def _get_recipe_attrs(recipe):
     return node, attrs
 
 
-def _build_graph(recipes, dist_arch_slug):
-    graph = {}
+def _build_cdt_meta(recipes, dist_arch_slug):
+    cdt_meta = {}
     for recipe in recipes:
         if dist_arch_slug not in os.path.basename(recipe):
             continue
         node, attrs = _get_recipe_attrs(recipe)
-        graph[node] = attrs
-    return graph
+        cdt_meta[node] = attrs
+    return cdt_meta
 
 
-def _has_all_cdt_deps(node, graph):
+def _has_all_cdt_deps(node, cdt_meta):
     tail = "-".join(node.rsplit("-", maxsplit=2)[1:])
     return all(
-        dep in graph
-        for dep in graph[node]["all_requirements"]
+        dep in cdt_meta
+        for dep in cdt_meta[node]["all_requirements"]
         if dep.endswith(tail)
     )
 
 
-def _is_buildable(node, graph, pkgs):
+def _is_buildable(node, cdt_meta, pkgs):
     return all(
         dep in pkgs
-        for dep in graph[node]["all_requirements"]
-        if dep in graph
+        for dep in cdt_meta[node]["all_requirements"]
+        if dep in cdt_meta
     )
 
 
@@ -81,34 +81,37 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
             glob.glob(cdt_path + "/*")
             + glob.glob(custom_cdt_path + "/*")
         )
-        graph = _build_graph(recipes, dist_arch_slug)
+        cdt_meta = _build_cdt_meta(recipes, dist_arch_slug)
+        print("cdts to build:", flush=True)
+        for cdt in cdt_meta:
+            print("    %s" % cdt, flush=True)
 
         skipped = set()
-        for node in graph:
-            if not _has_all_cdt_deps(node, graph):
+        for node in cdt_meta:
+            if not _has_all_cdt_deps(node, cdt_meta):
                 print(
                     "WARNING: skipping CDT %s since not all "
                     "CDT deps are being built!" % node
                 )
-                graph[node]["skip"] = True
+                cdt_meta[node]["skip"] = True
                 skipped.add(node)
             else:
-                graph[node]["skip"] = False
+                cdt_meta[node]["skip"] = False
 
         built = set()
-        with tqdm.tqdm(total=len(graph), ncols=80) as pbar:
-            while not all(node in built or node in skipped for node in graph):
+        with tqdm.tqdm(total=len(cdt_meta), ncols=80) as pbar:
+            while not all(node in built or node in skipped for node in cdt_meta):
                 futures = {}
 
-                for node in graph:
+                for node in cdt_meta:
                     if (
-                        not graph[node]["skip"]
-                        and _is_buildable(node, graph, built)
+                        not cdt_meta[node]["skip"]
+                        and _is_buildable(node, cdt_meta, built)
                         and node not in built
                     ):
                         futures[exec.submit(
                             subprocess.run,
-                            "conda build --use-local " + graph[node]["recipe_path"],
+                            "conda build --use-local " + cdt_meta[node]["recipe_path"],
                             stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT,
                             text=True,
