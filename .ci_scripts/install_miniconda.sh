@@ -1,16 +1,6 @@
 #!/bin/bash
 set -e
 
-if [ "$CONFIG" == "linux_python3.7" ]
-then
-    pyver="3.7"
-    os="Linux"
-elif [ "$CONFIG" == "osx_python3.7" ]
-then
-    pyver="3.7"
-    os="MacOSX"
-fi
-
 # it seems azure holds onto info across runs?
 # this solves build issues
 rm -rf ${HOME}/miniforge3
