@@ -65,3 +65,12 @@ compilers that depend on the `sysroot_{conda subdir}` packages.
   `sysroot_{subdir}` package so that it is only installed with CDTs from the
   right version of CentOS
 - the versions of `sysroot_{conda subdir}` are 2.12 for CentOS 6 and 2.17 for CentOS 7.
+
+## Azure CI Setup
+
+```python
+from conda_smithy.azure_ci_utils import register_repo, AzureConfig                                                                                                
+
+cfg = AzureConfig(project_name='cdt-builds')                                                                                                                      
+register_repo("conda-forge", "cdt-builds", config=cfg)        
+```
