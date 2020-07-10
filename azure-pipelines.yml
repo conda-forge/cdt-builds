@@ -37,5 +37,5 @@ jobs:
         python build_cdt_recipes.py ${DISTARCH} ${LEGACYCDT}
     displayName: build cdts
     env:
-      DISTARCH: ${{ parameters.distarch }}
-      LEGACYCDT: ${{ parameters.legaycdt }}
+      DISTARCH: ${{ distarch }}
+      LEGACYCDT: ${{ legaycdt }}
