@@ -8,6 +8,9 @@ jobs:
       cos6_x86_64_legacy:
         DISTARCH: 'cos6-x86_64'
         LEGACYCDT: '--legacy'
+      cos7_aarch64_legacy:
+        DISTARCH: 'cos7-aarch64'
+        LEGACYCDT: '--legacy'
     maxParallel: 2
 
   steps:
