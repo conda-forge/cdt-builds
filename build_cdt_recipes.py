@@ -135,7 +135,7 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
                         + c.stdout
                     )
                     if c.returncode == 0:
-                        print("built %s" % node, flush=True)
+                        print("\nbuilt %s" % node, flush=True)
                         built.add(node)
                         pbar.update(1)
                     else:
