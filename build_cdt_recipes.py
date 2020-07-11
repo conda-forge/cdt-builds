@@ -174,13 +174,15 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
             if cdt_meta[node]['skip']:
                 print(
                     "WARNING: skipping CDT %s since it has "
-                    "already been built!" % node
+                    "already been built!" % node,
+                    flush=True,
                 )
                 skipped.add(node)
             elif not _has_all_cdt_deps(node, cdt_meta):
                 print(
                     "WARNING: skipping CDT %s since not all "
-                    "CDT deps are being built!" % node
+                    "CDT deps are being built!" % node,
+                    flush=True,
                 )
                 cdt_meta[node]["skip"] = True
                 skipped.add(node)
@@ -217,7 +219,8 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
                         pbar.update(1)
                         pbar.refresh()
                     else:
-                        tqdm.tqdm.write(build_logs)
+                        pbar.write(build_logs)
+                        sys.stderr.flush()
                         raise RuntimeError("Could not build CDT %s!" % node)
 
             print(build_logs, flush=True)
