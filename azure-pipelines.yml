@@ -52,7 +52,7 @@ jobs:
 
         echo "cmd args: ${DISTARCH} ${LEGACYCDT}"
         python build_cdt_recipes.py ${DISTARCH} ${LEGACYCDT}
-    displayName: build cdts
+    displayName: build CDTs
 
   - bash: |
         set -e
@@ -74,4 +74,3 @@ jobs:
     env:
       ANACONDA_TOKEN: $(anaconda.token)
       IS_FORK: $(System.PullRequest.IsFork)
-  

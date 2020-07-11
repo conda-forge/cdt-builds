@@ -93,7 +93,7 @@ def _get_recipe_attrs(recipe, channel_index):
 
 
 def _build_cdt_meta(recipes, dist_arch_slug):
-    print("getting conda-forge/label/main channel index...")
+    print("getting conda-forge/label/main channel index...", flush=True)
     channel_url = '/'.join(['conda-forge', 'label', 'main'])
     dist_index = get_index(
         [channel_url],
