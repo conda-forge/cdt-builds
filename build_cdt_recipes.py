@@ -83,10 +83,47 @@ def _is_buildable(node, cdt_meta, pkgs):
 
 
 def _cdt_exists(cdt_meta_node):
-    return False
+    import conda_build.api
+    from conda_build.conda_interface import get_index
+
+    channel_url = '/'.join(['conda-forge', 'label', 'main'])
+    distributions_on_channel = get_index(
+        [channel_url],
+        prepend=False,
+        use_cache=False
+    )
+
+    metas = conda_build.api.render(
+        cdt_meta_node["recipe_path"],
+        variant_config_files=["conda_build_config.yaml"],
+    )
+
+    dist_fnames = [
+        path
+        for m, _, _ in metas
+        for path in conda_build.api.get_output_file_paths(m)
+        if not m.skip()
+    ]
+    print(dist_fnames, flush=True)
+
+    on_channel = True
+    for dist_fname in dist_fnames:
+        subdir, fname = os.path.split(dist_fname)
+        assert subdir == 'noarch', (
+            "ERROR: found package %s not in noarch but "
+            "all CDTs are noarch!" % dist_fname
+        )
+        print(fname in distributions_on_channel, flush=True)
+        try:
+            on_channel &= (distributions_on_channel[fname]['subdir'] == 'noarch')
+        except KeyError:
+            on_channel &= False
+
+    return on_channel
 
 
 def _build_cdt(cdt_meta_node):
+    c = None
     if not _cdt_exists(cdt_meta_node):
         with tempfile.TemporaryDirectory() as tmpdir:
             c = subprocess.run(
@@ -100,6 +137,8 @@ def _build_cdt(cdt_meta_node):
                 text=True,
                 shell=True
             )
+    else:
+        print("not building " + cdt_meta_node["recipe_path"], flush=True)
     return c
 
 
@@ -153,7 +192,16 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
                         + "\n"
                         + c.stdout
                     )
-                    if c.returncode == 0:
+                    if c is None:
+                        pbar.write(
+                            "CDT build %s already exists" % node,
+                            file=sys.stderr
+                        )
+                        sys.stderr.flush()
+                        built.add(node)
+                        pbar.update(1)
+                        pbar.refresh()
+                    elif c.returncode == 0:
                         pbar.write("built %s" % node, file=sys.stderr)
                         sys.stderr.flush()
                         built.add(node)
