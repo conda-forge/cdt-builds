@@ -4,7 +4,7 @@ import glob
 import tempfile
 import sys
 import io
-from concurrent.futures import ProcessPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from contextlib import redirect_stdout, redirect_stderr
 from wurlitzer import pipes
 
@@ -34,7 +34,36 @@ def _split_req(req):
     return req.split(" ")[0]
 
 
-def _get_recipe_attrs(recipe):
+def _cdt_exists(cdt_meta_node, channel_index):
+    import conda_build.api
+
+    try:
+        f = io.StringIO()
+        with redirect_stdout(f), redirect_stderr(f), pipes(stdout=f, stderr=f):
+            metas = conda_build.api.render(
+                cdt_meta_node["recipe_path"],
+                variant_config_files=["conda_build_config.yaml"],
+                bypass_env_check=True,
+            )
+    except Exception as e:
+        print(f.getvalue())
+        raise e
+
+    dist_fnames = [
+        path
+        for m, _, _ in metas
+        for path in conda_build.api.get_output_file_paths(m)
+        if not m.skip()
+    ]
+
+    on_channel = True
+    for dist_fname in dist_fnames:
+        fname = os.path.basename(dist_fname)
+        on_channel &= (fname in channel_index)
+    return on_channel
+
+
+def _get_recipe_attrs(recipe, channel_index):
     node = os.path.basename(recipe)
     attrs = {}
     attrs["recipe_path"] = recipe
@@ -57,15 +86,31 @@ def _get_recipe_attrs(recipe):
         ]
 
     )))
+
+    attrs['skip'] = _cdt_exists(attrs, channel_index)
+
     return node, attrs
 
 
 def _build_cdt_meta(recipes, dist_arch_slug):
+    print("getting conda-forge/label/main channel index...")
+    channel_url = '/'.join(['conda-forge', 'label', 'main'])
+    dist_index = get_index(
+        [channel_url],
+        prepend=False,
+        use_cache=False
+    )
+    channel_index = {
+        c.to_filename(): a
+        for c, a in dist_index.items()
+        if a['subdir'] == 'noarch'
+    }
+
     cdt_meta = {}
-    for recipe in recipes:
+    for recipe in tqdm.tqdm(recipes, desc='building CDT metadata', ncols=80):
         if dist_arch_slug not in os.path.basename(recipe):
             continue
-        node, attrs = _get_recipe_attrs(recipe)
+        node, attrs = _get_recipe_attrs(recipe, channel_index)
         cdt_meta[node] = attrs
     return cdt_meta
 
@@ -87,94 +132,61 @@ def _is_buildable(node, cdt_meta, pkgs):
     )
 
 
-def _cdt_exists(cdt_meta_node, channel_index):
-    import conda_build.api
-
-    try:
-        f = io.StringIO()
-        with redirect_stdout(f), redirect_stderr(f), pipes(stdout=f, stderr=f):
-            metas = conda_build.api.render(
-                cdt_meta_node["recipe_path"],
-                variant_config_files=["conda_build_config.yaml"],
-            )
-    except Exception as e:
-        print(f.getvalue())
-        raise e
-
-    dist_fnames = [
-        path
-        for m, _, _ in metas
-        for path in conda_build.api.get_output_file_paths(m)
-        if not m.skip()
-    ]
-
-    on_channel = True
-    for dist_fname in dist_fnames:
-        fname = os.path.basename(dist_fname)
-        on_channel &= (fname in channel_index)
-
-    return on_channel
-
-
-def _build_cdt(cdt_meta_node, channel_index):
-    c = None
-    if not _cdt_exists(cdt_meta_node, channel_index):
-        with tempfile.TemporaryDirectory() as tmpdir:
-            c = subprocess.run(
-                (
-                    "conda build --use-local -m conda_build_config.yaml "
-                    + "--cache-dir " + str(tmpdir) + " "
-                    + cdt_meta_node["recipe_path"]
-                ),
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                text=True,
-                shell=True
-            )
-    else:
-        print("not building " + cdt_meta_node["recipe_path"], flush=True)
+def _build_cdt(cdt_meta_node):
+    with tempfile.TemporaryDirectory() as tmpdir:
+        c = subprocess.run(
+            (
+                "conda build --use-local -m conda_build_config.yaml "
+                + "--cache-dir " + str(tmpdir) + " "
+                + cdt_meta_node["recipe_path"]
+            ),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            shell=True
+        )
     return c
 
 
 def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
-    channel_url = '/'.join(['conda-forge', 'label', 'main'])
-    dist_index = get_index(
-        [channel_url],
-        prepend=False,
-        use_cache=False
+    recipes = (
+        glob.glob(cdt_path + "/*")
+        + glob.glob(custom_cdt_path + "/*")
     )
-    channel_index = {
-        c.to_filename(): a
-        for c, a in dist_index.items()
-        if a['subdir'] == 'noarch'
-    }
+    cdt_meta = _build_cdt_meta(recipes, dist_arch_slug)
+    print("cdts to build:", flush=True)
+    for cdt in sorted(cdt_meta):
+        print(
+            "    %s: %s" % (
+                cdt,
+                'skipped'
+                if cdt_meta[cdt]['skip']
+                else 'building'
+            ),
+            flush=True
+        )
 
     build_logs = ""
-    with ProcessPoolExecutor(max_workers=16) as exec:
-        # legacy CDTs for the old compiler sysroots
-        recipes = (
-            glob.glob(cdt_path + "/*")
-            + glob.glob(custom_cdt_path + "/*")
-        )
-        cdt_meta = _build_cdt_meta(recipes, dist_arch_slug)
-        print("cdts to build:", flush=True)
-        for cdt in sorted(cdt_meta):
-            print("    %s" % cdt, flush=True)
+    with ThreadPoolExecutor(max_workers=16) as exec:
 
         skipped = set()
         for node in cdt_meta:
-            if not _has_all_cdt_deps(node, cdt_meta):
+            if cdt_meta[node]['skip']:
+                print(
+                    "WARNING: skipping CDT %s since it has "
+                    "already been built!" % node
+                )
+                skipped.add(node)
+            elif not _has_all_cdt_deps(node, cdt_meta):
                 print(
                     "WARNING: skipping CDT %s since not all "
                     "CDT deps are being built!" % node
                 )
                 cdt_meta[node]["skip"] = True
                 skipped.add(node)
-            else:
-                cdt_meta[node]["skip"] = False
 
         built = set()
-        with tqdm.tqdm(total=len(cdt_meta), ncols=80) as pbar:
+        with tqdm.tqdm(total=len(cdt_meta), ncols=80, desc='building recipes') as pbar:
             while not all(node in built or node in skipped for node in cdt_meta):
                 futures = {}
 
@@ -187,7 +199,6 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
                         futures[exec.submit(
                             _build_cdt,
                             cdt_meta[node],
-                            channel_index,
                         )] = node
 
                 for fut in as_completed(futures):
@@ -199,16 +210,7 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
                         + "\n"
                         + c.stdout
                     )
-                    if c is None:
-                        pbar.write(
-                            "CDT build %s already exists" % node,
-                            file=sys.stderr
-                        )
-                        sys.stderr.flush()
-                        built.add(node)
-                        pbar.update(1)
-                        pbar.refresh()
-                    elif c.returncode == 0:
+                    if c.returncode == 0:
                         pbar.write("built %s" % node, file=sys.stderr)
                         sys.stderr.flush()
                         built.add(node)
