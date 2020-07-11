@@ -33,18 +33,17 @@ jobs:
   - checkout: self
     clean: true
 
-  - displayName: removing system compilers
-    bash: |
+  - bash: |
         sudo apt-get remove -y --auto-remove gcc
         sudo apt-get purge -y --auto-remove gcc
         sed -h
         echo `uname -s`
+    displayName: removing system compilers
 
-  - displayName: install miniconda
-    bash: .ci_scripts/install_miniconda.sh
+  - bash: .ci_scripts/install_miniconda.sh
+    displayName: install miniconda
 
-  - displayName: build cdts
-    bash: |
+  - bash: |
         set -e
 
         source $HOME/miniforge3/etc/profile.d/conda.sh
@@ -53,12 +52,9 @@ jobs:
 
         echo "cmd args: ${DISTARCH} ${LEGACYCDT}"
         python build_cdt_recipes.py ${DISTARCH} ${LEGACYCDT}
+    displayName: build cdts
 
-  - displayName: upload CDTs
-    env:
-      ANACONDA_TOKEN: $(anaconda.token)
-      IS_FORK: $(System.PullRequest.IsFork)
-    bash: |
+  - bash: |
         set -e
 
         source $HOME/miniforge3/etc/profile.d/conda.sh
@@ -74,3 +70,8 @@ jobs:
         else
           echo "skipping uploads since on fork or non-master branch"
         fi
+    displayName: upload CDTs
+    env:
+      ANACONDA_TOKEN: $(anaconda.token)
+      IS_FORK: $(System.PullRequest.IsFork)
+  
