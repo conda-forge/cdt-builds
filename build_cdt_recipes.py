@@ -2,6 +2,7 @@ import os
 import subprocess
 import glob
 import tempfile
+import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import tqdm
@@ -153,9 +154,11 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
                         + c.stdout
                     )
                     if c.returncode == 0:
-                        print("\nbuilt %s" % node, flush=True)
+                        tqdm.write("built %s" % node)
+                        sys.stderr.flush()
                         built.add(node)
                         pbar.update(1)
+                        pbar.refresh()
                     else:
                         tqdm.tqdm.write(build_logs)
                         raise RuntimeError("Could not build CDT %s!" % node)
