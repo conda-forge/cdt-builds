@@ -46,7 +46,7 @@ jobs:
 
   - bash: |
         set -e
-
+        exit 0
         source $HOME/miniforge3/etc/profile.d/conda.sh
         conda activate base
 
@@ -55,3 +55,17 @@ jobs:
         echo "cmd args: ${DISTARCH} ${LEGACYCDT}"
         python build_cdt_recipes.py ${DISTARCH} ${LEGACYCDT}
     displayName: build cdts
+
+  - bash: |
+        set -e
+        echo "is fork: ${IS_FORK}"
+        echo "branch: ${BUILD_SOURCEBRANCHNAME}"
+
+        if [[ ${ANACONDA_TOKEN} ]] && [[ "$BUILD_SOURCEBRANCHNAME" == "master" ]] && [[ "${IS_FORK}" == "False" ]]; then
+          echo "uploading the CDTs..."
+          # anaconda --token ${ANACONDA_TOKEN} upload --skip-existing $HOME/miniforge3/conda-bld/*/*.tar.bz2
+        fi
+    displayName: upload CDTs
+    env:
+      ANACONDA_TOKEN: $(anaconda.token)
+      IS_FORK: $(System.PullRequest.IsFork)
