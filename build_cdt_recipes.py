@@ -154,7 +154,7 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
                         + c.stdout
                     )
                     if c.returncode == 0:
-                        pbar.write("built %s" % node)
+                        pbar.write("built %s" % node, file=sys.stderr)
                         sys.stderr.flush()
                         built.add(node)
                         pbar.update(1)
