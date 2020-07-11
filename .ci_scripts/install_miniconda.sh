@@ -21,7 +21,8 @@ conda install -yq \
   shyaml \
   tqdm \
   click \
-  ruamel.yaml
+  ruamel.yaml \
+  wurlitzer
 
 conda list
 

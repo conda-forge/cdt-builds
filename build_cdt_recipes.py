@@ -3,11 +3,16 @@ import subprocess
 import glob
 import tempfile
 import sys
-from concurrent.futures import ThreadPoolExecutor, as_completed
+import io
+from concurrent.futures import ProcessPoolExecutor, as_completed
+from contextlib import redirect_stdout, redirect_stderr
+from wurlitzer import pipes
 
 import tqdm
 import click
 from ruamel.yaml import YAML
+
+from conda_build.conda_interface import get_index
 
 from cdt_config import (
     LEGACY_CDT_PATH,
@@ -82,21 +87,19 @@ def _is_buildable(node, cdt_meta, pkgs):
     )
 
 
-def _cdt_exists(cdt_meta_node):
+def _cdt_exists(cdt_meta_node, channel_index):
     import conda_build.api
-    from conda_build.conda_interface import get_index
 
-    channel_url = '/'.join(['conda-forge', 'label', 'main'])
-    distributions_on_channel = get_index(
-        [channel_url],
-        prepend=False,
-        use_cache=False
-    )
-
-    metas = conda_build.api.render(
-        cdt_meta_node["recipe_path"],
-        variant_config_files=["conda_build_config.yaml"],
-    )
+    try:
+        f = io.StringIO()
+        with redirect_stdout(f), redirect_stderr(f), pipes(stdout=f, stderr=f):
+            metas = conda_build.api.render(
+                cdt_meta_node["recipe_path"],
+                variant_config_files=["conda_build_config.yaml"],
+            )
+    except Exception as e:
+        print(f.getvalue())
+        raise e
 
     dist_fnames = [
         path
@@ -104,27 +107,18 @@ def _cdt_exists(cdt_meta_node):
         for path in conda_build.api.get_output_file_paths(m)
         if not m.skip()
     ]
-    print(dist_fnames, flush=True)
 
     on_channel = True
     for dist_fname in dist_fnames:
-        subdir, fname = os.path.split(dist_fname)
-        assert subdir == 'noarch', (
-            "ERROR: found package %s not in noarch but "
-            "all CDTs are noarch!" % dist_fname
-        )
-        print(fname in distributions_on_channel, flush=True)
-        try:
-            on_channel &= (distributions_on_channel[fname]['subdir'] == 'noarch')
-        except KeyError:
-            on_channel &= False
+        fname = os.path.basename(dist_fname)
+        on_channel &= (fname in channel_index)
 
     return on_channel
 
 
-def _build_cdt(cdt_meta_node):
+def _build_cdt(cdt_meta_node, channel_index):
     c = None
-    if not _cdt_exists(cdt_meta_node):
+    if not _cdt_exists(cdt_meta_node, channel_index):
         with tempfile.TemporaryDirectory() as tmpdir:
             c = subprocess.run(
                 (
@@ -143,8 +137,20 @@ def _build_cdt(cdt_meta_node):
 
 
 def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
+    channel_url = '/'.join(['conda-forge', 'label', 'main'])
+    dist_index = get_index(
+        [channel_url],
+        prepend=False,
+        use_cache=False
+    )
+    channel_index = {
+        c.to_filename(): a
+        for c, a in dist_index.items()
+        if a['subdir'] == 'noarch'
+    }
+
     build_logs = ""
-    with ThreadPoolExecutor(max_workers=16) as exec:
+    with ProcessPoolExecutor(max_workers=16) as exec:
         # legacy CDTs for the old compiler sysroots
         recipes = (
             glob.glob(cdt_path + "/*")
@@ -181,6 +187,7 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
                         futures[exec.submit(
                             _build_cdt,
                             cdt_meta[node],
+                            channel_index,
                         )] = node
 
                 for fut in as_completed(futures):
