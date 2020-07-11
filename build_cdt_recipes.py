@@ -1,6 +1,7 @@
 import os
 import subprocess
 import glob
+import tempfile
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import tqdm
@@ -80,6 +81,27 @@ def _is_buildable(node, cdt_meta, pkgs):
     )
 
 
+def _cdt_exists(cdt_meta_node):
+    return False
+
+
+def _build_cdt(cdt_meta_node):
+    if not _cdt_exists(cdt_meta_node):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            c = subprocess.run(
+                (
+                    "conda build --use-local -m conda_build_config.yaml "
+                    + "--cache-dir " + str(tmpdir) + " "
+                    + cdt_meta_node["recipe_path"]
+                ),
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                text=True,
+                shell=True
+            )
+    return c
+
+
 def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
     build_logs = ""
     with ThreadPoolExecutor(max_workers=16) as exec:
@@ -117,15 +139,8 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
                         and node not in built
                     ):
                         futures[exec.submit(
-                            subprocess.run,
-                            (
-                                "conda build --use-local -m conda_build_config.yaml "
-                                + cdt_meta[node]["recipe_path"]
-                            ),
-                            stdout=subprocess.PIPE,
-                            stderr=subprocess.STDOUT,
-                            text=True,
-                            shell=True
+                            _build_cdt,
+                            cdt_meta[node],
                         )] = node
 
                 for fut in as_completed(futures):

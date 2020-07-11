@@ -1,0 +1,41 @@
+package:
+  name: libx11-devel-cos7-x86_64
+  version: 1.6.7
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libX11-devel-1.6.7-2.el7.x86_64.rpm
+    sha256: e67b2f81a7cd57c22148e932a859954d97e784504adbca4b4723c21db9478d53
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libX11-1.6.7-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  string: single_sysroot_h{{ PKG_HASH }}_{{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libx11-cos7-x86_64 ==1.6.7
+  host:
+    - libx11-cos7-x86_64 ==1.6.7
+  run:
+    - libx11-cos7-x86_64 ==1.6.7
+    - sysroot_linux-64 2.17
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  # license_file: in the rpm source
+  summary: "(CDT) Development files for libX11"
+  description: |
+        X.Org X11 libX11 development package
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

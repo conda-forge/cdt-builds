@@ -76,12 +76,12 @@
 #   custom: false
 # libuuid-devel:
 #   custom: false
-# libx11:
-#   custom: false
-# libx11-common:
-#   custom: false
-# libx11-devel:
-#   custom: false
+libX11:
+  custom: false
+libX11-common:
+  custom: false
+libX11-devel:
+  custom: false
 # libxau:
 #   custom: false
 # libxau-devel:
@@ -176,9 +176,9 @@ mesa-libGL-devel:
 #   custom: false
 # webkitgtk-devel:
 #   custom: false
-# xorg-x11-proto-devel:
-#   custom: false
-# xorg-x11-server-xvfb:
-#   custom: false
-# xorg-x11-util-macros:
-#   custom: false
+xorg-x11-proto-devel:
+  custom: false
+xorg-x11-server-Xvfb:
+  custom: false
+xorg-x11-util-macros:
+  custom: false

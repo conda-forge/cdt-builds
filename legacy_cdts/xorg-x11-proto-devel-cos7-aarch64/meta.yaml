@@ -1,0 +1,36 @@
+package:
+  name: xorg-x11-proto-devel-cos7-aarch64
+  version: 2018.4
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/xorg-x11-proto-devel-2018.4-1.el7.noarch.rpm
+    sha256: ed33c07dd19aae73edaef6cb5daeca44fae87aa7fba16d5de6aad4c244f5232f
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/xorg-x11-proto-devel-2018.4-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  string: multi_sysroot_h{{ PKG_HASH }}_{{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+about:
+  home: https://www.x.org
+  license: MIT
+  license_family: MIT
+  # license_file: in the rpm source
+  summary: "(CDT) X.Org X11 Protocol headers"
+  description: |
+        X.Org X11 Protocol headers
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

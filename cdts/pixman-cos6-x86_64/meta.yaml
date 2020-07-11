@@ -1,0 +1,36 @@
+package:
+  name: pixman-cos6-x86_64
+  version: 0.32.8
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/pixman-0.32.8-1.el6.x86_64.rpm
+    sha256: d5e9a2ac49bae1bff6fd806367aa0f9125eef6dee1b515a6af6576b883032e91
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/pixman-0.32.8-1.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  string: single_sysroot_h{{ PKG_HASH }}_{{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run:
+    - sysroot_linux-64 2.12
+
+about:
+  home: http://cgit.freedesktop.org/pixman/
+  license: MIT
+  license_family: MIT
+  # license_file: in the rpm source
+  summary: "(CDT) Pixel manipulation library"
+  description: |
+        Pixman is a pixel manipulation library for X and cairo.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
