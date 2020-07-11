@@ -10,8 +10,8 @@
 #   custom: false
 # cups-devel:
 #   custom: false
-# expat:
-#   custom: false
+expat:
+  custom: false
 # gconf2:
 #   custom: false
 # gtk2-devel:
@@ -76,12 +76,12 @@
 #   custom: false
 # libuuid-devel:
 #   custom: false
-libX11:
-  custom: false
-libX11-common:
-  custom: false
-libX11-devel:
-  custom: false
+# libX11:
+#   custom: false
+# libX11-common:
+#   custom: false
+# libX11-devel:
+#   custom: false
 # libxau:
 #   custom: false
 # libxau-devel:
@@ -130,9 +130,9 @@ libX11-devel:
 #   custom: false
 # libxshmfence-devel:
 #   custom: false
-# libxt:
+# libXt:
 #   custom: false
-# libxt-devel:
+# libXt-devel:
 #   custom: false
 # libxtst-devel:
 #   custom: false
@@ -140,16 +140,16 @@ libX11-devel:
 #   custom: false
 # libxxf86vm-devel:
 #   custom: false
-mesa-dri-drivers:
-  custom: false
-mesa-khr-devel:
-  custom: false
-mesa-libEGL-devel:
-  custom: false
-mesa-libGL:
-  custom: true
-mesa-libGL-devel:
-  custom: false
+# mesa-dri-drivers:
+#   custom: false
+# mesa-khr-devel:
+#   custom: false
+# mesa-libEGL-devel:
+#   custom: false
+# mesa-libGL:
+#   custom: true
+# mesa-libGL-devel:
+#   custom: false
 # nspr:
 #   custom: false
 # nss:
@@ -176,9 +176,9 @@ mesa-libGL-devel:
 #   custom: false
 # webkitgtk-devel:
 #   custom: false
-xorg-x11-proto-devel:
-  custom: false
-xorg-x11-server-Xvfb:
-  custom: false
-xorg-x11-util-macros:
-  custom: false
+# xorg-x11-proto-devel:
+#   custom: false
+# xorg-x11-server-Xvfb:
+#   custom: false
+# xorg-x11-util-macros:
+#   custom: false

@@ -1,0 +1,39 @@
+package:
+  name: expat-cos7-aarch64
+  version: 2.1.0
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/expat-2.1.0-11.el7.aarch64.rpm
+    sha256: 0964cc87a901feedc72426a67abe79bce1b8c760305ea129f5d539cf4e536af9
+    no_hoist: true
+    folder: binary
+  # - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/expat-2.1.0-11.el7.aarch64.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run:
+    - sysroot_linux-aarch64 2.17
+
+about:
+  home: http://www.libexpat.org/
+  license: MIT
+  license_family: MIT
+  # license_file: in the rpm source
+  summary: "(CDT) An XML parser library"
+  description: |
+        This is expat, the C library for parsing XML, written by James Clark. Expat is
+        a stream oriented XML parser. This means that you register handlers with the
+        parser prior to starting the parse. These handlers are called when the parser
+        discovers the associated structures in the document being parsed. A start tag
+        is an example of the kind of structures for which you may register handlers.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
