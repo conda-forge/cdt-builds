@@ -98,8 +98,7 @@ source:
   #   folder: source
 
 build:
-  number: {{{{ cdt_build_number }}}}
-  string: {build_string}_h{{{{ PKG_HASH }}}}_{{{{ cdt_build_number }}}}
+  number: {build_number}
   noarch: generic
   missing_dso_whitelist:
     - '*'
@@ -683,8 +682,11 @@ def write_conda_recipes(
     d = dict(
         {
             "version": entry["version"]["ver"],
-            "build_number": build_number,
-            "build_string": "single_sysroot" if SINGLE_SYSROOT else "multi_sysroot",
+            "build_number": (
+                "{{ cdt_build_number|int + 1000 }}"
+                if SINGLE_SYSROOT
+                else "{{ cdt_build_number }}"
+            ),
             "packagename": package_cdt_name,
             "hostmachine": cdt["host_machine"],
             "hostsubdir": cdt["host_subdir"],

@@ -12,8 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
-  string: single_sysroot_h{{ PKG_HASH }}_{{ cdt_build_number }}
+  number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
   missing_dso_whitelist:
     - '*'
