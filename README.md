@@ -20,7 +20,7 @@ The CI service will build the CDTs, report any errors, etc.
 If you make changes to the CDT generation script, make a PR on this repo using
 the following steps.
 
-1. Make sure the bump the `BUILD_NUM` variable in the `cdt_config.py` module.
+1. Make sure the bump the `cdt_build_number` variable in the `conda_build_config.yaml` file.
 2. Run the python script `gen_cdt_recipes.py`. This script will take about 10-20
    minutes to complete and will regenerate all of the CDT recipes.
 3. Commit any changes from steps 1+2 and open the PR.
@@ -68,9 +68,11 @@ compilers that depend on the `sysroot_{conda subdir}` packages.
 
 ## Azure CI Setup
 
-```python
-from conda_smithy.azure_ci_utils import register_repo, AzureConfig                                                                                                
+This bit of code was run to setup azure. 
 
-cfg = AzureConfig(project_name='cdt-builds')                                                                                                                      
-register_repo("conda-forge", "cdt-builds", config=cfg)        
+```python
+from conda_smithy.azure_ci_utils import register_repo, AzureConfig
+
+cfg = AzureConfig(project_name='cdt-builds')
+register_repo("conda-forge", "cdt-builds", config=cfg)
 ```
