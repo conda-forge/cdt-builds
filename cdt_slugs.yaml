@@ -4,14 +4,14 @@
 #   custom: false
 # ca-certificates:
 #   custom: false
-# chkconfig:
-#   custom: false
+chkconfig:
+  custom: false
 # copy-jdk-configs:
 #   custom: false
 # cups-devel:
 #   custom: false
-expat:
-  custom: false
+# expat-devel:
+#   custom: false
 # gconf2:
 #   custom: false
 # gtk2-devel:
