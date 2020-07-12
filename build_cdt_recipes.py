@@ -154,7 +154,7 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
         + glob.glob(custom_cdt_path + "/*")
     )
     cdt_meta = _build_cdt_meta(recipes, dist_arch_slug)
-    print("cdts to build:", flush=True)
+    print("\ncdts to build:", flush=True)
     for cdt in sorted(cdt_meta):
         print(
             "    %s: %s" % (
