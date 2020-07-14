@@ -49,7 +49,8 @@ import io
 from os import chmod, makedirs
 from os.path import basename, dirname, exists, join, splitext
 import re
-
+import tempfile
+import subprocess
 
 import click
 from conda_build.conda_interface import iteritems
@@ -78,11 +79,6 @@ from xml.etree import cElementTree as ET
 default_architecture = "x86_64"
 default_distro = "centos6"
 
-# should we include conda-forge specific bits in the recipe
-CONDA_FORGE_STYLE = False
-# should the CDT have only the conda sysroot
-SINGLE_SYSROOT = False
-
 RPM_META = """\
 package:
   name: {packagename}
@@ -109,7 +105,7 @@ about:
   home: {home}
   license: {license}
   license_family: {license_family}
-  # license_file: in the rpm source
+  license_file: {{{{ SRC_DIR }}}}/binary{license_file}
   summary: {summary}
   description: {description}
 
@@ -140,10 +136,8 @@ cp -Rf "${SRC_DIR}"/binary/* .
 popd
 """
 
-CDTs = None
 
-
-def _gen_cdts():
+def _gen_cdts(single_sysroot):
     return dict(
         {
             "centos6": {
@@ -154,7 +148,7 @@ def _gen_cdts():
                 "repomd_url": "http://mirror.centos.org/centos/6.10/os/{base_architecture}/repodata/repomd.xml",  # noqa
                 "host_machine": (
                     "{architecture}-conda-linux-gnu"
-                    if SINGLE_SYSROOT else
+                    if single_sysroot else
                     "{architecture}-conda_cos6-linux-gnu"
                 ),
                 "host_subdir": "linux-{bits}",
@@ -177,7 +171,7 @@ def _gen_cdts():
                 "repomd_url": "http://mirror.centos.org/centos/7/os/{base_architecture}/repodata/repomd.xml",  # noqa
                 "host_machine": (
                     "{architecture}-conda-linux-gnu"
-                    if SINGLE_SYSROOT else
+                    if single_sysroot else
                     "{architecture}-conda_cos7-linux-gnu"
                 ),
                 "host_subdir": "linux-{bits}",
@@ -200,7 +194,7 @@ def _gen_cdts():
                 "repomd_url": "http://mirror.centos.org/altarch/7/os/{base_architecture}/repodata/repomd.xml",  # noqa
                 "host_machine": (
                     "{gnu_architecture}-conda-linux-gnu"
-                    if SINGLE_SYSROOT else
+                    if single_sysroot else
                     "{gnu_architecture}-conda_cos7-linux-gnu"
                 ),
                 "host_subdir": "linux-{base_architecture}",
@@ -549,6 +543,27 @@ def tidy_text(text, wrap_at=0):
     return stripped
 
 
+def _test_rpm_for_license_file(rpm_pth):
+    c = subprocess.run(
+        "rpm -qlp %s" % rpm_pth,
+        shell=True,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    found = False
+    for line in c.stdout.splitlines():
+        fline = basename(line).lower()
+        if any(c in fline for c in ["license", "licence", "copyright", "copying"]):
+            found = True
+            license_file = line
+
+    if not found:
+        raise RuntimeError("could not find the license file in the RPM!")
+
+    return license_file
+
+
 def write_conda_recipes(
     recursive,
     repo_primary,
@@ -559,6 +574,8 @@ def write_conda_recipes(
     override_arch,
     src_cache,
     build_number,
+    conda_forge_style,
+    single_sysroot,
 ):
     entry, entry_name, arch = find_repo_entry_and_arch(
         repo_primary, architectures, dict({"name": package})
@@ -572,7 +589,10 @@ def write_conda_recipes(
     package = entry_name
     rpm_url = dirname(dirname(cdt["base_url"])) + "/" + entry["location"]
     srpm_url = cdt["sbase_url"] + entry["source"]
-    _, _, _, _, _, sha256str = rpm_split_url_and_cache(rpm_url, src_cache)
+    _, _, _, _, rpm_pth, sha256str = rpm_split_url_and_cache(rpm_url, src_cache)
+
+    license_file = _test_rpm_for_license_file(rpm_pth)
+
     try:
         # We ignore the hash of source RPMs since they
         # are not given in the source repository data.
@@ -633,7 +653,7 @@ def write_conda_recipes(
 
     sn = cdt["short_name"] + "-" + arch
     dependsstr = ""
-    if len(depends) or CONDA_FORGE_STYLE:
+    if len(depends) or conda_forge_style:
         depends_specs = [
             "{}-{}-{} {}{}".format(
                 depend["name"].lower().replace("+", "x"),
@@ -656,11 +676,11 @@ def write_conda_recipes(
             dependsstr_host = ""
             dependsstr_run = ""
 
-        if CONDA_FORGE_STYLE:
+        if conda_forge_style:
             if len(dependsstr_run) > 0:
                 dependsstr_run += "\n"
 
-            if SINGLE_SYSROOT:
+            if single_sysroot:
                 if len(dependsstr_run) == 0:
                     dependsstr_run = "  run:\n"
                 dependsstr_run += (
@@ -684,9 +704,10 @@ def write_conda_recipes(
             "version": entry["version"]["ver"],
             "build_number": (
                 "{{ cdt_build_number|int + 1000 }}"
-                if SINGLE_SYSROOT
+                if single_sysroot
                 else "{{ cdt_build_number }}"
             ),
+            "license_file": license_file,
             "packagename": package_cdt_name,
             "hostmachine": cdt["host_machine"],
             "hostsubdir": cdt["host_subdir"],
@@ -741,6 +762,9 @@ def write_conda_recipe(
     dependency_add,
     config,
     build_number,
+    conda_forge_style,
+    single_sysroot,
+    cdt_info,
 ):
     cdt_name = distro
     bits = "32" if architecture in ("armv6", "armv7a", "i686", "i386") else "64"
@@ -766,7 +790,7 @@ def write_conda_recipe(
         }
     )
     cdt = dict()
-    for k, v in iteritems(CDTs[cdt_name]):
+    for k, v in iteritems(cdt_info[cdt_name]):
         if isinstance(v, string_types):
             cdt[k] = v.format(**architecture_bits)
         else:
@@ -799,6 +823,8 @@ def write_conda_recipe(
             override_arch,
             config.src_cache,
             build_number,
+            conda_forge_style,
+            single_sysroot,
         )
 
 
@@ -825,28 +851,25 @@ def skeletonize(
     single_sysroot,
     build_number,
 ):
-    global CONDA_FORGE_STYLE
-    CONDA_FORGE_STYLE = conda_forge_style
-
-    global SINGLE_SYSROOT
-    SINGLE_SYSROOT = single_sysroot
-
-    global CDTs
-    CDTs = _gen_cdts()
+    cdt_info = _gen_cdts(single_sysroot)
     if architecture in ["aarch64", "ppc64le"]:
-        CDTs["centos7"] = CDTs["centos7-alt"]
+        cdt_info["centos7"] = cdt_info["centos7-alt"]
 
-    write_conda_recipe(
-        packages,
-        distro,
-        output_dir,
-        architecture,
-        recursive,
-        not no_override_arch,
-        None,
-        Config(),
-        build_number,
-    )
+    with tempfile.TemporaryDirectory() as tmpdir:
+        write_conda_recipe(
+            packages,
+            distro,
+            output_dir,
+            architecture,
+            recursive,
+            not no_override_arch,
+            None,
+            Config(cache_dir=str(tmpdir)),
+            build_number,
+            conda_forge_style,
+            single_sysroot,
+            cdt_info,
+        )
 
 
 if __name__ == "__main__":
