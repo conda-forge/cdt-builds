@@ -714,7 +714,7 @@ def write_conda_recipes(
             "depends": dependsstr,
             "rpmurl": rpm_url,
             "srcrpmurl": srpm_url,
-            "home": entry["home"],
+            "home": entry["home"] or package_cdt_name,
             "license": license,
             "license_family": license_family,
             "checksum_name": cdt["checksummer_name"],
