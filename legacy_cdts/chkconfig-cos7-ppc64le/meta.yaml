@@ -23,7 +23,7 @@ requirements:
 
 about:
   home: https://github.com/fedora-sysv/chkconfig
-  license: GPLv2
+  license: GPL-2.0-only
   license_family: GPL2
   license_file: {{ SRC_DIR }}/binary/usr/share/licenses/chkconfig-1.7.4/COPYING
   summary: "(CDT) A system tool for maintaining the /etc/rc*.d hierarchy"

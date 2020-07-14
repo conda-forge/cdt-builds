@@ -509,6 +509,8 @@ def valid_depends(depends):
 
 def remap_license(rpm_license):
     mapping = {
+        "gplv3": "GPL-3.0-only",
+        "gplv2": "GPL-2.0-only",
         "lgplv2+": "LGPL-2.0-or-later",
         "gplv2+": "GPL-2.0-or-later",
         "public domain (uncopyrighted)": "Public-Domain",
