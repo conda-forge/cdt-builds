@@ -27,8 +27,6 @@ LINE_SEP = """\
 ===============================================================================\
 """
 
-yaml = YAML()
-
 
 def _split_req(req):
     return req.split(" ")[0]
@@ -68,6 +66,7 @@ def _get_recipe_attrs(recipe, channel_index):
     attrs = {}
     attrs["recipe_path"] = recipe
 
+    yaml = YAML(typ="jinja2")
     with open(os.path.join(recipe, "meta.yaml"), "r") as fp:
         attrs["meta"] = yaml.load(fp)
 
