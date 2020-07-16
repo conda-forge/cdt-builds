@@ -63,10 +63,11 @@ jobs:
 
         echo "is fork: ${IS_FORK}"
         echo "branch: ${BUILD_SOURCEBRANCHNAME}"
+        echo "cdts built:"
+        compgen -G "$HOME/miniforge3/conda-bld/*/*.tar.bz2"
 
         if [[ ${ANACONDA_TOKEN} ]] && [[ "$BUILD_SOURCEBRANCHNAME" == "master" ]] && [[ "${IS_FORK}" == "False" ]]; then
           echo "uploading the CDTs"
-          compgen -G "$HOME/miniforge3/conda-bld/*/*.tar.bz2"
           anaconda --token ${ANACONDA_TOKEN} upload --skip-existing $HOME/miniforge3/conda-bld/*/*.tar.bz2
         else
           echo "skipping uploads since on fork or non-master branch"
