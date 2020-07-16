@@ -1,0 +1,184 @@
+# alsa-lib:
+#   custom: false
+# alsa-lib-devel:
+#   custom: false
+# ca-certificates:
+#   custom: false
+chkconfig:
+  custom: false
+# copy-jdk-configs:
+#   custom: false
+# cups-devel:
+#   custom: false
+# expat-devel:
+#   custom: false
+# gconf2:
+#   custom: false
+# gtk2-devel:
+#   custom: false
+# gtkmm24-devel:
+#   custom: false
+# java-1.7.0-openjdk:
+#   custom: false
+# java-1.7.0-openjdk-headless:
+#   custom: false
+# javapackages-tools:
+#   custom: false
+# libXxf86vm:
+#   custom: false
+# libXxf86vm-devel:
+#   custom: false
+# libdrm-devel:
+#   custom: false
+# libglvnd:
+#   custom: false
+# libglvnd-glx:
+#   custom: false
+# libibcm:
+#   custom: false
+# libibcm-devel:
+#   custom: false
+# libibverbs:
+#   custom: false
+# libibverbs-devel:
+#   custom: false
+# libice:
+#   custom: false
+# libice-devel:
+#   custom: false
+# libjpeg-turbo:
+#   custom: false
+# libnl:
+#   custom: false
+# libnl-devel:
+#   custom: false
+# libpng-devel:
+#   custom: false
+# librdmacm:
+#   custom: false
+# librdmacm-devel:
+#   custom: false
+# libselinux:
+#   custom: false
+# libselinux-devel:
+#   custom: false
+# libsm:
+#   custom: false
+# libsm-devel:
+#   custom: false
+# libsoup-devel:
+#   custom: false
+# libudev:
+#   custom: false
+# libudev-devel:
+#   custom: false
+# libuuid:
+#   custom: false
+# libuuid-devel:
+#   custom: false
+# libX11:
+#   custom: false
+# libX11-common:
+#   custom: false
+# libX11-devel:
+#   custom: false
+# libxau:
+#   custom: false
+# libxau-devel:
+#   custom: false
+# libxcb:
+#   custom: false
+# libxcomposite:
+#   custom: false
+# libxcomposite-devel:
+#   custom: false
+# libxcursor:
+#   custom: false
+# libxcursor-devel:
+#   custom: false
+# libxdamage:
+#   custom: false
+# libxdamage-devel:
+#   custom: false
+# libxext:
+#   custom: false
+# libxext-devel:
+#   custom: false
+# libxfixes:
+#   custom: false
+# libxfixes-devel:
+#   custom: false
+# libxft:
+#   custom: false
+# libxi:
+#   custom: false
+# libxi-devel:
+#   custom: false
+# libxinerama:
+#   custom: false
+# libxinerama-devel:
+#   custom: false
+# libxrandr:
+#   custom: false
+# libxrandr-devel:
+#   custom: false
+# libxrender:
+#   custom: false
+# libxrender-devel:
+#   custom: false
+# libxscrnsaver-devel:
+#   custom: false
+# libxshmfence-devel:
+#   custom: false
+# libXt:
+#   custom: false
+# libXt-devel:
+#   custom: false
+# libxtst-devel:
+#   custom: false
+# libxxf86vm:
+#   custom: false
+# libxxf86vm-devel:
+#   custom: false
+# mesa-dri-drivers:
+#   custom: false
+# mesa-khr-devel:
+#   custom: false
+# mesa-libEGL-devel:
+#   custom: false
+# mesa-libGL:
+#   custom: true
+# mesa-libGL-devel:
+#   custom: false
+# nspr:
+#   custom: false
+# nss:
+#   custom: false
+# nss-softokn:
+#   custom: false
+# nss-softokn-freebl:
+#   custom: false
+# nss-util:
+#   custom: false
+# numactl:
+#   custom: false
+# numactl-devel:
+#   custom: false
+# orbit2:
+#   custom: false
+# p11-kit:
+#   custom: false
+# p11-kit-trust:
+#   custom: false
+# pciutils-devel:
+#   custom: false
+# python-javapackages:
+#   custom: false
+# webkitgtk-devel:
+#   custom: false
+# xorg-x11-proto-devel:
+#   custom: false
+# xorg-x11-server-Xvfb:
+#   custom: false
+# xorg-x11-util-macros:
+#   custom: false

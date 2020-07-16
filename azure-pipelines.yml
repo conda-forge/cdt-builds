@@ -1,0 +1,76 @@
+jobs:
+- job: build
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  timeoutInMinutes: 360
+  strategy:
+    matrix:
+      cos6_x86_64_legacy:
+        DISTARCH: 'cos6-x86_64'
+        LEGACYCDT: '--legacy'
+      cos7_aarch64_legacy:
+        DISTARCH: 'cos7-aarch64'
+        LEGACYCDT: '--legacy'
+      cos7_ppc64le_legacy:
+        DISTARCH: 'cos7-ppc64le'
+        LEGACYCDT: '--legacy'
+      cos6_x86_64:
+        DISTARCH: 'cos6-x86_64'
+        LEGACYCDT: ''
+      cos7_x86_64:
+        DISTARCH: 'cos7-x86_64'
+        LEGACYCDT: ''
+      cos7_aarch64:
+        DISTARCH: 'cos7-aarch64'
+        LEGACYCDT: ''
+      cos7_ppc64le:
+        DISTARCH: 'cos7-ppc64le'
+        LEGACYCDT: ''
+    maxParallel: 0
+
+  steps:
+
+  - checkout: self
+    clean: true
+
+  - bash: |
+        sudo apt-get remove -y --auto-remove gcc
+        sudo apt-get purge -y --auto-remove gcc
+        sed -h
+        echo `uname -s`
+    displayName: removing system compilers
+
+  - bash: .ci_scripts/install_miniconda.sh
+    displayName: install miniconda
+
+  - bash: |
+        set -e
+
+        source $HOME/miniforge3/etc/profile.d/conda.sh
+        conda activate base
+        cat .ci_scripts/condarc > $HOME/.condarc
+
+        echo "cmd args: ${DISTARCH} ${LEGACYCDT}"
+        python build_cdt_recipes.py ${DISTARCH} ${LEGACYCDT}
+    displayName: build CDTs
+
+  - bash: |
+        set -e
+
+        source $HOME/miniforge3/etc/profile.d/conda.sh
+        conda activate base
+        cat .ci_scripts/condarc > $HOME/.condarc
+
+        echo "is fork: ${IS_FORK}"
+        echo "branch: ${BUILD_SOURCEBRANCHNAME}"
+
+        if [[ ${ANACONDA_TOKEN} ]] && [[ "$BUILD_SOURCEBRANCHNAME" == "master" ]] && [[ "${IS_FORK}" == "False" ]]; then
+          echo "uploading the CDTs"
+          anaconda --token ${ANACONDA_TOKEN} upload --skip-existing $HOME/miniforge3/conda-bld/*/*.tar.bz2
+        else
+          echo "skipping uploads since on fork or non-master branch"
+        fi
+    displayName: upload CDTs
+    env:
+      ANACONDA_TOKEN: $(anaconda.token)
+      IS_FORK: $(System.PullRequest.IsFork)
