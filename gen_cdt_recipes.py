@@ -15,6 +15,10 @@ from cdt_config import (
 )
 
 
+def _gen_dist_arch_str(arch, dist):
+    return "%s-%s" % (dist.replace("ent", ""), arch)
+
+
 def _make_cdt_recipes(*, extra, cdt_path, arch_dist_tuples, cdts, exec):
     futures = {}
     for arch, dist in arch_dist_tuples:
@@ -22,7 +26,16 @@ def _make_cdt_recipes(*, extra, cdt_path, arch_dist_tuples, cdts, exec):
             if cfg["custom"]:
                 continue
 
-            _extra = extra + " --recursive"
+            if (
+                "skipped_cdts" in cfg
+                and _gen_dist_arch_str(arch, dist) in cfg["skipped_cdts"]
+            ):
+                continue
+
+            if cfg.get("recursive", True):
+                _extra = extra + " --recursive"
+            else:
+                _extra = extra
 
             futures[exec.submit(
                 subprocess.run,
@@ -186,8 +199,9 @@ def _main(no_legacy):
             if (
                 "WARNING: could not find a suitable license " in c.stdout
             ):
-                tqdm.tqdm.write(
-                    "WARNING: could not find a suitable license file for CDT %s!" % nm)
+                for line in c.stdout.splitlines():
+                    if "WARNING: could not find a suitable license " in line:
+                        tqdm.tqdm.write(line.strip())
 
     # finally, we have to clean up any CDTs marked as custom that happened to be
     # made by the templates again

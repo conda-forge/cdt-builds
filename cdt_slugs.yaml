@@ -34,13 +34,11 @@ chkconfig:
 #   custom: false
 # libglvnd-glx:
 #   custom: false
-# libibcm:
-#   custom: false
 # libibcm-devel:
-#   custom: false
-# libibverbs:
+#   # generates libibcm too
 #   custom: false
 # libibverbs-devel:
+#   # generates libibverbs too
 #   custom: false
 # libice:
 #   custom: false
@@ -57,6 +55,7 @@ libnl-devel:
 # librdmacm:
 #   custom: false
 # librdmacm-devel:
+#   # generates librdmacm too
 #   custom: false
 # libselinux:
 #   custom: false
@@ -68,10 +67,19 @@ libnl-devel:
 #   custom: false
 # libsoup-devel:
 #   custom: false
-# libudev:
-#   custom: false
-# libudev-devel:
-#   custom: false
+libudev:
+  custom: false
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
+libudev-devel:
+  custom: true
+  recursive: false  # generates an infinite recursion
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
 # libuuid:
 #   custom: false
 # libuuid-devel:
