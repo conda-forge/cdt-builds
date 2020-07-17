@@ -1,0 +1,36 @@
+package:
+  name: libnl-cos7-aarch64
+  version: 1.1.4
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libnl-1.1.4-3.el7.aarch64.rpm
+    sha256: 0e5a75584ba4311dec833a2e904282178b05af458bf7659a456704178f978b4f
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libnl-1.1.4-3.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+about:
+  home: http://www.infradead.org/~tgr/libnl/
+  license: LGPLv2
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libnl-1.1.4/COPYING
+  summary: "(CDT) Convenience library for kernel netlink sockets"
+  description: |
+        This package contains a convenience library to simplify using the Linux
+        kernel's netlink sockets interface for network manipulation
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

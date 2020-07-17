@@ -48,10 +48,10 @@ chkconfig:
 #   custom: false
 # libjpeg-turbo:
 #   custom: false
-# libnl:
-#   custom: false
-# libnl-devel:
-#   custom: false
+libnl-devel:
+  # generates libnl too
+  custom: false
+  license_file: licenses/libnl-devel-license
 # libpng-devel:
 #   custom: false
 # librdmacm:

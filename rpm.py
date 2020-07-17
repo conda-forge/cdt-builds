@@ -545,7 +545,7 @@ def tidy_text(text, wrap_at=0):
     return stripped
 
 
-def _test_rpm_for_license_file(rpm_pth):
+def _test_rpm_for_license_file(rpm_pth, raise_on_not_found=False):
     c = subprocess.run(
         "rpm -qlp %s" % rpm_pth,
         shell=True,
@@ -561,7 +561,11 @@ def _test_rpm_for_license_file(rpm_pth):
             license_file = line
 
     if not found:
-        raise RuntimeError("could not find the license file in the RPM!")
+        if raise_on_not_found:
+            raise RuntimeError("could not find the license file in the RPM!")
+        else:
+            print("WARNING: could not find a suitable license file in the RPM!")
+            license_file = "/LICENSE_NOT_FOUND"
 
     return license_file
 
@@ -651,6 +655,8 @@ def write_conda_recipes(
                 override_arch,
                 src_cache,
                 build_number,
+                conda_forge_style,
+                single_sysroot,
             )
 
     sn = cdt["short_name"] + "-" + arch

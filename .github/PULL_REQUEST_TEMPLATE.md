@@ -10,3 +10,6 @@ Checklist:
   with `custom: true` in the `cdt_slugs.yaml` file.
 - [ ] all CDT recipes have build number set by `{{ cdt_build_number }}` for
   old-style/legacy CDTs or `{{ cdt_build_number|int + 1000 }}` for new-style CDTs
+- [ ] if you see a warning about a CDT not having a license, you have added the
+  `license_file` key in the `cdt_slugs.yaml` file with the path to the appropriate
+  license in `licenses/`
