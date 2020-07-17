@@ -1,0 +1,40 @@
+package:
+  name: libnl-devel-cos7-x86_64
+  version: 1.1.4
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libnl-devel-1.1.4-3.el7.x86_64.rpm
+    sha256: c1e11ae7b94dd3c97023e4e08ff7eca20a15cfca0cd9523b8c0d05c174940a0d
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libnl-1.1.4-3.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libnl-cos7-x86_64 ==1.1.4
+  host:
+    - libnl-cos7-x86_64 ==1.1.4
+  run:
+    - libnl-cos7-x86_64 ==1.1.4
+    - sysroot_linux-64 2.17
+
+about:
+  home: http://www.infradead.org/~tgr/libnl/
+  license: LGPLv2
+  license_family: LGPL
+  license_file: libnl-devel-license
+  summary: (CDT) Libraries and headers for using libnl
+  description: |
+    This package contains various headers for using libnl
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
