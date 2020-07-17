@@ -1,6 +1,6 @@
 # cdt-builds
 
-conda-forge CDT builds
+conda-forge Core Dependency Tree (CDT) builds
 
 
 ## Adding a CDT package
