@@ -63,6 +63,11 @@ jobs:
 
         echo "is fork: ${IS_FORK}"
         echo "branch: ${BUILD_SOURCEBRANCHNAME}"
+        echo "cdts built:"
+        for pth in $(compgen -G "$HOME/miniforge3/conda-bld/*/*.tar.bz2"); do
+          echo ${pth#$HOME/miniforge3/conda-bld/}
+        done
+        echo  " "
 
         if [[ ${ANACONDA_TOKEN} ]] && [[ "$BUILD_SOURCEBRANCHNAME" == "master" ]] && [[ "${IS_FORK}" == "False" ]]; then
           echo "uploading the CDTs"
