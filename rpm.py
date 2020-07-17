@@ -35,7 +35,7 @@ The conda-build license is:
 
     versioneer.py is Public Domain
 """
-
+import os
 from copy import copy
 
 try:
@@ -294,7 +294,7 @@ def find_repo_entry_and_arch(repo_primary, architectures, depend):
                     if "provides" in package[arch]:
                         for provide in package[arch]["provides"]:
                             if provide["name"] == dep_name:
-                                print("Found it in {}".format(name))
+                                print("Found {} in {}".format(dep_name, name))
                                 found_package = package
                                 found_package_name = name
                                 break
@@ -564,7 +564,10 @@ def _test_rpm_for_license_file(rpm_pth, raise_on_not_found=False):
         if raise_on_not_found:
             raise RuntimeError("could not find the license file in the RPM!")
         else:
-            print("WARNING: could not find a suitable license file in the RPM!")
+            print(
+                "WARNING: could not find a suitable "
+                "license file in the RPM %s!" % os.path.basename(rpm_pth)
+            )
             license_file = "/LICENSE_NOT_FOUND"
 
     return license_file
