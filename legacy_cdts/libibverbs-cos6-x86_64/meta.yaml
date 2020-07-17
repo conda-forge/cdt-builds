@@ -1,0 +1,40 @@
+package:
+  name: libibverbs-cos6-x86_64
+  version: 1.1.8
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/libibverbs-1.1.8-4.el6.x86_64.rpm
+    sha256: 706e5770d5c3e6c06f7c47a88936edbee56a003f31186ea4dd7e1de8b87903ad
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/libibverbs-1.1.8-4.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+about:
+  home: https://www.openfabrics.org/
+  license: GPLv2 or BSD
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libibverbs-1.1.8/COPYING
+  summary: "(CDT) A library for direct userspace use of RDMA (InfiniBand/iWARP) hardware"
+  description: |
+        libibverbs is a library that allows userspace processes to use RDMA "verbs" as
+        described in the InfiniBand Architecture Specification and the RDMA Protocol
+        Verbs Specification.  This includes direct hardware access from userspace to
+        InfiniBand/iWARP adapters (kernel bypass) for fast path operations.  For this
+        library to be useful, a device-specific plug-in module should also be
+        installed.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

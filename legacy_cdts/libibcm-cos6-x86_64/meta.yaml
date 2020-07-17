@@ -1,0 +1,36 @@
+package:
+  name: libibcm-cos6-x86_64
+  version: 1.0.5
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/libibcm-1.0.5-3.el6.x86_64.rpm
+    sha256: 1140b89a678fe9472911a1bafc6e962ce84e1085053cd7947797daa23fdbb791
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/libibcm-1.0.5-3.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+about:
+  home: http://www.openfabrics.org/
+  license: GPLv2 or BSD
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libibcm-1.0.5/COPYING
+  summary: "(CDT) Userspace InfiniBand Connection Manager"
+  description: |
+        libibcm provides a userspace library that handles the majority of the low
+        level work required to open an RDMA connection between two machines.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

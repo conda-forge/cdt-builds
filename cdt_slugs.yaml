@@ -34,12 +34,32 @@ chkconfig:
 #   custom: false
 # libglvnd-glx:
 #   custom: false
-# libibcm-devel:
-#   # generates libibcm too
-#   custom: false
-# libibverbs-devel:
-#   # generates libibverbs too
-#   custom: false
+libibcm:
+  custom: false
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
+libibcm-devel:
+  custom: false
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
+  license_file: licenses/libibcm-devel-license
+libibverbs:
+  custom: false
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
+libibverbs-devel:
+  custom: false
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
+  license_file: licenses/libibverbs-devel-license
 # libice:
 #   custom: false
 # libice-devel:
