@@ -38,7 +38,12 @@ def _make_cdt_recipes(*, extra, cdt_path, arch_dist_tuples, cdts, exec, only_new
             else:
                 _extra = extra
 
-            if only_new and os.path.exists(cdt + "-" + _gen_dist_arch_str(arch, dist)):
+            _pth = os.path.join(
+                cdt_path,
+                cdt + "-" + _gen_dist_arch_str(arch, dist),
+            )
+
+            if only_new and os.path.exists(_pth):
                 continue
 
             futures[exec.submit(
