@@ -186,16 +186,36 @@ libudev-devel:
 #   custom: true
 # mesa-libGL-devel:
 #   custom: false
-# nspr:
-#   custom: false
-# nss:
-#   custom: false
-# nss-softokn:
-#   custom: false
-# nss-softokn-freebl:
-#   custom: false
-# nss-util:
-#   custom: false
+nspr:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+    - cos7-x86_64
+  license_file: licenses/nspr-license
+nss:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+    - cos7-x86_64
+  license_file: licenses/nss-license
+nss-softokn:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+    - cos7-x86_64
+  license_file: licenses/nss-license
+nss-softokn-freebl:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+    - cos7-x86_64
+  license_file: licenses/nss-license
+nss-util:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+    - cos7-x86_64
+  license_file: licenses/nss-license
 numactl:
   custom: false
   skipped_cdts:

@@ -517,6 +517,7 @@ def remap_license(rpm_license):
         "public domain": "Public-Domain",
         "mit/x11": "MIT",
         "the open group license": "The Open Group License",
+        "mplv2.0": "MPL-2.0",
     }
     l_rpm_license = rpm_license.lower()
     if l_rpm_license in mapping:
