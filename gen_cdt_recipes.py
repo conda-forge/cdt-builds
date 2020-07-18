@@ -118,7 +118,9 @@ def _fix_cdt_licenses(*, cdts, arch_dist_tuples, cdt_path):
                 cdt + "-" + dist.replace("ent", "") + "-" + arch,
             )
             if 'license_file' in cfg and os.path.exists(pth):
-                if isinstance(cfg["license_file"], collections.abc.MutableSequence):
+                if cfg["license_file"] is None:
+                    pass
+                elif isinstance(cfg["license_file"], collections.abc.MutableSequence):
                     for lf in cfg['license_file']:
                         shutil.copy2(lf, os.path.join(pth, "."))
                 else:
@@ -130,7 +132,9 @@ def _fix_cdt_licenses(*, cdts, arch_dist_tuples, cdt_path):
                 with open(os.path.join(pth, "meta.yaml"), "r") as fp:
                     meta = yaml.load(fp)
 
-                if isinstance(cfg["license_file"], collections.abc.MutableSequence):
+                if cfg["license_file"] is None:
+                    meta["about"].pop("license_file")
+                elif isinstance(cfg["license_file"], collections.abc.MutableSequence):
                     meta["about"]["license_file"] = [
                         os.path.basename(lf)
                         for lf in cfg["license_file"]
@@ -231,7 +235,7 @@ def _main(only_new, no_legacy):
                     if "WARNING: could not find a suitable license " in line:
                         _found_cdt = None
                         for _cdt in cdts:
-                            if _cdt in line.lower():
+                            if _cdt.lower() in line.lower():
                                 if _found_cdt is None:
                                     _found_cdt = _cdt
                                 elif len(_cdt) > len(_found_cdt):
