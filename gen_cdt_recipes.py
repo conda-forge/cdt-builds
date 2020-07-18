@@ -229,7 +229,19 @@ def _main(only_new, no_legacy):
             ):
                 for line in c.stdout.splitlines():
                     if "WARNING: could not find a suitable license " in line:
-                        tqdm.tqdm.write(line.strip())
+                        _found_cdt = None
+                        for _cdt in cdts:
+                            if _cdt in line.lower():
+                                if _found_cdt is None:
+                                    _found_cdt = _cdt
+                                elif len(_cdt) > len(_found_cdt):
+                                    _found_cdt = _cdt
+
+                        if _found_cdt is not None:
+                            if "license_file" not in cdts[_found_cdt]:
+                                tqdm.tqdm.write(line.strip())
+                        else:
+                            tqdm.tqdm.write(line.strip())
 
     # finally, we have to clean up any CDTs marked as custom that happened to be
     # made by the templates again
