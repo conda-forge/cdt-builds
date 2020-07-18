@@ -18,8 +18,10 @@ build:
     - '*'
 
 requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
   run:
-    - sysroot_linux-ppc64le 2.17
+    - sysroot_linux-ppc64le 2.17.*
 
 about:
   home: http://www.mozilla.org/projects/nspr/

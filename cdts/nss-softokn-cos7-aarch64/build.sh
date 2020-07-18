@@ -13,6 +13,6 @@ if [[ -d usr/lib64 ]]; then
     ln -s usr/lib64 lib64
   fi
 fi
-pushd "${PREFIX}"/aarch64-conda-linux-gnu/sysroot > /dev/null 2>&1
-cp -Rf "${SRC_DIR}"/binary/* .
+pushd ${SRC_DIR}/binary > /dev/null 2>&1
+rsync -K -a . "${PREFIX}/aarch64-conda-linux-gnu/sysroot"
 popd

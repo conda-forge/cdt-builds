@@ -22,9 +22,10 @@ requirements:
     - nspr-cos7-ppc64le >=4.21.0
   host:
     - nspr-cos7-ppc64le >=4.21.0
+    - sysroot_linux-ppc64le 2.17.*
   run:
     - nspr-cos7-ppc64le >=4.21.0
-    - sysroot_linux-ppc64le 2.17
+    - sysroot_linux-ppc64le 2.17.*
 
 about:
   home: http://www.mozilla.org/projects/security/pki/nss/

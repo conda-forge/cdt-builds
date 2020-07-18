@@ -24,10 +24,11 @@ requirements:
   host:
     - nspr-cos7-aarch64 >=4.21.0
     - nss-util-cos7-aarch64 >=3.44.0
+    - sysroot_linux-aarch64 2.17.*
   run:
     - nspr-cos7-aarch64 >=4.21.0
     - nss-util-cos7-aarch64 >=3.44.0
-    - sysroot_linux-aarch64 2.17
+    - sysroot_linux-aarch64 2.17.*
 
 about:
   home: http://www.mozilla.org/projects/security/pki/nss/

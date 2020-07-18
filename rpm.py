@@ -131,8 +131,8 @@ if [[ -d usr/lib64 ]]; then
     ln -s usr/lib64 lib64
   fi
 fi
-pushd "${PREFIX}"/{hostmachine}/sysroot > /dev/null 2>&1
-cp -Rf "${SRC_DIR}"/binary/* .
+pushd ${SRC_DIR}/binary > /dev/null 2>&1
+rsync -K -a . "${PREFIX}/{hostmachine}/sysroot"
 popd
 """
 
@@ -689,6 +689,7 @@ def write_conda_recipes(
             dependsstr_run = ""
 
         if conda_forge_style:
+            # fixup run w/ sysroot
             if len(dependsstr_run) > 0:
                 dependsstr_run += "\n"
 
@@ -697,12 +698,21 @@ def write_conda_recipes(
                     dependsstr_run = "  run:\n"
                 dependsstr_run += (
                     "    - "
-                    "sysroot_%s %s" % (
+                    "sysroot_%s %s.*" % (
                         cdt["host_subdir"], cdt["glibc_ver"]))
             else:
                 dependsstr_run += (
                     "  run_constrained:\n    - "
                     "sysroot_%s ==99999999999" % cdt["host_subdir"])
+
+            # put sysroot in host
+            if single_sysroot:
+                if len(dependsstr_host) == 0:
+                    dependsstr_host = "  host:\n"
+                dependsstr_host += (
+                    "    - "
+                    "sysroot_%s %s.*\n" % (
+                        cdt["host_subdir"], cdt["glibc_ver"]))
 
         dependsstr = (
             "requirements:\n" + dependsstr_build + dependsstr_host + dependsstr_run

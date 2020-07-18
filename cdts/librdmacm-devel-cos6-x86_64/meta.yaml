@@ -22,9 +22,10 @@ requirements:
     - librdmacm-cos6-x86_64 ==1.0.21
   host:
     - librdmacm-cos6-x86_64 ==1.0.21
+    - sysroot_linux-64 2.12.*
   run:
     - librdmacm-cos6-x86_64 ==1.0.21
-    - sysroot_linux-64 2.12
+    - sysroot_linux-64 2.12.*
 
 about:
   home: http://www.openfabrics.org/

@@ -22,9 +22,10 @@ requirements:
     - numactl-cos6-x86_64 ==2.0.9
   host:
     - numactl-cos6-x86_64 ==2.0.9
+    - sysroot_linux-64 2.12.*
   run:
     - numactl-cos6-x86_64 ==2.0.9
-    - sysroot_linux-64 2.12
+    - sysroot_linux-64 2.12.*
 
 about:
   home: ftp://oss.sgi.com/www/projects/libnuma/download
