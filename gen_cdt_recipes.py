@@ -2,6 +2,7 @@ import os
 import subprocess
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import shutil
+import collections
 
 import tqdm
 import click
@@ -109,7 +110,11 @@ def _fix_cdt_licenses(*, cdts, arch_dist_tuples, cdt_path):
                 cdt + "-" + dist.replace("ent", "") + "-" + arch,
             )
             if 'license_file' in cfg and os.path.exists(pth):
-                shutil.copy2(cfg['license_file'], os.path.join(pth, "."))
+                if isinstance(cfg["license_file"], collections.abc.MutableSequence):
+                    for lf in cfg['license_file']:
+                        shutil.copy2(lf, os.path.join(pth, "."))
+                else:
+                    shutil.copy2(cfg['license_file'], os.path.join(pth, "."))
 
                 yaml = YAML(typ="jinja2")
                 yaml.indent(mapping=2, sequence=4, offset=2)
@@ -117,7 +122,15 @@ def _fix_cdt_licenses(*, cdts, arch_dist_tuples, cdt_path):
                 with open(os.path.join(pth, "meta.yaml"), "r") as fp:
                     meta = yaml.load(fp)
 
-                meta["about"]["license_file"] = os.path.basename(cfg["license_file"])
+                if isinstance(cfg["license_file"], collections.abc.MutableSequence):
+                    meta["about"]["license_file"] = [
+                        os.path.basename(lf)
+                        for lf in cfg["license_file"]
+                    ]
+                else:
+                    meta["about"]["license_file"] = os.path.basename(
+                        cfg["license_file"]
+                    )
 
                 with open(os.path.join(pth, "meta.yaml"), "w") as fp:
                     meta = yaml.dump(meta, fp)

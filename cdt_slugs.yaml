@@ -188,10 +188,26 @@ libudev-devel:
 #   custom: false
 # nss-util:
 #   custom: false
-# numactl:
-#   custom: false
-# numactl-devel:
-#   custom: false
+numactl:
+  custom: false
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
+  license_file:
+    - licenses/numactl-copyright.txt
+    - licenses/numactl-gpl2.txt
+    - licenses/numactl-lgpl2.txt
+numactl-devel:
+  custom: false
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
+  license_file:
+    - licenses/numactl-copyright.txt
+    - licenses/numactl-gpl2.txt
+    - licenses/numactl-lgpl2.txt
 # orbit2:
 #   custom: false
 # p11-kit:
