@@ -20,7 +20,7 @@ def _gen_dist_arch_str(arch, dist):
     return "%s-%s" % (dist.replace("ent", ""), arch)
 
 
-def _make_cdt_recipes(*, extra, cdt_path, arch_dist_tuples, cdts, exec):
+def _make_cdt_recipes(*, extra, cdt_path, arch_dist_tuples, cdts, exec, only_new):
     futures = {}
     for arch, dist in arch_dist_tuples:
         for cdt, cfg in cdts.items():
@@ -37,6 +37,14 @@ def _make_cdt_recipes(*, extra, cdt_path, arch_dist_tuples, cdts, exec):
                 _extra = extra + " --recursive"
             else:
                 _extra = extra
+
+            _pth = os.path.join(
+                cdt_path,
+                cdt + "-" + _gen_dist_arch_str(arch, dist),
+            )
+
+            if only_new and os.path.exists(_pth):
+                continue
 
             futures[exec.submit(
                 subprocess.run,
@@ -138,10 +146,14 @@ def _fix_cdt_licenses(*, cdts, arch_dist_tuples, cdt_path):
 
 @click.command()
 @click.option(
+    "--only-new", default=False, is_flag=True,
+    help="Only generate new CDT recipes."
+)
+@click.option(
     "--no-legacy", default=False, is_flag=True,
     help="Do not denerate the old-style, legacy CDTs in the legacy_* folders."
 )
-def _main(no_legacy):
+def _main(only_new, no_legacy):
     """
     Generate all CDT recipes.
     """
@@ -162,7 +174,8 @@ def _main(no_legacy):
         if not no_legacy:
             # legacy CDTs for the old compiler sysroots
 
-            _clear_gen_cdts(LEGACY_CDT_PATH)
+            if not only_new:
+                _clear_gen_cdts(LEGACY_CDT_PATH)
 
             extra = "--conda-forge-style"
             arch_dist_tuples = [
@@ -177,12 +190,13 @@ def _main(no_legacy):
                     cdt_path=LEGACY_CDT_PATH,
                     arch_dist_tuples=arch_dist_tuples,
                     cdts=cdts,
-                    exec=exec)
+                    exec=exec,
+                    only_new=only_new)
                 )
 
         # new CDTs for the new compilers with a single sysroot
-
-        _clear_gen_cdts(CDT_PATH)
+        if not only_new:
+            _clear_gen_cdts(CDT_PATH)
 
         extra = "--conda-forge-style --single-sysroot"
         arch_dist_tuples = [
@@ -195,7 +209,8 @@ def _main(no_legacy):
                 cdt_path=CDT_PATH,
                 arch_dist_tuples=arch_dist_tuples,
                 cdts=cdts,
-                exec=exec)
+                exec=exec,
+                only_new=only_new)
             )
 
         for fut in tqdm.tqdm(as_completed(futures), total=len(futures)):
@@ -214,7 +229,19 @@ def _main(no_legacy):
             ):
                 for line in c.stdout.splitlines():
                     if "WARNING: could not find a suitable license " in line:
-                        tqdm.tqdm.write(line.strip())
+                        _found_cdt = None
+                        for _cdt in cdts:
+                            if _cdt in line.lower():
+                                if _found_cdt is None:
+                                    _found_cdt = _cdt
+                                elif len(_cdt) > len(_found_cdt):
+                                    _found_cdt = _cdt
+
+                        if _found_cdt is not None:
+                            if "license_file" not in cdts[_found_cdt]:
+                                tqdm.tqdm.write(line.strip())
+                        else:
+                            tqdm.tqdm.write(line.strip())
 
     # finally, we have to clean up any CDTs marked as custom that happened to be
     # made by the templates again
