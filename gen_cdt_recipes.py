@@ -16,6 +16,27 @@ from cdt_config import (
 )
 
 
+def _is_changed_or_not_tracked(pth):
+    ctracked = subprocess.run(
+        "git ls-files --error-unmatch %s" % pth,
+        shell=True,
+        capture_output=True,
+    )
+    if ctracked.returncode != 0:
+        return True
+    else:
+        cdiff = subprocess.run(
+            "git diff --exit-code -s %s" % pth,
+            shell=True,
+            capture_output=True,
+        )
+
+        if cdiff.returncode != 0:
+            return True
+        else:
+            return False
+
+
 def _gen_dist_arch_str(arch, dist):
     return "%s-%s" % (dist.replace("ent", ""), arch)
 
@@ -157,12 +178,14 @@ def _fix_cdt_builds(*, cdts, arch_dist_tuples, cdt_path):
                 cdt_path,
                 cdt.lower() + "-" + distarch,
             )
+            build_pth = os.path.join(pth, "build.sh")
             if (
                 'build_append' in cfg
                 and os.path.exists(pth)
                 and distarch in cfg["build_append"]
+                and _is_changed_or_not_tracked(build_pth)
             ):
-                with open(os.path.join(pth, "build.sh"), "a") as fp:
+                with open(build_pth, "a") as fp:
                     fp.write("\n")
                     fp.write(cfg["build_append"][distarch])
 
