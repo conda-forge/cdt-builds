@@ -19,11 +19,11 @@ build:
 
 requirements:
   build:
-    - nspr-cos7-ppc64le >=4.21.0
+    - nspr-cos7-ppc64le >=4.21.0 *_{{ cdt_build_number }}
   host:
-    - nspr-cos7-ppc64le >=4.21.0
+    - nspr-cos7-ppc64le >=4.21.0 *_{{ cdt_build_number }}
   run:
-    - nspr-cos7-ppc64le >=4.21.0
+    - nspr-cos7-ppc64le >=4.21.0 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

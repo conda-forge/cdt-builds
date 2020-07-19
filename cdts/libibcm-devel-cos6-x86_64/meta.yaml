@@ -19,15 +19,15 @@ build:
 
 requirements:
   build:
-    - libibcm-cos6-x86_64 ==1.0.5
-    - libibverbs-devel-cos6-x86_64 >=1.1
+    - libibcm-cos6-x86_64 ==1.0.5 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-devel-cos6-x86_64 >=1.1 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libibcm-cos6-x86_64 ==1.0.5
-    - libibverbs-devel-cos6-x86_64 >=1.1
+    - libibcm-cos6-x86_64 ==1.0.5 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-devel-cos6-x86_64 >=1.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
   run:
-    - libibcm-cos6-x86_64 ==1.0.5
-    - libibverbs-devel-cos6-x86_64 >=1.1
+    - libibcm-cos6-x86_64 ==1.0.5 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-devel-cos6-x86_64 >=1.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
 
 about:

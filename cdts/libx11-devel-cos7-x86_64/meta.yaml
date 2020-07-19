@@ -19,12 +19,12 @@ build:
 
 requirements:
   build:
-    - libx11-cos7-x86_64 ==1.6.7
+    - libx11-cos7-x86_64 ==1.6.7 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libx11-cos7-x86_64 ==1.6.7
+    - libx11-cos7-x86_64 ==1.6.7 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - libx11-cos7-x86_64 ==1.6.7
+    - libx11-cos7-x86_64 ==1.6.7 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 about:

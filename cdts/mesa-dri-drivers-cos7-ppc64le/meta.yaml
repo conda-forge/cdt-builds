@@ -19,12 +19,12 @@ build:
 
 requirements:
   build:
-    - libdrm-cos7-ppc64le >=2.4.83
+    - libdrm-cos7-ppc64le >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libdrm-cos7-ppc64le >=2.4.83
+    - libdrm-cos7-ppc64le >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - libdrm-cos7-ppc64le >=2.4.83
+    - libdrm-cos7-ppc64le >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 about:

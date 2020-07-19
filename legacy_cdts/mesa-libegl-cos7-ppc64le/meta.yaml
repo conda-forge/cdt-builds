@@ -19,11 +19,11 @@ build:
 
 requirements:
   build:
-    - mesa-libgbm-cos7-ppc64le ==18.3.4
+    - mesa-libgbm-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number }}
   host:
-    - mesa-libgbm-cos7-ppc64le ==18.3.4
+    - mesa-libgbm-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number }}
   run:
-    - mesa-libgbm-cos7-ppc64le ==18.3.4
+    - mesa-libgbm-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

@@ -19,15 +19,15 @@ build:
 
 requirements:
   build:
-    - kernel-headers-cos6-x86_64 >=2.6.27
-    - libdrm-cos6-x86_64 ==2.4.65
+    - kernel-headers-cos6-x86_64 >=2.6.27 *_{{ cdt_build_number|int + 1000 }}
+    - libdrm-cos6-x86_64 ==2.4.65 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - kernel-headers-cos6-x86_64 >=2.6.27
-    - libdrm-cos6-x86_64 ==2.4.65
+    - kernel-headers-cos6-x86_64 >=2.6.27 *_{{ cdt_build_number|int + 1000 }}
+    - libdrm-cos6-x86_64 ==2.4.65 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
   run:
-    - kernel-headers-cos6-x86_64 >=2.6.27
-    - libdrm-cos6-x86_64 ==2.4.65
+    - kernel-headers-cos6-x86_64 >=2.6.27 *_{{ cdt_build_number|int + 1000 }}
+    - libdrm-cos6-x86_64 ==2.4.65 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
 
 about:

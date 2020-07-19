@@ -19,12 +19,12 @@ build:
 
 requirements:
   build:
-    - libxext-cos6-x86_64 ==1.3.3
+    - libxext-cos6-x86_64 ==1.3.3 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libxext-cos6-x86_64 ==1.3.3
+    - libxext-cos6-x86_64 ==1.3.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
   run:
-    - libxext-cos6-x86_64 ==1.3.3
+    - libxext-cos6-x86_64 ==1.3.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
 
 about:

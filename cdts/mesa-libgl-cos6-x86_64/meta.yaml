@@ -19,15 +19,15 @@ build:
 
 requirements:
   build:
-    - libx11-cos6-x86_64 >1.6
-    - libdrm-cos6-x86_64 >=2.4.24
+    - libx11-cos6-x86_64 >1.6 *_{{ cdt_build_number|int + 1000 }}
+    - libdrm-cos6-x86_64 >=2.4.24 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libx11-cos6-x86_64 >1.6
-    - libdrm-cos6-x86_64 >=2.4.24
+    - libx11-cos6-x86_64 >1.6 *_{{ cdt_build_number|int + 1000 }}
+    - libdrm-cos6-x86_64 >=2.4.24 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
   run:
-    - libx11-cos6-x86_64 >1.6
-    - libdrm-cos6-x86_64 >=2.4.24
+    - libx11-cos6-x86_64 >1.6 *_{{ cdt_build_number|int + 1000 }}
+    - libdrm-cos6-x86_64 >=2.4.24 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
 
 about:

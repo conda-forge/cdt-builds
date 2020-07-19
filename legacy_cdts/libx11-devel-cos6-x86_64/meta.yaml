@@ -19,11 +19,11 @@ build:
 
 requirements:
   build:
-    - libx11-cos6-x86_64 ==1.6.4
+    - libx11-cos6-x86_64 ==1.6.4 *_{{ cdt_build_number }}
   host:
-    - libx11-cos6-x86_64 ==1.6.4
+    - libx11-cos6-x86_64 ==1.6.4 *_{{ cdt_build_number }}
   run:
-    - libx11-cos6-x86_64 ==1.6.4
+    - libx11-cos6-x86_64 ==1.6.4 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
 

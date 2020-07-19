@@ -19,12 +19,12 @@ build:
 
 requirements:
   build:
-    - mesa-dri1-drivers-cos6-x86_64 >=7.11
+    - mesa-dri1-drivers-cos6-x86_64 >=7.11 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - mesa-dri1-drivers-cos6-x86_64 >=7.11
+    - mesa-dri1-drivers-cos6-x86_64 >=7.11 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
   run:
-    - mesa-dri1-drivers-cos6-x86_64 >=7.11
+    - mesa-dri1-drivers-cos6-x86_64 >=7.11 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
 
 about:

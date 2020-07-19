@@ -19,15 +19,15 @@ build:
 
 requirements:
   build:
-    - libselinux-cos6-x86_64 ==2.0.94
-    - libsepol-devel-cos6-x86_64 >=2.0.32
+    - libselinux-cos6-x86_64 ==2.0.94 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-devel-cos6-x86_64 >=2.0.32 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libselinux-cos6-x86_64 ==2.0.94
-    - libsepol-devel-cos6-x86_64 >=2.0.32
+    - libselinux-cos6-x86_64 ==2.0.94 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-devel-cos6-x86_64 >=2.0.32 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
   run:
-    - libselinux-cos6-x86_64 ==2.0.94
-    - libsepol-devel-cos6-x86_64 >=2.0.32
+    - libselinux-cos6-x86_64 ==2.0.94 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-devel-cos6-x86_64 >=2.0.32 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
 
 about:

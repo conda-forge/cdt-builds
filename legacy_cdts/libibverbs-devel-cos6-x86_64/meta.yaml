@@ -19,11 +19,11 @@ build:
 
 requirements:
   build:
-    - libibverbs-cos6-x86_64 ==1.1.8
+    - libibverbs-cos6-x86_64 ==1.1.8 *_{{ cdt_build_number }}
   host:
-    - libibverbs-cos6-x86_64 ==1.1.8
+    - libibverbs-cos6-x86_64 ==1.1.8 *_{{ cdt_build_number }}
   run:
-    - libibverbs-cos6-x86_64 ==1.1.8
+    - libibverbs-cos6-x86_64 ==1.1.8 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
 

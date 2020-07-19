@@ -19,11 +19,11 @@ build:
 
 requirements:
   build:
-    - mesa-libgl-cos6-x86_64 ==11.0.7
+    - mesa-libgl-cos6-x86_64 ==11.0.7 *_{{ cdt_build_number }}
   host:
-    - mesa-libgl-cos6-x86_64 ==11.0.7
+    - mesa-libgl-cos6-x86_64 ==11.0.7 *_{{ cdt_build_number }}
   run:
-    - mesa-libgl-cos6-x86_64 ==11.0.7
+    - mesa-libgl-cos6-x86_64 ==11.0.7 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
 

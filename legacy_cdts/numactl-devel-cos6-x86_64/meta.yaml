@@ -19,11 +19,11 @@ build:
 
 requirements:
   build:
-    - numactl-cos6-x86_64 ==2.0.9
+    - numactl-cos6-x86_64 ==2.0.9 *_{{ cdt_build_number }}
   host:
-    - numactl-cos6-x86_64 ==2.0.9
+    - numactl-cos6-x86_64 ==2.0.9 *_{{ cdt_build_number }}
   run:
-    - numactl-cos6-x86_64 ==2.0.9
+    - numactl-cos6-x86_64 ==2.0.9 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
 
