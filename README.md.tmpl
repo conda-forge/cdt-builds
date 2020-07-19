@@ -105,5 +105,5 @@ register_repo("conda-forge", "cdt-builds", config=cfg)
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 {% for cdt in cdts -%}
-| [![Conda Recipe](https://img.shields.io/badge/recipe-{{ cdt }}-green.svg)](https://anaconda.org/conda-forge/{{ cdt }}) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/{{ cdt }}.svg)](https://anaconda.org/conda-forge/{{ cdt }}) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/{{ cdt }}.svg)](https://anaconda.org/conda-forge/{{ cdt }}) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/{{ cdt }}.svg)](https://anaconda.org/conda-forge/{{ cdt }}) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-{{ cdt.replace('-', '--') }}-green.svg)](https://anaconda.org/conda-forge/{{ cdt }}) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/{{ cdt }}.svg)](https://anaconda.org/conda-forge/{{ cdt }}) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/{{ cdt }}.svg)](https://anaconda.org/conda-forge/{{ cdt }}) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/{{ cdt }}.svg)](https://anaconda.org/conda-forge/{{ cdt }}) |
 {% endfor %}
