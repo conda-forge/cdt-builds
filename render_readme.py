@@ -1,3 +1,4 @@
+import os
 import glob
 
 from jinja2 import Template
@@ -11,13 +12,15 @@ from cdt_config import (
 
 
 def render_readme():
-    recipes = sorted(set(
+    recipes = set(
         glob.glob(CDT_PATH + "/*")
         + glob.glob(CUSTOM_CDT_PATH + "/*")
         + glob.glob(LEGACY_CDT_PATH + "/*")
         + glob.glob(LEGACY_CUSTOM_CDT_PATH + "/*")
-    ))
-    recipes = [r for r in recipes if r != "README.md"]
+    )
+    recipes = sorted(
+        os.path.basename(r) for r in recipes if not r.endswith("README.md")
+    )
 
     with open("README.md.tmpl", "r") as fp:
         tmpl = Template(fp.read())
