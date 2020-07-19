@@ -14,6 +14,7 @@ from cdt_config import (
     CDT_PATH,
     CUSTOM_CDT_PATH,
 )
+from render_readme import render_readme
 
 
 def _is_changed_or_not_tracked(pth):
@@ -336,6 +337,9 @@ def _main(only_new, no_legacy):
         arch_dist_tuples=arch_dist_tuples,
         cdt_path=CDT_PATH
     )
+
+    # make the readme
+    render_readme()
 
 
 if __name__ == "__main__":
