@@ -1,0 +1,39 @@
+package:
+  name: kernel-headers-cos7-x86_64
+  version: 3.10.0
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/kernel-headers-3.10.0-1127.el7.x86_64.rpm
+    sha256: a78a986498e77a803d33823db7d77edcde1d0431f8d19e089649404ddcf62c9f
+    no_hoist: true
+    folder: binary
+  # - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/kernel-headers-3.10.0-1127.el7.x86_64.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-64 2.17.*
+  run:
+    - sysroot_linux-64 2.17.*
+
+about:
+  home: http://www.kernel.org/
+  license: GPL-2.0-only
+  license_family: GPL2
+  summary: (CDT) Header files for the Linux kernel for use by glibc
+  description: |
+    Kernel-headers includes the C header files that specify the interface between
+    the Linux kernel and userspace libraries and programs.  The header files
+    define structures and constants that are needed for building most standard
+    programs and are also needed for rebuilding the glibc package.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

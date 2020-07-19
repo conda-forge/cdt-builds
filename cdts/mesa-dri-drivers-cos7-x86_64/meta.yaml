@@ -1,0 +1,41 @@
+package:
+  name: mesa-dri-drivers-cos7-x86_64
+  version: 18.3.4
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/mesa-dri-drivers-18.3.4-7.el7.x86_64.rpm
+    sha256: 6db5965786c8e7fb13cfceb0a6879439a1f2122cd196e9e740298f14cf108712
+    no_hoist: true
+    folder: binary
+  # - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/mesa-dri-drivers-18.3.4-7.el7.x86_64.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libdrm-cos7-x86_64 >=2.4.83
+  host:
+    - libdrm-cos7-x86_64 >=2.4.83
+    - sysroot_linux-64 2.17.*
+  run:
+    - libdrm-cos7-x86_64 >=2.4.83
+    - sysroot_linux-64 2.17.*
+
+about:
+  home: http://www.mesa3d.org
+  license: MIT
+  license_family: MIT
+  license_file: mesa-license
+  summary: (CDT) Mesa-based DRI drivers
+  description: |
+    Mesa-based DRI drivers.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,44 @@
+package:
+  name: mesa-libgbm-cos7-aarch64
+  version: 18.3.4
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-libgbm-18.3.4-7.el7.aarch64.rpm
+    sha256: c1badb5ab3fdd9f66eee7814edcb54628fb96b15a401bb980efee2a7709b0308
+    no_hoist: true
+    folder: binary
+  # - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-libgbm-18.3.4-7.el7.aarch64.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libdrm-cos7-aarch64 >=2.4.83
+    - mesa-libglapi-cos7-aarch64 ==18.3.4
+  host:
+    - libdrm-cos7-aarch64 >=2.4.83
+    - mesa-libglapi-cos7-aarch64 ==18.3.4
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - libdrm-cos7-aarch64 >=2.4.83
+    - mesa-libglapi-cos7-aarch64 ==18.3.4
+    - sysroot_linux-aarch64 2.17.*
+
+about:
+  home: http://www.mesa3d.org
+  license: MIT
+  license_family: MIT
+  license_file: mesa-license
+  summary: (CDT) Mesa gbm library
+  description: |
+    Mesa gbm runtime library.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

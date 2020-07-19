@@ -1,0 +1,41 @@
+package:
+  name: mesa-libegl-devel-cos7-aarch64
+  version: 18.3.4
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-libEGL-devel-18.3.4-7.el7.aarch64.rpm
+    sha256: 03c40e7f1dbea596cf3743769d0bec276f19eda8b7cf1f8d3a69f6915b008f85
+    no_hoist: true
+    folder: binary
+  # - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-libEGL-devel-18.3.4-7.el7.aarch64.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - mesa-libegl-cos7-aarch64 ==18.3.4
+  host:
+    - mesa-libegl-cos7-aarch64 ==18.3.4
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - mesa-libegl-cos7-aarch64 ==18.3.4
+    - sysroot_linux-aarch64 2.17.*
+
+about:
+  home: http://www.mesa3d.org
+  license: MIT
+  license_family: MIT
+  license_file: mesa-license
+  summary: (CDT) Mesa libEGL development package
+  description: |
+    Mesa libEGL development package
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

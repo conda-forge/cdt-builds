@@ -24,12 +24,19 @@ chkconfig:
 #   custom: false
 # javapackages-tools:
 #   custom: false
+kernel-headers:
+  custom: false
+  license_file: null
 # libXxf86vm:
 #   custom: false
 # libXxf86vm-devel:
 #   custom: false
-# libdrm-devel:
-#   custom: false
+libdrm:
+  custom: false
+  license_file: null
+libdrm-devel:
+  custom: false
+  license_file: null
 # libglvnd:
 #   custom: false
 # libglvnd-glx:
@@ -112,12 +119,14 @@ libudev-devel:
 #   custom: false
 # libuuid-devel:
 #   custom: false
-# libX11:
-#   custom: false
-# libX11-common:
-#   custom: false
-# libX11-devel:
-#   custom: false
+libX11:
+  custom: false
+  license_file: licenses/x11-license
+libX11-common:
+  custom: false
+libX11-devel:
+  custom: false
+  license_file: licenses/x11-license
 # libxau:
 #   custom: false
 # libxau-devel:
@@ -176,16 +185,57 @@ libudev-devel:
 #   custom: false
 # libxxf86vm-devel:
 #   custom: false
-# mesa-dri-drivers:
-#   custom: false
-# mesa-khr-devel:
-#   custom: false
-# mesa-libEGL-devel:
-#   custom: false
-# mesa-libGL:
-#   custom: true
-# mesa-libGL-devel:
-#   custom: false
+mesa-libgbm:
+  custom: false
+  license_file: licenses/mesa-license
+mesa-dri-drivers:
+  custom: false
+  license_file: licenses/mesa-license
+mesa-dri1-drivers:
+  custom: false
+  skipped_cdts:
+    - cos7-aarch64
+    - cos7-ppc64le
+    - cos7-x86_64
+  license_file: licenses/mesa-license
+mesa-khr-devel:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file: licenses/mesa-license
+mesa-libEGL:
+  custom: false
+  license_file: licenses/mesa-license
+mesa-libEGL-devel:
+  custom: false
+  license_file: licenses/mesa-license
+mesa-libGL:
+  custom: false
+  license_file: licenses/mesa-license
+  build_append:
+    cos7-aarch64: |
+      pushd ${SYSROOT_DIR}/usr/lib64
+      rm libGLX_system.so.0
+      ln -s libGLX_mesa.so.0 libGLX_system.so.0
+      popd
+    cos7-ppc64le: |
+      pushd ${SYSROOT_DIR}/usr/lib64
+      rm libGLX_system.so.0
+      ln -s libGLX_mesa.so.0 libGLX_system.so.0
+      popd
+    cos7-x86_64: |
+      pushd ${SYSROOT_DIR}/usr/lib64
+      rm libGLX_system.so.0
+      ln -s libGLX_mesa.so.0 libGLX_system.so.0
+      popd
+mesa-libGL-devel:
+  custom: false
+  license_file: licenses/mesa-license
+mesa-libglapi:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file: licenses/mesa-license
 nspr:
   custom: false
   skipped_cdts:

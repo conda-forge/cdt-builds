@@ -16,6 +16,27 @@ from cdt_config import (
 )
 
 
+def _is_changed_or_not_tracked(pth):
+    ctracked = subprocess.run(
+        "git ls-files --error-unmatch %s" % pth,
+        shell=True,
+        capture_output=True,
+    )
+    if ctracked.returncode != 0:
+        return True
+    else:
+        cdiff = subprocess.run(
+            "git diff --exit-code -s %s" % pth,
+            shell=True,
+            capture_output=True,
+        )
+
+        if cdiff.returncode != 0:
+            return True
+        else:
+            return False
+
+
 def _gen_dist_arch_str(arch, dist):
     return "%s-%s" % (dist.replace("ent", ""), arch)
 
@@ -40,7 +61,7 @@ def _make_cdt_recipes(*, extra, cdt_path, arch_dist_tuples, cdts, exec, only_new
 
             _pth = os.path.join(
                 cdt_path,
-                cdt + "-" + _gen_dist_arch_str(arch, dist),
+                cdt.lower() + "-" + _gen_dist_arch_str(arch, dist),
             )
 
             if only_new and os.path.exists(_pth):
@@ -69,7 +90,7 @@ def _cleanup_custom_cdt_overlaps(*, cdt_path, arch_dist_tuples, cdts):
 
             pth = os.path.join(
                 cdt_path,
-                cdt + "-" + dist.replace("ent", "") + "-" + arch,
+                cdt.lower() + "-" + dist.replace("ent", "") + "-" + arch,
             )
             if os.path.exists(pth):
                 try:
@@ -115,10 +136,12 @@ def _fix_cdt_licenses(*, cdts, arch_dist_tuples, cdt_path):
         for cdt, cfg in cdts.items():
             pth = os.path.join(
                 cdt_path,
-                cdt + "-" + dist.replace("ent", "") + "-" + arch,
+                cdt.lower() + "-" + dist.replace("ent", "") + "-" + arch,
             )
             if 'license_file' in cfg and os.path.exists(pth):
-                if isinstance(cfg["license_file"], collections.abc.MutableSequence):
+                if cfg["license_file"] is None:
+                    pass
+                elif isinstance(cfg["license_file"], collections.abc.MutableSequence):
                     for lf in cfg['license_file']:
                         shutil.copy2(lf, os.path.join(pth, "."))
                 else:
@@ -130,7 +153,10 @@ def _fix_cdt_licenses(*, cdts, arch_dist_tuples, cdt_path):
                 with open(os.path.join(pth, "meta.yaml"), "r") as fp:
                     meta = yaml.load(fp)
 
-                if isinstance(cfg["license_file"], collections.abc.MutableSequence):
+                if cfg["license_file"] is None:
+                    if "license_file" in meta["about"]:
+                        meta["about"].pop("license_file")
+                elif isinstance(cfg["license_file"], collections.abc.MutableSequence):
                     meta["about"]["license_file"] = [
                         os.path.basename(lf)
                         for lf in cfg["license_file"]
@@ -142,6 +168,26 @@ def _fix_cdt_licenses(*, cdts, arch_dist_tuples, cdt_path):
 
                 with open(os.path.join(pth, "meta.yaml"), "w") as fp:
                     meta = yaml.dump(meta, fp)
+
+
+def _fix_cdt_builds(*, cdts, arch_dist_tuples, cdt_path):
+    for arch, dist in arch_dist_tuples:
+        distarch = dist.replace("ent", "") + "-" + arch
+        for cdt, cfg in cdts.items():
+            pth = os.path.join(
+                cdt_path,
+                cdt.lower() + "-" + distarch,
+            )
+            build_pth = os.path.join(pth, "build.sh")
+            if (
+                'build_append' in cfg
+                and os.path.exists(pth)
+                and distarch in cfg["build_append"]
+                and _is_changed_or_not_tracked(build_pth)
+            ):
+                with open(build_pth, "a") as fp:
+                    fp.write("\n")
+                    fp.write(cfg["build_append"][distarch])
 
 
 @click.command()
@@ -231,7 +277,7 @@ def _main(only_new, no_legacy):
                     if "WARNING: could not find a suitable license " in line:
                         _found_cdt = None
                         for _cdt in cdts:
-                            if _cdt in line.lower():
+                            if _cdt.lower() in line.lower():
                                 if _found_cdt is None:
                                     _found_cdt = _cdt
                                 elif len(_cdt) > len(_found_cdt):
@@ -263,6 +309,12 @@ def _main(only_new, no_legacy):
             cdt_path=LEGACY_CDT_PATH
         )
 
+        _fix_cdt_builds(
+            cdts=cdts,
+            arch_dist_tuples=arch_dist_tuples,
+            cdt_path=LEGACY_CDT_PATH
+        )
+
     # new CDTs for the new compilers with a single sysroot
     arch_dist_tuples = [
         ("x86_64", "centos6"), ("x86_64", "centos7"),
@@ -274,6 +326,12 @@ def _main(only_new, no_legacy):
         cdts=cdts)
 
     _fix_cdt_licenses(
+        cdts=cdts,
+        arch_dist_tuples=arch_dist_tuples,
+        cdt_path=CDT_PATH
+    )
+
+    _fix_cdt_builds(
         cdts=cdts,
         arch_dist_tuples=arch_dist_tuples,
         cdt_path=CDT_PATH
