@@ -17,6 +17,7 @@ def render_readme():
         + glob.glob(LEGACY_CDT_PATH + "/*")
         + glob.glob(LEGACY_CUSTOM_CDT_PATH + "/*")
     ))
+    recipes = [r for r in recipes if r != "README.md"]
 
     with open("README.md.tmpl", "r") as fp:
         tmpl = Template(fp.read())
