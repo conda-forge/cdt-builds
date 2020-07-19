@@ -120,7 +120,9 @@ BUILDSH = """\
 
 set -o errexit -o pipefail
 
-mkdir -p "${PREFIX}"/{hostmachine}/sysroot
+SYSROOT_DIR="${PREFIX}"/{hostmachine}/sysroot
+
+mkdir -p "${SYSROOT_DIR}"
 if [[ -d usr/lib ]]; then
   if [[ ! -d lib ]]; then
     ln -s usr/lib lib
@@ -132,7 +134,7 @@ if [[ -d usr/lib64 ]]; then
   fi
 fi
 pushd ${SRC_DIR}/binary > /dev/null 2>&1
-rsync -K -a . "${PREFIX}/{hostmachine}/sysroot"
+rsync -K -a . "${SYSROOT_DIR}"
 popd
 """
 
@@ -754,6 +756,7 @@ def write_conda_recipes(
             "PWD": "{PWD}",
             "RECIPE_DIR": "{RECIPE_DIR}",
             "SRC_DIR": "{SRC_DIR}",
+            "SYSROOT_DIR": "{SYSROOT_DIR}"
         }
     )
     odir = join(output_dir, package_cdt_name)

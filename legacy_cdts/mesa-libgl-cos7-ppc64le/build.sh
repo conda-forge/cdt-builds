@@ -18,3 +18,8 @@ fi
 pushd ${SRC_DIR}/binary > /dev/null 2>&1
 rsync -K -a . "${SYSROOT_DIR}"
 popd
+
+pushd ${SYSROOT_DIR}/usr/lib64
+rm libGLX_system.so.0
+ln -s libGLX_mesa.so.0 libGLX_system.so.0
+popd

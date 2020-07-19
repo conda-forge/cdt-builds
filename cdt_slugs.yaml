@@ -210,8 +210,13 @@ mesa-libEGL-devel:
   custom: false
   license_file: licenses/mesa-license
 mesa-libGL:
-  custom: true
+  custom: false
   license_file: licenses/mesa-license
+  build_append: |
+    pushd ${SYSROOT_DIR}/usr/lib64
+    rm libGLX_system.so.0
+    ln -s libGLX_mesa.so.0 libGLX_system.so.0
+    popd
 mesa-libGL-devel:
   custom: false
   license_file: licenses/mesa-license

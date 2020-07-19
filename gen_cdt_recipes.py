@@ -40,7 +40,7 @@ def _make_cdt_recipes(*, extra, cdt_path, arch_dist_tuples, cdts, exec, only_new
 
             _pth = os.path.join(
                 cdt_path,
-                cdt + "-" + _gen_dist_arch_str(arch, dist),
+                cdt.lower() + "-" + _gen_dist_arch_str(arch, dist),
             )
 
             if only_new and os.path.exists(_pth):
@@ -69,7 +69,7 @@ def _cleanup_custom_cdt_overlaps(*, cdt_path, arch_dist_tuples, cdts):
 
             pth = os.path.join(
                 cdt_path,
-                cdt + "-" + dist.replace("ent", "") + "-" + arch,
+                cdt.lower() + "-" + dist.replace("ent", "") + "-" + arch,
             )
             if os.path.exists(pth):
                 try:
@@ -115,7 +115,7 @@ def _fix_cdt_licenses(*, cdts, arch_dist_tuples, cdt_path):
         for cdt, cfg in cdts.items():
             pth = os.path.join(
                 cdt_path,
-                cdt + "-" + dist.replace("ent", "") + "-" + arch,
+                cdt.lower() + "-" + dist.replace("ent", "") + "-" + arch,
             )
             if 'license_file' in cfg and os.path.exists(pth):
                 if cfg["license_file"] is None:
@@ -133,7 +133,8 @@ def _fix_cdt_licenses(*, cdts, arch_dist_tuples, cdt_path):
                     meta = yaml.load(fp)
 
                 if cfg["license_file"] is None:
-                    meta["about"].pop("license_file")
+                    if "license_file" in meta["about"]:
+                        meta["about"].pop("license_file")
                 elif isinstance(cfg["license_file"], collections.abc.MutableSequence):
                     meta["about"]["license_file"] = [
                         os.path.basename(lf)
@@ -146,6 +147,23 @@ def _fix_cdt_licenses(*, cdts, arch_dist_tuples, cdt_path):
 
                 with open(os.path.join(pth, "meta.yaml"), "w") as fp:
                     meta = yaml.dump(meta, fp)
+
+
+def _fix_cdt_builds(*, cdts, arch_dist_tuples, cdt_path):
+    for arch, dist in arch_dist_tuples:
+        distarch = dist.replace("ent", "") + "-" + arch
+        for cdt, cfg in cdts.items():
+            pth = os.path.join(
+                cdt_path,
+                cdt.lower() + "-" + distarch,
+            )
+            if (
+                'build_append' in cfg
+                and os.path.exists(pth)
+            ):
+                with open(os.path.join(pth, "build.sh"), "a") as fp:
+                    fp.write("\n")
+                    fp.write(cfg["build_append"])
 
 
 @click.command()
@@ -267,6 +285,12 @@ def _main(only_new, no_legacy):
             cdt_path=LEGACY_CDT_PATH
         )
 
+        _fix_cdt_builds(
+            cdts=cdts,
+            arch_dist_tuples=arch_dist_tuples,
+            cdt_path=LEGACY_CDT_PATH
+        )
+
     # new CDTs for the new compilers with a single sysroot
     arch_dist_tuples = [
         ("x86_64", "centos6"), ("x86_64", "centos7"),
@@ -278,6 +302,12 @@ def _main(only_new, no_legacy):
         cdts=cdts)
 
     _fix_cdt_licenses(
+        cdts=cdts,
+        arch_dist_tuples=arch_dist_tuples,
+        cdt_path=CDT_PATH
+    )
+
+    _fix_cdt_builds(
         cdts=cdts,
         arch_dist_tuples=arch_dist_tuples,
         cdt_path=CDT_PATH
