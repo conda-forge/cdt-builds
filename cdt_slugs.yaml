@@ -27,10 +27,11 @@ chkconfig:
 kernel-headers:
   custom: false
   license_file: null
-# libXxf86vm:
-#   custom: false
-# libXxf86vm-devel:
-#   custom: false
+libXxf86vm:
+  custom: false
+libXxf86vm-devel:
+  custom: false
+  license_file: licenses/libxxf86vm-license
 libdrm:
   custom: false
   license_file: null
@@ -92,10 +93,18 @@ librdmacm-devel:
     - cos7-aarch64
     - cos7-ppc64le
   license_file: licenses/librdmacm-devel-license
-# libselinux:
-#   custom: false
-# libselinux-devel:
-#   custom: false
+libselinux:
+  custom: false
+  license_file: null
+libselinux-devel:
+  custom: false
+  license_file: null
+libsepol:
+  custom: false
+  license_file: licenses/libsepol-license
+libsepol-devel:
+  custom: false
+  license_file: licenses/libsepol-license
 # libsm:
 #   custom: false
 # libsm-devel:
@@ -141,14 +150,16 @@ libX11-devel:
 #   custom: false
 # libxcursor-devel:
 #   custom: false
-# libxdamage:
-#   custom: false
-# libxdamage-devel:
-#   custom: false
-# libxext:
-#   custom: false
-# libxext-devel:
-#   custom: false
+libXdamage:
+  custom: false
+libXdamage-devel:
+  custom: false
+  license_file: licenses/libxdamage-license
+libXext:
+  custom: false
+libXext-devel:
+  custom: false
+  license_file: licenses/libxext-license
 # libxfixes:
 #   custom: false
 # libxfixes-devel:
@@ -180,10 +191,6 @@ libX11-devel:
 # libXt-devel:
 #   custom: false
 # libxtst-devel:
-#   custom: false
-# libxxf86vm:
-#   custom: false
-# libxxf86vm-devel:
 #   custom: false
 mesa-libgbm:
   custom: false

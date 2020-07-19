@@ -1,0 +1,41 @@
+package:
+  name: libxxf86vm-cos7-ppc64le
+  version: 1.1.4
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libXxf86vm-1.1.4-1.el7.ppc64le.rpm
+    sha256: 39a2ca6b68766e837892dcf536764b542ec219f56ebc2754408dcae46b8553b6
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXxf86vm-1.1.4-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libx11-cos7-ppc64le >=1.5.99.902
+  host:
+    - libx11-cos7-ppc64le >=1.5.99.902
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - libx11-cos7-ppc64le >=1.5.99.902
+    - sysroot_linux-ppc64le 2.17.*
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libXxf86vm-1.1.4/COPYING
+  summary: "(CDT) X.Org X11 libXxf86vm runtime library"
+  description: |
+        X.Org X11 libXxf86vm runtime library
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

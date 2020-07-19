@@ -24,7 +24,8 @@ conda install -yq \
   ruamel.yaml \
   ruamel.yaml.jinja2 \
   wurlitzer \
-  rpm-tools
+  rpm-tools \
+  jinja2
 
 conda list
 

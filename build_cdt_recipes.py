@@ -87,6 +87,7 @@ def _get_recipe_attrs(recipe, channel_index):
     )))
 
     attrs['skip'] = _cdt_exists(attrs, channel_index)
+    attrs['exists'] = attrs['skip']
 
     return node, attrs
 
@@ -125,7 +126,7 @@ def _has_all_cdt_deps(node, cdt_meta):
 
 def _is_buildable(node, cdt_meta, pkgs):
     return all(
-        dep in pkgs
+        dep in pkgs or cdt_meta[dep]['exists']
         for dep in cdt_meta[node]["all_requirements"]
         if dep in cdt_meta
     )
@@ -189,7 +190,9 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
                 skipped.add(node)
 
         built = set()
-        with tqdm.tqdm(total=len(cdt_meta), ncols=80, desc='building recipes') as pbar:
+        with tqdm.tqdm(
+            total=len(cdt_meta) - len(skipped), ncols=80, desc='building recipes'
+        ) as pbar:
             while not all(node in built or node in skipped for node in cdt_meta):
                 futures = {}
 
