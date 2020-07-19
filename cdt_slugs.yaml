@@ -92,10 +92,26 @@ librdmacm-devel:
     - cos7-aarch64
     - cos7-ppc64le
   license_file: licenses/librdmacm-devel-license
-# libselinux:
-#   custom: false
-# libselinux-devel:
-#   custom: false
+libselinux:
+  custom: false
+  license_file: null
+libselinux-devel:
+  custom: false
+  license_file: null
+libsepol:
+  custom: false
+  license_file: licenses/libsepol-license
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
+libsepol-devel:
+  custom: false
+  license_file: licenses/libsepol-license
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
 # libsm:
 #   custom: false
 # libsm-devel:
