@@ -27,10 +27,11 @@ chkconfig:
 kernel-headers:
   custom: false
   license_file: null
-# libXxf86vm:
-#   custom: false
-# libXxf86vm-devel:
-#   custom: false
+libXxf86vm:
+  custom: false
+libXxf86vm-devel:
+  custom: false
+  license_file: licenses/libxxf86vm-license
 libdrm:
   custom: false
   license_file: null
@@ -197,10 +198,6 @@ libXdamage-devel:
 # libXt-devel:
 #   custom: false
 # libxtst-devel:
-#   custom: false
-# libxxf86vm:
-#   custom: false
-# libxxf86vm-devel:
 #   custom: false
 mesa-libgbm:
   custom: false

@@ -1,0 +1,41 @@
+package:
+  name: libxxf86vm-devel-cos7-x86_64
+  version: 1.1.4
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libXxf86vm-devel-1.1.4-1.el7.x86_64.rpm
+    sha256: 691bf47ba421d0d8782789cc5efc5fb0762c9e1193901dfe698ea7e5b1ed41e9
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXxf86vm-1.1.4-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libxxf86vm-cos7-x86_64 ==1.1.4
+  host:
+    - libxxf86vm-cos7-x86_64 ==1.1.4
+    - sysroot_linux-64 2.17.*
+  run:
+    - libxxf86vm-cos7-x86_64 ==1.1.4
+    - sysroot_linux-64 2.17.*
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: libxxf86vm-license
+  summary: (CDT) X.Org X11 libXxf86vm development package
+  description: |
+    X.Org X11 libXxf86vm development package
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

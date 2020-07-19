@@ -1,0 +1,41 @@
+package:
+  name: libxxf86vm-cos7-aarch64
+  version: 1.1.4
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libXxf86vm-1.1.4-1.el7.aarch64.rpm
+    sha256: 66fafbf534a52b2c9b4446136505e06fc1bc38e786f7834255bdb03a5bb6a990
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXxf86vm-1.1.4-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libx11-cos7-aarch64 >=1.5.99.902
+  host:
+    - libx11-cos7-aarch64 >=1.5.99.902
+  run:
+    - libx11-cos7-aarch64 >=1.5.99.902
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libXxf86vm-1.1.4/COPYING
+  summary: "(CDT) X.Org X11 libXxf86vm runtime library"
+  description: |
+        X.Org X11 libXxf86vm runtime library
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

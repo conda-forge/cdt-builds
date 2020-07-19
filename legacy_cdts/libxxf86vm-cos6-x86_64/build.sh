@@ -2,7 +2,7 @@
 
 set -o errexit -o pipefail
 
-SYSROOT_DIR="${PREFIX}"/powerpc64le-conda_cos7-linux-gnu/sysroot
+SYSROOT_DIR="${PREFIX}"/x86_64-conda_cos6-linux-gnu/sysroot
 
 mkdir -p "${SYSROOT_DIR}"
 if [[ -d usr/lib ]]; then
