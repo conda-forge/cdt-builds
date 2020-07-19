@@ -212,11 +212,22 @@ mesa-libEGL-devel:
 mesa-libGL:
   custom: false
   license_file: licenses/mesa-license
-  build_append: |
-    pushd ${SYSROOT_DIR}/usr/lib64
-    rm libGLX_system.so.0
-    ln -s libGLX_mesa.so.0 libGLX_system.so.0
-    popd
+  build_append:
+    cos7-aarch64: |
+      pushd ${SYSROOT_DIR}/usr/lib64
+      rm libGLX_system.so.0
+      ln -s libGLX_mesa.so.0 libGLX_system.so.0
+      popd
+    cos7-ppc64le: |
+      pushd ${SYSROOT_DIR}/usr/lib64
+      rm libGLX_system.so.0
+      ln -s libGLX_mesa.so.0 libGLX_system.so.0
+      popd
+    cos7-x86_64: |
+      pushd ${SYSROOT_DIR}/usr/lib64
+      rm libGLX_system.so.0
+      ln -s libGLX_mesa.so.0 libGLX_system.so.0
+      popd
 mesa-libGL-devel:
   custom: false
   license_file: licenses/mesa-license

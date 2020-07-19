@@ -160,10 +160,11 @@ def _fix_cdt_builds(*, cdts, arch_dist_tuples, cdt_path):
             if (
                 'build_append' in cfg
                 and os.path.exists(pth)
+                and distarch in cfg["build_append"]
             ):
                 with open(os.path.join(pth, "build.sh"), "a") as fp:
                     fp.write("\n")
-                    fp.write(cfg["build_append"])
+                    fp.write(cfg["build_append"][distarch])
 
 
 @click.command()
