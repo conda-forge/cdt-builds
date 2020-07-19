@@ -3,13 +3,34 @@
 conda-forge Core Dependency Tree (CDT) builds
 
 
+## `cdt_slugs.yaml` Configuration Options
+
+The following options are available when adding a CDT in the configuration file:
+
+ - `custom` (boolean): Set to `true` to declare the CDT as a custom CDT. This will
+   cause the CDT generation code to remove any instance of the CDT that appears in the
+   `cdts` or `legacy_cdts` directories.
+ - `license_file` (str or list of str or null): Sets the license file for a CDT. If set to
+   a string or a list of strings giving the paths to the files, it will copy the licenses
+   to the recipe and modify the recipe `meta.yaml` appropriately. If set to `null`, it will
+   remove the `license_file` key from the `meta.yaml`.
+ - `skipped_cdts` (list of str): Set to a list of the distribution and platforms to skip
+   for this CDT. For example, one might add `cos6-x86_64` to this list to skip making this
+   CDT for CentOS 6 on `x86_64` architectures.
+ - `build_append` (dict mapping dist-arch to a string): Set this key to append code to the
+   `build.sh` file for a given distribution and platform. For example, one might set a key
+   `cos6-x86_64` in this mapping and set the value to `echo 'hi!'` to add `echo 'hi!'` to
+   the build script for only `cos6-x86_64`.
+
 ## Adding a CDT package
 
 To add a CDT package, make a PR on this repo with the following changes.
 
 1. Add the name of the CDT `cdt_slugs.yaml` file.
 2. Run the python script `gen_cdt_recipes.py`. This script will take about 10-20
-   minutes to complete and will regenerate all of the CDT recipes.
+   minutes to complete and will regenerate all of the CDT recipes. Pass the
+   option `--only-new` to only build CDTs which do not have a directory in the
+   `cdts` or `legacy_cdts` directories.
 3. Commit any changes from steps 1+2 and open the PR.
 
 The CI service will build the CDTs, report any errors, etc.
@@ -22,7 +43,9 @@ the following steps.
 
 1. Make sure the bump the `cdt_build_number` variable in the `conda_build_config.yaml` file.
 2. Run the python script `gen_cdt_recipes.py`. This script will take about 10-20
-   minutes to complete and will regenerate all of the CDT recipes.
+   minutes to complete and will regenerate all of the CDT recipes. Pass the
+   option `--only-new` to only build CDTs which do not have a directory in the
+   `cdts` or `legacy_cdts` directories.
 3. Commit any changes from steps 1+2 and open the PR.
 
 The CI service will build the CDTs, report any errors, etc.
@@ -68,7 +91,7 @@ compilers that depend on the `sysroot_{conda subdir}` packages.
 
 ## Azure CI Setup
 
-This bit of code was run to setup azure. 
+This bit of code was run to setup azure.
 
 ```python
 from conda_smithy.azure_ci_utils import register_repo, AzureConfig
