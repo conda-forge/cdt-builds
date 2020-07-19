@@ -1,0 +1,41 @@
+package:
+  name: libxext-devel-cos7-x86_64
+  version: 1.3.3
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libXext-devel-1.3.3-3.el7.x86_64.rpm
+    sha256: a393ca6681725798d068fd5c4dbb9fab678f6955e10b1b368c96b96b76a8b54b
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXext-1.3.3-3.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libxext-cos7-x86_64 ==1.3.3
+  host:
+    - libxext-cos7-x86_64 ==1.3.3
+    - sysroot_linux-64 2.17.*
+  run:
+    - libxext-cos7-x86_64 ==1.3.3
+    - sysroot_linux-64 2.17.*
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: libxext-license
+  summary: (CDT) X.Org X11 libXext development package
+  description: |
+    X.Org X11 libXext development package
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -163,10 +163,11 @@ libXdamage:
 libXdamage-devel:
   custom: false
   license_file: licenses/libxdamage-license
-# libxext:
-#   custom: false
-# libxext-devel:
-#   custom: false
+libXext:
+  custom: false
+libXext-devel:
+  custom: false
+  license_file: licenses/libxext-license
 # libxfixes:
 #   custom: false
 # libxfixes-devel:
