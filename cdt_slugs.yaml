@@ -157,10 +157,11 @@ libX11-devel:
 #   custom: false
 # libxcursor-devel:
 #   custom: false
-# libxdamage:
-#   custom: false
-# libxdamage-devel:
-#   custom: false
+libXdamage:
+  custom: false
+libXdamage-devel:
+  custom: false
+  license_file: licenses/libxdamage-license
 # libxext:
 #   custom: false
 # libxext-devel:
