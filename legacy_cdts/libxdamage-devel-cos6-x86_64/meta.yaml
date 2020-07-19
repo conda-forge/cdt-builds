@@ -19,11 +19,11 @@ build:
 
 requirements:
   build:
-    - libxdamage-cos6-x86_64 ==1.1.3
+    - libxdamage-cos6-x86_64 ==1.1.3 *_{{ cdt_build_number }}
   host:
-    - libxdamage-cos6-x86_64 ==1.1.3
+    - libxdamage-cos6-x86_64 ==1.1.3 *_{{ cdt_build_number }}
   run:
-    - libxdamage-cos6-x86_64 ==1.1.3
+    - libxdamage-cos6-x86_64 ==1.1.3 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
 

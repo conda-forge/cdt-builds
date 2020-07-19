@@ -19,14 +19,14 @@ build:
 
 requirements:
   build:
-    - kernel-headers-cos7-aarch64 >=2.6.27
-    - libdrm-cos7-aarch64 ==2.4.97
+    - kernel-headers-cos7-aarch64 >=2.6.27 *_{{ cdt_build_number }}
+    - libdrm-cos7-aarch64 ==2.4.97 *_{{ cdt_build_number }}
   host:
-    - kernel-headers-cos7-aarch64 >=2.6.27
-    - libdrm-cos7-aarch64 ==2.4.97
+    - kernel-headers-cos7-aarch64 >=2.6.27 *_{{ cdt_build_number }}
+    - libdrm-cos7-aarch64 ==2.4.97 *_{{ cdt_build_number }}
   run:
-    - kernel-headers-cos7-aarch64 >=2.6.27
-    - libdrm-cos7-aarch64 ==2.4.97
+    - kernel-headers-cos7-aarch64 >=2.6.27 *_{{ cdt_build_number }}
+    - libdrm-cos7-aarch64 ==2.4.97 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

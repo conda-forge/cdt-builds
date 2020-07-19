@@ -19,12 +19,12 @@ build:
 
 requirements:
   build:
-    - libsepol-cos6-x86_64 ==2.0.41
+    - libsepol-cos6-x86_64 ==2.0.41 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libsepol-cos6-x86_64 ==2.0.41
+    - libsepol-cos6-x86_64 ==2.0.41 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
   run:
-    - libsepol-cos6-x86_64 ==2.0.41
+    - libsepol-cos6-x86_64 ==2.0.41 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
 
 about:

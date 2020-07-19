@@ -19,12 +19,12 @@ build:
 
 requirements:
   build:
-    - librdmacm-cos6-x86_64 ==1.0.21
+    - librdmacm-cos6-x86_64 ==1.0.21 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - librdmacm-cos6-x86_64 ==1.0.21
+    - librdmacm-cos6-x86_64 ==1.0.21 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
   run:
-    - librdmacm-cos6-x86_64 ==1.0.21
+    - librdmacm-cos6-x86_64 ==1.0.21 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
 
 about:

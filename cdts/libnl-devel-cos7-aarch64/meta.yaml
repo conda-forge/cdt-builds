@@ -19,12 +19,12 @@ build:
 
 requirements:
   build:
-    - libnl-cos7-aarch64 ==1.1.4
+    - libnl-cos7-aarch64 ==1.1.4 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libnl-cos7-aarch64 ==1.1.4
+    - libnl-cos7-aarch64 ==1.1.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - libnl-cos7-aarch64 ==1.1.4
+    - libnl-cos7-aarch64 ==1.1.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 about:

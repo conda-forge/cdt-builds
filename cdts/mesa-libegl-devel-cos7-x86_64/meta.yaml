@@ -19,12 +19,12 @@ build:
 
 requirements:
   build:
-    - mesa-libegl-cos7-x86_64 ==18.3.4
+    - mesa-libegl-cos7-x86_64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - mesa-libegl-cos7-x86_64 ==18.3.4
+    - mesa-libegl-cos7-x86_64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - mesa-libegl-cos7-x86_64 ==18.3.4
+    - mesa-libegl-cos7-x86_64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 about:

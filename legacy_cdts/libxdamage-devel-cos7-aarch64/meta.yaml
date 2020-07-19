@@ -19,11 +19,11 @@ build:
 
 requirements:
   build:
-    - libxdamage-cos7-aarch64 ==1.1.4
+    - libxdamage-cos7-aarch64 ==1.1.4 *_{{ cdt_build_number }}
   host:
-    - libxdamage-cos7-aarch64 ==1.1.4
+    - libxdamage-cos7-aarch64 ==1.1.4 *_{{ cdt_build_number }}
   run:
-    - libxdamage-cos7-aarch64 ==1.1.4
+    - libxdamage-cos7-aarch64 ==1.1.4 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

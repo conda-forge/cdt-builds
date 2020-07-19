@@ -19,11 +19,11 @@ build:
 
 requirements:
   build:
-    - mesa-libgbm-cos7-aarch64 ==18.3.4
+    - mesa-libgbm-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
   host:
-    - mesa-libgbm-cos7-aarch64 ==18.3.4
+    - mesa-libgbm-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
   run:
-    - mesa-libgbm-cos7-aarch64 ==18.3.4
+    - mesa-libgbm-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

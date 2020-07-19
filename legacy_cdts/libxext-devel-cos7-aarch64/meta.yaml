@@ -19,11 +19,11 @@ build:
 
 requirements:
   build:
-    - libxext-cos7-aarch64 ==1.3.3
+    - libxext-cos7-aarch64 ==1.3.3 *_{{ cdt_build_number }}
   host:
-    - libxext-cos7-aarch64 ==1.3.3
+    - libxext-cos7-aarch64 ==1.3.3 *_{{ cdt_build_number }}
   run:
-    - libxext-cos7-aarch64 ==1.3.3
+    - libxext-cos7-aarch64 ==1.3.3 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

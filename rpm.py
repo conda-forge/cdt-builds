@@ -589,6 +589,12 @@ def write_conda_recipes(
     conda_forge_style,
     single_sysroot,
 ):
+
+    if single_sysroot:
+        build_number_jinja2 = "{{ cdt_build_number|int + 1000 }}"
+    else:
+        build_number_jinja2 = "{{ cdt_build_number }}"
+
     entry, entry_name, arch = find_repo_entry_and_arch(
         repo_primary, architectures, dict({"name": package})
     )
@@ -669,12 +675,13 @@ def write_conda_recipes(
     dependsstr = ""
     if len(depends) or conda_forge_style:
         depends_specs = [
-            "{}-{}-{} {}{}".format(
+            "{}-{}-{} {}{} *_{}".format(
                 depend["name"].lower().replace("+", "x"),
                 cdt["short_name"],
                 depend["arch"],
                 depend["flags"],
                 depend["ver"],
+                build_number_jinja2,
             )
             for depend in depends
         ]
@@ -726,11 +733,7 @@ def write_conda_recipes(
     d = dict(
         {
             "version": entry["version"]["ver"],
-            "build_number": (
-                "{{ cdt_build_number|int + 1000 }}"
-                if single_sysroot
-                else "{{ cdt_build_number }}"
-            ),
+            "build_number": build_number_jinja2,
             "license_file": license_file,
             "packagename": package_cdt_name,
             "hostmachine": cdt["host_machine"],
