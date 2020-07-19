@@ -102,17 +102,9 @@ libselinux-devel:
 libsepol:
   custom: false
   license_file: licenses/libsepol-license
-  skipped_cdts:
-    - cos7-x86_64
-    - cos7-aarch64
-    - cos7-ppc64le
 libsepol-devel:
   custom: false
   license_file: licenses/libsepol-license
-  skipped_cdts:
-    - cos7-x86_64
-    - cos7-aarch64
-    - cos7-ppc64le
 # libsm:
 #   custom: false
 # libsm-devel:
