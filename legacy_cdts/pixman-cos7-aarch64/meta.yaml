@@ -1,0 +1,35 @@
+package:
+  name: pixman-cos7-aarch64
+  version: 0.34.0
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/pixman-0.34.0-1.el7.aarch64.rpm
+    sha256: 2270e54db1c1cd17657eaca24c05c016bb923b6651ae06958775d7834dbd20a7
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/pixman-0.34.0-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+about:
+  home: http://cgit.freedesktop.org/pixman/
+  license: MIT
+  license_family: MIT
+  license_file: pixman-license
+  summary: (CDT) Pixel manipulation library
+  description: |
+    Pixman is a pixel manipulation library for X and cairo.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

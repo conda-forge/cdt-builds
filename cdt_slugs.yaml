@@ -301,13 +301,17 @@ numactl-devel:
 #   custom: false
 # pciutils-devel:
 #   custom: false
+pixman:
+  custom: false
+  license_file: licenses/pixman-license
 # python-javapackages:
 #   custom: false
 # webkitgtk-devel:
 #   custom: false
-# xorg-x11-proto-devel:
-#   custom: false
-# xorg-x11-server-Xvfb:
-#   custom: false
-# xorg-x11-util-macros:
-#   custom: false
+xorg-x11-proto-devel:
+  custom: false
+xorg-x11-server-Xvfb:
+  custom: false
+  license_file: licenses/x11-license
+xorg-x11-util-macros:
+  custom: false

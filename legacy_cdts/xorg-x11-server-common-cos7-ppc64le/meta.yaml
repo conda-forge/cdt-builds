@@ -1,0 +1,41 @@
+package:
+  name: xorg-x11-server-common-cos7-ppc64le
+  version: 1.20.4
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/xorg-x11-server-common-1.20.4-10.el7.ppc64le.rpm
+    sha256: 63b3ba24007c999e69d06ac013f5e4357b3e8e213b4f40b69c428993bee7eca6
+    no_hoist: true
+    folder: binary
+  # - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/xorg-x11-server-common-1.20.4-10.el7.ppc64le.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - pixman-cos7-ppc64le >=0.30.0 *_{{ cdt_build_number }}
+  host:
+    - pixman-cos7-ppc64le >=0.30.0 *_{{ cdt_build_number }}
+  run:
+    - pixman-cos7-ppc64le >=0.30.0 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/xorg-x11-server-common-1.20.4/COPYING
+  summary: "(CDT) Xorg server common files"
+  description: |
+        Common files shared among all X servers.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

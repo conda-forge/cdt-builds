@@ -1,0 +1,36 @@
+package:
+  name: xorg-x11-util-macros-cos6-x86_64
+  version: 1.19.0
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/xorg-x11-util-macros-1.19.0-3.el6.noarch.rpm
+    sha256: 937647195e65052a89cd1e740fa45c5bb1c1f3e5e2fb710fecc066a06f90872f
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/xorg-x11-util-macros-1.19.0-3.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/xorg-x11-util-macros-1.19.0/COPYING
+  summary: "(CDT) X.Org X11 Autotools macros"
+  description: |
+        X.Org X11 autotools macros required for building the various packages that
+        comprise the X Window System.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
