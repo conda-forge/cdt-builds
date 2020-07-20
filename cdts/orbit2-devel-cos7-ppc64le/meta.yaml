@@ -1,0 +1,53 @@
+package:
+  name: orbit2-devel-cos7-ppc64le
+  version: 2.14.19
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/ORBit2-devel-2.14.19-13.el7.ppc64le.rpm
+    sha256: 1691725a961ea407158c76d39197d10abfb8201dce4f2c4dd5d39afeaa8cc71c
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/ORBit2-2.14.19-13.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - orbit2-cos7-ppc64le ==2.14.19 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-devel-cos7-ppc64le >=2.2.0 *_{{ cdt_build_number|int + 1000 }}
+    - libidl-devel-cos7-ppc64le >=0.8.2 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - orbit2-cos7-ppc64le ==2.14.19 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-devel-cos7-ppc64le >=2.2.0 *_{{ cdt_build_number|int + 1000 }}
+    - libidl-devel-cos7-ppc64le >=0.8.2 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - orbit2-cos7-ppc64le ==2.14.19 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-devel-cos7-ppc64le >=2.2.0 *_{{ cdt_build_number|int + 1000 }}
+    - libidl-devel-cos7-ppc64le >=0.8.2 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+about:
+  home: http://www.gnome.org/projects/ORBit2
+  license: LGPLv2+ and GPLv2+
+  license_family: GPL2
+  license_file:
+    - orbit2-copying
+    - orbit2-copying.lib
+  summary: (CDT) Development libraries, header files and utilities for ORBit
+  description: |
+    ORBit is a high-performance CORBA (Common Object Request Broker Architecture)
+    ORB (object request broker) with support for the C language.  This package
+    contains the header files, libraries and utilities necessary to write programs
+    that use CORBA technology. If you want to write such programs, you'll also
+    need to install the ORBIT package.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

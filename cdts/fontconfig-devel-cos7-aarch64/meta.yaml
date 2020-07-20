@@ -1,0 +1,43 @@
+package:
+  name: fontconfig-devel-cos7-aarch64
+  version: 2.13.0
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/fontconfig-devel-2.13.0-4.3.el7.aarch64.rpm
+    sha256: bdc32001398a5a85228aeff0eb295dc3463fd76e105c40ac3038e8c848c6961e
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/fontconfig-2.13.0-4.3.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - freetype-devel-cos7-aarch64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - freetype-devel-cos7-aarch64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - freetype-devel-cos7-aarch64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+about:
+  home: http://fontconfig.org
+  license: MIT and Public Domain and UCD
+  license_family: MIT
+  license_file: fontconfig-copying
+  summary: (CDT) Font configuration and customization library
+  description: |
+    The fontconfig-devel package includes the header files, and developer docs for
+    the fontconfig package.  Install fontconfig-devel if you want to develop
+    programs which will use fontconfig.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

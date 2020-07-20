@@ -1,0 +1,55 @@
+package:
+  name: gtk2-cos7-x86_64
+  version: 2.24.31
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/gtk2-2.24.31-1.el7.x86_64.rpm
+    sha256: 68fb1261c69e217a9fa3901ebd0c76ebeaf0fce64ef9eeb571bfd75cfadcf7fd
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/gtk2-2.24.31-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - atk-cos7-x86_64 >=1.29.4 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-cos7-x86_64 >=2.28.0 *_{{ cdt_build_number|int + 1000 }}
+    - libxrandr-cos7-x86_64 >=1.2.99.4 *_{{ cdt_build_number|int + 1000 }}
+    - libtiff-cos7-x86_64 >=3.6.1 *_{{ cdt_build_number|int + 1000 }}
+    - pango-cos7-x86_64 >=1.20.0 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - atk-cos7-x86_64 >=1.29.4 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-cos7-x86_64 >=2.28.0 *_{{ cdt_build_number|int + 1000 }}
+    - libxrandr-cos7-x86_64 >=1.2.99.4 *_{{ cdt_build_number|int + 1000 }}
+    - libtiff-cos7-x86_64 >=3.6.1 *_{{ cdt_build_number|int + 1000 }}
+    - pango-cos7-x86_64 >=1.20.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - atk-cos7-x86_64 >=1.29.4 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-cos7-x86_64 >=2.28.0 *_{{ cdt_build_number|int + 1000 }}
+    - libxrandr-cos7-x86_64 >=1.2.99.4 *_{{ cdt_build_number|int + 1000 }}
+    - libtiff-cos7-x86_64 >=3.6.1 *_{{ cdt_build_number|int + 1000 }}
+    - pango-cos7-x86_64 >=1.20.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+about:
+  home: http://www.gtk.org
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/gtk2-2.24.31/COPYING
+  summary: "(CDT) The GIMP ToolKit (GTK+), a library for creating GUIs for X"
+  description: |
+        GTK+ is a multi-platform toolkit for creating graphical user interfaces.
+        Offering a complete set of widgets, GTK+ is suitable for projects ranging from
+        small one-off tools to complete application suites.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

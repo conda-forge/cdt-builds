@@ -7,7 +7,7 @@ source:
     sha256: df6867bcc614bf7f6561a983db25b2028fadb57d13ec781b5be9fab0de7354db
     no_hoist: true
     folder: binary
-  # - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/kernel-headers-3.10.0-1127.el7.ppc64le.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/kernel-3.10.0-1127.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

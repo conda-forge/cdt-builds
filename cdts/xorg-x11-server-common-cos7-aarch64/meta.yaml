@@ -7,7 +7,7 @@ source:
     sha256: fcfce28b6290a14153b3124b2ef7d6351ba3df48b5d7d5a0b863df67164eb3f3
     no_hoist: true
     folder: binary
-  # - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/xorg-x11-server-common-1.20.4-10.el7.aarch64.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/xorg-x11-server-1.20.4-10.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

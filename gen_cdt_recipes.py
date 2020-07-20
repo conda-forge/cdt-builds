@@ -200,7 +200,11 @@ def _fix_cdt_builds(*, cdts, arch_dist_tuples, cdt_path):
     "--no-legacy", default=False, is_flag=True,
     help="Do not denerate the old-style, legacy CDTs in the legacy_* folders."
 )
-def _main(only_new, no_legacy):
+@click.option(
+    "--fast", default=False, is_flag=True,
+    help="Use a global src cache. May fail due to race conditions."
+)
+def _main(only_new, no_legacy, fast):
     """
     Generate all CDT recipes.
     """
@@ -217,7 +221,7 @@ def _main(only_new, no_legacy):
 
     print("generating CDT recipes...")
     futures = {}
-    with ThreadPoolExecutor(max_workers=20) as exec:
+    with ThreadPoolExecutor(max_workers=16) as exec:
         if not no_legacy:
             # legacy CDTs for the old compiler sysroots
 
@@ -225,6 +229,8 @@ def _main(only_new, no_legacy):
                 _clear_gen_cdts(LEGACY_CDT_PATH)
 
             extra = "--conda-forge-style"
+            if fast:
+                extra += " --use-global-cache"
             arch_dist_tuples = [
                 ("x86_64", "centos6"),
                 ("aarch64", "centos7"),
@@ -246,6 +252,8 @@ def _main(only_new, no_legacy):
             _clear_gen_cdts(CDT_PATH)
 
         extra = "--conda-forge-style --single-sysroot"
+        if fast:
+            extra += " --use-global-cache"
         arch_dist_tuples = [
             ("x86_64", "centos6"), ("x86_64", "centos7"),
             ("aarch64", "centos7"), ("ppc64le", "centos7")

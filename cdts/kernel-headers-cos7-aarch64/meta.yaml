@@ -7,7 +7,7 @@ source:
     sha256: 9e9ea85efa4c1e20c1978fca84bb7f8ba17e7ad610717af2929c4d71ff384060
     no_hoist: true
     folder: binary
-  # - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/kernel-headers-4.18.0-147.8.1.el7.aarch64.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/kernel-4.18.0-147.8.1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

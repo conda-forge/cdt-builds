@@ -7,7 +7,7 @@ source:
     sha256: 0b8ef43b7fb706dcc7561cec9e0329274ad9f01686b82f6da18a8166cca5a475
     no_hoist: true
     folder: binary
-  # - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/xorg-x11-server-Xvfb-1.20.4-10.el7.x86_64.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/xorg-x11-server-1.20.4-10.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

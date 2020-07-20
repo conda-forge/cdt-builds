@@ -7,7 +7,7 @@ source:
     sha256: 6db5965786c8e7fb13cfceb0a6879439a1f2122cd196e9e740298f14cf108712
     no_hoist: true
     folder: binary
-  # - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/mesa-dri-drivers-18.3.4-7.el7.x86_64.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-7.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

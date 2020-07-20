@@ -7,7 +7,7 @@ source:
     sha256: f747da257108a5e4c913fd33733d2e1162e41b11ba67161db529726e46eee35d
     no_hoist: true
     folder: binary
-  # - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/mesa-libGL-18.3.4-7.el7.x86_64.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-7.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

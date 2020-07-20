@@ -2,8 +2,20 @@
 #   custom: false
 # alsa-lib-devel:
 #   custom: false
+at-spi-devel:
+  custom: false
+  license_file: licenses/at-spi-license
+atk-devel:
+  custom: false
+  license_file: licenses/atk-copying
 # ca-certificates:
 #   custom: false
+cairo-devel:
+  custom: false
+  license_file:
+    - licenses/cairo-copying
+    - licenses/cairo-copying-lgpl-2.1
+    - licenses/cairo-copying-mpl-1.1
 chkconfig:
   custom: false
 # copy-jdk-configs:
@@ -12,10 +24,20 @@ chkconfig:
 #   custom: false
 # expat-devel:
 #   custom: false
+fontconfig-devel:
+  custom: false
+  license_file: licenses/fontconfig-copying
+freetype-devel:
+  custom: false
+  license_file: licenses/freetype-license.txt
+glib2-devel:
+  custom: false
+  license_file: licenses/glib2-copying
 # gconf2:
 #   custom: false
-# gtk2-devel:
-#   custom: false
+gtk2-devel:
+  custom: false
+  license_file: licenses/gtk2-copying
 # gtkmm24-devel:
 #   custom: false
 # java-1.7.0-openjdk:
@@ -32,6 +54,11 @@ libXxf86vm:
 libXxf86vm-devel:
   custom: false
   license_file: licenses/libxxf86vm-license
+libbonobo-devel:
+  custom: false
+  license_file:
+    - licenses/libbonobo-copying
+    - licenses/libbonobo-copying.lib
 libdrm:
   custom: false
   license_file: null
@@ -55,6 +82,9 @@ libibcm-devel:
     - cos7-aarch64
     - cos7-ppc64le
   license_file: licenses/libibcm-devel-license
+libIDL-devel:
+  custom: false
+  license_file: licenses/libidl-copying
 libibverbs:
   custom: false
   skipped_cdts:
@@ -174,6 +204,9 @@ libXext-devel:
 #   custom: false
 # libxinerama-devel:
 #   custom: false
+libxml2-devel:
+  custom: false
+  license_file: licenses/libxml2-license
 # libxrandr:
 #   custom: false
 # libxrandr-devel:
@@ -293,15 +326,46 @@ numactl-devel:
     - licenses/numactl-copyright.txt
     - licenses/numactl-gpl2.txt
     - licenses/numactl-lgpl2.txt
-# orbit2:
-#   custom: false
+ORBit2-devel:
+  custom: false
+  license_file:
+    - licenses/orbit2-copying
+    - licenses/orbit2-copying.lib
 # p11-kit:
 #   custom: false
 # p11-kit-trust:
 #   custom: false
+pango:
+  custom: false
+  build_append:
+    cos7-aarch64: |
+      pushd ${SYSROOT_DIR}/usr/bin
+      rm -f pango-querymodules-64
+      echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
+      chmod u+x pango-querymodules-64
+      popd
+    cos7-ppc64le: |
+      pushd ${SYSROOT_DIR}/usr/bin
+      rm -f pango-querymodules-64
+      echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
+      chmod u+x pango-querymodules-64
+      popd
+    cos7-x86_64: |
+      pushd ${SYSROOT_DIR}/usr/bin
+      rm -f pango-querymodules-64
+      echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
+      chmod u+x pango-querymodules-64
+      popd
+
+pango-devel:
+  custom: false
+  license_file: licenses/pango-copying
 # pciutils-devel:
 #   custom: false
 pixman:
+  custom: false
+  license_file: licenses/pixman-license
+pixman-devel:
   custom: false
   license_file: licenses/pixman-license
 # python-javapackages:

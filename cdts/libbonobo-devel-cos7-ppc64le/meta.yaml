@@ -1,0 +1,50 @@
+package:
+  name: libbonobo-devel-cos7-ppc64le
+  version: 2.32.1
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libbonobo-devel-2.32.1-7.el7.ppc64le.rpm
+    sha256: 06ac1552ec51ba7fcf586ac79490c5ce1496901494bf4abc8d57eb877a38bd9f
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libbonobo-2.32.1-7.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - orbit2-devel-cos7-ppc64le >=2.7.5 *_{{ cdt_build_number|int + 1000 }}
+    - libbonobo-cos7-ppc64le ==2.32.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxml2-devel-cos7-ppc64le >=2.4.21 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - orbit2-devel-cos7-ppc64le >=2.7.5 *_{{ cdt_build_number|int + 1000 }}
+    - libbonobo-cos7-ppc64le ==2.32.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxml2-devel-cos7-ppc64le >=2.4.21 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - orbit2-devel-cos7-ppc64le >=2.7.5 *_{{ cdt_build_number|int + 1000 }}
+    - libbonobo-cos7-ppc64le ==2.32.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxml2-devel-cos7-ppc64le >=2.4.21 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+about:
+  home: http://ftp.gnome.org
+  license: GPLv2+ and LGPLv2+
+  license_family: GPL2
+  license_file:
+    - libbonobo-copying
+    - libbonobo-copying.lib
+  summary: (CDT) Libraries and headers for libbonobo
+  description: |
+    Bonobo is a component system based on CORBA, used by the GNOME desktop.  This
+    package contains header files used to compile programs that use Bonobo.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

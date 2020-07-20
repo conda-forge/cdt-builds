@@ -7,7 +7,7 @@ source:
     sha256: 03c40e7f1dbea596cf3743769d0bec276f19eda8b7cf1f8d3a69f6915b008f85
     no_hoist: true
     folder: binary
-  # - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-libEGL-devel-18.3.4-7.el7.aarch64.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-7.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -1,0 +1,39 @@
+package:
+  name: freetype-cos6-x86_64
+  version: 2.3.11
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/freetype-2.3.11-17.el6.x86_64.rpm
+    sha256: a4f680e25073d307608ab245d87eb982646957892d68628736e5f1a00c2ee8c3
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/freetype-2.3.11-17.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+about:
+  home: http://www.freetype.org
+  license: FTL or GPLv2+
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/freetype-2.3.11/LICENSE.TXT
+  summary: "(CDT) A free and portable font rendering engine"
+  description: |
+        The FreeType engine is a free and portable font rendering engine, developed to
+        provide advanced font support for a variety of platforms and environments.
+        FreeType is a library which can open and manages font files as well as
+        efficiently load, hint and render individual glyphs. FreeType is not a font
+        server or a complete text-rendering library.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -7,7 +7,7 @@ source:
     sha256: 5603f05cc92a70bad07d6b8e965bcd6e4d59b00d74fb3fe8a479c87d8945ef88
     no_hoist: true
     folder: binary
-  # - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-khr-devel-18.3.4-7.el7.aarch64.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-7.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
