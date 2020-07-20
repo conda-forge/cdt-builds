@@ -2,3 +2,4 @@ channels:
   - conda-forge
 show_channel_urls: True
 channel_priority: strict
+allow_softlinks: False
