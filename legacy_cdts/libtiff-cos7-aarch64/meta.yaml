@@ -1,0 +1,39 @@
+package:
+  name: libtiff-cos7-aarch64
+  version: 4.0.3
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libtiff-4.0.3-32.el7.aarch64.rpm
+    sha256: 0afdd1feb45e2531a456c042ce94cebd3053f85f0bfe03d3bd404c0600961493
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libtiff-4.0.3-32.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+about:
+  home: http://www.remotesensing.org/libtiff/
+  license: libtiff
+  license_family: Other
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libtiff-4.0.3/COPYRIGHT
+  summary: "(CDT) Library of functions for manipulating TIFF format image files"
+  description: |
+        The libtiff package contains a library of functions for manipulating TIFF
+        (Tagged Image File Format) image format files.  TIFF is a widely used file
+        format for bitmapped images.  TIFF files usually end in the .tif extension and
+        they are often quite large.  The libtiff package should be installed if you
+        need to manipulate TIFF format image files.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

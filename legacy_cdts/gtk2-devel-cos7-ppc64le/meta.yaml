@@ -1,0 +1,55 @@
+package:
+  name: gtk2-devel-cos7-ppc64le
+  version: 2.24.31
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/gtk2-devel-2.24.31-1.el7.ppc64le.rpm
+    sha256: 0f1b9e137832c570a476959cb0979747799e5e98865fc395059cf56267b122be
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/gtk2-2.24.31-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - atk-devel-cos7-ppc64le >=1.29.4 *_{{ cdt_build_number }}
+    - cairo-devel-cos7-ppc64le >=1.6.0 *_{{ cdt_build_number }}
+    - glib2-devel-cos7-ppc64le >=2.28.0 *_{{ cdt_build_number }}
+    - gtk2-cos7-ppc64le ==2.24.31 *_{{ cdt_build_number }}
+    - pango-devel-cos7-ppc64le >=1.20.0 *_{{ cdt_build_number }}
+  host:
+    - atk-devel-cos7-ppc64le >=1.29.4 *_{{ cdt_build_number }}
+    - cairo-devel-cos7-ppc64le >=1.6.0 *_{{ cdt_build_number }}
+    - glib2-devel-cos7-ppc64le >=2.28.0 *_{{ cdt_build_number }}
+    - gtk2-cos7-ppc64le ==2.24.31 *_{{ cdt_build_number }}
+    - pango-devel-cos7-ppc64le >=1.20.0 *_{{ cdt_build_number }}
+  run:
+    - atk-devel-cos7-ppc64le >=1.29.4 *_{{ cdt_build_number }}
+    - cairo-devel-cos7-ppc64le >=1.6.0 *_{{ cdt_build_number }}
+    - glib2-devel-cos7-ppc64le >=2.28.0 *_{{ cdt_build_number }}
+    - gtk2-cos7-ppc64le ==2.24.31 *_{{ cdt_build_number }}
+    - pango-devel-cos7-ppc64le >=1.20.0 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+about:
+  home: http://www.gtk.org
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) Development files for GTK+"
+  description: |
+        This package contains the libraries and header files that are needed for
+        writing applications with the GTK+ widget toolkit. If you plan to develop
+        applications with GTK+, consider installing the gtk2-devel-docs package.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

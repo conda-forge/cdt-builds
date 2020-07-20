@@ -1,0 +1,41 @@
+package:
+  name: libxrandr-cos6-x86_64
+  version: 1.5.1
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/libXrandr-1.5.1-1.el6.x86_64.rpm
+    sha256: bea36342e705588ae2274cb88c7268d6855859d4208050afb877ab7e55c5a9f2
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/libXrandr-1.5.1-1.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libx11-cos6-x86_64 >=1.6.0 *_{{ cdt_build_number }}
+  host:
+    - libx11-cos6-x86_64 >=1.6.0 *_{{ cdt_build_number }}
+  run:
+    - libx11-cos6-x86_64 >=1.6.0 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libXrandr-1.5.1/COPYING
+  summary: "(CDT) X.Org X11 libXrandr runtime library"
+  description: |
+        X.Org X11 libXrandr runtime library
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

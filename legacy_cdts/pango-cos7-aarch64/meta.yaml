@@ -1,0 +1,41 @@
+package:
+  name: pango-cos7-aarch64
+  version: 1.42.4
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/pango-1.42.4-4.el7_7.aarch64.rpm
+    sha256: f8d10523f03b29ec1dcb31c1b88c32fb8d183d0ee673074f5a47ed4ca9b3ee2e
+    no_hoist: true
+    folder: binary
+  # - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/pango-1.42.4-4.el7_7.aarch64.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+about:
+  home: http://www.pango.org
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/pango-1.42.4/COPYING
+  summary: "(CDT) System for layout and rendering of internationalized text"
+  description: |
+        Pango is a library for laying out and rendering of text, with an emphasis on
+        internationalization. Pango can be used anywhere that text layout is needed,
+        though most of the work on Pango so far has been done in the context of the
+        GTK+ widget toolkit. Pango forms the core of text and font handling for GTK+.
+        Pango is designed to be modular; the core Pango layout engine can be used with
+        different font backends.  The integration of Pango with Cairo provides a
+        complete solution with high quality text handling and graphics rendering.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

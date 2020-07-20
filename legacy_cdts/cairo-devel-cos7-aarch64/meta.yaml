@@ -1,0 +1,38 @@
+package:
+  name: cairo-devel-cos7-aarch64
+  version: 1.15.12
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/cairo-devel-1.15.12-4.el7.aarch64.rpm
+    sha256: 089370a8871255cc20531b3f7157797d274689a7ec212f73bb9c7a5c02102faf
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/cairo-1.15.12-4.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+about:
+  home: http://cairographics.org
+  license: LGPLv2 or MPLv1.1
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) Development files for cairo"
+  description: |
+        Cairo is a 2D graphics library designed to provide high-quality display and
+        print output.  This package contains libraries, header files and developer
+        documentation needed for developing software which uses the cairo graphics
+        library.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

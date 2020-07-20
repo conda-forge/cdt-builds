@@ -1,0 +1,55 @@
+package:
+  name: gtk2-cos7-aarch64
+  version: 2.24.31
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/gtk2-2.24.31-1.el7.aarch64.rpm
+    sha256: b33e1376c0936a3c8a1c98cb44a363912db162ba89ebce1767ac4095cb42a7e6
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/gtk2-2.24.31-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - atk-cos7-aarch64 >=1.29.4 *_{{ cdt_build_number }}
+    - glib2-cos7-aarch64 >=2.28.0 *_{{ cdt_build_number }}
+    - libxrandr-cos7-aarch64 >=1.2.99.4 *_{{ cdt_build_number }}
+    - libtiff-cos7-aarch64 >=3.6.1 *_{{ cdt_build_number }}
+    - pango-cos7-aarch64 >=1.20.0 *_{{ cdt_build_number }}
+  host:
+    - atk-cos7-aarch64 >=1.29.4 *_{{ cdt_build_number }}
+    - glib2-cos7-aarch64 >=2.28.0 *_{{ cdt_build_number }}
+    - libxrandr-cos7-aarch64 >=1.2.99.4 *_{{ cdt_build_number }}
+    - libtiff-cos7-aarch64 >=3.6.1 *_{{ cdt_build_number }}
+    - pango-cos7-aarch64 >=1.20.0 *_{{ cdt_build_number }}
+  run:
+    - atk-cos7-aarch64 >=1.29.4 *_{{ cdt_build_number }}
+    - glib2-cos7-aarch64 >=2.28.0 *_{{ cdt_build_number }}
+    - libxrandr-cos7-aarch64 >=1.2.99.4 *_{{ cdt_build_number }}
+    - libtiff-cos7-aarch64 >=3.6.1 *_{{ cdt_build_number }}
+    - pango-cos7-aarch64 >=1.20.0 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+about:
+  home: http://www.gtk.org
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/gtk2-2.24.31/COPYING
+  summary: "(CDT) The GIMP ToolKit (GTK+), a library for creating GUIs for X"
+  description: |
+        GTK+ is a multi-platform toolkit for creating graphical user interfaces.
+        Offering a complete set of widgets, GTK+ is suitable for projects ranging from
+        small one-off tools to complete application suites.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -2,6 +2,8 @@
 #   custom: false
 # alsa-lib-devel:
 #   custom: false
+at-spi-devel:
+  custom: false
 # ca-certificates:
 #   custom: false
 chkconfig:

@@ -1,0 +1,49 @@
+package:
+  name: libxml2-devel-cos7-aarch64
+  version: 2.9.1
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libxml2-devel-2.9.1-6.el7.4.aarch64.rpm
+    sha256: f63ff30c9d5646d66b68002458f2f9b1d0d7b10d3d3d109593951163ad88cefc
+    no_hoist: true
+    folder: binary
+  # - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libxml2-devel-2.9.1-6.el7.4.aarch64.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libxml2-cos7-aarch64 ==2.9.1 *_{{ cdt_build_number }}
+  host:
+    - libxml2-cos7-aarch64 ==2.9.1 *_{{ cdt_build_number }}
+  run:
+    - libxml2-cos7-aarch64 ==2.9.1 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+about:
+  home: http://xmlsoft.org/
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libxml2-devel-2.9.1/Copyright
+  summary: "(CDT) Libraries, includes, etc. to develop XML and HTML applications"
+  description: |
+        Libraries, include files, etc you can use to develop XML applications. This
+        library allows to manipulate XML files. It includes support to read, modify
+        and write XML and HTML files. There is DTDs support this includes parsing and
+        validation even with complex DtDs, either at parse time or later once the
+        document has been modified. The output can be a simple SAX stream or and in-
+        memory DOM like representations. In this case one can use the built-in XPath
+        and XPointer implementation to select sub nodes or ranges. A flexible
+        Input/Output mechanism is available, with existing HTTP and FTP modules and
+        combined to an URI library.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

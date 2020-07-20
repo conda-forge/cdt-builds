@@ -1,0 +1,43 @@
+package:
+  name: freetype-devel-cos6-x86_64
+  version: 2.3.11
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/freetype-devel-2.3.11-17.el6.x86_64.rpm
+    sha256: a2385d97d578ec0270bf5be73ef1aa4e108a69fd3d35896cc9ff10524c2dbb7c
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/freetype-2.3.11-17.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - freetype-cos6-x86_64 ==2.3.11 *_{{ cdt_build_number }}
+  host:
+    - freetype-cos6-x86_64 ==2.3.11 *_{{ cdt_build_number }}
+  run:
+    - freetype-cos6-x86_64 ==2.3.11 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+about:
+  home: http://www.freetype.org
+  license: FTL or GPLv2+
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) FreeType development libraries and header files"
+  description: |
+        The freetype-devel package includes the static libraries and header files for
+        the FreeType font rendering engine.  Install freetype-devel if you want to
+        develop programs which will use FreeType.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

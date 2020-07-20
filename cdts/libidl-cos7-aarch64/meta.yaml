@@ -1,0 +1,38 @@
+package:
+  name: libidl-cos7-aarch64
+  version: 0.8.14
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libIDL-0.8.14-8.el7.aarch64.rpm
+    sha256: 1fc9d0a774b1be72486eca5a57580655b6c4f056d594717659642035ac297d5d
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libIDL-0.8.14-8.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+about:
+  home: http://ftp.gnome.org/pub/gnome/sources/libIDL/0.8/
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libIDL-0.8.14/COPYING
+  summary: "(CDT) Library for parsing IDL (Interface Definition Language)"
+  description: |
+        libIDL is a library for parsing IDL (Interface Definition Language). It can be
+        used for both COM-style and CORBA-style IDL.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

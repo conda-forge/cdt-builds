@@ -1,0 +1,36 @@
+package:
+  name: atk-devel-cos7-aarch64
+  version: 2.28.1
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/atk-devel-2.28.1-2.el7.aarch64.rpm
+    sha256: db0b1852181f6c6fa3c11b32ba1e6701b8f1a095dd8c0c67cf0cda2616aaa22d
+    no_hoist: true
+    folder: binary
+  # - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/atk-devel-2.28.1-2.el7.aarch64.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+about:
+  home: http://developer.gnome.org/platform-overview/stable/atk
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) Development files for the ATK accessibility toolkit"
+  description: |
+        This package includes libraries, header files, and developer documentation
+        needed for development of applications or toolkits which use ATK.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
