@@ -4,8 +4,18 @@
 #   custom: false
 at-spi-devel:
   custom: false
+  license_file: licenses/at-spi-license
+atk-devel:
+  custom: false
+  license_file: licenses/atk-copying
 # ca-certificates:
 #   custom: false
+cairo-devel:
+  custom: false
+  license_file:
+    - licenses/cairo-copying
+    - licenses/cairo-copying-lgpl-2.1
+    - licenses/cairo-copying-mpl-1.1
 chkconfig:
   custom: false
 # copy-jdk-configs:
@@ -14,10 +24,20 @@ chkconfig:
 #   custom: false
 # expat-devel:
 #   custom: false
+fontconfig-devel:
+  custom: false
+  license_file: licenses/fontconfig-copying
+freetype-devel:
+  custom: false
+  license_file: licenses/freetype-license.txt
+glib2-devel:
+  custom: false
+  license_file: licenses/glib2-copying
 # gconf2:
 #   custom: false
-# gtk2-devel:
-#   custom: false
+gtk2-devel:
+  custom: false
+  license_file: licenses/gtk2-copying
 # gtkmm24-devel:
 #   custom: false
 # java-1.7.0-openjdk:
@@ -34,6 +54,11 @@ libXxf86vm:
 libXxf86vm-devel:
   custom: false
   license_file: licenses/libxxf86vm-license
+libbonobo-devel:
+  custom: false
+  license_file:
+    - licenses/libbonobo-copying
+    - licenses/libbonobo-copying.lib
 libdrm:
   custom: false
   license_file: null
@@ -57,6 +82,9 @@ libibcm-devel:
     - cos7-aarch64
     - cos7-ppc64le
   license_file: licenses/libibcm-devel-license
+libidl-devel:
+  custom: false
+  license_file: licenses/libidl-copying
 libibverbs:
   custom: false
   skipped_cdts:
@@ -297,10 +325,18 @@ numactl-devel:
     - licenses/numactl-lgpl2.txt
 # orbit2:
 #   custom: false
+orbit2-devel:
+  custom: false
+  license_file:
+    - licenses/orbit2-copying
+    - licenses/orbit2-copying.lib
 # p11-kit:
 #   custom: false
 # p11-kit-trust:
 #   custom: false
+pango-devel:
+  custom: false
+  license_file: licenses/pango-copying
 # pciutils-devel:
 #   custom: false
 pixman:
