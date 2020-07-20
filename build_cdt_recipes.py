@@ -169,7 +169,7 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
         )
 
     build_logs = ""
-    with ThreadPoolExecutor(max_workers=4) as exec:
+    with ThreadPoolExecutor(max_workers=1) as exec:
 
         skipped = set()
         for node in cdt_meta:
