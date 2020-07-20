@@ -326,8 +326,6 @@ numactl-devel:
     - licenses/numactl-copyright.txt
     - licenses/numactl-gpl2.txt
     - licenses/numactl-lgpl2.txt
-# orbit2:
-#   custom: false
 ORBit2-devel:
   custom: false
   license_file:
