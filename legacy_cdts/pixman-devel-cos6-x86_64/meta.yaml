@@ -31,10 +31,10 @@ about:
   home: http://cgit.freedesktop.org/pixman/
   license: MIT
   license_family: MIT
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
-  summary: "(CDT) Pixel manipulation library development package"
+  license_file: pixman-license
+  summary: (CDT) Pixel manipulation library development package
   description: |
-        Development library for pixman.
+    Development library for pixman.
 
 extra:
   recipe-maintainers:

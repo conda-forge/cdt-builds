@@ -7,7 +7,7 @@ source:
     sha256: 9a461610eb324af42a252eb534b65ff00eda503d49c04347a36db6d0615da977
     no_hoist: true
     folder: binary
-  # - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/pango-devel-1.42.4-4.el7_7.x86_64.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/pango-1.42.4-4.el7_7.src.rpm
   #   no_hoist: true
   #   folder: source
 

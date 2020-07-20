@@ -31,7 +31,7 @@ about:
   home: http://xmlsoft.org/
   license: MIT
   license_family: MIT
-  license_file: libxml2-copying
+  license_file: libxml2-license
   summary: (CDT) Libraries, includes, etc. to develop XML and HTML applications
   description: |
     Libraries, include files, etc you can use to develop XML applications. This

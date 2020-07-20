@@ -611,16 +611,17 @@ def write_conda_recipes(
 
     license_file = _test_rpm_for_license_file(rpm_pth)
 
-    try:
-        # We ignore the hash of source RPMs since they
-        # are not given in the source repository data.
-        _, _, _, _, _, _ = rpm_split_url_and_cache(srpm_url, src_cache)
-    except Exception:
-        # Just pretend the binaries are sources.
-        if "allow_missing_sources" in cdt:
-            srpm_url = rpm_url
-        else:
-            raise
+    # we are not using these so do not bother to hash
+    # try:
+    #     # We ignore the hash of source RPMs since they
+    #     # are not given in the source repository data.
+    #     _, _, _, _, _, _ = rpm_split_url_and_cache(srpm_url, src_cache)
+    # except Exception:
+    #     # Just pretend the binaries are sources.
+    #     if "allow_missing_sources" in cdt:
+    #         srpm_url = rpm_url
+    #     else:
+    #         raise
     depends = [required for required in entry["requires"] if valid_depends(required)]
 
     if package in cdt["dependency_add"]:
@@ -867,6 +868,7 @@ def write_conda_recipe(
 @click.option("--conda-forge-style", default=False, is_flag=True)
 @click.option("--single-sysroot", default=False, is_flag=True)
 @click.option("--build-number", default="2", type=str)
+@click.option("--use-global-cache", default=False, is_flag=True)
 def skeletonize(
     packages,
     output_dir,
@@ -878,12 +880,13 @@ def skeletonize(
     conda_forge_style,
     single_sysroot,
     build_number,
+    use_global_cache,
 ):
     cdt_info = _gen_cdts(single_sysroot)
     if architecture in ["aarch64", "ppc64le"]:
         cdt_info["centos7"] = cdt_info["centos7-alt"]
 
-    with tempfile.TemporaryDirectory() as tmpdir:
+    def _call(cfg):
         write_conda_recipe(
             packages,
             distro,
@@ -892,12 +895,20 @@ def skeletonize(
             recursive,
             not no_override_arch,
             None,
-            Config(cache_dir=str(tmpdir)),
+            cfg,
             build_number,
             conda_forge_style,
             single_sysroot,
             cdt_info,
         )
+
+    if use_global_cache:
+        cfg = Config()
+        _call(cfg)
+    else:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            cfg = Config(cache_dir=str(tmpdir))
+            _call(cfg)
 
 
 if __name__ == "__main__":

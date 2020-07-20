@@ -206,7 +206,7 @@ libXext-devel:
 #   custom: false
 libxml2-devel:
   custom: false
-  license_file: licenses/libxml2-copying
+  license_file: licenses/libxml2-license
 # libxrandr:
 #   custom: false
 # libxrandr-devel:

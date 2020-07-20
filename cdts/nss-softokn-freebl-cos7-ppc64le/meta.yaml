@@ -7,7 +7,7 @@ source:
     sha256: 01439cbf4297a341e31b425961bdafc251a4765e22035977ca459c939f949899
     no_hoist: true
     folder: binary
-  # - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/nss-softokn-freebl-3.44.0-8.el7_7.ppc64le.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/nss-softokn-3.44.0-8.el7_7.src.rpm
   #   no_hoist: true
   #   folder: source
 
