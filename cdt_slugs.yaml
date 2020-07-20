@@ -345,6 +345,9 @@ pango-devel:
 pixman:
   custom: false
   license_file: licenses/pixman-license
+pixman-devel:
+  custom: false
+  license_file: licenses/pixman-license
 # python-javapackages:
 #   custom: false
 # webkitgtk-devel:
