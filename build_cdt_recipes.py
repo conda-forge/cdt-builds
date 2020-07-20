@@ -132,21 +132,33 @@ def _is_buildable(node, cdt_meta, pkgs):
     )
 
 
-def _build_cdt(cdt_meta_node):
-    with tempfile.TemporaryDirectory() as tmpdir:
-        with tempfile.TemporaryDirectory() as pkg_tmpdir:
-            c = subprocess.run(
-                (
-                    "CONDA_PKGS_DIRS=" + str(pkg_tmpdir) + " "
-                    "conda build --use-local -m conda_build_config.yaml "
-                    + "--cache-dir " + str(tmpdir) + " "
-                    + cdt_meta_node["recipe_path"]
-                ),
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                text=True,
-                shell=True
-            )
+def _build_cdt(cdt_meta_node, no_temp=False):
+    if no_temp:
+        c = subprocess.run(
+            (
+                "conda build --use-local -m conda_build_config.yaml "
+                + cdt_meta_node["recipe_path"]
+            ),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            shell=True
+        )
+    else:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            with tempfile.TemporaryDirectory() as pkg_tmpdir:
+                c = subprocess.run(
+                    (
+                        "CONDA_PKGS_DIRS=" + str(pkg_tmpdir) + " "
+                        "conda build --use-local -m conda_build_config.yaml "
+                        + "--cache-dir " + str(tmpdir) + " "
+                        + cdt_meta_node["recipe_path"]
+                    ),
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                    text=True,
+                    shell=True
+                )
     return c
 
 
@@ -168,8 +180,10 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
             flush=True
         )
 
+    num_workers = 1
+
     build_logs = ""
-    with ThreadPoolExecutor(max_workers=1) as exec:
+    with ThreadPoolExecutor(max_workers=num_workers) as exec:
 
         skipped = set()
         for node in cdt_meta:
@@ -205,6 +219,7 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
                         futures[exec.submit(
                             _build_cdt,
                             cdt_meta[node],
+                            no_temp=True if num_workers == 1 else False,
                         )] = node
 
                 for fut in as_completed(futures):
