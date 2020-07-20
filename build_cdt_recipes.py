@@ -180,7 +180,7 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
             flush=True
         )
 
-    num_workers = 1
+    num_workers = 4
 
     build_logs = ""
     with ThreadPoolExecutor(max_workers=num_workers) as exec:

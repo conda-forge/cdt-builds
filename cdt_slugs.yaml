@@ -335,6 +335,34 @@ ORBit2-devel:
 #   custom: false
 # p11-kit-trust:
 #   custom: false
+pango:
+  custom: false
+  build_append:
+    cos6-x86_64: |
+      pushd ${SYSROOT_DIR}/usr/bin
+      rm -f pango-querymodules-64
+      echo "/usr/bin/env bash\n exit 0" > pango-querymodules-64
+      chmod u+x pango-querymodules-64
+      popd
+    cos7-aarch64: |
+      pushd ${SYSROOT_DIR}/usr/bin
+      rm -f pango-querymodules-64
+      echo "/usr/bin/env bash\n exit 0" > pango-querymodules-64
+      chmod u+x pango-querymodules-64
+      popd
+    cos7-ppc64le: |
+      pushd ${SYSROOT_DIR}/usr/bin
+      rm -f pango-querymodules-64
+      echo "/usr/bin/env bash\n exit 0" > pango-querymodules-64
+      chmod u+x pango-querymodules-64
+      popd
+    cos7-x86_64: |
+      pushd ${SYSROOT_DIR}/usr/bin
+      rm -f pango-querymodules-64
+      echo "/usr/bin/env bash\n exit 0" > pango-querymodules-64
+      chmod u+x pango-querymodules-64
+      popd
+  
 pango-devel:
   custom: false
   license_file: licenses/pango-copying
