@@ -1,0 +1,41 @@
+package:
+  name: libxcomposite-devel-cos6-x86_64
+  version: 0.4.3
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/libXcomposite-devel-0.4.3-4.el6.x86_64.rpm
+    sha256: a5571b8683fb93cbed743cf2ab34b321ee0522d4e4cd7a331ece08ca501113b5
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/libXcomposite-0.4.3-4.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libxcomposite-cos6-x86_64 ==0.4.3 *_{{ cdt_build_number }}
+  host:
+    - libxcomposite-cos6-x86_64 ==0.4.3 *_{{ cdt_build_number }}
+  run:
+    - libxcomposite-cos6-x86_64 ==0.4.3 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: libxcomposite-license
+  summary: (CDT) Development files for libXcomposite
+  description: |
+    X.Org X11 libXcomposite development package
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,38 @@
+package:
+  name: libxshmfence-devel-cos6-x86_64
+  version: 1.2
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/libxshmfence-devel-1.2-1.el6.x86_64.rpm
+    sha256: 833adacb90f00c8a58673bad0caf987872f958a60dd60605670aa6587132462d
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/libxshmfence-1.2-1.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-64 2.12.*
+  run:
+    - sysroot_linux-64 2.12.*
+
+about:
+  home: http://www.x.org/
+  license: MIT
+  license_family: MIT
+  license_file: libxshmfence-license
+  summary: (CDT) Development files for libxshmfence
+  description: |
+    The libxshmfence-devel package contains libraries and header files for
+    developing applications that use libxshmfence.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

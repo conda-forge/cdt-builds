@@ -1,0 +1,41 @@
+package:
+  name: libxinerama-cos7-ppc64le
+  version: 1.1.3
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libXinerama-1.1.3-2.1.el7.ppc64le.rpm
+    sha256: 5ad7a0f6001ff173313f0cf683f03f274add850bf7dc60d5a444fcd7d819c455
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXinerama-1.1.3-2.1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libx11-cos7-ppc64le >=1.5.99.902 *_{{ cdt_build_number }}
+  host:
+    - libx11-cos7-ppc64le >=1.5.99.902 *_{{ cdt_build_number }}
+  run:
+    - libx11-cos7-ppc64le >=1.5.99.902 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libXinerama-1.1.3/COPYING
+  summary: "(CDT) X.Org X11 libXinerama runtime library"
+  description: |
+        X.Org X11 libXinerama runtime library
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

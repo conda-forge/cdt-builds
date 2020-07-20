@@ -1,0 +1,41 @@
+package:
+  name: libxcursor-devel-cos7-ppc64le
+  version: 1.1.15
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libXcursor-devel-1.1.15-1.el7.ppc64le.rpm
+    sha256: a57f95a920c52d0144538ee75a45c0ea89cc3de6c4f3eb11b8ae4d959f9dfb88
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXcursor-1.1.15-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libxcursor-cos7-ppc64le ==1.1.15 *_{{ cdt_build_number }}
+  host:
+    - libxcursor-cos7-ppc64le ==1.1.15 *_{{ cdt_build_number }}
+  run:
+    - libxcursor-cos7-ppc64le ==1.1.15 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+about:
+  home: https://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: libxcursor-license
+  summary: (CDT) Development files for libXcursor
+  description: |
+    libXcursor development package.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

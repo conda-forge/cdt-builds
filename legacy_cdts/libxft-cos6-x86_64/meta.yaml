@@ -1,0 +1,41 @@
+package:
+  name: libxft-cos6-x86_64
+  version: 2.3.2
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/libXft-2.3.2-1.el6.x86_64.rpm
+    sha256: 4bdb750c6f7ba22cf0f3ef94ceaa33034e5830cd81b8bf18db07d2dce23ccd9c
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/libXft-2.3.2-1.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - fontconfig-cos6-x86_64 >=2.2 *_{{ cdt_build_number }}
+  host:
+    - fontconfig-cos6-x86_64 >=2.2 *_{{ cdt_build_number }}
+  run:
+    - fontconfig-cos6-x86_64 >=2.2 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libXft-2.3.2/COPYING
+  summary: "(CDT) X.Org X11 libXft runtime library"
+  description: |
+        X.Org X11 libXft runtime library
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

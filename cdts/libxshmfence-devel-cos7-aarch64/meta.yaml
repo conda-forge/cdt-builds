@@ -1,0 +1,38 @@
+package:
+  name: libxshmfence-devel-cos7-aarch64
+  version: 1.2
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libxshmfence-devel-1.2-1.el7.aarch64.rpm
+    sha256: 85ca3eab71b96569616ee54991ade334ced7e56234a96c7870b386824792eb96
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libxshmfence-1.2-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+about:
+  home: http://www.x.org/
+  license: MIT
+  license_family: MIT
+  license_file: libxshmfence-license
+  summary: (CDT) Development files for libxshmfence
+  description: |
+    The libxshmfence-devel package contains libraries and header files for
+    developing applications that use libxshmfence.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

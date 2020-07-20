@@ -1,0 +1,41 @@
+package:
+  name: libxft-cos7-ppc64le
+  version: 2.3.2
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libXft-2.3.2-2.el7.ppc64le.rpm
+    sha256: 42f4076ae5fbb2ed7a962f23c7a595e0083fe9a3ee337f7a1741e05276b5c69a
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXft-2.3.2-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - fontconfig-cos7-ppc64le >=2.2 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - fontconfig-cos7-ppc64le >=2.2 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - fontconfig-cos7-ppc64le >=2.2 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libXft-2.3.2/COPYING
+  summary: "(CDT) X.Org X11 libXft runtime library"
+  description: |
+        X.Org X11 libXft runtime library
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

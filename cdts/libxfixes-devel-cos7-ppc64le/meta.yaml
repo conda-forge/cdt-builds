@@ -1,0 +1,41 @@
+package:
+  name: libxfixes-devel-cos7-ppc64le
+  version: 5.0.3
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libXfixes-devel-5.0.3-1.el7.ppc64le.rpm
+    sha256: b6af1f30e2cf9bafc9f1776c2f4750f76c8ea42ea1972b9e56df168f0e3f7763
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXfixes-5.0.3-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libxfixes-cos7-ppc64le ==5.0.3 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libxfixes-cos7-ppc64le ==5.0.3 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - libxfixes-cos7-ppc64le ==5.0.3 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: libxfixes-license
+  summary: (CDT) Development files for libXfixes
+  description: |
+    libXfixes development package
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

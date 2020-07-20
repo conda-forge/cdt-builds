@@ -1,0 +1,39 @@
+package:
+  name: libxcb-cos7-x86_64
+  version: 1.13
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libxcb-1.13-1.el7.x86_64.rpm
+    sha256: 125d6cdbea06799872b77b6322bf5cb107d7c0c70218827bf6b649f08ca527c5
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libxcb-1.13-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-64 2.17.*
+  run:
+    - sysroot_linux-64 2.17.*
+
+about:
+  home: https://xcb.freedesktop.org/
+  license: MIT
+  license_family: MIT
+  license_file: libxcb-license
+  summary: (CDT) A C binding to the X11 protocol
+  description: |
+    The X protocol C-language Binding (XCB) is a replacement for Xlib featuring a
+    small footprint, latency hiding, direct access to the protocol, improved
+    threading support, and extensibility.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
