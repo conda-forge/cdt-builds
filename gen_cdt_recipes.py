@@ -193,9 +193,14 @@ def _fix_cdt_builds(*, cdts, arch_dist_tuples, cdt_path):
                 else:
                     raise RuntimeError("could not get build append for %s!" % cdt)
 
-                with open(build_pth, "a") as fp:
-                    fp.write("\n")
-                    fp.write(extra_build)
+                with open(build_pth, "r") as fp:
+                    build_str = fp.read()
+
+                if not build_str.strip().endswith("# CDT BUILD APPENDED"):
+                    with open(build_pth, "a") as fp:
+                        fp.write("\n")
+                        fp.write(extra_build)
+                        fp.write("# CDT BUILD APPENDED\n")
 
 
 @click.command()
