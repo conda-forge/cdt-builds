@@ -31,12 +31,12 @@ about:
   home: http://www.freetype.org
   license: FTL or GPLv2+
   license_family: GPL2
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
-  summary: "(CDT) FreeType development libraries and header files"
+  license_file: freetype-license.txt
+  summary: (CDT) FreeType development libraries and header files
   description: |
-        The freetype-devel package includes the static libraries and header files for
-        the FreeType font rendering engine.  Install freetype-devel if you want to
-        develop programs which will use FreeType.
+    The freetype-devel package includes the static libraries and header files for
+    the FreeType font rendering engine.  Install freetype-devel if you want to
+    develop programs which will use FreeType.
 
 extra:
   recipe-maintainers:
