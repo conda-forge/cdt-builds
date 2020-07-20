@@ -1,0 +1,44 @@
+package:
+  name: xorg-x11-server-xvfb-cos7-x86_64
+  version: 1.20.4
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/xorg-x11-server-Xvfb-1.20.4-10.el7.x86_64.rpm
+    sha256: 0b8ef43b7fb706dcc7561cec9e0329274ad9f01686b82f6da18a8166cca5a475
+    no_hoist: true
+    folder: binary
+  # - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/xorg-x11-server-Xvfb-1.20.4-10.el7.x86_64.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - xorg-x11-server-common-cos7-x86_64 >=1.20.4 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - xorg-x11-server-common-cos7-x86_64 >=1.20.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - xorg-x11-server-common-cos7-x86_64 >=1.20.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+about:
+  home: http://www.x.org
+  license: MIT and GPLv2
+  license_family: GPL2
+  license_file: x11-license
+  summary: (CDT) A X Windows System virtual framebuffer X server.
+  description: |
+    Xvfb (X Virtual Frame Buffer) is an X server that is able to run on machines
+    with no display hardware and no physical input devices. Xvfb simulates a dumb
+    framebuffer using virtual memory.  Xvfb does not open any devices, but behaves
+    otherwise as an X display.  Xvfb is normally used for testing servers.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -301,13 +301,55 @@ numactl-devel:
 #   custom: false
 # pciutils-devel:
 #   custom: false
+pixman:
+  custom: false
+  license_file: licenses/pixman-license
 # python-javapackages:
 #   custom: false
 # webkitgtk-devel:
 #   custom: false
-# xorg-x11-proto-devel:
-#   custom: false
-# xorg-x11-server-Xvfb:
-#   custom: false
-# xorg-x11-util-macros:
-#   custom: false
+xorg-x11-proto-devel:
+  custom: false
+  license_file:
+    - licenses/xorg-x11-proto-devel/COPYING-applewmproto
+    - licenses/xorg-x11-proto-devel/COPYING-bigreqsproto
+    - licenses/xorg-x11-proto-devel/COPYING-compositeproto
+    - licenses/xorg-x11-proto-devel/COPYING-damageproto
+    - licenses/xorg-x11-proto-devel/COPYING-dmxproto
+    - licenses/xorg-x11-proto-devel/COPYING-dri2proto
+    - licenses/xorg-x11-proto-devel/COPYING-dri3proto
+    - licenses/xorg-x11-proto-devel/COPYING-evieproto
+    - licenses/xorg-x11-proto-devel/COPYING-fixesproto
+    - licenses/xorg-x11-proto-devel/COPYING-fontcacheproto
+    - licenses/xorg-x11-proto-devel/COPYING-fontsproto
+    - licenses/xorg-x11-proto-devel/COPYING-glproto
+    - licenses/xorg-x11-proto-devel/COPYING-inputproto
+    - licenses/xorg-x11-proto-devel/COPYING-kbproto
+    - licenses/xorg-x11-proto-devel/COPYING-lg3dproto
+    - licenses/xorg-x11-proto-devel/COPYING-panoramixproto
+    - licenses/xorg-x11-proto-devel/COPYING-pmproto
+    - licenses/xorg-x11-proto-devel/COPYING-presentproto
+    - licenses/xorg-x11-proto-devel/COPYING-printproto
+    - licenses/xorg-x11-proto-devel/COPYING-randrproto
+    - licenses/xorg-x11-proto-devel/COPYING-recordproto
+    - licenses/xorg-x11-proto-devel/COPYING-renderproto
+    - licenses/xorg-x11-proto-devel/COPYING-resourceproto
+    - licenses/xorg-x11-proto-devel/COPYING-scrnsaverproto
+    - licenses/xorg-x11-proto-devel/COPYING-trapproto
+    - licenses/xorg-x11-proto-devel/COPYING-videoproto
+    - licenses/xorg-x11-proto-devel/COPYING-windowswmproto
+    - licenses/xorg-x11-proto-devel/COPYING-x11proto
+    - licenses/xorg-x11-proto-devel/COPYING-xcmiscproto
+    - licenses/xorg-x11-proto-devel/COPYING-xextproto
+    - licenses/xorg-x11-proto-devel/COPYING-xf86bigfontproto
+    - licenses/xorg-x11-proto-devel/COPYING-xf86dgaproto
+    - licenses/xorg-x11-proto-devel/COPYING-xf86driproto
+    - licenses/xorg-x11-proto-devel/COPYING-xf86miscproto
+    - licenses/xorg-x11-proto-devel/COPYING-xf86rushproto
+    - licenses/xorg-x11-proto-devel/COPYING-xf86vidmodeproto
+    - licenses/xorg-x11-proto-devel/COPYING-xineramaproto
+xorg-x11-server-Xvfb:
+  custom: false
+  license_file: licenses/x11-license
+xorg-x11-util-macros:
+  custom: false

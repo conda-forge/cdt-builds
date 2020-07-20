@@ -1,0 +1,72 @@
+package:
+  name: xorg-x11-proto-devel-cos6-x86_64
+  version: 7.7
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/xorg-x11-proto-devel-7.7-14.el6.noarch.rpm
+    sha256: 34147662e82b9729652f013cb3578b02ca72786263bc7ab167d713da7ed28790
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/xorg-x11-proto-devel-7.7-14.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file:
+    - COPYING-applewmproto
+    - COPYING-bigreqsproto
+    - COPYING-compositeproto
+    - COPYING-damageproto
+    - COPYING-dmxproto
+    - COPYING-dri2proto
+    - COPYING-dri3proto
+    - COPYING-evieproto
+    - COPYING-fixesproto
+    - COPYING-fontcacheproto
+    - COPYING-fontsproto
+    - COPYING-glproto
+    - COPYING-inputproto
+    - COPYING-kbproto
+    - COPYING-lg3dproto
+    - COPYING-panoramixproto
+    - COPYING-pmproto
+    - COPYING-presentproto
+    - COPYING-printproto
+    - COPYING-randrproto
+    - COPYING-recordproto
+    - COPYING-renderproto
+    - COPYING-resourceproto
+    - COPYING-scrnsaverproto
+    - COPYING-trapproto
+    - COPYING-videoproto
+    - COPYING-windowswmproto
+    - COPYING-x11proto
+    - COPYING-xcmiscproto
+    - COPYING-xextproto
+    - COPYING-xf86bigfontproto
+    - COPYING-xf86dgaproto
+    - COPYING-xf86driproto
+    - COPYING-xf86miscproto
+    - COPYING-xf86rushproto
+    - COPYING-xf86vidmodeproto
+    - COPYING-xineramaproto
+  summary: (CDT) X.Org X11 Protocol headers
+  description: |
+    X.Org X11 Protocol headers
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
