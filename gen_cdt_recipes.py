@@ -183,12 +183,19 @@ def _fix_cdt_builds(*, cdts, arch_dist_tuples, cdt_path):
             if (
                 'build_append' in cfg
                 and os.path.exists(pth)
-                and distarch in cfg["build_append"]
+                and (distarch in cfg["build_append"] or "all" in cfg["build_append"])
                 and _is_changed_or_not_tracked(build_pth)
             ):
+                if distarch in cfg["build_append"]:
+                    extra_build = cfg["build_append"][distarch]
+                elif "all" in cfg["build_append"]:
+                    extra_build = cfg["build_append"]["all"]
+                else:
+                    raise RuntimeError("could not get build append for %s!" % cdt)
+
                 with open(build_pth, "a") as fp:
                     fp.write("\n")
-                    fp.write(cfg["build_append"][distarch])
+                    fp.write(extra_build)
 
 
 @click.command()

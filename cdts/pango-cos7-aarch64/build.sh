@@ -24,3 +24,21 @@ rm -f pango-querymodules-64
 echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
 chmod u+x pango-querymodules-64
 popd
+
+pushd ${SYSROOT_DIR}/usr/bin
+rm -f pango-querymodules-64
+echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
+chmod u+x pango-querymodules-64
+popd
+
+pushd ${SYSROOT_DIR}/usr/bin
+rm -f pango-querymodules-64
+echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
+chmod u+x pango-querymodules-64
+popd
+
+pushd ${SYSROOT_DIR}/usr/bin
+rm -f pango-querymodules-64
+echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
+chmod u+x pango-querymodules-64
+popd
