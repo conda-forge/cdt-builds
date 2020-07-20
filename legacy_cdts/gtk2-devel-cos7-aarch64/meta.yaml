@@ -43,12 +43,12 @@ about:
   home: http://www.gtk.org
   license: LGPL-2.0-or-later
   license_family: LGPL
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
-  summary: "(CDT) Development files for GTK+"
+  license_file: gtk2-copying
+  summary: (CDT) Development files for GTK+
   description: |
-        This package contains the libraries and header files that are needed for
-        writing applications with the GTK+ widget toolkit. If you plan to develop
-        applications with GTK+, consider installing the gtk2-devel-docs package.
+    This package contains the libraries and header files that are needed for
+    writing applications with the GTK+ widget toolkit. If you plan to develop
+    applications with GTK+, consider installing the gtk2-devel-docs package.
 
 extra:
   recipe-maintainers:

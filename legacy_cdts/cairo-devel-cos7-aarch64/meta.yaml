@@ -25,13 +25,16 @@ about:
   home: http://cairographics.org
   license: LGPLv2 or MPLv1.1
   license_family: LGPL
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
-  summary: "(CDT) Development files for cairo"
+  license_file:
+    - cairo-copying
+    - cairo-copying-lgpl-2.1
+    - cairo-copying-mpl-1.1
+  summary: (CDT) Development files for cairo
   description: |
-        Cairo is a 2D graphics library designed to provide high-quality display and
-        print output.  This package contains libraries, header files and developer
-        documentation needed for developing software which uses the cairo graphics
-        library.
+    Cairo is a 2D graphics library designed to provide high-quality display and
+    print output.  This package contains libraries, header files and developer
+    documentation needed for developing software which uses the cairo graphics
+    library.
 
 extra:
   recipe-maintainers:

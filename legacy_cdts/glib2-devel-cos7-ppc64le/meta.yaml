@@ -25,10 +25,10 @@ about:
   home: http://www.gtk.org
   license: LGPL-2.0-or-later
   license_family: LGPL
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
-  summary: "(CDT) A library of handy utility functions"
+  license_file: glib2-copying
+  summary: (CDT) A library of handy utility functions
   description: |
-        The glib2-devel package includes the header files for the GLib library.
+    The glib2-devel package includes the header files for the GLib library.
 
 extra:
   recipe-maintainers:

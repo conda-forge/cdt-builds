@@ -34,11 +34,11 @@ about:
   home: http://developer.gnome.org/projects/gap/
   license: LGPL-2.0-or-later
   license_family: LGPL
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
-  summary: "(CDT) Development files for the ATK accessibility toolkit"
+  license_file: atk-copying
+  summary: (CDT) Development files for the ATK accessibility toolkit
   description: |
-        This package includes libraries, header files, and developer documentation
-        needed for development of applications or toolkits which use ATK.
+    This package includes libraries, header files, and developer documentation
+    needed for development of applications or toolkits which use ATK.
 
 extra:
   recipe-maintainers:

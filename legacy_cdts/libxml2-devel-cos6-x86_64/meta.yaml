@@ -31,18 +31,18 @@ about:
   home: http://xmlsoft.org/
   license: MIT
   license_family: MIT
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
-  summary: "(CDT) Libraries, includes, etc. to develop XML and HTML applications"
+  license_file: libxml2-copying
+  summary: (CDT) Libraries, includes, etc. to develop XML and HTML applications
   description: |
-        Libraries, include files, etc you can use to develop XML applications. This
-        library allows to manipulate XML files. It includes support to read, modify
-        and write XML and HTML files. There is DTDs support this includes parsing and
-        validation even with complex DtDs, either at parse time or later once the
-        document has been modified. The output can be a simple SAX stream or and in-
-        memory DOM like representations. In this case one can use the built-in XPath
-        and XPointer implementation to select subnodes or ranges. A flexible
-        Input/Output mechanism is available, with existing HTTP and FTP modules and
-        combined to an URI library.
+    Libraries, include files, etc you can use to develop XML applications. This
+    library allows to manipulate XML files. It includes support to read, modify
+    and write XML and HTML files. There is DTDs support this includes parsing and
+    validation even with complex DtDs, either at parse time or later once the
+    document has been modified. The output can be a simple SAX stream or and in-
+    memory DOM like representations. In this case one can use the built-in XPath
+    and XPointer implementation to select subnodes or ranges. A flexible
+    Input/Output mechanism is available, with existing HTTP and FTP modules and
+    combined to an URI library.
 
 extra:
   recipe-maintainers:

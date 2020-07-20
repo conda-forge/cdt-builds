@@ -37,14 +37,16 @@ about:
   home: http://www.gnome.org/projects/ORBit2
   license: LGPLv2+ and GPLv2+
   license_family: GPL2
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
-  summary: "(CDT) Development libraries, header files and utilities for ORBit"
+  license_file:
+    - orbit2-copying
+    - orbit2-copying.lib
+  summary: (CDT) Development libraries, header files and utilities for ORBit
   description: |
-        ORBit is a high-performance CORBA (Common Object Request Broker Architecture)
-        ORB (object request broker) with support for the C language.  This package
-        contains the header files, libraries and utilities necessary to write programs
-        that use CORBA technology. If you want to write such programs, you'll also
-        need to install the ORBIT package.
+    ORBit is a high-performance CORBA (Common Object Request Broker Architecture)
+    ORB (object request broker) with support for the C language.  This package
+    contains the header files, libraries and utilities necessary to write programs
+    that use CORBA technology. If you want to write such programs, you'll also
+    need to install the ORBIT package.
 
 extra:
   recipe-maintainers:

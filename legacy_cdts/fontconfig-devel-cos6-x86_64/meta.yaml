@@ -34,12 +34,12 @@ about:
   home: http://fontconfig.org
   license: MIT
   license_family: MIT
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
-  summary: "(CDT) Font configuration and customization library"
+  license_file: fontconfig-copying
+  summary: (CDT) Font configuration and customization library
   description: |
-        The fontconfig-devel package includes the header files, and developer docs for
-        the fontconfig package.  Install fontconfig-devel if you want to develop
-        programs which will use fontconfig.
+    The fontconfig-devel package includes the header files, and developer docs for
+    the fontconfig package.  Install fontconfig-devel if you want to develop
+    programs which will use fontconfig.
 
 extra:
   recipe-maintainers:
