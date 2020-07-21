@@ -42,7 +42,7 @@ def _gen_dist_arch_str(arch, dist):
     return "%s-%s" % (dist.replace("ent", ""), arch)
 
 
-def _make_cdt_recipes(*, extra, cdt_path, arch_dist_tuples, cdts, exec, only_new):
+def _make_cdt_recipes(*, extra, cdt_path, arch_dist_tuples, cdts, exec, force):
     futures = {}
     for arch, dist in arch_dist_tuples:
         for cdt, cfg in cdts.items():
@@ -65,7 +65,7 @@ def _make_cdt_recipes(*, extra, cdt_path, arch_dist_tuples, cdts, exec, only_new
                 cdt.lower() + "-" + _gen_dist_arch_str(arch, dist),
             )
 
-            if only_new and os.path.exists(_pth):
+            if not force and os.path.exists(_pth):
                 continue
 
             futures[exec.submit(
@@ -183,28 +183,40 @@ def _fix_cdt_builds(*, cdts, arch_dist_tuples, cdt_path):
             if (
                 'build_append' in cfg
                 and os.path.exists(pth)
-                and distarch in cfg["build_append"]
+                and (distarch in cfg["build_append"] or "all" in cfg["build_append"])
                 and _is_changed_or_not_tracked(build_pth)
             ):
-                with open(build_pth, "a") as fp:
-                    fp.write("\n")
-                    fp.write(cfg["build_append"][distarch])
+                if distarch in cfg["build_append"]:
+                    extra_build = cfg["build_append"][distarch]
+                elif "all" in cfg["build_append"]:
+                    extra_build = cfg["build_append"]["all"]
+                else:
+                    raise RuntimeError("could not get build append for %s!" % cdt)
+
+                with open(build_pth, "r") as fp:
+                    build_str = fp.read()
+
+                if not build_str.strip().endswith("# CDT BUILD APPENDED"):
+                    with open(build_pth, "a") as fp:
+                        fp.write("\n")
+                        fp.write(extra_build)
+                        fp.write("# CDT BUILD APPENDED\n")
 
 
 @click.command()
 @click.option(
-    "--only-new", default=False, is_flag=True,
-    help="Only generate new CDT recipes."
+    "--force", default=False, is_flag=True,
+    help="Forcibly regenerate all CDT recipes."
 )
 @click.option(
     "--no-legacy", default=False, is_flag=True,
-    help="Do not denerate the old-style, legacy CDTs in the legacy_* folders."
+    help="Do not generate the old-style, legacy CDTs in the legacy_* folders."
 )
 @click.option(
     "--fast", default=False, is_flag=True,
     help="Use a global src cache. May fail due to race conditions."
 )
-def _main(only_new, no_legacy, fast):
+def _main(force, no_legacy, fast):
     """
     Generate all CDT recipes.
     """
@@ -225,7 +237,7 @@ def _main(only_new, no_legacy, fast):
         if not no_legacy:
             # legacy CDTs for the old compiler sysroots
 
-            if not only_new:
+            if force:
                 _clear_gen_cdts(LEGACY_CDT_PATH)
 
             extra = "--conda-forge-style"
@@ -244,11 +256,11 @@ def _main(only_new, no_legacy, fast):
                     arch_dist_tuples=arch_dist_tuples,
                     cdts=cdts,
                     exec=exec,
-                    only_new=only_new)
+                    force=force)
                 )
 
         # new CDTs for the new compilers with a single sysroot
-        if not only_new:
+        if force:
             _clear_gen_cdts(CDT_PATH)
 
         extra = "--conda-forge-style --single-sysroot"
@@ -265,7 +277,7 @@ def _main(only_new, no_legacy, fast):
                 arch_dist_tuples=arch_dist_tuples,
                 cdts=cdts,
                 exec=exec,
-                only_new=only_new)
+                force=force)
             )
 
         for fut in tqdm.tqdm(as_completed(futures), total=len(futures)):

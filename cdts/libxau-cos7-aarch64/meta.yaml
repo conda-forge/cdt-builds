@@ -1,0 +1,41 @@
+package:
+  name: libxau-cos7-aarch64
+  version: 1.0.8
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libXau-1.0.8-2.1.el7.aarch64.rpm
+    sha256: a8cd3649457f0166dabae26350f387b43bc6f9ac52f49766d8dee1a9cc60742a
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXau-1.0.8-2.1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libXau-1.0.8/COPYING
+  summary: "(CDT) Sample Authorization Protocol for X"
+  description: |
+        This is a very simple mechanism for providing individual access to an X Window
+        System display.It uses existing core protocol and library hooks for specifying
+        authorization data in the connection setup block to restrict use of the
+        display to only those clients that show that they know a server-specific key
+        called a "magic cookie".
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

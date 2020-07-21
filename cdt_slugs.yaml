@@ -24,6 +24,20 @@ chkconfig:
 #   custom: false
 # expat-devel:
 #   custom: false
+fontconfig:
+  custom: false
+  build_append:
+    all: |
+      pushd ${SYSROOT_DIR}/etc/fonts/conf.d
+      for fulllnk in $(find . -maxdepth 1 -type l); do
+        lnk=$(basename ${fulllnk})
+        lnk_dst=$(readlink ${lnk})
+        if [[ ${lnk_dst:0:1} == "/" ]]; then
+          rm -f ${lnk}
+          ln -s ${SYSROOT_DIR}${lnk_dst} ${SYSROOT_DIR}/etc/fonts/conf.d/${lnk}
+        fi
+      done
+      popd
 fontconfig-devel:
   custom: false
   license_file: licenses/fontconfig-copying
@@ -166,20 +180,24 @@ libX11-common:
 libX11-devel:
   custom: false
   license_file: licenses/x11-license
-# libxau:
-#   custom: false
-# libxau-devel:
-#   custom: false
-# libxcb:
-#   custom: false
-# libxcomposite:
-#   custom: false
-# libxcomposite-devel:
-#   custom: false
-# libxcursor:
-#   custom: false
-# libxcursor-devel:
-#   custom: false
+libXau:
+  custom: false
+libXau-devel:
+  custom: false
+  license_file: licenses/libxau-license
+libxcb:
+  custom: false
+  license_file: licenses/libxcb-license
+libXcomposite:
+  custom: false
+libXcomposite-devel:
+  custom: false
+  license_file: licenses/libxcomposite-license
+libXcursor:
+  custom: false
+libXcursor-devel:
+  custom: false
+  license_file: licenses/libxcursor-license
 libXdamage:
   custom: false
 libXdamage-devel:
@@ -190,41 +208,48 @@ libXext:
 libXext-devel:
   custom: false
   license_file: licenses/libxext-license
-# libxfixes:
-#   custom: false
-# libxfixes-devel:
-#   custom: false
-# libxft:
-#   custom: false
-# libxi:
-#   custom: false
-# libxi-devel:
-#   custom: false
-# libxinerama:
-#   custom: false
-# libxinerama-devel:
-#   custom: false
+libXfixes:
+  custom: false
+libXfixes-devel:
+  custom: false
+  license_file: licenses/libxfixes-license
+libXft:
+  custom: false
+libXi:
+  custom: false
+libXi-devel:
+  custom: false
+  license_file: licenses/libxi-license
+libXinerama:
+  custom: false
+libXinerama-devel:
+  custom: false
+  license_file: licenses/libxinerma-license
 libxml2-devel:
   custom: false
   license_file: licenses/libxml2-license
-# libxrandr:
-#   custom: false
-# libxrandr-devel:
-#   custom: false
-# libxrender:
-#   custom: false
-# libxrender-devel:
-#   custom: false
-# libxscrnsaver-devel:
-#   custom: false
-# libxshmfence-devel:
-#   custom: false
-# libXt:
-#   custom: false
-# libXt-devel:
-#   custom: false
-# libxtst-devel:
-#   custom: false
+libXrandr-devel:
+  custom: false
+  license_file: licenses/libxrandr-license
+libXrender:
+  custom: false
+libXrender-devel:
+  custom: false
+  license_file: licenses/libxrender-license
+libXScrnSaver-devel:
+  custom: false
+  license_file: licenses/libxscrnsaver-license
+libxshmfence-devel:
+  custom: false
+  license_file: licenses/libxshmfence-license
+libXt:
+  custom: false
+libXt-devel:
+  custom: false
+  license_file: licenses/libxt-license
+libXtst-devel:
+  custom: false
+  license_file: licenses/libxtst-license
 mesa-libgbm:
   custom: false
   license_file: licenses/mesa-license
@@ -356,7 +381,6 @@ pango:
       echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
       chmod u+x pango-querymodules-64
       popd
-
 pango-devel:
   custom: false
   license_file: licenses/pango-copying

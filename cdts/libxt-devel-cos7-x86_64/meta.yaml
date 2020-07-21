@@ -1,0 +1,37 @@
+package:
+  name: libxt-devel-cos7-x86_64
+  version: 1.1.5
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libXt-devel-1.1.5-3.el7.x86_64.rpm
+    sha256: 1372cb3e743f55ddaa3dfa4c8e5dfbad6e84bd4b3740b1ccdbb130076371c704
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXt-1.1.5-3.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-64 2.17.*
+  run:
+    - sysroot_linux-64 2.17.*
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: libxt-license
+  summary: (CDT) X.Org X11 libXt development package
+  description: |
+    X.Org X11 libXt development package
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

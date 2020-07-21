@@ -1,0 +1,35 @@
+package:
+  name: libxt-cos7-ppc64le
+  version: 1.1.5
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libXt-1.1.5-3.el7.ppc64le.rpm
+    sha256: 6634b8720eb95a0b39779131bdeae73225c67a967c4f2a8f05977e9ba28c7bad
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXt-1.1.5-3.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libXt/COPYING
+  summary: "(CDT) X.Org X11 libXt runtime library"
+  description: |
+        X.Org X11 libXt runtime library
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

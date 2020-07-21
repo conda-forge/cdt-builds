@@ -1,0 +1,41 @@
+package:
+  name: libxrender-cos7-ppc64le
+  version: 0.9.10
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libXrender-0.9.10-1.el7.ppc64le.rpm
+    sha256: ca11a544d84de32226f9b534bcd7b7d3ea442ade23743ded22dee5db4d6b5875
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXrender-0.9.10-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libx11-cos7-ppc64le >=1.5.99.902 *_{{ cdt_build_number }}
+  host:
+    - libx11-cos7-ppc64le >=1.5.99.902 *_{{ cdt_build_number }}
+  run:
+    - libx11-cos7-ppc64le >=1.5.99.902 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libXrender-0.9.10/COPYING
+  summary: "(CDT) X.Org X11 libXrender runtime library"
+  description: |
+        X.Org X11 libXrender runtime library
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

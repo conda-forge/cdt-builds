@@ -1,0 +1,41 @@
+package:
+  name: libxrandr-devel-cos7-aarch64
+  version: 1.5.1
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libXrandr-devel-1.5.1-2.el7.aarch64.rpm
+    sha256: 3c52a81d420ad68ee8791c0ea7996ad7a29bd835fe2305d533d9caa19d753cd7
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXrandr-1.5.1-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libxrandr-cos7-aarch64 ==1.5.1 *_{{ cdt_build_number }}
+  host:
+    - libxrandr-cos7-aarch64 ==1.5.1 *_{{ cdt_build_number }}
+  run:
+    - libxrandr-cos7-aarch64 ==1.5.1 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: libxrandr-license
+  summary: (CDT) X.Org X11 libXrandr development package
+  description: |
+    X.Org X11 libXrandr development package
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

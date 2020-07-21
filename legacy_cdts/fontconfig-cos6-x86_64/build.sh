@@ -18,3 +18,15 @@ fi
 pushd ${SRC_DIR}/binary > /dev/null 2>&1
 rsync -K -a . "${SYSROOT_DIR}"
 popd
+
+pushd ${SYSROOT_DIR}/etc/fonts/conf.d
+for fulllnk in $(find . -maxdepth 1 -type l); do
+  lnk=$(basename ${fulllnk})
+  lnk_dst=$(readlink ${lnk})
+  if [[ ${lnk_dst:0:1} == "/" ]]; then
+    rm -f ${lnk}
+    ln -s ${SYSROOT_DIR}${lnk_dst} ${SYSROOT_DIR}/etc/fonts/conf.d/${lnk}
+  fi
+done
+popd
+# CDT BUILD APPENDED

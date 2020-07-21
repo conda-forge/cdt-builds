@@ -1,0 +1,35 @@
+package:
+  name: libxtst-devel-cos7-ppc64le
+  version: 1.2.3
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libXtst-devel-1.2.3-1.el7.ppc64le.rpm
+    sha256: 76985287b06e0fbecf9c824737d423e734342b02374a5c20f54b2df9488898c9
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXtst-1.2.3-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: libxtst-license
+  summary: (CDT) X.Org X11 libXtst development package
+  description: |
+    X.Org X11 libXtst development package
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
