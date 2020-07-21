@@ -61,6 +61,34 @@ java-1.7.0-openjdk-headless:
   custom: false
   skipped_cdts:
     - cos6-x86_64
+  build_append:
+    cos7-x86_64: |
+      pushd ${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.251-2.6.21.1.el7.x86_64/jre-abrt
+      rm -rf lib
+      ln -s ${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.251-2.6.21.1.el7.x86_64/jre/lib ${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.251-2.6.21.1.el7.x86_64/jre-abrt/lib
+      popd
+
+      pushd ${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.251-2.6.21.1.el7.x86_64/jre/lib/security
+      mkdir -p ../../../../../../../etc/pki/java/cacerts
+      popd
+    cos7-ppc64le: |
+      pushd ${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.251-2.6.21.1.el7.ppc64le/jre-abrt
+      rm -rf lib
+      ln -s ${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.251-2.6.21.1.el7.ppc64le/jre/lib ${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.251-2.6.21.1.el7.ppc64le/jre-abrt/lib
+      popd
+
+      pushd ${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.251-2.6.21.1.el7.ppc64le/jre/lib/security
+      mkdir -p ../../../../../../../etc/pki/java/cacerts
+      popd
+    cos7-aarch64: |
+      pushd ${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.221-2.6.18.1.el7.aarch64/jre-abrt
+      rm -rf lib
+      ln -s ${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.221-2.6.18.1.el7.aarch64/jre/lib ${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.221-2.6.18.1.el7.aarch64/jre-abrt/lib
+      popd
+
+      pushd ${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.221-2.6.18.1.el7.aarch64/jre/lib/security
+      mkdir -p ../../../../../../../etc/pki/java/cacerts
+      popd
 javapackages-tools:
   custom: false
   skipped_cdts:

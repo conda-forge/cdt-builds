@@ -18,3 +18,17 @@ fi
 pushd ${SRC_DIR}/binary > /dev/null 2>&1
 rsync -K -a . "${SYSROOT_DIR}"
 popd
+
+
+# CDT BUILD APPENDED
+pushd ${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.221-2.6.18.1.el7.aarch64/jre-abrt
+rm -rf lib
+ln -s ${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.221-2.6.18.1.el7.aarch64/jre/lib ${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.221-2.6.18.1.el7.aarch64/jre-abrt/lib
+popd
+
+pushd ${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.221-2.6.18.1.el7.aarch64/jre/lib/security
+mkdir -p ../../../../../../../etc/pki/java/cacerts
+popd
+
+
+# CDT BUILD APPENDED
