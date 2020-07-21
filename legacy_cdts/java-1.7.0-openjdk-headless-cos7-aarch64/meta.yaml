@@ -1,0 +1,50 @@
+package:
+  name: java-1.7.0-openjdk-headless-cos7-aarch64
+  version: 1.7.0.251
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/java-1.7.0-openjdk-headless-1.7.0.251-2.6.21.1.el7.aarch64.rpm
+    sha256: b6cddfc2515e9c2b72c8b792c012c72e59e80010e4a14446400e6a100814f4c7
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/java-1.7.0-openjdk-1.7.0.251-2.6.21.1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - chkconfig-cos7-aarch64 >=1.7 *_{{ cdt_build_number }}
+    - chkconfig-cos7-aarch64 >=1.7 *_{{ cdt_build_number }}
+    - copy-jdk-configs-cos7-aarch64 >=3.3 *_{{ cdt_build_number }}
+    - javapackages-tools-cos7-aarch64 >=3.4.1 *_{{ cdt_build_number }}
+  host:
+    - chkconfig-cos7-aarch64 >=1.7 *_{{ cdt_build_number }}
+    - chkconfig-cos7-aarch64 >=1.7 *_{{ cdt_build_number }}
+    - copy-jdk-configs-cos7-aarch64 >=3.3 *_{{ cdt_build_number }}
+    - javapackages-tools-cos7-aarch64 >=3.4.1 *_{{ cdt_build_number }}
+  run:
+    - chkconfig-cos7-aarch64 >=1.7 *_{{ cdt_build_number }}
+    - chkconfig-cos7-aarch64 >=1.7 *_{{ cdt_build_number }}
+    - copy-jdk-configs-cos7-aarch64 >=3.3 *_{{ cdt_build_number }}
+    - javapackages-tools-cos7-aarch64 >=3.4.1 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+about:
+  home: http://openjdk.java.net/
+  license: ASL 1.1 and ASL 2.0 and BSD and BSD with advertising and GPL+ and GPLv2 and GPLv2 with exceptions and IJG and LGPLv2+ and MIT and MPLv1.1 and MPLv2.0 and Public Domain and W3C and zlib
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.251-2.6.21.1.el7.aarch64/LICENSE
+  summary: "(CDT) The OpenJDK runtime environment without audio and video support"
+  description: |
+        The OpenJDK runtime environment without audio and video
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
