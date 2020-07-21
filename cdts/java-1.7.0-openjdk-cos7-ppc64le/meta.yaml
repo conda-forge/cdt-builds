@@ -1,0 +1,41 @@
+package:
+  name: java-1.7.0-openjdk-cos7-ppc64le
+  version: 1.7.0.251
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/java-1.7.0-openjdk-1.7.0.251-2.6.21.1.el7.ppc64le.rpm
+    sha256: 677f933f24ce8b747519979ec195a0a43ffbb4663249aa8be0548a7c6b11dfda
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/java-1.7.0-openjdk-1.7.0.251-2.6.21.1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - java-1.7.0-openjdk-headless-cos7-ppc64le ==1.7.0.251 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - java-1.7.0-openjdk-headless-cos7-ppc64le ==1.7.0.251 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - java-1.7.0-openjdk-headless-cos7-ppc64le ==1.7.0.251 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+about:
+  home: http://openjdk.java.net/
+  license: ASL 1.1 and ASL 2.0 and BSD and BSD with advertising and GPL+ and GPLv2 and GPLv2 with exceptions and IJG and LGPLv2+ and MIT and MPLv1.1 and MPLv2.0 and Public Domain and W3C and zlib
+  license_family: GPL2
+  license_file: openjdk-license
+  summary: (CDT) OpenJDK Runtime Environment
+  description: |
+    The OpenJDK runtime environment.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

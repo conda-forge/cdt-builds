@@ -184,7 +184,6 @@ def _fix_cdt_builds(*, cdts, arch_dist_tuples, cdt_path):
                 'build_append' in cfg
                 and os.path.exists(pth)
                 and (distarch in cfg["build_append"] or "all" in cfg["build_append"])
-                and _is_changed_or_not_tracked(build_pth)
             ):
                 if distarch in cfg["build_append"]:
                     extra_build = cfg["build_append"][distarch]
@@ -198,9 +197,9 @@ def _fix_cdt_builds(*, cdts, arch_dist_tuples, cdt_path):
 
                 if not build_str.strip().endswith("# CDT BUILD APPENDED"):
                     with open(build_pth, "a") as fp:
-                        fp.write("\n")
+                        fp.write("\n\n# CDT BUILD APPENDED\n")
                         fp.write(extra_build)
-                        fp.write("# CDT BUILD APPENDED\n")
+                        fp.write("\n\n# CDT BUILD APPENDED\n")
 
 
 @click.command()

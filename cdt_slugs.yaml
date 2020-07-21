@@ -18,8 +18,8 @@ cairo-devel:
     - licenses/cairo-copying-mpl-1.1
 chkconfig:
   custom: false
-# copy-jdk-configs:
-#   custom: false
+copy-jdk-configs:
+  custom: false
 # cups-devel:
 #   custom: false
 # expat-devel:
@@ -54,12 +54,36 @@ gtk2-devel:
   license_file: licenses/gtk2-copying
 # gtkmm24-devel:
 #   custom: false
-# java-1.7.0-openjdk:
-#   custom: false
-# java-1.7.0-openjdk-headless:
-#   custom: false
-# javapackages-tools:
-#   custom: false
+java-1.7.0-openjdk:
+  custom: false
+  license_file: licenses/openjdk-license
+java-1.7.0-openjdk-headless:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  build_append:
+    all: |
+      jvm_slug=$(compgen -G "${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-*")
+      jvm_slug=$(basename ${jvm_slug})
+
+      pushd ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre-abrt
+      rm -rf lib
+      ln -s ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre/lib ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre-abrt/lib
+      popd
+
+      pushd ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre/lib/security
+      mkdir -p ../../../../../../../etc/pki/java/cacerts
+      popd
+javapackages-tools:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  build_append:
+    all: |
+      pushd ${SYSROOT_DIR}/usr/share/java-utils
+        rm -f abs2rel.sh
+        ln -s ${SYSROOT_DIR}/usr/bin/abs2rel ${SYSROOT_DIR}/usr/share/java-utils/abs2rel.sh
+      popd
 kernel-headers:
   custom: false
   license_file: null
@@ -116,8 +140,9 @@ libibverbs-devel:
 #   custom: false
 # libice-devel:
 #   custom: false
-# libjpeg-turbo:
-#   custom: false
+libjpeg-turbo:
+  custom: false
+  license_file: licenses/libjpeg-turbo-license
 libnl-devel:
   # generates libnl too
   custom: false
@@ -392,8 +417,10 @@ pixman:
 pixman-devel:
   custom: false
   license_file: licenses/pixman-license
-# python-javapackages:
-#   custom: false
+python-javapackages:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
 # webkitgtk-devel:
 #   custom: false
 xorg-x11-proto-devel:
