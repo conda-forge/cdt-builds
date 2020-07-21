@@ -31,8 +31,6 @@ requirements:
     - sysroot_linux-64 ==99999999999
 
 test:
-  requires:
-    - zlib
   commands:
     - echo "it installs!"
 

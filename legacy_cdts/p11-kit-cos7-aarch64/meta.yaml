@@ -22,8 +22,6 @@ requirements:
     - sysroot_linux-aarch64 ==99999999999
 
 test:
-  requires:
-    - zlib
   commands:
     - echo "it installs!"
 

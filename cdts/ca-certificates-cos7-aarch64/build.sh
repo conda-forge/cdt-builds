@@ -17,4 +17,57 @@ if [[ -d usr/lib64 ]]; then
 fi
 pushd ${SRC_DIR}/binary > /dev/null 2>&1
 rsync -K -a . "${SYSROOT_DIR}"
-popd
+popd > /dev/null 2>&1
+
+# START OF INSERTED BUILD APPENDS
+
+
+# CONDA-FORGE BUILD APPEND
+mkdir -p ${SYSROOT_DIR}/etc/pki/tls/certs
+
+pushd ${SYSROOT_DIR}/etc/pki/java > /dev/null 2>&1
+  rm -f cacerts
+  mkdir -p ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/java/cacerts
+  ln -s ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/java/cacerts ${SYSROOT_DIR}/etc/pki/java/cacerts
+popd > /dev/null 2>&1
+
+pushd ${SYSROOT_DIR}/etc/pki/tls > /dev/null 2>&1
+  rm -f cert.pem
+  echo "PLACEHOLDER"> ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
+  ln -s ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem ${SYSROOT_DIR}/etc/pki/tls/cert.pem
+popd > /dev/null 2>&1
+
+pushd ${SYSROOT_DIR}/etc/pki/tls/certs > /dev/null 2>&1
+  rm -f ca-bundle.crt
+  ln -s ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem ${SYSROOT_DIR}/etc/pki/tls/certs/ca-bundle.crt
+popd > /dev/null 2>&1
+
+pushd ${SYSROOT_DIR}/etc/pki/tls/certs > /dev/null 2>&1
+  rm ca-bundle.trust.crt
+  echo "PLACEHOLDER"> ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
+  ln -s ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt ${SYSROOT_DIR}/etc/pki/tls/certs/ca-bundle.trust.crt
+popd > /dev/null 2>&1
+
+
+# END OF INSERTED BUILD APPENDS
+
+error_code=0
+for blnk in $(find ./binary -type l); do
+  lnk=${SYSROOT_DIR}${blnk#"./binary"}
+  lnk_dir=$(dirname ${lnk})
+  lnk_dst_nm=$(readlink ${lnk})
+  if [[ ${lnk_dst_nm:0:1} == "/" ]]; then
+    lnk_dst=${lnk_dst_nm}
+  else
+    lnk_dst="${lnk_dir}/${lnk_dst_nm}"
+  fi
+  if [[ ${lnk_dst_nm:0:1} == "/" ]] && [[ ! ${lnk_dst_nm} == ${SYSROOT_DIR}* ]]; then
+    echo "***WARNING ABSOLUTE SYMLINK***: ${lnk} -> ${lnk_dst}"
+    error_code=1
+  elif [[ ! -e "${lnk_dst}" ]]; then
+     echo "***WARNING SYMLINK W/O DESTINATION: ${lnk} -> ${lnk_dst}"
+     error_code=1
+  fi
+done
+
+exit ${error_code}

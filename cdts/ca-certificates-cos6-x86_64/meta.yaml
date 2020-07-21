@@ -31,8 +31,6 @@ requirements:
     - sysroot_linux-64 2.12.*
 
 test:
-  requires:
-    - zlib
   commands:
     - echo "it installs!"
 

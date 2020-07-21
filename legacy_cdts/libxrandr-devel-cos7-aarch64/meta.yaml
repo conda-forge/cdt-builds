@@ -30,12 +30,4 @@ requirements:
 about:
   home: http://www.x.org
   license: MIT
-  license_family: MIT
-  license_file: libxrandr-license
-  summary: (CDT) X.Org X11 libXrandr development package
-  description: |
-    X.Org X11 libXrandr development package
-
-extra:
-  recipe-maintainers:
-    - conda-forge/help-cdts
+  license_family
