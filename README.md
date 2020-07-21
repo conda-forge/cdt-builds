@@ -1,5 +1,5 @@
 <!--
-**NOTE** This file is generated automatically. Please edit `README.md.tmpl` to 
+**NOTE** This file is generated automatically. Please edit `README.md.tmpl` to
 make any changes and then rerender the template by running `python render_readme.py`.
 -->
 
@@ -26,16 +26,17 @@ The following options are available when adding a CDT in the configuration file:
    `build.sh` file for a given distribution and platform. For example, one might set a key
    `cos6-x86_64` in this mapping and set the value to `echo 'hi!'` to add `echo 'hi!'` to
    the build script for only `cos6-x86_64`.
+ - `recursive` (boolean): Set to `false` to disable recrusive generation of a CDTs
+   dependencies. The default is `true`.
 
 ## Adding a CDT package
 
 To add a CDT package, make a PR on this repo with the following changes.
 
 1. Add the name of the CDT `cdt_slugs.yaml` file.
-2. Run the python script `gen_cdt_recipes.py`. This script will take about 10-20
-   minutes to complete and will regenerate all of the CDT recipes. Pass the
-   option `--only-new` to only build CDTs which do not have a directory in the
-   `cdts` or `legacy_cdts` directories.
+2. Run the python script `gen_cdt_recipes.py`. This script will generate the
+   CDT recipes that do not exist. Pass `--force` to regenerate all of the
+   CDT recipes (takes about 10-20 minutes to complete).
 3. Commit any changes from steps 1+2 and open the PR.
 
 The CI service will build the CDTs, report any errors, etc.
@@ -47,10 +48,9 @@ If you make changes to the CDT generation script, make a PR on this repo using
 the following steps.
 
 1. Make sure the bump the `cdt_build_number` variable in the `conda_build_config.yaml` file.
-2. Run the python script `gen_cdt_recipes.py`. This script will take about 10-20
-   minutes to complete and will regenerate all of the CDT recipes. Pass the
-   option `--only-new` to only build CDTs which do not have a directory in the
-   `cdts` or `legacy_cdts` directories.
+2. Run the python script `gen_cdt_recipes.py`. This script will generate the
+   CDT recipes that do not exist. Pass `--force` to regenerate all of the
+   CDT recipes (takes about 10-20 minutes to complete).
 3. Commit any changes from steps 1+2 and open the PR.
 
 The CI service will build the CDTs, report any errors, etc.

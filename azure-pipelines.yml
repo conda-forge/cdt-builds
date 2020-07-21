@@ -64,13 +64,13 @@ jobs:
         echo "is fork: ${IS_FORK}"
         echo "branch: ${BUILD_SOURCEBRANCHNAME}"
         echo "cdts built:"
-        for pth in $(compgen -G "$HOME/miniforge3/conda-bld/*/*.tar.bz2"); do
+        for pth in $(compgen -G "$HOME/miniforge3/conda-bld/*/*.tar.bz2" | sort); do
           echo ${pth#$HOME/miniforge3/conda-bld/}
         done
         echo  " "
 
         if [[ ${ANACONDA_TOKEN} ]] && [[ "$BUILD_SOURCEBRANCHNAME" == "master" ]] && [[ "${IS_FORK}" == "False" ]]; then
-          if [[ $(compgen -G "$HOME/miniforge3/conda-bld/*/*.tar.bz2") ]]; then
+          if [[ $(compgen -G "$HOME/miniforge3/conda-bld/*/*.tar.bz2" | sort) ]]; then
             echo "uploading the CDTs"
             anaconda --token ${ANACONDA_TOKEN} upload --skip-existing $HOME/miniforge3/conda-bld/*/*.tar.bz2
           else

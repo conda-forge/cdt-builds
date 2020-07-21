@@ -170,15 +170,8 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
     cdt_meta = _build_cdt_meta(recipes, dist_arch_slug)
     print("\ncdts to build:", flush=True)
     for cdt in sorted(cdt_meta):
-        print(
-            "    %s: %s" % (
-                cdt,
-                'skipped'
-                if cdt_meta[cdt]['skip']
-                else 'building'
-            ),
-            flush=True
-        )
+        if not cdt_meta[cdt]['skip']:
+            print("    %s" % cdt, flush=True)
 
     num_workers = 4
 
