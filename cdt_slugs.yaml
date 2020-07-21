@@ -8,8 +8,9 @@ at-spi-devel:
 atk-devel:
   custom: false
   license_file: licenses/atk-copying
-# ca-certificates:
-#   custom: false
+ca-certificates:
+  custom: false
+  license_file: null
 cairo-devel:
   custom: false
   license_file:
@@ -22,8 +23,9 @@ copy-jdk-configs:
   custom: false
 # cups-devel:
 #   custom: false
-# expat-devel:
-#   custom: false
+expat-devel:
+  custom: false
+  license_file: licenses/expat-license
 fontconfig:
   custom: false
   build_append:
@@ -381,10 +383,12 @@ ORBit2-devel:
   license_file:
     - licenses/orbit2-copying
     - licenses/orbit2-copying.lib
-# p11-kit:
-#   custom: false
-# p11-kit-trust:
-#   custom: false
+p11-kit:
+  custom: false
+  license_file: licenses/p11-kit-license
+p11-kit-trust:
+  custom: false
+  license_file: licenses/p11-kit-license
 pango:
   custom: false
   build_append:
@@ -421,8 +425,20 @@ python-javapackages:
   custom: false
   skipped_cdts:
     - cos6-x86_64
-# webkitgtk-devel:
-#   custom: false
+webkitgtk:
+  custom: false
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
+  license_file: licenses/webkitgtk-license
+webkitgtk-devel:
+  custom: false
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
+  license_file: licenses/webkitgtk-license
 xorg-x11-proto-devel:
   custom: false
   license_file:

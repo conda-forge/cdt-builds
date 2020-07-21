@@ -1,0 +1,38 @@
+package:
+  name: webkitgtk-cos6-x86_64
+  version: 1.4.3
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/webkitgtk-1.4.3-9.el6_6.x86_64.rpm
+    sha256: add2dfc713c011e5154a53f2846698876c1743afc5df20bb07e3a9ecbe4825a1
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/webkitgtk-1.4.3-9.el6_6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-64 2.12.*
+  run:
+    - sysroot_linux-64 2.12.*
+
+about:
+  home: http://www.webkitgtk.org/
+  license: LGPLv2+ and BSD
+  license_family: LGPL
+  license_file: webkitgtk-license
+  summary: (CDT) GTK+ Web content engine library
+  description: |
+    WebKitGTK+ is the port of the portable web rendering engine WebKit to the GTK+
+    platform.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

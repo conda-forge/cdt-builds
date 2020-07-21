@@ -1,0 +1,42 @@
+package:
+  name: expat-devel-cos7-aarch64
+  version: 2.1.0
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/expat-devel-2.1.0-11.el7.aarch64.rpm
+    sha256: f7df66a2c45299cda07c271f830b03d28b1bfc542f0b26daac1bcac6a46103bd
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/expat-2.1.0-11.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - expat-cos7-aarch64 ==2.1.0 *_{{ cdt_build_number }}
+  host:
+    - expat-cos7-aarch64 ==2.1.0 *_{{ cdt_build_number }}
+  run:
+    - expat-cos7-aarch64 ==2.1.0 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+about:
+  home: http://www.libexpat.org/
+  license: MIT
+  license_family: MIT
+  license_file: expat-license
+  summary: (CDT) Libraries and header files to develop applications using expat
+  description: |
+    The expat-devel package contains the libraries, include files and
+    documentation to develop XML applications with expat.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
