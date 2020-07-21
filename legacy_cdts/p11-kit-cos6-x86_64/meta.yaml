@@ -21,6 +21,12 @@ requirements:
   run_constrained:
     - sysroot_linux-64 ==99999999999
 
+test:
+  requires:
+    - zlib
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://p11-glue.freedesktop.org/p11-kit.html
   license: BSD

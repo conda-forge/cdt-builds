@@ -23,6 +23,12 @@ requirements:
   run:
     - sysroot_linux-aarch64 2.17.*
 
+test:
+  requires:
+    - zlib
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://p11-glue.freedesktop.org/p11-kit.html
   license: BSD

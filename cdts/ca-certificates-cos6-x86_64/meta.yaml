@@ -30,6 +30,12 @@ requirements:
     - p11-kit-trust-cos6-x86_64 >=0.18.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
 
+test:
+  requires:
+    - zlib
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://www.mozilla.org/
   license: Public-Domain

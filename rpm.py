@@ -101,6 +101,12 @@ build:
 
 {depends}
 
+test:
+  requires:
+    - zlib
+  commands:
+    - echo "it installs!"
+
 about:
   home: {home}
   license: {license}
