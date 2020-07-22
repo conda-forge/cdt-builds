@@ -42,6 +42,10 @@ requirements:
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://developer.gnome.org/projects/gap/
   license: LGPL-2.0-or-later

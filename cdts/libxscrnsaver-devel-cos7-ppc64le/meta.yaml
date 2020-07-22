@@ -27,6 +27,10 @@ requirements:
     - libxscrnsaver-cos7-ppc64le ==1.2.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://www.x.org
   license: MIT

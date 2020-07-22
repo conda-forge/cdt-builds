@@ -33,6 +33,10 @@ requirements:
     - libxml2-devel-cos7-aarch64 >=2.4.21 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://ftp.gnome.org
   license: GPLv2+ and LGPLv2+

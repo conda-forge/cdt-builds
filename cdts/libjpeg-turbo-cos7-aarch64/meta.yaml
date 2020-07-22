@@ -23,6 +23,10 @@ requirements:
   run:
     - sysroot_linux-aarch64 2.17.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://sourceforge.net/projects/libjpeg-turbo
   license: IJG

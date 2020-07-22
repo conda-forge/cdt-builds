@@ -27,6 +27,10 @@ requirements:
     - freetype-cos7-ppc64le ==2.8 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://www.freetype.org
   license: (FTL or GPLv2+) and BSD and MIT and Public Domain and zlib with acknowledgement

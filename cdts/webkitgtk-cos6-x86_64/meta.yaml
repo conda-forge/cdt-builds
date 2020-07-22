@@ -23,6 +23,10 @@ requirements:
   run:
     - sysroot_linux-64 2.12.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://www.webkitgtk.org/
   license: LGPLv2+ and BSD

@@ -27,6 +27,10 @@ requirements:
     - freetype-devel-cos7-aarch64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://fontconfig.org
   license: MIT and Public Domain and UCD

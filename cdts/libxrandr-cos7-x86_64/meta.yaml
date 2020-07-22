@@ -27,6 +27,10 @@ requirements:
     - libx11-cos7-x86_64 >=1.6.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://www.x.org
   license: MIT

@@ -23,6 +23,10 @@ requirements:
   run:
     - sysroot_linux-64 2.12.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: https://www.openfabrics.org/
   license: GPLv2 or BSD

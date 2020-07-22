@@ -27,6 +27,10 @@ requirements:
     - pixman-cos7-ppc64le ==0.34.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://cgit.freedesktop.org/pixman/
   license: MIT

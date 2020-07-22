@@ -27,6 +27,10 @@ requirements:
     - mesa-libegl-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://www.mesa3d.org
   license: MIT

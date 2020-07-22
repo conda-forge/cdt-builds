@@ -27,6 +27,10 @@ requirements:
     - libxfixes-cos7-ppc64le ==5.0.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://www.x.org
   license: MIT

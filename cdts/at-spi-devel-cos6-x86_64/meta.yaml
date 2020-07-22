@@ -42,6 +42,10 @@ requirements:
     - libbonobo-devel-cos6-x86_64 >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://developer.gnome.org/projects/gap/
   license: LGPL-2.0-or-later

@@ -17,21 +17,44 @@ if [[ -d usr/lib64 ]]; then
 fi
 pushd ${SRC_DIR}/binary > /dev/null 2>&1
 rsync -K -a . "${SYSROOT_DIR}"
-popd
+popd > /dev/null 2>&1
+
+# START OF INSERTED BUILD APPENDS
 
 
-# CDT BUILD APPENDED
+# CONDA-FORGE BUILD APPEND
 jvm_slug=$(compgen -G "${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-*")
 jvm_slug=$(basename ${jvm_slug})
 
-pushd ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre-abrt
+pushd ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre-abrt > /dev/null 2>&1
 rm -rf lib
 ln -s ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre/lib ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre-abrt/lib
-popd
+popd > /dev/null 2>&1
 
-pushd ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre/lib/security
+pushd ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre/lib/security > /dev/null 2>&1
 mkdir -p ../../../../../../../etc/pki/java/cacerts
-popd
+popd > /dev/null 2>&1
 
 
-# CDT BUILD APPENDED
+# END OF INSERTED BUILD APPENDS
+
+error_code=0
+for blnk in $(find ./binary -type l); do
+  lnk=${SYSROOT_DIR}${blnk#"./binary"}
+  lnk_dir=$(dirname ${lnk})
+  lnk_dst_nm=$(readlink ${lnk})
+  if [[ ${lnk_dst_nm:0:1} == "/" ]]; then
+    lnk_dst=${lnk_dst_nm}
+  else
+    lnk_dst="${lnk_dir}/${lnk_dst_nm}"
+  fi
+  if [[ ${lnk_dst_nm:0:1} == "/" ]] && [[ ! ${lnk_dst_nm} == ${SYSROOT_DIR}* ]]; then
+    echo "***WARNING ABSOLUTE SYMLINK***: ${lnk} -> ${lnk_dst}"
+    error_code=1
+  elif [[ ! -e "${lnk_dst}" ]]; then
+     echo "***WARNING SYMLINK W/O DESTINATION: ${lnk} -> ${lnk_dst}"
+     error_code=1
+  fi
+done
+
+exit ${error_code}

@@ -21,6 +21,10 @@ requirements:
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: https://github.com/fedora-sysv/chkconfig
   license: GPL-2.0-only

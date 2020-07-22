@@ -23,6 +23,10 @@ requirements:
   run:
     - sysroot_linux-ppc64le 2.17.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://cgit.freedesktop.org/pixman/
   license: MIT

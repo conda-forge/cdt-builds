@@ -33,6 +33,10 @@ requirements:
     - libidl-devel-cos7-x86_64 >=0.8.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://www.gnome.org/projects/ORBit2
   license: LGPLv2+ and GPLv2+

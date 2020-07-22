@@ -42,6 +42,10 @@ requirements:
     - libbonobo-devel-cos7-ppc64le >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://developer.gnome.org/projects/gap/
   license: LGPL-2.0-or-later

@@ -30,6 +30,10 @@ requirements:
     - libdrm-cos6-x86_64 ==2.4.65 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://dri.sourceforge.net
   license: MIT

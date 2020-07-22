@@ -23,6 +23,10 @@ requirements:
   run:
     - sysroot_linux-64 2.17.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://www.kernel.org/
   license: GPL-2.0-only

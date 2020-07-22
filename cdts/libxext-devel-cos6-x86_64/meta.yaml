@@ -27,6 +27,10 @@ requirements:
     - libxext-cos6-x86_64 ==1.3.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://www.x.org
   license: MIT

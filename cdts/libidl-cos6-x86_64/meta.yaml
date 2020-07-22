@@ -23,6 +23,10 @@ requirements:
   run:
     - sysroot_linux-64 2.12.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: libidl-cos6-x86_64
   license: LGPL-2.0-or-later

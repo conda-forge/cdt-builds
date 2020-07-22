@@ -33,6 +33,10 @@ requirements:
   run_constrained:
     - sysroot_linux-64 ==99999999999
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://ftp.gnome.org
   license: GPLv2+ and LGPLv2+

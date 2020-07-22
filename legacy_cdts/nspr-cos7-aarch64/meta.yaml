@@ -21,6 +21,10 @@ requirements:
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://www.mozilla.org/projects/nspr/
   license: MPL-2.0

@@ -23,6 +23,10 @@ requirements:
   run:
     - sysroot_linux-64 2.17.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://www.freetype.org
   license: (FTL or GPLv2+) and BSD and MIT and Public Domain and zlib with acknowledgement

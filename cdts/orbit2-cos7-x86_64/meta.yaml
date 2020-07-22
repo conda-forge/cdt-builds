@@ -23,6 +23,10 @@ requirements:
   run:
     - sysroot_linux-64 2.17.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://www.gnome.org/projects/ORBit2
   license: LGPLv2+ and GPLv2+

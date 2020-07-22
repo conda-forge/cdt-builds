@@ -27,6 +27,10 @@ requirements:
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://openjdk.java.net/
   license: ASL 1.1 and ASL 2.0 and BSD and BSD with advertising and GPL+ and GPLv2 and GPLv2 with exceptions and IJG and LGPLv2+ and MIT and MPLv1.1 and MPLv2.0 and Public Domain and W3C and zlib

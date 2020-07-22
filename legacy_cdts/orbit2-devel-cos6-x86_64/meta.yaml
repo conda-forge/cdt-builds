@@ -33,6 +33,10 @@ requirements:
   run_constrained:
     - sysroot_linux-64 ==99999999999
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://www.gnome.org/projects/ORBit2
   license: LGPLv2+ and GPLv2+

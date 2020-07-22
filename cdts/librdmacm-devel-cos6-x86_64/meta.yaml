@@ -27,6 +27,10 @@ requirements:
     - librdmacm-cos6-x86_64 ==1.0.21 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://www.openfabrics.org/
   license: GPLv2 or BSD

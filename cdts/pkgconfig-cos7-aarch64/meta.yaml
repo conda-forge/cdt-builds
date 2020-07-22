@@ -23,6 +23,10 @@ requirements:
   run:
     - sysroot_linux-aarch64 2.17.*
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://pkgconfig.freedesktop.org
   license: GPL-2.0-or-later
