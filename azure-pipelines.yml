@@ -50,6 +50,8 @@ jobs:
         conda activate base
         cat .ci_scripts/condarc > $HOME/.condarc
 
+        mkdir -p build_logs
+
         echo "cmd args: ${DISTARCH} ${LEGACYCDT}"
         python build_cdt_recipes.py ${DISTARCH} ${LEGACYCDT}
     displayName: build CDTs
@@ -83,3 +85,6 @@ jobs:
     env:
       ANACONDA_TOKEN: $(anaconda.token)
       IS_FORK: $(System.PullRequest.IsFork)
+
+  - publish: build_logs/
+    artifact: build-logs-$(DISTARCH)$(LEGACYCDT)

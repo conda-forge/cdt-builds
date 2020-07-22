@@ -14,12 +14,24 @@ source:
 build:
   number: {{ cdt_build_number }}
   noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
 requirements:
+  build:
+    - libxtst-cos6-x86_64 ==1.2.3 *_{{ cdt_build_number }}
+  host:
+    - libxtst-cos6-x86_64 ==1.2.3 *_{{ cdt_build_number }}
+  run:
+    - libxtst-cos6-x86_64 ==1.2.3 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
 
 about:
   home: http://www.x.org

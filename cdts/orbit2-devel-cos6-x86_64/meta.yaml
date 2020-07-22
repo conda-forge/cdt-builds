@@ -14,6 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -32,6 +34,10 @@ requirements:
     - glib2-devel-cos6-x86_64 >=2.2.0 *_{{ cdt_build_number|int + 1000 }}
     - libidl-devel-cos6-x86_64 >=0.8.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
+
+test:
+  commands:
+    - echo "it installs!"
 
 about:
   home: http://www.gnome.org/projects/ORBit2

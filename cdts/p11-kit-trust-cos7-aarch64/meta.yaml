@@ -14,13 +14,19 @@ source:
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
 requirements:
+  build:
+    - p11-kit-cos7-aarch64 ==0.23.5 *_{{ cdt_build_number|int + 1000 }}
   host:
+    - p11-kit-cos7-aarch64 ==0.23.5 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
+    - p11-kit-cos7-aarch64 ==0.23.5 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

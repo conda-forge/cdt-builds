@@ -14,12 +14,27 @@ source:
 build:
   number: {{ cdt_build_number }}
   noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
 requirements:
+  build:
+    - libselinux-cos7-ppc64le ==2.5 *_{{ cdt_build_number }}
+    - libsepol-devel-cos7-ppc64le >=2.5 *_{{ cdt_build_number }}
+  host:
+    - libselinux-cos7-ppc64le ==2.5 *_{{ cdt_build_number }}
+    - libsepol-devel-cos7-ppc64le >=2.5 *_{{ cdt_build_number }}
+  run:
+    - libselinux-cos7-ppc64le ==2.5 *_{{ cdt_build_number }}
+    - libsepol-devel-cos7-ppc64le >=2.5 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
 
 about:
   home: https://github.com/SELinuxProject/selinux/wiki

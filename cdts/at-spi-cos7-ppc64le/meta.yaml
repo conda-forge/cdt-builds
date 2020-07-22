@@ -14,6 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
   missing_dso_whitelist:
     - '*'
 
@@ -38,6 +40,10 @@ requirements:
     - gtk2-cos7-ppc64le >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
     - libbonobo-cos7-ppc64le >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
 
 about:
   home: http://developer.gnome.org/projects/gap/

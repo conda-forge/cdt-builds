@@ -174,6 +174,40 @@ def _fix_cdt_licenses(*, cdts, arch_dist_tuples, cdt_path):
                     meta = yaml.dump(meta, fp)
 
 
+def _fix_cdt_deps(*, cdts, arch_dist_tuples, cdt_path):
+    for arch, dist in arch_dist_tuples:
+        for cdt, cfg in cdts.items():
+            pth = os.path.join(
+                cdt_path,
+                cdt.lower() + "-" + dist.replace("ent", "") + "-" + arch,
+            )
+            if 'dep_remove' in cfg and os.path.exists(pth):
+                try:
+                    yaml = YAML(typ="jinja2")
+                    yaml.indent(mapping=2, sequence=4, offset=2)
+                    yaml.width = 320
+                    with open(os.path.join(pth, "meta.yaml"), "r") as fp:
+                        meta = yaml.load(fp)
+                except Exception:
+                    print("ERROR: could not adjust license for %s" % pth)
+                    continue
+
+                if "requirements" in meta:
+                    for sec in ["build", "host", "run"]:
+                        if sec in meta["requirements"]:
+                            new_deps = []
+                            for dep in meta["requirements"][sec]:
+                                if not any(
+                                    dep.startswith(d + "-cos")
+                                    for d in cfg["dep_remove"]
+                                ):
+                                    new_deps.append(dep)
+                            meta["requirements"][sec] = new_deps
+
+                    with open(os.path.join(pth, "meta.yaml"), "w") as fp:
+                        meta = yaml.dump(meta, fp)
+
+
 def _fix_cdt_builds(*, cdts, arch_dist_tuples, cdt_path):
     for arch, dist in arch_dist_tuples:
         shortdist = dist.replace("ent", "")
@@ -254,8 +288,8 @@ def _main(force, no_legacy, fast):
         if not no_legacy:
             # legacy CDTs for the old compiler sysroots
 
-            if force:
-                _clear_gen_cdts(LEGACY_CDT_PATH)
+            # if force:
+            #     _clear_gen_cdts(LEGACY_CDT_PATH)
 
             extra = "--conda-forge-style"
             if fast:
@@ -277,8 +311,8 @@ def _main(force, no_legacy, fast):
                 )
 
         # new CDTs for the new compilers with a single sysroot
-        if force:
-            _clear_gen_cdts(CDT_PATH)
+        # if force:
+        #     _clear_gen_cdts(CDT_PATH)
 
         extra = "--conda-forge-style --single-sysroot"
         if fast:
@@ -347,6 +381,12 @@ def _main(force, no_legacy, fast):
             cdt_path=LEGACY_CDT_PATH
         )
 
+        _fix_cdt_deps(
+            cdts=cdts,
+            arch_dist_tuples=arch_dist_tuples,
+            cdt_path=LEGACY_CDT_PATH
+        )
+
         _fix_cdt_builds(
             cdts=cdts,
             arch_dist_tuples=arch_dist_tuples,
@@ -364,6 +404,12 @@ def _main(force, no_legacy, fast):
         cdts=cdts)
 
     _fix_cdt_licenses(
+        cdts=cdts,
+        arch_dist_tuples=arch_dist_tuples,
+        cdt_path=CDT_PATH
+    )
+
+    _fix_cdt_deps(
         cdts=cdts,
         arch_dist_tuples=arch_dist_tuples,
         cdt_path=CDT_PATH

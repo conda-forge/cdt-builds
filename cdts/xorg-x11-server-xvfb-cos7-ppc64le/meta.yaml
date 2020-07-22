@@ -14,6 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -26,6 +28,10 @@ requirements:
   run:
     - xorg-x11-server-common-cos7-ppc64le >=1.20.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
 
 about:
   home: http://www.x.org

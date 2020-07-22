@@ -14,6 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
   missing_dso_whitelist:
     - '*'
 
@@ -23,18 +25,28 @@ requirements:
     - chkconfig-cos7-x86_64 >=1.7 *_{{ cdt_build_number|int + 1000 }}
     - copy-jdk-configs-cos7-x86_64 >=3.3 *_{{ cdt_build_number|int + 1000 }}
     - javapackages-tools-cos7-x86_64 >=3.4.1 *_{{ cdt_build_number|int + 1000 }}
+    - nss-cos7-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-softokn-cos7-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
   host:
     - chkconfig-cos7-x86_64 >=1.7 *_{{ cdt_build_number|int + 1000 }}
     - chkconfig-cos7-x86_64 >=1.7 *_{{ cdt_build_number|int + 1000 }}
     - copy-jdk-configs-cos7-x86_64 >=3.3 *_{{ cdt_build_number|int + 1000 }}
     - javapackages-tools-cos7-x86_64 >=3.4.1 *_{{ cdt_build_number|int + 1000 }}
+    - nss-cos7-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-softokn-cos7-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
     - chkconfig-cos7-x86_64 >=1.7 *_{{ cdt_build_number|int + 1000 }}
     - chkconfig-cos7-x86_64 >=1.7 *_{{ cdt_build_number|int + 1000 }}
     - copy-jdk-configs-cos7-x86_64 >=3.3 *_{{ cdt_build_number|int + 1000 }}
     - javapackages-tools-cos7-x86_64 >=3.4.1 *_{{ cdt_build_number|int + 1000 }}
+    - nss-cos7-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-softokn-cos7-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
 
 about:
   home: http://openjdk.java.net/

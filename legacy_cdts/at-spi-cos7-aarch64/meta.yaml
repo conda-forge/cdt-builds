@@ -14,6 +14,8 @@ source:
 build:
   number: {{ cdt_build_number }}
   noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
   missing_dso_whitelist:
     - '*'
 
@@ -38,6 +40,10 @@ requirements:
     - libbonobo-cos7-aarch64 >=2.4.0 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
 
 about:
   home: http://developer.gnome.org/projects/gap/

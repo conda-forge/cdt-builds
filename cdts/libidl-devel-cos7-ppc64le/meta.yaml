@@ -14,6 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -32,6 +34,10 @@ requirements:
     - libidl-cos7-ppc64le ==0.8.14 *_{{ cdt_build_number|int + 1000 }}
     - pkgconfig-cos7-ppc64le >=0.8 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
 
 about:
   home: http://ftp.gnome.org/pub/gnome/sources/libIDL/0.8/

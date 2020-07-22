@@ -1,0 +1,41 @@
+package:
+  name: libxshmfence-cos7-aarch64
+  version: 1.2
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libxshmfence-1.2-1.el7.aarch64.rpm
+    sha256: 4b0b6292d05526a2d44bb3f5bb58607fc8dbb9024eb59f129ee3ed1181fff49e
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libxshmfence-1.2-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org/
+  license: MIT
+  license_family: MIT
+  license_file: libxshmfence-license
+  summary: (CDT) X11 shared memory fences
+  description: |
+    Shared memory fences for X11, as used in DRI3.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

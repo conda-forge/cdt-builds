@@ -14,21 +14,30 @@ source:
 build:
   number: {{ cdt_build_number }}
   noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
 requirements:
   build:
     - nspr-cos7-aarch64 >=4.21.0 *_{{ cdt_build_number }}
+    - nss-softokn-freebl-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number }}
     - nss-util-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number }}
   host:
     - nspr-cos7-aarch64 >=4.21.0 *_{{ cdt_build_number }}
+    - nss-softokn-freebl-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number }}
     - nss-util-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number }}
   run:
     - nspr-cos7-aarch64 >=4.21.0 *_{{ cdt_build_number }}
+    - nss-softokn-freebl-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number }}
     - nss-util-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
 
 about:
   home: http://www.mozilla.org/projects/security/pki/nss/

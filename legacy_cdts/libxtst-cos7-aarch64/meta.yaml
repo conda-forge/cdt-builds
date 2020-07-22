@@ -1,0 +1,47 @@
+package:
+  name: libxtst-cos7-aarch64
+  version: 1.2.3
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libXtst-1.2.3-1.el7.aarch64.rpm
+    sha256: f40854c398ab8243ab3f21ec55507d4b8e03093203022c93bcc27260c14022cc
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXtst-1.2.3-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libx11-cos7-aarch64 >=1.5.99.902 *_{{ cdt_build_number }}
+  host:
+    - libx11-cos7-aarch64 >=1.5.99.902 *_{{ cdt_build_number }}
+  run:
+    - libx11-cos7-aarch64 >=1.5.99.902 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libXtst-1.2.3/COPYING
+  summary: "(CDT) X.Org X11 libXtst runtime library"
+  description: |
+        X.Org X11 libXtst runtime library
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

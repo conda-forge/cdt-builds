@@ -14,6 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -26,6 +28,10 @@ requirements:
   run:
     - librdmacm-cos6-x86_64 ==1.0.21 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
+
+test:
+  commands:
+    - echo "it installs!"
 
 about:
   home: http://www.openfabrics.org/

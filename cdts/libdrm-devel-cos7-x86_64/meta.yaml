@@ -14,6 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -29,6 +31,10 @@ requirements:
     - kernel-headers-cos7-x86_64 >=2.6.27 *_{{ cdt_build_number|int + 1000 }}
     - libdrm-cos7-x86_64 ==2.4.97 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
 
 about:
   home: http://dri.sourceforge.net

@@ -17,10 +17,51 @@ if [[ -d usr/lib64 ]]; then
 fi
 pushd ${SRC_DIR}/binary > /dev/null 2>&1
 rsync -K -a . "${SYSROOT_DIR}"
-popd
+popd > /dev/null 2>&1
 
-pushd ${SYSROOT_DIR}/usr/lib64
+# START OF INSERTED BUILD APPENDS
+
+
+# CONDA-FORGE BUILD APPEND
+pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
 rm libGLX_system.so.0
 ln -s libGLX_mesa.so.0 libGLX_system.so.0
-popd
-# CDT BUILD APPENDED
+popd > /dev/null 2>&1
+
+
+# END OF INSERTED BUILD APPENDS
+
+# this code makes sure that any symlinks are relative and their targets exist
+# the CDT would fail at test time, but doing it here produces useful error
+# messages for fixing things
+error_code=0
+for blnk in $(find ./binary -type l); do
+  # loop is over symlinks in the RPM, so get the path in the sysroot
+  lnk=${SYSROOT_DIR}${blnk#"./binary"}
+
+  # if it is not a link in the sysroot, move on
+  if [[ ! -L ${lnk} ]]; then
+    continue
+  fi
+
+  # get the link dir and the destination of the link
+  lnk_dir=$(dirname ${lnk})
+  lnk_dst_nm=$(readlink ${lnk})
+  if [[ ${lnk_dst_nm:0:1} == "/" ]]; then
+    lnk_dst=${lnk_dst_nm}
+  else
+    lnk_dst="${lnk_dir}/${lnk_dst_nm}"
+  fi
+
+  # now test if it is absolute and relative to the system and not the PREFIX
+  # also test if the dest file exists
+  if [[ ${lnk_dst_nm:0:1} == "/" ]] && [[ ! ${lnk_dst_nm} == ${SYSROOT_DIR}* ]]; then
+    echo "***WARNING ABSOLUTE SYMLINK***: ${lnk} -> ${lnk_dst}"
+    error_code=1
+  elif [[ ! -e "${lnk_dst}" ]]; then
+     echo "***WARNING SYMLINK W/O DESTINATION: ${lnk} -> ${lnk_dst}"
+     error_code=1
+  fi
+done
+
+exit ${error_code}

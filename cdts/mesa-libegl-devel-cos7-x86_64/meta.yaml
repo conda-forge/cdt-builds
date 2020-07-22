@@ -14,18 +14,27 @@ source:
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
 requirements:
   build:
+    - mesa-khr-devel-cos7-x86_64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
     - mesa-libegl-cos7-x86_64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
   host:
+    - mesa-khr-devel-cos7-x86_64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
     - mesa-libegl-cos7-x86_64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
+    - mesa-khr-devel-cos7-x86_64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
     - mesa-libegl-cos7-x86_64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
 
 about:
   home: http://www.mesa3d.org

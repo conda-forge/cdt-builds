@@ -14,12 +14,18 @@ source:
 build:
   number: {{ cdt_build_number }}
   noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
   missing_dso_whitelist:
     - '*'
 
 requirements:
   run_constrained:
     - sysroot_linux-64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
 
 about:
   home: http://pkgconfig.freedesktop.org

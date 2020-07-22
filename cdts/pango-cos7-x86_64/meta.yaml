@@ -14,14 +14,45 @@ source:
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
   missing_dso_whitelist:
     - '*'
 
 requirements:
+  build:
+    - cairo-cos7-x86_64 >=1.12.10 *_{{ cdt_build_number|int + 1000 }}
+    - fontconfig-cos7-x86_64 >=2.11.91 *_{{ cdt_build_number|int + 1000 }}
+    - freetype-cos7-x86_64 >=2.1.5 *_{{ cdt_build_number|int + 1000 }}
+    - fribidi-cos7-x86_64 >=1.0 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-cos7-x86_64 >=2.56.1 *_{{ cdt_build_number|int + 1000 }}
+    - harfbuzz-cos7-x86_64 >=1.4.2 *_{{ cdt_build_number|int + 1000 }}
+    - libxft-cos7-x86_64 >=2.0.0 *_{{ cdt_build_number|int + 1000 }}
+    - libthai-cos7-x86_64 >=0.1.9 *_{{ cdt_build_number|int + 1000 }}
   host:
+    - cairo-cos7-x86_64 >=1.12.10 *_{{ cdt_build_number|int + 1000 }}
+    - fontconfig-cos7-x86_64 >=2.11.91 *_{{ cdt_build_number|int + 1000 }}
+    - freetype-cos7-x86_64 >=2.1.5 *_{{ cdt_build_number|int + 1000 }}
+    - fribidi-cos7-x86_64 >=1.0 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-cos7-x86_64 >=2.56.1 *_{{ cdt_build_number|int + 1000 }}
+    - harfbuzz-cos7-x86_64 >=1.4.2 *_{{ cdt_build_number|int + 1000 }}
+    - libxft-cos7-x86_64 >=2.0.0 *_{{ cdt_build_number|int + 1000 }}
+    - libthai-cos7-x86_64 >=0.1.9 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
+    - cairo-cos7-x86_64 >=1.12.10 *_{{ cdt_build_number|int + 1000 }}
+    - fontconfig-cos7-x86_64 >=2.11.91 *_{{ cdt_build_number|int + 1000 }}
+    - freetype-cos7-x86_64 >=2.1.5 *_{{ cdt_build_number|int + 1000 }}
+    - fribidi-cos7-x86_64 >=1.0 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-cos7-x86_64 >=2.56.1 *_{{ cdt_build_number|int + 1000 }}
+    - harfbuzz-cos7-x86_64 >=1.4.2 *_{{ cdt_build_number|int + 1000 }}
+    - libxft-cos7-x86_64 >=2.0.0 *_{{ cdt_build_number|int + 1000 }}
+    - libthai-cos7-x86_64 >=0.1.9 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
 
 about:
   home: http://www.pango.org

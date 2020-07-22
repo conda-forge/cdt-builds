@@ -14,12 +14,45 @@ source:
 build:
   number: {{ cdt_build_number }}
   noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
   missing_dso_whitelist:
     - '*'
 
 requirements:
+  build:
+    - cairo-cos7-aarch64 >=1.12.10 *_{{ cdt_build_number }}
+    - fontconfig-cos7-aarch64 >=2.11.91 *_{{ cdt_build_number }}
+    - freetype-cos7-aarch64 >=2.1.5 *_{{ cdt_build_number }}
+    - fribidi-cos7-aarch64 >=1.0 *_{{ cdt_build_number }}
+    - glib2-cos7-aarch64 >=2.56.1 *_{{ cdt_build_number }}
+    - harfbuzz-cos7-aarch64 >=1.4.2 *_{{ cdt_build_number }}
+    - libxft-cos7-aarch64 >=2.0.0 *_{{ cdt_build_number }}
+    - libthai-cos7-aarch64 >=0.1.9 *_{{ cdt_build_number }}
+  host:
+    - cairo-cos7-aarch64 >=1.12.10 *_{{ cdt_build_number }}
+    - fontconfig-cos7-aarch64 >=2.11.91 *_{{ cdt_build_number }}
+    - freetype-cos7-aarch64 >=2.1.5 *_{{ cdt_build_number }}
+    - fribidi-cos7-aarch64 >=1.0 *_{{ cdt_build_number }}
+    - glib2-cos7-aarch64 >=2.56.1 *_{{ cdt_build_number }}
+    - harfbuzz-cos7-aarch64 >=1.4.2 *_{{ cdt_build_number }}
+    - libxft-cos7-aarch64 >=2.0.0 *_{{ cdt_build_number }}
+    - libthai-cos7-aarch64 >=0.1.9 *_{{ cdt_build_number }}
+  run:
+    - cairo-cos7-aarch64 >=1.12.10 *_{{ cdt_build_number }}
+    - fontconfig-cos7-aarch64 >=2.11.91 *_{{ cdt_build_number }}
+    - freetype-cos7-aarch64 >=2.1.5 *_{{ cdt_build_number }}
+    - fribidi-cos7-aarch64 >=1.0 *_{{ cdt_build_number }}
+    - glib2-cos7-aarch64 >=2.56.1 *_{{ cdt_build_number }}
+    - harfbuzz-cos7-aarch64 >=1.4.2 *_{{ cdt_build_number }}
+    - libxft-cos7-aarch64 >=2.0.0 *_{{ cdt_build_number }}
+    - libthai-cos7-aarch64 >=0.1.9 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
 
 about:
   home: http://www.pango.org

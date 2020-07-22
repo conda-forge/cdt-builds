@@ -14,14 +14,24 @@ source:
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
 requirements:
+  build:
+    - libxtst-cos7-x86_64 ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
   host:
+    - libxtst-cos7-x86_64 ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
+    - libxtst-cos7-x86_64 ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
 
 about:
   home: http://www.x.org

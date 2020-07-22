@@ -14,12 +14,24 @@ source:
 build:
   number: {{ cdt_build_number }}
   noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
 requirements:
+  build:
+    - libxshmfence-cos7-aarch64 ==1.2 *_{{ cdt_build_number }}
+  host:
+    - libxshmfence-cos7-aarch64 ==1.2 *_{{ cdt_build_number }}
+  run:
+    - libxshmfence-cos7-aarch64 ==1.2 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
 
 about:
   home: http://www.x.org/

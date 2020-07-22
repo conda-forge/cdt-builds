@@ -14,12 +14,24 @@ source:
 build:
   number: {{ cdt_build_number }}
   noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
 requirements:
+  build:
+    - libsepol-cos7-aarch64 >=2.5 *_{{ cdt_build_number }}
+  host:
+    - libsepol-cos7-aarch64 >=2.5 *_{{ cdt_build_number }}
+  run:
+    - libsepol-cos7-aarch64 >=2.5 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
 
 about:
   home: https://github.com/SELinuxProject/selinux/wiki
