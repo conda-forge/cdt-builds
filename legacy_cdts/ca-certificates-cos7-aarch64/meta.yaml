@@ -1,0 +1,48 @@
+package:
+  name: ca-certificates-cos7-aarch64
+  version: 2019.2.32
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/ca-certificates-2019.2.32-76.el7_7.noarch.rpm
+    sha256: 4d0ee8447f85e63c5208eae9b5fdaeb81facbd14e9a829ee5fd87b12cb4712b1
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/ca-certificates-2019.2.32-76.el7_7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - p11-kit-cos7-aarch64 >=0.23.5 *_{{ cdt_build_number }}
+    - p11-kit-trust-cos7-aarch64 >=0.23.5 *_{{ cdt_build_number }}
+  host:
+    - p11-kit-cos7-aarch64 >=0.23.5 *_{{ cdt_build_number }}
+    - p11-kit-trust-cos7-aarch64 >=0.23.5 *_{{ cdt_build_number }}
+  run:
+    - p11-kit-cos7-aarch64 >=0.23.5 *_{{ cdt_build_number }}
+    - p11-kit-trust-cos7-aarch64 >=0.23.5 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.mozilla.org/
+  license: Public-Domain
+  license_family: Public-Domain
+  summary: (CDT) The Mozilla CA root certificate bundle
+  description: |
+    This package contains the set of CA certificates chosen by the Mozilla
+    Foundation for use with the Internet PKI.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

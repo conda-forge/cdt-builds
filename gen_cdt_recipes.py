@@ -148,12 +148,15 @@ def _fix_cdt_licenses(*, cdts, arch_dist_tuples, cdt_path):
                 else:
                     shutil.copy2(cfg['license_file'], os.path.join(pth, "."))
 
-                yaml = YAML(typ="jinja2")
-                yaml.indent(mapping=2, sequence=4, offset=2)
-                yaml.width = 320
-                with open(os.path.join(pth, "meta.yaml"), "r") as fp:
-                    meta = yaml.load(fp)
-
+                try:
+                    yaml = YAML(typ="jinja2")
+                    yaml.indent(mapping=2, sequence=4, offset=2)
+                    yaml.width = 320
+                    with open(os.path.join(pth, "meta.yaml"), "r") as fp:
+                        meta = yaml.load(fp)
+                except Exception:
+                    print("ERROR: could not adjust license for %s" % pth)
+                    continue
                 if cfg["license_file"] is None:
                     if "license_file" in meta["about"]:
                         meta["about"].pop("license_file")
@@ -173,6 +176,7 @@ def _fix_cdt_licenses(*, cdts, arch_dist_tuples, cdt_path):
 
 def _fix_cdt_builds(*, cdts, arch_dist_tuples, cdt_path):
     for arch, dist in arch_dist_tuples:
+        shortdist = dist.replace("ent", "")
         distarch = dist.replace("ent", "") + "-" + arch
         for cdt, cfg in cdts.items():
             pth = os.path.join(
@@ -183,10 +187,19 @@ def _fix_cdt_builds(*, cdts, arch_dist_tuples, cdt_path):
             if (
                 'build_append' in cfg
                 and os.path.exists(pth)
-                and (distarch in cfg["build_append"] or "all" in cfg["build_append"])
+                and (
+                    distarch in cfg["build_append"]
+                    or shortdist in cfg["build_append"]
+                    or arch in cfg["build_append"]
+                    or "all" in cfg["build_append"]
+                )
             ):
                 if distarch in cfg["build_append"]:
                     extra_build = cfg["build_append"][distarch]
+                elif shortdist in cfg["build_append"]:
+                    extra_build = cfg["build_append"][shortdist]
+                elif arch in cfg["build_append"]:
+                    extra_build = cfg["build_append"][arch]
                 elif "all" in cfg["build_append"]:
                     extra_build = cfg["build_append"]["all"]
                 else:
@@ -195,11 +208,16 @@ def _fix_cdt_builds(*, cdts, arch_dist_tuples, cdt_path):
                 with open(build_pth, "r") as fp:
                     build_str = fp.read()
 
-                if not build_str.strip().endswith("# CDT BUILD APPENDED"):
-                    with open(build_pth, "a") as fp:
-                        fp.write("\n\n# CDT BUILD APPENDED\n")
-                        fp.write(extra_build)
-                        fp.write("\n\n# CDT BUILD APPENDED\n")
+                if (
+                    "# CONDA-FORGE BUILD APPEND" not in build_str
+                    and not build_str.strip().endswith("# CDT BUILD APPENDED")
+                ):
+                    with open(build_pth, "w") as fp:
+                        for line in build_str.splitlines():
+                            fp.write(line + "\n")
+                            if "# START OF INSERTED BUILD APPENDS" == line:
+                                fp.write("\n\n# CONDA-FORGE BUILD APPEND\n")
+                                fp.write(extra_build + "\n")
 
 
 @click.command()

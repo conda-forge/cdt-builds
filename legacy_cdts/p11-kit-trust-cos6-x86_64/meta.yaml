@@ -1,0 +1,40 @@
+package:
+  name: p11-kit-trust-cos6-x86_64
+  version: 0.18.5
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/p11-kit-trust-0.18.5-2.el6_5.2.x86_64.rpm
+    sha256: 567f2ae1f27f625358041e52dfaea7fb9a4ddbc989452077660e03bdfbcd98a5
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/p11-kit-0.18.5-2.el6_5.2.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://p11-glue.freedesktop.org/p11-kit.html
+  license: BSD
+  license_family: BSD
+  license_file: p11-kit-license
+  summary: (CDT) System trust module from p11-kit
+  description: |
+    The p11-kit-trust package contains a system trust PKCS#11 module which
+    contains certificate anchors and black lists.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

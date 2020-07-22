@@ -8,8 +8,35 @@ at-spi-devel:
 atk-devel:
   custom: false
   license_file: licenses/atk-copying
-# ca-certificates:
-#   custom: false
+ca-certificates:
+  custom: false
+  license_file: null
+  build_append:
+    cos7: |
+      mkdir -p ${SYSROOT_DIR}/etc/pki/tls/certs
+
+      pushd ${SYSROOT_DIR}/etc/pki/java > /dev/null 2>&1
+        rm -f cacerts
+        mkdir -p ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/java/cacerts
+        ln -s ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/java/cacerts ${SYSROOT_DIR}/etc/pki/java/cacerts
+      popd > /dev/null 2>&1
+
+      pushd ${SYSROOT_DIR}/etc/pki/tls > /dev/null 2>&1
+        rm -f cert.pem
+        echo "PLACEHOLDER"> ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
+        ln -s ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem ${SYSROOT_DIR}/etc/pki/tls/cert.pem
+      popd > /dev/null 2>&1
+
+      pushd ${SYSROOT_DIR}/etc/pki/tls/certs > /dev/null 2>&1
+        rm -f ca-bundle.crt
+        ln -s ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem ${SYSROOT_DIR}/etc/pki/tls/certs/ca-bundle.crt
+      popd > /dev/null 2>&1
+
+      pushd ${SYSROOT_DIR}/etc/pki/tls/certs > /dev/null 2>&1
+        rm ca-bundle.trust.crt
+        echo "PLACEHOLDER"> ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
+        ln -s ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt ${SYSROOT_DIR}/etc/pki/tls/certs/ca-bundle.trust.crt
+      popd > /dev/null 2>&1
 cairo-devel:
   custom: false
   license_file:
@@ -22,13 +49,14 @@ copy-jdk-configs:
   custom: false
 # cups-devel:
 #   custom: false
-# expat-devel:
-#   custom: false
+expat-devel:
+  custom: false
+  license_file: licenses/expat-license
 fontconfig:
   custom: false
   build_append:
     all: |
-      pushd ${SYSROOT_DIR}/etc/fonts/conf.d
+      pushd ${SYSROOT_DIR}/etc/fonts/conf.d > /dev/null 2>&1
       for fulllnk in $(find . -maxdepth 1 -type l); do
         lnk=$(basename ${fulllnk})
         lnk_dst=$(readlink ${lnk})
@@ -37,7 +65,7 @@ fontconfig:
           ln -s ${SYSROOT_DIR}${lnk_dst} ${SYSROOT_DIR}/etc/fonts/conf.d/${lnk}
         fi
       done
-      popd
+      popd > /dev/null 2>&1
 fontconfig-devel:
   custom: false
   license_file: licenses/fontconfig-copying
@@ -66,24 +94,24 @@ java-1.7.0-openjdk-headless:
       jvm_slug=$(compgen -G "${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-*")
       jvm_slug=$(basename ${jvm_slug})
 
-      pushd ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre-abrt
+      pushd ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre-abrt > /dev/null 2>&1
       rm -rf lib
       ln -s ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre/lib ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre-abrt/lib
-      popd
+      popd > /dev/null 2>&1
 
-      pushd ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre/lib/security
+      pushd ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre/lib/security > /dev/null 2>&1
       mkdir -p ../../../../../../../etc/pki/java/cacerts
-      popd
+      popd > /dev/null 2>&1
 javapackages-tools:
   custom: false
   skipped_cdts:
     - cos6-x86_64
   build_append:
     all: |
-      pushd ${SYSROOT_DIR}/usr/share/java-utils
+      pushd ${SYSROOT_DIR}/usr/share/java-utils > /dev/null 2>&1
         rm -f abs2rel.sh
         ln -s ${SYSROOT_DIR}/usr/bin/abs2rel ${SYSROOT_DIR}/usr/share/java-utils/abs2rel.sh
-      popd
+      popd > /dev/null 2>&1
 kernel-headers:
   custom: false
   license_file: null
@@ -304,20 +332,20 @@ mesa-libGL:
   license_file: licenses/mesa-license
   build_append:
     cos7-aarch64: |
-      pushd ${SYSROOT_DIR}/usr/lib64
+      pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
       rm libGLX_system.so.0
       ln -s libGLX_mesa.so.0 libGLX_system.so.0
-      popd
+      popd > /dev/null 2>&1
     cos7-ppc64le: |
-      pushd ${SYSROOT_DIR}/usr/lib64
+      pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
       rm libGLX_system.so.0
       ln -s libGLX_mesa.so.0 libGLX_system.so.0
-      popd
+      popd > /dev/null 2>&1
     cos7-x86_64: |
-      pushd ${SYSROOT_DIR}/usr/lib64
+      pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
       rm libGLX_system.so.0
       ln -s libGLX_mesa.so.0 libGLX_system.so.0
-      popd
+      popd > /dev/null 2>&1
 mesa-libGL-devel:
   custom: false
   license_file: licenses/mesa-license
@@ -381,31 +409,33 @@ ORBit2-devel:
   license_file:
     - licenses/orbit2-copying
     - licenses/orbit2-copying.lib
-# p11-kit:
-#   custom: false
-# p11-kit-trust:
-#   custom: false
+p11-kit:
+  custom: false
+  license_file: licenses/p11-kit-license
+p11-kit-trust:
+  custom: false
+  license_file: licenses/p11-kit-license
 pango:
   custom: false
   build_append:
     cos7-aarch64: |
-      pushd ${SYSROOT_DIR}/usr/bin
+      pushd ${SYSROOT_DIR}/usr/bin > /dev/null 2>&1
       rm -f pango-querymodules-64
       echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
       chmod u+x pango-querymodules-64
-      popd
+      popd > /dev/null 2>&1
     cos7-ppc64le: |
-      pushd ${SYSROOT_DIR}/usr/bin
+      pushd ${SYSROOT_DIR}/usr/bin > /dev/null 2>&1
       rm -f pango-querymodules-64
       echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
       chmod u+x pango-querymodules-64
-      popd
+      popd > /dev/null 2>&1
     cos7-x86_64: |
-      pushd ${SYSROOT_DIR}/usr/bin
+      pushd ${SYSROOT_DIR}/usr/bin > /dev/null 2>&1
       rm -f pango-querymodules-64
       echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
       chmod u+x pango-querymodules-64
-      popd
+      popd > /dev/null 2>&1
 pango-devel:
   custom: false
   license_file: licenses/pango-copying
@@ -421,8 +451,20 @@ python-javapackages:
   custom: false
   skipped_cdts:
     - cos6-x86_64
-# webkitgtk-devel:
-#   custom: false
+webkitgtk:
+  custom: false
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
+  license_file: licenses/webkitgtk-license
+webkitgtk-devel:
+  custom: false
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
+  license_file: licenses/webkitgtk-license
 xorg-x11-proto-devel:
   custom: false
   license_file:
