@@ -173,7 +173,7 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
         if not cdt_meta[cdt]['skip']:
             print("    %s" % cdt, flush=True)
 
-    num_workers = 4
+    num_workers = 2
 
     build_logs = ""
     with ThreadPoolExecutor(max_workers=num_workers) as exec:
@@ -235,7 +235,11 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
                         sys.stderr.flush()
                         raise RuntimeError("Could not build CDT %s!" % node)
 
-            print(build_logs, flush=True)
+    log_dir = "build_logs"
+    log_pth = os.path.join(log_dir, "build_logs_%s.txt" % dist_arch_slug)
+    os.makedirs(log_dir, exist_ok=True)
+    with open(log_pth, "w") as fp:
+        fp.write(build_logs)
 
 
 @click.command()

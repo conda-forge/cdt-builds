@@ -21,6 +21,16 @@ popd > /dev/null 2>&1
 
 # START OF INSERTED BUILD APPENDS
 
+
+# CONDA-FORGE BUILD APPEND
+jvm_slug=$(compgen -G "${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-*")
+jvm_slug=$(basename ${jvm_slug})
+
+pushd ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre/lib/security > /dev/null 2>&1
+mkdir -p ../../../../../../../etc/pki/java/cacerts
+popd > /dev/null 2>&1      
+
+
 # END OF INSERTED BUILD APPENDS
 
 # this code makes sure that any symlinks are relative and their targets exist

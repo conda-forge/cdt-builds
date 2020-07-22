@@ -85,6 +85,14 @@ gtk2-devel:
 java-1.7.0-openjdk:
   custom: false
   license_file: licenses/openjdk-license
+  build_append:
+    cos6-x86_64: |
+      jvm_slug=$(compgen -G "${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-*")
+      jvm_slug=$(basename ${jvm_slug})
+
+      pushd ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre/lib/security > /dev/null 2>&1
+      mkdir -p ../../../../../../../etc/pki/java/cacerts
+      popd > /dev/null 2>&1      
 java-1.7.0-openjdk-headless:
   custom: false
   skipped_cdts:
