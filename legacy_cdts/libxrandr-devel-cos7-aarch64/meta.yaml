@@ -27,7 +27,19 @@ requirements:
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 
+test:
+  commands:
+    - echo "it installs!"
+
 about:
   home: http://www.x.org
   license: MIT
-  license_family
+  license_family: MIT
+  license_file: libxrandr-license
+  summary: (CDT) X.Org X11 libXrandr development package
+  description: |
+    X.Org X11 libXrandr development package
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
