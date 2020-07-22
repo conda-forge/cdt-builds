@@ -92,7 +92,7 @@ java-1.7.0-openjdk:
 
       pushd ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre/lib/security > /dev/null 2>&1
       mkdir -p ../../../../../../../etc/pki/java/cacerts
-      popd > /dev/null 2>&1      
+      popd > /dev/null 2>&1
 java-1.7.0-openjdk-headless:
   custom: false
   skipped_cdts:
@@ -149,6 +149,16 @@ libglvnd-glx:
   skipped_cdts:
     - cos6-x86_64
   license_file: licenses/libglvnd-license
+  build_append:
+    all: |
+      pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
+      libgl_file=$(find . -maxdepth 1 -name "libGL.so.*.*.*")
+      libgl_file=$(basename ${libgl_file})
+      ln -fs ${libgl_file} libGL.so
+      ls -lah .
+      popd > /dev/null 2>&1
+  dep_remove:
+    - mesa-libgl
 libibcm:
   custom: false
   skipped_cdts:

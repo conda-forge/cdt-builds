@@ -22,13 +22,10 @@ build:
 requirements:
   build:
     - libglvnd-cos7-aarch64 ==1.0.1 *_{{ cdt_build_number }}
-    - mesa-libgl-cos7-aarch64 >=13.0.4 *_{{ cdt_build_number }}
   host:
     - libglvnd-cos7-aarch64 ==1.0.1 *_{{ cdt_build_number }}
-    - mesa-libgl-cos7-aarch64 >=13.0.4 *_{{ cdt_build_number }}
   run:
     - libglvnd-cos7-aarch64 ==1.0.1 *_{{ cdt_build_number }}
-    - mesa-libgl-cos7-aarch64 >=13.0.4 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

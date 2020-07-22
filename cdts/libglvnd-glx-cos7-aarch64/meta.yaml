@@ -22,16 +22,12 @@ build:
 requirements:
   build:
     - libglvnd-cos7-aarch64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
-    - mesa-libgl-cos7-aarch64 >=13.0.4 *_{{ cdt_build_number|int + 1000 }}
   host:
     - libglvnd-cos7-aarch64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
-    - mesa-libgl-cos7-aarch64 >=13.0.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
     - libglvnd-cos7-aarch64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
-    - mesa-libgl-cos7-aarch64 >=13.0.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
-
 test:
   commands:
     - echo "it installs!"
