@@ -25,16 +25,22 @@ requirements:
     - chkconfig-cos7-ppc64le >=1.7 *_{{ cdt_build_number }}
     - copy-jdk-configs-cos7-ppc64le >=3.3 *_{{ cdt_build_number }}
     - javapackages-tools-cos7-ppc64le >=3.4.1 *_{{ cdt_build_number }}
+    - nss-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number }}
+    - nss-softokn-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number }}
   host:
     - chkconfig-cos7-ppc64le >=1.7 *_{{ cdt_build_number }}
     - chkconfig-cos7-ppc64le >=1.7 *_{{ cdt_build_number }}
     - copy-jdk-configs-cos7-ppc64le >=3.3 *_{{ cdt_build_number }}
     - javapackages-tools-cos7-ppc64le >=3.4.1 *_{{ cdt_build_number }}
+    - nss-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number }}
+    - nss-softokn-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number }}
   run:
     - chkconfig-cos7-ppc64le >=1.7 *_{{ cdt_build_number }}
     - chkconfig-cos7-ppc64le >=1.7 *_{{ cdt_build_number }}
     - copy-jdk-configs-cos7-ppc64le >=3.3 *_{{ cdt_build_number }}
     - javapackages-tools-cos7-ppc64le >=3.4.1 *_{{ cdt_build_number }}
+    - nss-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number }}
+    - nss-softokn-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

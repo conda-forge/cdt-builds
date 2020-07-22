@@ -24,14 +24,20 @@ requirements:
     - copy-jdk-configs-cos6-x86_64 >=3.3 *_{{ cdt_build_number }}
     - jpackage-utils-cos6-x86_64 >=1.7.3 *_{{ cdt_build_number }}
     - libjpeg-turbo-cos6-x86_64 ==1.2.1 *_{{ cdt_build_number }}
+    - nss-cos6-x86_64 >=3.28.4 *_{{ cdt_build_number }}
+    - nss-softokn-cos6-x86_64 >=3.14.3 *_{{ cdt_build_number }}
   host:
     - copy-jdk-configs-cos6-x86_64 >=3.3 *_{{ cdt_build_number }}
     - jpackage-utils-cos6-x86_64 >=1.7.3 *_{{ cdt_build_number }}
     - libjpeg-turbo-cos6-x86_64 ==1.2.1 *_{{ cdt_build_number }}
+    - nss-cos6-x86_64 >=3.28.4 *_{{ cdt_build_number }}
+    - nss-softokn-cos6-x86_64 >=3.14.3 *_{{ cdt_build_number }}
   run:
     - copy-jdk-configs-cos6-x86_64 >=3.3 *_{{ cdt_build_number }}
     - jpackage-utils-cos6-x86_64 >=1.7.3 *_{{ cdt_build_number }}
     - libjpeg-turbo-cos6-x86_64 ==1.2.1 *_{{ cdt_build_number }}
+    - nss-cos6-x86_64 >=3.28.4 *_{{ cdt_build_number }}
+    - nss-softokn-cos6-x86_64 >=3.14.3 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
 

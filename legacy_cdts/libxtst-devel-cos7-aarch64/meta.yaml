@@ -20,6 +20,12 @@ build:
     - '*'
 
 requirements:
+  build:
+    - libxtst-cos7-aarch64 ==1.2.3 *_{{ cdt_build_number }}
+  host:
+    - libxtst-cos7-aarch64 ==1.2.3 *_{{ cdt_build_number }}
+  run:
+    - libxtst-cos7-aarch64 ==1.2.3 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

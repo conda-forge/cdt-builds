@@ -20,6 +20,12 @@ build:
     - '*'
 
 requirements:
+  build:
+    - glib2-cos7-ppc64le ==2.56.1 *_{{ cdt_build_number }}
+  host:
+    - glib2-cos7-ppc64le ==2.56.1 *_{{ cdt_build_number }}
+  run:
+    - glib2-cos7-ppc64le ==2.56.1 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

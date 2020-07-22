@@ -131,10 +131,16 @@ libdrm:
 libdrm-devel:
   custom: false
   license_file: null
-# libglvnd:
-#   custom: false
-# libglvnd-glx:
-#   custom: false
+libglvnd:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file: licenses/libglvnd-license
+libglvnd-glx:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file: licenses/libglvnd-license
 libibcm:
   custom: false
   skipped_cdts:
@@ -292,6 +298,9 @@ libXrender-devel:
 libXScrnSaver-devel:
   custom: false
   license_file: licenses/libxscrnsaver-license
+libxshmfence:
+  custom: false
+  license_file: licenses/libxshmfence-license
 libxshmfence-devel:
   custom: false
   license_file: licenses/libxshmfence-license
@@ -302,7 +311,6 @@ libXt-devel:
   license_file: licenses/libxt-license
 libXtst:
   custom: false
-  license_file: licenses/libxtst-license
 libXtst-devel:
   custom: false
   license_file: licenses/libxtst-license
@@ -359,33 +367,18 @@ mesa-libglapi:
   license_file: licenses/mesa-license
 nspr:
   custom: false
-  skipped_cdts:
-    - cos6-x86_64
-    - cos7-x86_64
   license_file: licenses/nspr-license
 nss:
   custom: false
-  skipped_cdts:
-    - cos6-x86_64
-    - cos7-x86_64
   license_file: licenses/nss-license
 nss-softokn:
   custom: false
-  skipped_cdts:
-    - cos6-x86_64
-    - cos7-x86_64
   license_file: licenses/nss-license
 nss-softokn-freebl:
   custom: false
-  skipped_cdts:
-    - cos6-x86_64
-    - cos7-x86_64
   license_file: licenses/nss-license
 nss-util:
   custom: false
-  skipped_cdts:
-    - cos6-x86_64
-    - cos7-x86_64
   license_file: licenses/nss-license
 numactl:
   custom: false

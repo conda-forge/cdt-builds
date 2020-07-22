@@ -20,6 +20,24 @@ build:
     - '*'
 
 requirements:
+  build:
+    - cairo-devel-cos7-ppc64le >=1.12.10 *_{{ cdt_build_number }}
+    - fontconfig-devel-cos7-ppc64le >=2.11.91 *_{{ cdt_build_number }}
+    - freetype-devel-cos7-ppc64le >=2.1.5 *_{{ cdt_build_number }}
+    - glib2-devel-cos7-ppc64le >=2.56.1 *_{{ cdt_build_number }}
+    - pango-cos7-ppc64le ==1.42.4 *_{{ cdt_build_number }}
+  host:
+    - cairo-devel-cos7-ppc64le >=1.12.10 *_{{ cdt_build_number }}
+    - fontconfig-devel-cos7-ppc64le >=2.11.91 *_{{ cdt_build_number }}
+    - freetype-devel-cos7-ppc64le >=2.1.5 *_{{ cdt_build_number }}
+    - glib2-devel-cos7-ppc64le >=2.56.1 *_{{ cdt_build_number }}
+    - pango-cos7-ppc64le ==1.42.4 *_{{ cdt_build_number }}
+  run:
+    - cairo-devel-cos7-ppc64le >=1.12.10 *_{{ cdt_build_number }}
+    - fontconfig-devel-cos7-ppc64le >=2.11.91 *_{{ cdt_build_number }}
+    - freetype-devel-cos7-ppc64le >=2.1.5 *_{{ cdt_build_number }}
+    - glib2-devel-cos7-ppc64le >=2.56.1 *_{{ cdt_build_number }}
+    - pango-cos7-ppc64le ==1.42.4 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

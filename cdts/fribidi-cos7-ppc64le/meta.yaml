@@ -1,0 +1,45 @@
+package:
+  name: fribidi-cos7-ppc64le
+  version: 1.0.2
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/fribidi-1.0.2-1.el7_7.1.ppc64le.rpm
+    sha256: 0ee910467ea7a92e5b5225757b8c6c0714c2057e5542c6b2104ce112bf04d2b8
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/fribidi-1.0.2-1.el7_7.1.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/fribidi/fribidi/
+  license: LGPLv2+ and UCD
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/fribidi-1.0.2/COPYING
+  summary: "(CDT) Library implementing the Unicode Bidirectional Algorithm"
+  description: |
+        A library to handle bidirectional scripts (for example Hebrew, Arabic), so
+        that the display is done in the proper way; while the text data itself is
+        always written in logical order.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

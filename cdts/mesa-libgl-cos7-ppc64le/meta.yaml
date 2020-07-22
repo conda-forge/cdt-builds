@@ -22,13 +22,16 @@ build:
 requirements:
   build:
     - libdrm-cos7-ppc64le >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-glx-cos7-ppc64le >=1.0.1 *_{{ cdt_build_number|int + 1000 }}
     - mesa-libglapi-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
   host:
     - libdrm-cos7-ppc64le >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-glx-cos7-ppc64le >=1.0.1 *_{{ cdt_build_number|int + 1000 }}
     - mesa-libglapi-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
     - libdrm-cos7-ppc64le >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-glx-cos7-ppc64le >=1.0.1 *_{{ cdt_build_number|int + 1000 }}
     - mesa-libglapi-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 

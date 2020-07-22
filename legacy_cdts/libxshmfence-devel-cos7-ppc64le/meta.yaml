@@ -20,6 +20,12 @@ build:
     - '*'
 
 requirements:
+  build:
+    - libxshmfence-cos7-ppc64le ==1.2 *_{{ cdt_build_number }}
+  host:
+    - libxshmfence-cos7-ppc64le ==1.2 *_{{ cdt_build_number }}
+  run:
+    - libxshmfence-cos7-ppc64le ==1.2 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

@@ -20,9 +20,13 @@ build:
     - '*'
 
 requirements:
+  build:
+    - libxshmfence-cos7-x86_64 ==1.2 *_{{ cdt_build_number|int + 1000 }}
   host:
+    - libxshmfence-cos7-x86_64 ==1.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
+    - libxshmfence-cos7-x86_64 ==1.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

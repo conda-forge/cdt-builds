@@ -20,9 +20,13 @@ build:
     - '*'
 
 requirements:
+  build:
+    - libxt-cos7-x86_64 ==1.1.5 *_{{ cdt_build_number|int + 1000 }}
   host:
+    - libxt-cos7-x86_64 ==1.1.5 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
+    - libxt-cos7-x86_64 ==1.1.5 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

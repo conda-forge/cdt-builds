@@ -20,9 +20,13 @@ build:
     - '*'
 
 requirements:
+  build:
+    - cairo-cos7-ppc64le ==1.15.12 *_{{ cdt_build_number|int + 1000 }}
   host:
+    - cairo-cos7-ppc64le ==1.15.12 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
+    - cairo-cos7-ppc64le ==1.15.12 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

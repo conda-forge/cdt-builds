@@ -75,6 +75,9 @@ from six import string_types
 from textwrap import wrap
 from xml.etree import cElementTree as ET
 
+# we sometimes hit infinite recursions so we track every recipe made here
+MADE_RECIPES = set()
+
 # This is used in two places
 default_architecture = "x86_64"
 default_distro = "centos6"
@@ -126,9 +129,9 @@ BUILDSH = """\
 
 set -o errexit -o pipefail
 
-SYSROOT_DIR="${PREFIX}"/{hostmachine}/sysroot
+SYSROOT_DIR="${{PREFIX}}"/{hostmachine}/sysroot
 
-mkdir -p "${SYSROOT_DIR}"
+mkdir -p "${{SYSROOT_DIR}}"
 if [[ -d usr/lib ]]; then
   if [[ ! -d lib ]]; then
     ln -s usr/lib lib
@@ -139,20 +142,28 @@ if [[ -d usr/lib64 ]]; then
     ln -s usr/lib64 lib64
   fi
 fi
-pushd ${SRC_DIR}/binary > /dev/null 2>&1
-rsync -K -a . "${SYSROOT_DIR}"
+pushd ${{SRC_DIR}}/binary > /dev/null 2>&1
+rsync -K -a . "${{SYSROOT_DIR}}"
 popd > /dev/null 2>&1
 
 # START OF INSERTED BUILD APPENDS
 
 # END OF INSERTED BUILD APPENDS
 
+# this code makes sure that any symlinks are relative and their targets exist
+# the CDT would fail at test time, but doing it here produces useful error
+# messages for fixing things
 error_code=0
 for blnk in $(find ./binary -type l); do
+  # loop is over symlinks in the RPM, so get the path in the sysroot
   lnk=${{SYSROOT_DIR}}${{blnk#"./binary"}}
+
+  # if it is not a link in the sysroot, move on
   if [[ ! -L ${{lnk}} ]]; then
     continue
   fi
+
+  # get the link dir and the destination of the link
   lnk_dir=$(dirname ${{lnk}})
   lnk_dst_nm=$(readlink ${{lnk}})
   if [[ ${{lnk_dst_nm:0:1}} == "/" ]]; then
@@ -160,6 +171,9 @@ for blnk in $(find ./binary -type l); do
   else
     lnk_dst="${{lnk_dir}}/${{lnk_dst_nm}}"
   fi
+
+  # now test if it is absolute and relative to the system and not the PREFIX
+  # also test if the dest file exists
   if [[ ${{lnk_dst_nm:0:1}} == "/" ]] && [[ ! ${{lnk_dst_nm}} == ${{SYSROOT_DIR}}* ]]; then
     echo "***WARNING ABSOLUTE SYMLINK***: ${{lnk}} -> ${{lnk_dst}}"
     error_code=1
@@ -529,6 +543,8 @@ def massage_primary(repo_primary, src_cache, cdt):
 def valid_depends(depends):
     name = depends["name"]
     str_flags = depends["flags"]
+    # the or name.endswith w/ "(x86-64)" "(aarch-64)" etc is a
+    # hack around bad repo data upstream for libXtst-devel
     if (
         not name.startswith("rpmlib(")
         and not name.startswith("config(")
@@ -536,7 +552,12 @@ def valid_depends(depends):
         and not name.startswith("/")
         and name != "rtld(GNU_HASH)"
         and ".so" not in name
-        and "(" not in name
+        and (
+            "(" not in name
+            or name.endswith("(x86-64)")
+            or name.endswith("(aarch-64)")
+            or name.endswith("(ppc-64)")
+        )
         and str_flags
     ):
         return True
@@ -639,6 +660,16 @@ def write_conda_recipes(
     else:
         arch = cdt["fname_architecture"]
     package = entry_name
+    package_l = package.lower().replace("+", "x")
+    sn = cdt["short_name"] + "-" + arch
+    package_cdt_name = package_l + "-" + sn
+
+    global MADE_RECIPES
+    if package_cdt_name in MADE_RECIPES:
+        return package
+    else:
+        MADE_RECIPES.add(package_cdt_name)
+
     rpm_url = dirname(dirname(cdt["base_url"])) + "/" + entry["location"]
     srpm_url = cdt["sbase_url"] + entry["source"]
     _, _, _, _, rpm_pth, sha256str = rpm_split_url_and_cache(rpm_url, src_cache)
@@ -676,7 +707,14 @@ def write_conda_recipes(
                         package, missing_dep
                     )
                 )
+
     for depend in depends:
+        # replace of "(x86-64)", "(aarch-64)"
+        # hack around bad repo data upstream for libXtst-devel
+        for tail in ["(x86-64)", "(aarch-64)", "(ppc-64)"]:
+            if depend["name"].endswith(tail):
+                depend["name"] = depend["name"][:-len(tail)]
+
         dep_entry, dep_name, dep_arch = find_repo_entry_and_arch(
             repo_primary, architectures, depend
         )
@@ -789,12 +827,13 @@ def write_conda_recipes(
             # BUILDSH and they get interpreted as
             # format string tokens so bounce them
             # back.
-            "PREFIX": "{PREFIX}",
-            "RPM": "{RPM}",
-            "PWD": "{PWD}",
-            "RECIPE_DIR": "{RECIPE_DIR}",
-            "SRC_DIR": "{SRC_DIR}",
-            "SYSROOT_DIR": "{SYSROOT_DIR}"
+            # or you can use double curly brackets ${{PREFIX}}
+            # "PREFIX": "{PREFIX}",
+            # "RPM": "{RPM}",
+            # "PWD": "{PWD}",
+            # "RECIPE_DIR": "{RECIPE_DIR}",
+            # "SRC_DIR": "{SRC_DIR}",
+            # "SYSROOT_DIR": "{SYSROOT_DIR}"
         }
     )
     odir = join(output_dir, package_cdt_name)

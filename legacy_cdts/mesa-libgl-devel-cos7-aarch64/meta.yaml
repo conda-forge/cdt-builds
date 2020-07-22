@@ -21,10 +21,13 @@ build:
 
 requirements:
   build:
+    - mesa-khr-devel-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
     - mesa-libgl-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
   host:
+    - mesa-khr-devel-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
     - mesa-libgl-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
   run:
+    - mesa-khr-devel-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
     - mesa-libgl-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999

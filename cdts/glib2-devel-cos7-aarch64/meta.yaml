@@ -20,9 +20,13 @@ build:
     - '*'
 
 requirements:
+  build:
+    - glib2-cos7-aarch64 ==2.56.1 *_{{ cdt_build_number|int + 1000 }}
   host:
+    - glib2-cos7-aarch64 ==2.56.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
+    - glib2-cos7-aarch64 ==2.56.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

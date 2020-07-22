@@ -20,6 +20,12 @@ build:
     - '*'
 
 requirements:
+  build:
+    - libx11-cos7-aarch64 >=1.5.99.902 *_{{ cdt_build_number }}
+  host:
+    - libx11-cos7-aarch64 >=1.5.99.902 *_{{ cdt_build_number }}
+  run:
+    - libx11-cos7-aarch64 >=1.5.99.902 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

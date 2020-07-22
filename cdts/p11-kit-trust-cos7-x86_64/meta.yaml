@@ -20,9 +20,13 @@ build:
     - '*'
 
 requirements:
+  build:
+    - p11-kit-cos7-x86_64 ==0.23.5 *_{{ cdt_build_number|int + 1000 }}
   host:
+    - p11-kit-cos7-x86_64 ==0.23.5 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
+    - p11-kit-cos7-x86_64 ==0.23.5 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

@@ -25,17 +25,23 @@ requirements:
     - chkconfig-cos7-aarch64 >=1.7 *_{{ cdt_build_number|int + 1000 }}
     - copy-jdk-configs-cos7-aarch64 >=3.3 *_{{ cdt_build_number|int + 1000 }}
     - javapackages-tools-cos7-aarch64 >=3.4.1 *_{{ cdt_build_number|int + 1000 }}
+    - nss-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-softokn-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
   host:
     - chkconfig-cos7-aarch64 >=1.7 *_{{ cdt_build_number|int + 1000 }}
     - chkconfig-cos7-aarch64 >=1.7 *_{{ cdt_build_number|int + 1000 }}
     - copy-jdk-configs-cos7-aarch64 >=3.3 *_{{ cdt_build_number|int + 1000 }}
     - javapackages-tools-cos7-aarch64 >=3.4.1 *_{{ cdt_build_number|int + 1000 }}
+    - nss-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-softokn-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
     - chkconfig-cos7-aarch64 >=1.7 *_{{ cdt_build_number|int + 1000 }}
     - chkconfig-cos7-aarch64 >=1.7 *_{{ cdt_build_number|int + 1000 }}
     - copy-jdk-configs-cos7-aarch64 >=3.3 *_{{ cdt_build_number|int + 1000 }}
     - javapackages-tools-cos7-aarch64 >=3.4.1 *_{{ cdt_build_number|int + 1000 }}
+    - nss-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-softokn-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number }}
   noarch: generic
-  binary_relocation: false
-  detect_binary_files_with_prefix: false
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
   missing_dso_whitelist:
     - '*'
 
@@ -37,10 +37,10 @@ about:
   home: http://www.x.org
   license: MIT
   license_family: MIT
-  license_file: libxtst-license
-  summary: (CDT) X.Org X11 libXtst runtime library
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libXtst-1.2.3/COPYING
+  summary: "(CDT) X.Org X11 libXtst runtime library"
   description: |
-    X.Org X11 libXtst runtime library
+        X.Org X11 libXtst runtime library
 
 extra:
   recipe-maintainers:

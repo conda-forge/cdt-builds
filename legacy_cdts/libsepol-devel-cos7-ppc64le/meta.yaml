@@ -20,6 +20,12 @@ build:
     - '*'
 
 requirements:
+  build:
+    - libsepol-cos7-ppc64le ==2.5 *_{{ cdt_build_number }}
+  host:
+    - libsepol-cos7-ppc64le ==2.5 *_{{ cdt_build_number }}
+  run:
+    - libsepol-cos7-ppc64le ==2.5 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

@@ -25,16 +25,22 @@ requirements:
     - chkconfig-cos7-aarch64 >=1.7 *_{{ cdt_build_number }}
     - copy-jdk-configs-cos7-aarch64 >=3.3 *_{{ cdt_build_number }}
     - javapackages-tools-cos7-aarch64 >=3.4.1 *_{{ cdt_build_number }}
+    - nss-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number }}
+    - nss-softokn-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number }}
   host:
     - chkconfig-cos7-aarch64 >=1.7 *_{{ cdt_build_number }}
     - chkconfig-cos7-aarch64 >=1.7 *_{{ cdt_build_number }}
     - copy-jdk-configs-cos7-aarch64 >=3.3 *_{{ cdt_build_number }}
     - javapackages-tools-cos7-aarch64 >=3.4.1 *_{{ cdt_build_number }}
+    - nss-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number }}
+    - nss-softokn-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number }}
   run:
     - chkconfig-cos7-aarch64 >=1.7 *_{{ cdt_build_number }}
     - chkconfig-cos7-aarch64 >=1.7 *_{{ cdt_build_number }}
     - copy-jdk-configs-cos7-aarch64 >=3.3 *_{{ cdt_build_number }}
     - javapackages-tools-cos7-aarch64 >=3.4.1 *_{{ cdt_build_number }}
+    - nss-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number }}
+    - nss-softokn-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

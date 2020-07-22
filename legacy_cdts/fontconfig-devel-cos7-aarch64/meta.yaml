@@ -21,10 +21,13 @@ build:
 
 requirements:
   build:
+    - fontconfig-cos7-aarch64 ==2.13.0 *_{{ cdt_build_number }}
     - freetype-devel-cos7-aarch64 >=2.8 *_{{ cdt_build_number }}
   host:
+    - fontconfig-cos7-aarch64 ==2.13.0 *_{{ cdt_build_number }}
     - freetype-devel-cos7-aarch64 >=2.8 *_{{ cdt_build_number }}
   run:
+    - fontconfig-cos7-aarch64 ==2.13.0 *_{{ cdt_build_number }}
     - freetype-devel-cos7-aarch64 >=2.8 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999

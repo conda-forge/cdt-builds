@@ -20,9 +20,13 @@ build:
     - '*'
 
 requirements:
+  build:
+    - libxtst-cos7-aarch64 ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
   host:
+    - libxtst-cos7-aarch64 ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
+    - libxtst-cos7-aarch64 ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

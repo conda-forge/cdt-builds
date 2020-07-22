@@ -254,8 +254,8 @@ def _main(force, no_legacy, fast):
         if not no_legacy:
             # legacy CDTs for the old compiler sysroots
 
-            if force:
-                _clear_gen_cdts(LEGACY_CDT_PATH)
+            # if force:
+            #     _clear_gen_cdts(LEGACY_CDT_PATH)
 
             extra = "--conda-forge-style"
             if fast:
@@ -277,8 +277,8 @@ def _main(force, no_legacy, fast):
                 )
 
         # new CDTs for the new compilers with a single sysroot
-        if force:
-            _clear_gen_cdts(CDT_PATH)
+        # if force:
+        #     _clear_gen_cdts(CDT_PATH)
 
         extra = "--conda-forge-style --single-sysroot"
         if fast:

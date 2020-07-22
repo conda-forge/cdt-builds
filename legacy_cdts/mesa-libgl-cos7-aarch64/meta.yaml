@@ -22,12 +22,15 @@ build:
 requirements:
   build:
     - libdrm-cos7-aarch64 >=2.4.83 *_{{ cdt_build_number }}
+    - libglvnd-glx-cos7-aarch64 >=1.0.1 *_{{ cdt_build_number }}
     - mesa-libglapi-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
   host:
     - libdrm-cos7-aarch64 >=2.4.83 *_{{ cdt_build_number }}
+    - libglvnd-glx-cos7-aarch64 >=1.0.1 *_{{ cdt_build_number }}
     - mesa-libglapi-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
   run:
     - libdrm-cos7-aarch64 >=2.4.83 *_{{ cdt_build_number }}
+    - libglvnd-glx-cos7-aarch64 >=1.0.1 *_{{ cdt_build_number }}
     - mesa-libglapi-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999

@@ -20,6 +20,12 @@ build:
     - '*'
 
 requirements:
+  build:
+    - p11-kit-cos7-ppc64le ==0.23.5 *_{{ cdt_build_number }}
+  host:
+    - p11-kit-cos7-ppc64le ==0.23.5 *_{{ cdt_build_number }}
+  run:
+    - p11-kit-cos7-ppc64le ==0.23.5 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

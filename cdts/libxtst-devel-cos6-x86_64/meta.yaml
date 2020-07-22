@@ -20,9 +20,13 @@ build:
     - '*'
 
 requirements:
+  build:
+    - libxtst-cos6-x86_64 ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
   host:
+    - libxtst-cos6-x86_64 ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
   run:
+    - libxtst-cos6-x86_64 ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
 
 test:
