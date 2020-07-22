@@ -173,7 +173,7 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
         if not cdt_meta[cdt]['skip']:
             print("    %s" % cdt, flush=True)
 
-    num_workers = 3
+    num_workers = 4
 
     build_logs = ""
     with ThreadPoolExecutor(max_workers=num_workers) as exec:

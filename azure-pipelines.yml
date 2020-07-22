@@ -87,4 +87,4 @@ jobs:
       IS_FORK: $(System.PullRequest.IsFork)
 
   - publish: build_logs/
-    artifact: build_logs
+    artifact: build-logs-$(DISTARCH)$(LEGACYCDT)
