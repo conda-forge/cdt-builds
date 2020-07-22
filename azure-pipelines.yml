@@ -86,5 +86,5 @@ jobs:
       ANACONDA_TOKEN: $(anaconda.token)
       IS_FORK: $(System.PullRequest.IsFork)
 
-  - publish: build_logs
+  - publish: build_logs/
     artifact: build_logs
