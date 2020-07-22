@@ -34,6 +34,9 @@ popd > /dev/null 2>&1
 error_code=0
 for blnk in $(find ./binary -type l); do
   lnk=${SYSROOT_DIR}${blnk#"./binary"}
+  if [[ ! -L ${lnk} ]]; then
+    continue
+  fi
   lnk_dir=$(dirname ${lnk})
   lnk_dst_nm=$(readlink ${lnk})
   if [[ ${lnk_dst_nm:0:1} == "/" ]]; then
