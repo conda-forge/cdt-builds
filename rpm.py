@@ -96,6 +96,8 @@ source:
 build:
   number: {build_number}
   noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
   missing_dso_whitelist:
     - '*'
 

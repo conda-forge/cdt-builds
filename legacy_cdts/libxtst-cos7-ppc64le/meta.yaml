@@ -1,0 +1,47 @@
+package:
+  name: libxtst-cos7-ppc64le
+  version: 1.2.3
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libXtst-1.2.3-1.el7.ppc64le.rpm
+    sha256: cd4efbe84315bd572fd111fc96b24519639d28abc114e3c32b4f214c43591586
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXtst-1.2.3-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libx11-cos7-ppc64le >=1.5.99.902 *_{{ cdt_build_number }}
+  host:
+    - libx11-cos7-ppc64le >=1.5.99.902 *_{{ cdt_build_number }}
+  run:
+    - libx11-cos7-ppc64le >=1.5.99.902 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: libxtst-license
+  summary: (CDT) X.Org X11 libXtst runtime library
+  description: |
+    X.Org X11 libXtst runtime library
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -300,6 +300,9 @@ libXt:
 libXt-devel:
   custom: false
   license_file: licenses/libxt-license
+libXtst:
+  custom: false
+  license_file: licenses/libxtst-license
 libXtst-devel:
   custom: false
   license_file: licenses/libxtst-license
