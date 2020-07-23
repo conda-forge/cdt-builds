@@ -1,0 +1,48 @@
+package:
+  name: cups-libs-cos7-aarch64
+  version: 1.6.3
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/cups-libs-1.6.3-43.el7.aarch64.rpm
+    sha256: dc27ade192111b7b36bd74ffbe3ad20f41ba06132918cfb8e81ea565eb0bc916
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/cups-1.6.3-43.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.cups.org/
+  license: LGPLv2 and zlib
+  license_family: LGPL
+  license_file: cups-license
+  summary: (CDT) CUPS printing system - libraries
+  description: |
+    CUPS printing system provides a portable printing layer for UNIX® operating
+    systems. It has been developed by Apple Inc. to promote a standard printing
+    solution for all UNIX vendors and users. CUPS provides the System V and
+    Berkeley command-line interfaces. The cups-libs package provides libraries
+    used by applications to use CUPS natively, without needing the lp/lpr
+    commands.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,45 @@
+package:
+  name: gconf2-cos7-ppc64le
+  version: 3.2.6
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/GConf2-3.2.6-8.el7.ppc64le.rpm
+    sha256: f1635560f4e0dc31a04cee8d745287cdfbef90d79881d89f262ef843b7961630
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/GConf2-3.2.6-8.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://projects.gnome.org/gconf/
+  license: LGPLv2+ and GPLv2+
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/GConf2-3.2.6/COPYING
+  summary: "(CDT) A process-transparent configuration system"
+  description: |
+        GConf is a process-transparent configuration database API used to store user
+        preferences. It has pluggable backends and features to support workgroup
+        administration.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
