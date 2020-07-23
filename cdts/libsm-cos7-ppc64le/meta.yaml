@@ -1,0 +1,43 @@
+package:
+  name: libsm-cos7-ppc64le
+  version: 1.2.2
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libSM-1.2.2-2.el7.ppc64le.rpm
+    sha256: 055ac077f6605a51578a525898f0a284a9a23b02667d0bf5ef5f99ac842c2ea0
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libSM-1.2.2-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libSM-1.2.2/COPYING
+  summary: "(CDT) X.Org X11 SM runtime library"
+  description: |
+        The X.Org X11 SM (Session Management) runtime library.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

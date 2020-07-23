@@ -1,7 +1,8 @@
-# alsa-lib:
-#   custom: false
-# alsa-lib-devel:
-#   custom: false
+alsa-lib:
+  custom: false
+alsa-lib-devel:
+  custom: false
+  license_file: licenses/alsa-lib-license
 at-spi-devel:
   custom: false
   license_file: licenses/at-spi-license
@@ -47,8 +48,12 @@ chkconfig:
   custom: false
 copy-jdk-configs:
   custom: false
-# cups-devel:
-#   custom: false
+cups-libs:
+  custom: false
+  license_file: licenses/cups-license
+cups-devel:
+  custom: false
+  license_file: licenses/cups-license
 expat-devel:
   custom: false
   license_file: licenses/expat-license
@@ -75,13 +80,16 @@ freetype-devel:
 glib2-devel:
   custom: false
   license_file: licenses/glib2-copying
-# gconf2:
-#   custom: false
+GConf2:
+  custom: false
 gtk2-devel:
   custom: false
   license_file: licenses/gtk2-copying
-# gtkmm24-devel:
-#   custom: false
+gtkmm24-devel:
+  custom: false
+  license_file:
+    - licenses/gtkmm-license
+    - licenses/gtkmm-tools-license
 java-1.7.0-openjdk:
   custom: false
   license_file: licenses/openjdk-license
@@ -188,10 +196,11 @@ libibverbs-devel:
     - cos7-aarch64
     - cos7-ppc64le
   license_file: licenses/libibverbs-devel-license
-# libice:
-#   custom: false
-# libice-devel:
-#   custom: false
+libICE:
+  custom: false
+libICE-devel:
+  custom: false
+  license_file: licenses/libice-license
 libjpeg-turbo:
   custom: false
   license_file: licenses/libjpeg-turbo-license
@@ -199,8 +208,9 @@ libnl-devel:
   # generates libnl too
   custom: false
   license_file: licenses/libnl-devel-license
-# libpng-devel:
-#   custom: false
+libpng-devel:
+  custom: false
+  license_file: licenses/libpng-license
 librdmacm:
   custom: false
   skipped_cdts:
@@ -226,12 +236,14 @@ libsepol:
 libsepol-devel:
   custom: false
   license_file: licenses/libsepol-license
-# libsm:
-#   custom: false
-# libsm-devel:
-#   custom: false
-# libsoup-devel:
-#   custom: false
+libSM:
+  custom: false
+libSM-devel:
+  custom: false
+  license_file: licenses/libsm-license
+libsoup-devel:
+  custom: false
+  license_file: licenses/libsoup-license
 libudev:
   custom: false
   skipped_cdts:
@@ -245,10 +257,12 @@ libudev-devel:
     - cos7-x86_64
     - cos7-aarch64
     - cos7-ppc64le
-# libuuid:
-#   custom: false
-# libuuid-devel:
-#   custom: false
+libuuid:
+  custom: false
+  license_file: licenses/libuuid-license
+libuuid-devel:
+  custom: false
+  license_file: licenses/libuuid-license
 libX11:
   custom: false
   license_file: licenses/x11-license
@@ -453,8 +467,12 @@ pango:
 pango-devel:
   custom: false
   license_file: licenses/pango-copying
-# pciutils-devel:
-#   custom: false
+pciutils-libs:
+  custom: false
+  license_file: licenses/pciutils-license
+pciutils-devel:
+  custom: false
+  license_file: licenses/pciutils-license
 pixman:
   custom: false
   license_file: licenses/pixman-license

@@ -1,0 +1,47 @@
+package:
+  name: libsm-devel-cos7-ppc64le
+  version: 1.2.2
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libSM-devel-1.2.2-2.el7.ppc64le.rpm
+    sha256: 0967d96cd46a7c47788fd2986dcb234e9fe1dfa21dc81bb44069c33c3cdbce60
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libSM-1.2.2-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libsm-cos7-ppc64le ==1.2.2 *_{{ cdt_build_number }}
+  host:
+    - libsm-cos7-ppc64le ==1.2.2 *_{{ cdt_build_number }}
+  run:
+    - libsm-cos7-ppc64le ==1.2.2 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: libsm-license
+  summary: (CDT) X.Org X11 SM development package
+  description: |
+    The X.Org X11 SM (Session Management) development package.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

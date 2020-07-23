@@ -1,0 +1,48 @@
+package:
+  name: libsoup-devel-cos7-ppc64le
+  version: 2.62.2
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libsoup-devel-2.62.2-2.el7.ppc64le.rpm
+    sha256: d234917fd4525fc4974cac9cd10563d95f2945409172e962d744f75ec500084c
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libsoup-2.62.2-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libsoup-cos7-ppc64le ==2.62.2 *_{{ cdt_build_number }}
+  host:
+    - libsoup-cos7-ppc64le ==2.62.2 *_{{ cdt_build_number }}
+  run:
+    - libsoup-cos7-ppc64le ==2.62.2 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://wiki.gnome.org/Projects/libsoup
+  license: LGPLv2
+  license_family: LGPL
+  license_file: libsoup-license
+  summary: (CDT) Header files for the Soup library
+  description: |
+    Libsoup is an HTTP library implementation in C. This package allows you to
+    develop applications that use the libsoup library.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

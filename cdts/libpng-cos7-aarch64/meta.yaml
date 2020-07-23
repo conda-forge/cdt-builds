@@ -1,0 +1,47 @@
+package:
+  name: libpng-cos7-aarch64
+  version: 1.5.13
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libpng-1.5.13-7.el7.aarch64.rpm
+    sha256: 5ecb396821980d77c34003aefb14f51c1c5ed59465dcb882c3e9b246dc8c05bf
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libpng-1.5.13-7.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.libpng.org/pub/png/
+  license: zlib
+  license_family: Other
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libpng-1.5.13/LICENSE
+  summary: "(CDT) A library of functions for manipulating PNG image format files"
+  description: |
+        The libpng package contains a library of functions for creating and
+        manipulating PNG (Portable Network Graphics) image format files.  PNG is a
+        bit-mapped graphics format similar to the GIF format.  PNG was created to
+        replace the GIF format, since GIF uses a patented data compression algorithm.
+        Libpng should be installed if you need to manipulate PNG format image files.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

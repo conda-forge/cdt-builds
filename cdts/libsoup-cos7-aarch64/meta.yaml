@@ -1,0 +1,56 @@
+package:
+  name: libsoup-cos7-aarch64
+  version: 2.62.2
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libsoup-2.62.2-2.el7.aarch64.rpm
+    sha256: 8ac9e9c41e72987adaf7ed3d4634088876c72eb50517ad9f7b0807639b8c0135
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libsoup-2.62.2-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - glib-networking-cos7-aarch64 >=2.38.0 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-cos7-aarch64 >=2.38.0 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - glib-networking-cos7-aarch64 >=2.38.0 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-cos7-aarch64 >=2.38.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - glib-networking-cos7-aarch64 >=2.38.0 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-cos7-aarch64 >=2.38.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://wiki.gnome.org/Projects/libsoup
+  license: LGPLv2
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/libsoup-2.62.2/COPYING
+  summary: "(CDT) Soup, an HTTP library implementation"
+  description: |
+        Libsoup is an HTTP library implementation in C. It was originally part of a
+        SOAP (Simple Object Access Protocol) implementation called Soup, but the SOAP
+        and non-SOAP parts have now been split into separate packages.  libsoup uses
+        the Glib main loop and is designed to work well with GTK applications. This
+        enables GNOME applications to access HTTP servers on the network in a
+        completely asynchronous fashion, very similar to the Gtk+ programming model (a
+        synchronous operation mode is also supported for those who want it).
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

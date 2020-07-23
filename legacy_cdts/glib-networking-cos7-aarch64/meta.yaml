@@ -1,0 +1,49 @@
+package:
+  name: glib-networking-cos7-aarch64
+  version: 2.56.1
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/glib-networking-2.56.1-1.el7.aarch64.rpm
+    sha256: a483489b819f044b773d0b20bf48364bcffffeec8c81751f0732a55e1064b64b
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/glib-networking-2.56.1-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - glib2-cos7-aarch64 >=2.55.1 *_{{ cdt_build_number }}
+  host:
+    - glib2-cos7-aarch64 >=2.55.1 *_{{ cdt_build_number }}
+  run:
+    - glib2-cos7-aarch64 >=2.55.1 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.gnome.org
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/glib-networking-2.56.1/COPYING
+  summary: "(CDT) Networking support for GLib"
+  description: |
+        This package contains modules that extend the networking support in GIO. In
+        particular, it contains libproxy- and GSettings-based GProxyResolver
+        implementations and a gnutls-based GTlsConnection implementation.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

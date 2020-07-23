@@ -1,0 +1,47 @@
+package:
+  name: libsm-devel-cos6-x86_64
+  version: 1.2.1
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/libSM-devel-1.2.1-2.el6.x86_64.rpm
+    sha256: c6a29a7d1e969851783a0d9e339f260fc81a14e910719f6cc5b76e0130f494c4
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/libSM-1.2.1-2.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libsm-cos6-x86_64 ==1.2.1 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libsm-cos6-x86_64 ==1.2.1 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.12.*
+  run:
+    - libsm-cos6-x86_64 ==1.2.1 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.12.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: libsm-license
+  summary: (CDT) X.Org X11 SM development package
+  description: |
+    The X.Org X11 SM (Session Management) development package.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

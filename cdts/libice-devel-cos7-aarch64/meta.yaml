@@ -1,0 +1,47 @@
+package:
+  name: libice-devel-cos7-aarch64
+  version: 1.0.9
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libICE-devel-1.0.9-9.el7.aarch64.rpm
+    sha256: bb88a0c2141ffdaa6020665a6a2bd1a8b9a2f12e3f0e8e5ad361e9bd75d6dcfd
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libICE-1.0.9-9.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libice-cos7-aarch64 ==1.0.9 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libice-cos7-aarch64 ==1.0.9 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - libice-cos7-aarch64 ==1.0.9 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: libice-license
+  summary: (CDT) X.Org X11 ICE development package
+  description: |
+    The X.Org X11 ICE (Inter-Client Exchange) development package.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

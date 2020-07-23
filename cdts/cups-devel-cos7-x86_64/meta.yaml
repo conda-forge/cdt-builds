@@ -1,0 +1,49 @@
+package:
+  name: cups-devel-cos7-x86_64
+  version: 1.6.3
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/cups-devel-1.6.3-43.el7.x86_64.rpm
+    sha256: 08279f8a6fa0cb996b77921c0bd0b82dbc4afc30c99029910620f752239b9104
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/cups-1.6.3-43.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - cups-libs-cos7-x86_64 ==1.6.3 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - cups-libs-cos7-x86_64 ==1.6.3 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - cups-libs-cos7-x86_64 ==1.6.3 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.cups.org/
+  license: LGPLv2
+  license_family: LGPL
+  license_file: cups-license
+  summary: (CDT) CUPS printing system - development environment
+  description: |
+    CUPS printing system provides a portable printing layer for UNIX® operating
+    systems. This is the development package for creating additional printer
+    drivers, and other CUPS services.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,50 @@
+package:
+  name: alsa-lib-devel-cos7-ppc64le
+  version: 1.1.8
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/alsa-lib-devel-1.1.8-1.el7.ppc64le.rpm
+    sha256: b60215fe9b765201ff0116fec35deeedffeeacfd79da0231ba03a7a5e71d4fad
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/alsa-lib-1.1.8-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - alsa-lib-cos7-ppc64le ==1.1.8 *_{{ cdt_build_number }}
+  host:
+    - alsa-lib-cos7-ppc64le ==1.1.8 *_{{ cdt_build_number }}
+  run:
+    - alsa-lib-cos7-ppc64le ==1.1.8 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.alsa-project.org/
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: alsa-lib-license
+  summary: (CDT) Development files from the ALSA library
+  description: |
+    The Advanced Linux Sound Architecture (ALSA) provides audio and MIDI
+    functionality to the Linux operating system.  This package includes the ALSA
+    development libraries for developing against the ALSA libraries and
+    interfaces.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
