@@ -240,6 +240,7 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
     os.makedirs(log_dir, exist_ok=True)
     with open(log_pth, "w") as fp:
         fp.write(build_logs)
+    sys.stdout.wrtie(build_logs)
 
 
 @click.command()
