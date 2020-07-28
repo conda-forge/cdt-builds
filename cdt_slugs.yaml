@@ -212,17 +212,9 @@ libIDL-devel:
   license_file: licenses/libidl-copying
 libibverbs:
   custom: false
-  skipped_cdts:
-    - cos7-x86_64
-    - cos7-aarch64
-    - cos7-ppc64le
   license_file: licenses/libibverbs-devel-license
 libibverbs-devel:
   custom: false
-  skipped_cdts:
-    - cos7-x86_64
-    - cos7-aarch64
-    - cos7-ppc64le
   license_file: licenses/libibverbs-devel-license
 libICE:
   custom: false
@@ -241,17 +233,9 @@ libpng-devel:
   license_file: licenses/libpng-license
 librdmacm:
   custom: false
-  skipped_cdts:
-    - cos7-x86_64
-    - cos7-aarch64
-    - cos7-ppc64le
   license_file: licenses/librdmacm-devel-license
 librdmacm-devel:
   custom: false
-  skipped_cdts:
-    - cos7-x86_64
-    - cos7-aarch64
-    - cos7-ppc64le
   license_file: licenses/librdmacm-devel-license
 libselinux:
   custom: false
