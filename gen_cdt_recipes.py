@@ -133,6 +133,7 @@ def _clear_gen_cdts(pth):
 
 
 def _fix_cdt_licenses(*, cdts, arch_dist_tuples, cdt_path):
+    print("fixing CDT licenses for path '%s'..." % cdt_path, flush=True)
     for arch, dist in arch_dist_tuples:
         for cdt, cfg in cdts.items():
             pth = os.path.join(
@@ -175,6 +176,7 @@ def _fix_cdt_licenses(*, cdts, arch_dist_tuples, cdt_path):
 
 
 def _fix_cdt_deps(*, cdts, arch_dist_tuples, cdt_path):
+    print("adjusting CDT deps for path '%s'..." % cdt_path, flush=True)
     for arch, dist in arch_dist_tuples:
         for cdt, cfg in cdts.items():
             pth = os.path.join(
@@ -209,6 +211,7 @@ def _fix_cdt_deps(*, cdts, arch_dist_tuples, cdt_path):
 
 
 def _fix_cdt_builds(*, cdts, arch_dist_tuples, cdt_path):
+    print("adjusting CDT builds for path '%s'..." % cdt_path, flush=True)
     for arch, dist in arch_dist_tuples:
         shortdist = dist.replace("ent", "")
         distarch = dist.replace("ent", "") + "-" + arch
@@ -423,6 +426,12 @@ def _main(force, no_legacy, fast):
 
     # make the readme
     render_readme()
+    
+    print(
+        "finished generating CDTs - make sure to add any changes in the repo "
+        "via 'git add *' before making a commit!",
+        flush=True,
+    )
 
 
 if __name__ == "__main__":
