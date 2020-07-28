@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -31,15 +31,15 @@ about:
   home: https://www.openfabrics.org/
   license: GPLv2 or BSD
   license_family: GPL2
-  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libibverbs-1.1.8/COPYING
-  summary: "(CDT) A library for direct userspace use of RDMA (InfiniBand/iWARP) hardware"
+  license_file: libibverbs-devel-license
+  summary: (CDT) A library for direct userspace use of RDMA (InfiniBand/iWARP) hardware
   description: |
-        libibverbs is a library that allows userspace processes to use RDMA "verbs" as
-        described in the InfiniBand Architecture Specification and the RDMA Protocol
-        Verbs Specification.  This includes direct hardware access from userspace to
-        InfiniBand/iWARP adapters (kernel bypass) for fast path operations.  For this
-        library to be useful, a device-specific plug-in module should also be
-        installed.
+    libibverbs is a library that allows userspace processes to use RDMA "verbs" as
+    described in the InfiniBand Architecture Specification and the RDMA Protocol
+    Verbs Specification.  This includes direct hardware access from userspace to
+    InfiniBand/iWARP adapters (kernel bypass) for fast path operations.  For this
+    library to be useful, a device-specific plug-in module should also be
+    installed.
 
 extra:
   recipe-maintainers:
