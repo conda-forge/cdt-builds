@@ -1,0 +1,60 @@
+package:
+  name: ibacm-cos7-x86_64
+  version: 22.4
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/ibacm-22.4-1.el7.x86_64.rpm
+    sha256: b2adb4f8b1d4c5a56022b13e3a0ea509b752632ac023ea64678a3f7720a43d51
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/rdma-core-22.4-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libibumad-cos7-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-cos7-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-cos7-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libibumad-cos7-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-cos7-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-cos7-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - libibumad-cos7-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-cos7-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-cos7-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/linux-rdma/rdma-core
+  license: GPLv2 or BSD
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) InfiniBand Communication Manager Assistant"
+  description: |
+        The ibacm daemon helps reduce the load of managing path record lookups on
+        large InfiniBand fabrics by providing a user space implementation of what is
+        functionally similar to an ARP cache.  The use of ibacm, when properly
+        configured, can reduce the SA packet load of a large IB cluster from O(n^2) to
+        O(n).  The ibacm daemon is started and normally runs in the background, user
+        applications need not know about this daemon as long as their app uses
+        librdmacm to handle connection bring up/tear down.  The librdmacm library
+        knows how to talk directly to the ibacm daemon to retrieve data.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

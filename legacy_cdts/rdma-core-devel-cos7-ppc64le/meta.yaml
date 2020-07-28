@@ -1,0 +1,59 @@
+package:
+  name: rdma-core-devel-cos7-ppc64le
+  version: 22.4
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/rdma-core-devel-22.4-1.el7.ppc64le.rpm
+    sha256: daa87c62ede17669648c8414f8bfe1f078b0524a76ade07882ad2c0b70dabbcd
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/rdma-core-22.4-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - ibacm-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+    - libibumad-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+    - libibverbs-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+    - librdmacm-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+  host:
+    - ibacm-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+    - libibumad-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+    - libibverbs-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+    - librdmacm-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+  run:
+    - ibacm-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+    - libibumad-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+    - libibverbs-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+    - librdmacm-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/linux-rdma/rdma-core
+  license: GPLv2 or BSD
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) RDMA core development libraries and headers"
+  description: |
+        RDMA core development libraries and headers.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

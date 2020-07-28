@@ -1,0 +1,49 @@
+package:
+  name: libibumad-cos7-x86_64
+  version: 22.4
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libibumad-22.4-1.el7.x86_64.rpm
+    sha256: fee2b303c7faeb2bb6c1e8030b2f86e777c7483705e82c8711394c05d3c723f0
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/rdma-core-22.4-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - rdma-core-cos7-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - rdma-core-cos7-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - rdma-core-cos7-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/linux-rdma/rdma-core
+  license: GPLv2 or BSD
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) OpenFabrics Alliance InfiniBand umad (userspace management datagram) library"
+  description: |
+        libibumad provides the userspace management datagram (umad) library functions,
+        which sit on top of the umad modules in the kernel. These are used by the IB
+        diagnostic and management tools, including OpenSM.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
