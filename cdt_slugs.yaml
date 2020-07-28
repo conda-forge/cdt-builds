@@ -228,6 +228,12 @@ libnl-devel:
   # generates libnl too
   custom: false
   license_file: licenses/libnl-devel-license
+libnl3:
+  custom: false
+  license_file: licenses/libnl3-license
+libnl3-devel:
+  custom: false
+  license_file: licenses/libnl3-license
 libpng-devel:
   custom: false
   license_file: licenses/libpng-license
