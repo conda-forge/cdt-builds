@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -37,10 +37,14 @@ about:
   home: http://openfabrics.org
   license: GPLv2 or BSD
   license_family: GPL2
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
-  summary: "(CDT) Development files for the libibumad library"
+  license_file:
+    - COPYING.BSD_FB
+    - COPYING.BSD_MIT
+    - COPYING.GPL2
+    - COPYING.md
+  summary: (CDT) Development files for the libibumad library
   description: |
-        Development files for the libibumad library.
+    Development files for the libibumad library.
 
 extra:
   recipe-maintainers:
