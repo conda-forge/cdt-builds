@@ -90,6 +90,15 @@ gtkmm24-devel:
   license_file:
     - licenses/gtkmm-license
     - licenses/gtkmm-tools-license
+ibacm:
+  custom: false
+  # `ibacm` is part of rdma-core and under the same licenses
+  # https://github.com/linux-rdma/rdma-core/tree/v22.4/ibacm
+  license_file:
+    - licenses/rdma-core-licenses/COPYING.BSD_FB
+    - licenses/rdma-core-licenses/COPYING.BSD_MIT
+    - licenses/rdma-core-licenses/COPYING.GPL2
+    - licenses/rdma-core-licenses/COPYING.md
 java-1.7.0-openjdk:
   custom: false
   license_file: licenses/openjdk-license
