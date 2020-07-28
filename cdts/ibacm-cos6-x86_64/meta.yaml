@@ -1,0 +1,50 @@
+package:
+  name: ibacm-cos6-x86_64
+  version: 1.0.9
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/ibacm-1.0.9-1.el6.x86_64.rpm
+    sha256: 84d04ebae4f66a5177b61946a91fe8316bf820dcc51f69a23765a26301af7597
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/ibacm-1.0.9-1.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-64 2.12.*
+  run:
+    - sysroot_linux-64 2.12.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://www.openfabrics.org/
+  license: GPLv2 or BSD
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/ibacm-1.0.9/COPYING
+  summary: "(CDT) InfiniBand Communication Manager Assistant"
+  description: |
+        The ib_acm daemon helps reduce the load of managing path record lookups on
+        large InfiniBand fabrics by providing a user space implementation of what is
+        functionally similar to an ARP cache.  The use of ib_acm, when properly
+        configured, can reduce the SA packet load of a large IB cluster from O(n^2) to
+        O(n).  The ib_acm daemon is started and normally runs in the background, user
+        applications need not know about this daemon as long as their app uses
+        librdmacm to handle connection bring up/tear down.  The librdmacm library
+        knows how to talk directly to the ib_acm daemon to retrieve data.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
