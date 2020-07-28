@@ -192,7 +192,7 @@ libibcm-devel:
 libibumad:
   custom: false
   # `libibumad` is part of rdma-core and under the same licenses
-  # https://github.com/linux-rdma/rdma-core/tree/v22.4/ibacm
+  # https://github.com/linux-rdma/rdma-core/tree/v22.4/libibumad
   license_file:
     - licenses/rdma-core-licenses/COPYING.BSD_FB
     - licenses/rdma-core-licenses/COPYING.BSD_MIT
@@ -201,7 +201,7 @@ libibumad:
 libibumad-devel:
   custom: false
   # `libibumad` is part of rdma-core and under the same licenses
-  # https://github.com/linux-rdma/rdma-core/tree/v22.4/ibacm
+  # https://github.com/linux-rdma/rdma-core/tree/v22.4/libibumad
   license_file:
     - licenses/rdma-core-licenses/COPYING.BSD_FB
     - licenses/rdma-core-licenses/COPYING.BSD_MIT
