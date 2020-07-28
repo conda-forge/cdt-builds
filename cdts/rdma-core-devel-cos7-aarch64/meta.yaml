@@ -1,0 +1,63 @@
+package:
+  name: rdma-core-devel-cos7-aarch64
+  version: 22.4
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/rdma-core-devel-22.4-1.el7.aarch64.rpm
+    sha256: 85bc3f88cc09312442e498ccd39cd76217ab04631ef93d9d2ac7dfd2fd7d7aea
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/rdma-core-22.4-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - ibacm-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibumad-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - librdmacm-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - ibacm-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibumad-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - librdmacm-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - ibacm-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibumad-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - librdmacm-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/linux-rdma/rdma-core
+  license: GPLv2 or BSD
+  license_family: GPL2
+  license_file:
+    - COPYING.BSD_FB
+    - COPYING.BSD_MIT
+    - COPYING.GPL2
+    - COPYING.md
+  summary: (CDT) RDMA core development libraries and headers
+  description: |
+    RDMA core development libraries and headers.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -90,6 +90,15 @@ gtkmm24-devel:
   license_file:
     - licenses/gtkmm-license
     - licenses/gtkmm-tools-license
+ibacm:
+  custom: false
+  # `ibacm` is part of rdma-core and under the same licenses
+  # https://github.com/linux-rdma/rdma-core/tree/v22.4/ibacm
+  license_file:
+    - licenses/rdma-core-licenses/COPYING.BSD_FB
+    - licenses/rdma-core-licenses/COPYING.BSD_MIT
+    - licenses/rdma-core-licenses/COPYING.GPL2
+    - licenses/rdma-core-licenses/COPYING.md
 java-1.7.0-openjdk:
   custom: false
   license_file: licenses/openjdk-license
@@ -180,21 +189,32 @@ libibcm-devel:
     - cos7-aarch64
     - cos7-ppc64le
   license_file: licenses/libibcm-devel-license
+libibumad:
+  custom: false
+  # `libibumad` is part of rdma-core and under the same licenses
+  # https://github.com/linux-rdma/rdma-core/tree/v22.4/libibumad
+  license_file:
+    - licenses/rdma-core-licenses/COPYING.BSD_FB
+    - licenses/rdma-core-licenses/COPYING.BSD_MIT
+    - licenses/rdma-core-licenses/COPYING.GPL2
+    - licenses/rdma-core-licenses/COPYING.md
+libibumad-devel:
+  custom: false
+  # `libibumad` is part of rdma-core and under the same licenses
+  # https://github.com/linux-rdma/rdma-core/tree/v22.4/libibumad
+  license_file:
+    - licenses/rdma-core-licenses/COPYING.BSD_FB
+    - licenses/rdma-core-licenses/COPYING.BSD_MIT
+    - licenses/rdma-core-licenses/COPYING.GPL2
+    - licenses/rdma-core-licenses/COPYING.md
 libIDL-devel:
   custom: false
   license_file: licenses/libidl-copying
 libibverbs:
   custom: false
-  skipped_cdts:
-    - cos7-x86_64
-    - cos7-aarch64
-    - cos7-ppc64le
+  license_file: licenses/libibverbs-devel-license
 libibverbs-devel:
   custom: false
-  skipped_cdts:
-    - cos7-x86_64
-    - cos7-aarch64
-    - cos7-ppc64le
   license_file: licenses/libibverbs-devel-license
 libICE:
   custom: false
@@ -208,21 +228,20 @@ libnl-devel:
   # generates libnl too
   custom: false
   license_file: licenses/libnl-devel-license
+libnl3:
+  custom: false
+  license_file: licenses/libnl3-license
+libnl3-devel:
+  custom: false
+  license_file: licenses/libnl3-license
 libpng-devel:
   custom: false
   license_file: licenses/libpng-license
 librdmacm:
   custom: false
-  skipped_cdts:
-    - cos7-x86_64
-    - cos7-aarch64
-    - cos7-ppc64le
+  license_file: licenses/librdmacm-devel-license
 librdmacm-devel:
   custom: false
-  skipped_cdts:
-    - cos7-x86_64
-    - cos7-aarch64
-    - cos7-ppc64le
   license_file: licenses/librdmacm-devel-license
 libselinux:
   custom: false
@@ -483,6 +502,24 @@ python-javapackages:
   custom: false
   skipped_cdts:
     - cos6-x86_64
+rdma-core:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file:
+    - licenses/rdma-core-licenses/COPYING.BSD_FB
+    - licenses/rdma-core-licenses/COPYING.BSD_MIT
+    - licenses/rdma-core-licenses/COPYING.GPL2
+    - licenses/rdma-core-licenses/COPYING.md
+rdma-core-devel:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file:
+    - licenses/rdma-core-licenses/COPYING.BSD_FB
+    - licenses/rdma-core-licenses/COPYING.BSD_MIT
+    - licenses/rdma-core-licenses/COPYING.GPL2
+    - licenses/rdma-core-licenses/COPYING.md
 webkitgtk:
   custom: false
   skipped_cdts:

@@ -1,0 +1,47 @@
+package:
+  name: rdma-core-cos7-ppc64le
+  version: 22.4
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/rdma-core-22.4-1.el7.ppc64le.rpm
+    sha256: ff2de929b1ef5b4d67552d71a296e57397a3f03ed55b8b1401509e5f3df4c4de
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/rdma-core-22.4-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/linux-rdma/rdma-core
+  license: GPLv2 or BSD
+  license_family: GPL2
+  license_file:
+    - COPYING.BSD_FB
+    - COPYING.BSD_MIT
+    - COPYING.GPL2
+    - COPYING.md
+  summary: (CDT) RDMA core userspace libraries and daemons
+  description: |
+    RDMA core userspace infrastructure and documentation, including initscripts,
+    kernel driver-specific modprobe override configs, IPoIB network scripts,
+    dracut rules, and the rdma-ndd utility.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

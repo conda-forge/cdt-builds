@@ -1,0 +1,44 @@
+package:
+  name: libnl3-cos7-ppc64le
+  version: 3.2.28
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libnl3-3.2.28-4.el7.ppc64le.rpm
+    sha256: 810cb86a0f4ecceab68ef69265858b8ca5ee765cd891d77e737f5c90d86cbc75
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libnl3-3.2.28-4.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.infradead.org/~tgr/libnl/
+  license: LGPLv2
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libnl3-3.2.28/COPYING
+  summary: "(CDT) Convenience library for kernel netlink sockets"
+  description: |
+        This package contains a convenience library to simplify using the Linux
+        kernel's netlink sockets interface for network manipulation
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
