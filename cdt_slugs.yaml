@@ -216,6 +216,7 @@ libibverbs:
     - cos7-x86_64
     - cos7-aarch64
     - cos7-ppc64le
+  license_file: licenses/libibverbs-devel-license
 libibverbs-devel:
   custom: false
   skipped_cdts:
@@ -244,6 +245,7 @@ librdmacm:
     - cos7-x86_64
     - cos7-aarch64
     - cos7-ppc64le
+  license_file: licenses/librdmacm-devel-license
 librdmacm-devel:
   custom: false
   skipped_cdts:
