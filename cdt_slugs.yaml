@@ -189,6 +189,24 @@ libibcm-devel:
     - cos7-aarch64
     - cos7-ppc64le
   license_file: licenses/libibcm-devel-license
+libibumad:
+  custom: false
+  # `libibumad` is part of rdma-core and under the same licenses
+  # https://github.com/linux-rdma/rdma-core/tree/v22.4/ibacm
+  license_file:
+    - licenses/rdma-core-licenses/COPYING.BSD_FB
+    - licenses/rdma-core-licenses/COPYING.BSD_MIT
+    - licenses/rdma-core-licenses/COPYING.GPL2
+    - licenses/rdma-core-licenses/COPYING.md
+libibumad-devel:
+  custom: false
+  # `libibumad` is part of rdma-core and under the same licenses
+  # https://github.com/linux-rdma/rdma-core/tree/v22.4/ibacm
+  license_file:
+    - licenses/rdma-core-licenses/COPYING.BSD_FB
+    - licenses/rdma-core-licenses/COPYING.BSD_MIT
+    - licenses/rdma-core-licenses/COPYING.GPL2
+    - licenses/rdma-core-licenses/COPYING.md
 libIDL-devel:
   custom: false
   license_file: licenses/libidl-copying
