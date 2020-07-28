@@ -483,6 +483,18 @@ python-javapackages:
   custom: false
   skipped_cdts:
     - cos6-x86_64
+rdma-core:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+    - cos6-aarch64
+    - cos6-ppc64le
+rdma-core-devel:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+    - cos6-aarch64
+    - cos6-ppc64le
 webkitgtk:
   custom: false
   skipped_cdts:
