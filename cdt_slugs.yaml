@@ -487,10 +487,12 @@ rdma-core:
   custom: false
   skipped_cdts:
     - cos6-x86_64
+  license_file: licenses/rdma-core-licenses
 rdma-core-devel:
   custom: false
   skipped_cdts:
     - cos6-x86_64
+  license_file: licenses/rdma-core-licenses
 webkitgtk:
   custom: false
   skipped_cdts:
