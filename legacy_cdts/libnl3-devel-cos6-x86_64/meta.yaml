@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -40,10 +40,10 @@ about:
   home: http://www.infradead.org/~tgr/libnl/
   license: LGPLv2
   license_family: LGPL
-  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libnl3-devel-3.2.21/COPYING
-  summary: "(CDT) Libraries and headers for using libnl3"
+  license_file: libnl3-license
+  summary: (CDT) Libraries and headers for using libnl3
   description: |
-        This package contains various headers for using libnl3
+    This package contains various headers for using libnl3
 
 extra:
   recipe-maintainers:
