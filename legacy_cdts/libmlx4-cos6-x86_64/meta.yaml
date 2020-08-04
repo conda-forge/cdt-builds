@@ -1,0 +1,48 @@
+package:
+  name: libmlx4-cos6-x86_64
+  version: 1.0.6
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/libmlx4-1.0.6-7.el6.x86_64.rpm
+    sha256: 8f39a2304a60d98c75dbcc6639762ec140ec423d5a13bfb8c81399c63852246e
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/libmlx4-1.0.6-7.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - rdma-cos6-x86_64 >=6.7_3.15 *_{{ cdt_build_number }}
+  host:
+    - rdma-cos6-x86_64 >=6.7_3.15 *_{{ cdt_build_number }}
+  run:
+    - rdma-cos6-x86_64 >=6.7_3.15 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://www.openfabrics.org/
+  license: GPLv2 or BSD
+  license_family: GPL2
+  license_file: libmlx4-license
+  summary: (CDT) Mellanox ConnectX InfiniBand HCA Userspace Driver
+  description: |
+    libmlx4 provides a device-specific userspace driver for Mellanox ConnectX HCAs
+    for use with the libibverbs library.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

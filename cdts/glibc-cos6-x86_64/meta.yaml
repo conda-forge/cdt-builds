@@ -1,0 +1,52 @@
+package:
+  name: glibc-cos6-x86_64
+  version: 2.12
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/glibc-2.12-1.212.el6.x86_64.rpm
+    sha256: b893707c0dc87a556274feb53c544515a1d3b0fe2743c454dece682f5b7d5719
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/glibc-2.12-1.212.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - glibc-common-cos6-x86_64 ==2.12 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - glibc-common-cos6-x86_64 ==2.12 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.12.*
+  run:
+    - glibc-common-cos6-x86_64 ==2.12 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.12.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://sources.redhat.com/glibc/
+  license: LGPLv2+ and LGPLv2+ with exceptions and GPLv2+
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/glibc-2.12/LICENSES
+  summary: "(CDT) The GNU libc libraries"
+  description: |
+        The glibc package contains standard libraries which are used by multiple
+        programs on the system. In order to save disk space and memory, as well as to
+        make upgrading easier, common system code is kept in one place and shared
+        between programs. This particular package contains the most important sets of
+        shared libraries: the standard C library and the standard math library.
+        Without these two libraries, a Linux system will not function.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

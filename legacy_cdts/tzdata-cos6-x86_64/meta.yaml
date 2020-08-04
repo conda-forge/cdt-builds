@@ -1,0 +1,42 @@
+package:
+  name: tzdata-cos6-x86_64
+  version: 2018e
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/tzdata-2018e-3.el6.noarch.rpm
+    sha256: d66cde6ab07be8739b2222c0463cc7c0218a55f1f825944545cef692107ae685
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/tzdata-2018e-3.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://www.iana.org/time-zones
+  license: Public-Domain
+  license_family: Public-Domain
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) Timezone data"
+  description: |
+        This package contains data files with rules for various timezones around the
+        world.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
