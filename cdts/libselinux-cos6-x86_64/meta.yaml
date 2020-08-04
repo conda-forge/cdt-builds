@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -37,20 +37,19 @@ about:
   home: http://www.selinuxproject.org
   license: Public-Domain
   license_family: Public-Domain
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
-  summary: "(CDT) SELinux library and simple utilities"
+  summary: (CDT) SELinux library and simple utilities
   description: |
-        Security-enhanced Linux is a feature of the Linux® kernel and a number of
-        utilities with enhanced security functionality designed to add mandatory
-        access controls to Linux.  The Security-enhanced Linux kernel contains new
-        architectural components originally developed to improve the security of the
-        Flask operating system. These architectural components provide general support
-        for the enforcement of many kinds of mandatory access control policies,
-        including those based on the concepts of Type Enforcement®, Role-based Access
-        Control, and Multi-level Security.  libselinux provides an API for SELinux
-        applications to get and set process and file security contexts and to obtain
-        security policy decisions.  Required for any applications that use the SELinux
-        API.
+    Security-enhanced Linux is a feature of the Linux® kernel and a number of
+    utilities with enhanced security functionality designed to add mandatory
+    access controls to Linux.  The Security-enhanced Linux kernel contains new
+    architectural components originally developed to improve the security of the
+    Flask operating system. These architectural components provide general support
+    for the enforcement of many kinds of mandatory access control policies,
+    including those based on the concepts of Type Enforcement®, Role-based Access
+    Control, and Multi-level Security.  libselinux provides an API for SELinux
+    applications to get and set process and file security contexts and to obtain
+    security policy decisions.  Required for any applications that use the SELinux
+    API.
 
 extra:
   recipe-maintainers:

@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -37,11 +37,11 @@ about:
   home: https://www.openfabrics.org/
   license: GPLv2 or BSD
   license_family: GPL2
-  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libmlx4-1.0.6/COPYING
-  summary: "(CDT) Mellanox ConnectX InfiniBand HCA Userspace Driver"
+  license_file: libmlx4-license
+  summary: (CDT) Mellanox ConnectX InfiniBand HCA Userspace Driver
   description: |
-        libmlx4 provides a device-specific userspace driver for Mellanox ConnectX HCAs
-        for use with the libibverbs library.
+    libmlx4 provides a device-specific userspace driver for Mellanox ConnectX HCAs
+    for use with the libibverbs library.
 
 extra:
   recipe-maintainers:

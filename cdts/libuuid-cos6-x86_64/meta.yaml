@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -33,16 +33,16 @@ about:
   home: ftp://ftp.kernel.org/pub/linux/utils/util-linux-ng
   license: BSD
   license_family: BSD
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
-  summary: "(CDT) Universally unique ID library"
+  license_file: libuuid-license
+  summary: (CDT) Universally unique ID library
   description: |
-        This is the universally unique ID library, part of util-linux-ng.  The libuuid
-        library generates and parses 128-bit universally unique id's (UUID's).  A UUID
-        is an identifier that is unique across both space and time, with respect to
-        the space of all UUIDs.  A UUID can be used for multiple purposes, from
-        tagging objects with an extremely short lifetime, to reliably identifying very
-        persistent objects across a network.  See also the "uuid" package, which is a
-        separate implementation.
+    This is the universally unique ID library, part of util-linux-ng.  The libuuid
+    library generates and parses 128-bit universally unique id's (UUID's).  A UUID
+    is an identifier that is unique across both space and time, with respect to
+    the space of all UUIDs.  A UUID can be used for multiple purposes, from
+    tagging objects with an extremely short lifetime, to reliably identifying very
+    persistent objects across a network.  See also the "uuid" package, which is a
+    separate implementation.
 
 extra:
   recipe-maintainers:
