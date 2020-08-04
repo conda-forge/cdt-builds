@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number }}
   noarch: generic
-  binary_relocation: false
-  detect_binary_files_with_prefix: false
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
   missing_dso_whitelist:
     - '*'
 
@@ -40,10 +40,10 @@ about:
   home: https://github.com/linux-rdma/rdma-core
   license: GPLv2 or BSD
   license_family: GPL2
-  license_file: librdmacm-devel-license
-  summary: (CDT) Userspace RDMA Connection Manager
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) Userspace RDMA Connection Manager"
   description: |
-    librdmacm provides a userspace RDMA Communication Managment API.
+        librdmacm provides a userspace RDMA Communication Managment API.
 
 extra:
   recipe-maintainers:

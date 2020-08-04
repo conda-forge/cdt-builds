@@ -1,0 +1,47 @@
+package:
+  name: libblkid-cos6-x86_64
+  version: 2.17.2
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/libblkid-2.17.2-12.28.el6_9.2.x86_64.rpm
+    sha256: 8bf0d4450653616485eb509fa3d646f80b4606ca110a18d87ed4aa57dcb355a2
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/util-linux-ng-2.17.2-12.28.el6_9.2.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libuuid-cos6-x86_64 ==2.17.2 *_{{ cdt_build_number }}
+  host:
+    - libuuid-cos6-x86_64 ==2.17.2 *_{{ cdt_build_number }}
+  run:
+    - libuuid-cos6-x86_64 ==2.17.2 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: ftp://ftp.kernel.org/pub/linux/utils/util-linux-ng
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) Block device ID library"
+  description: |
+        This is block device identification library, part of util-linux-ng.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

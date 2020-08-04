@@ -1,0 +1,58 @@
+package:
+  name: util-linux-ng-cos6-x86_64
+  version: 2.17.2
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/util-linux-ng-2.17.2-12.28.el6_9.2.x86_64.rpm
+    sha256: e12503881671db8a52044044509e77b59f04884499f191a2bfc332750cc65131
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/util-linux-ng-2.17.2-12.28.el6_9.2.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - audit-libs-cos6-x86_64 >=1.0.6 *_{{ cdt_build_number|int + 1000 }}
+    - libblkid-cos6-x86_64 ==2.17.2 *_{{ cdt_build_number|int + 1000 }}
+    - libuuid-cos6-x86_64 ==2.17.2 *_{{ cdt_build_number|int + 1000 }}
+    - pam-cos6-x86_64 >=1.0.90 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - audit-libs-cos6-x86_64 >=1.0.6 *_{{ cdt_build_number|int + 1000 }}
+    - libblkid-cos6-x86_64 ==2.17.2 *_{{ cdt_build_number|int + 1000 }}
+    - libuuid-cos6-x86_64 ==2.17.2 *_{{ cdt_build_number|int + 1000 }}
+    - pam-cos6-x86_64 >=1.0.90 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.12.*
+  run:
+    - audit-libs-cos6-x86_64 >=1.0.6 *_{{ cdt_build_number|int + 1000 }}
+    - libblkid-cos6-x86_64 ==2.17.2 *_{{ cdt_build_number|int + 1000 }}
+    - libuuid-cos6-x86_64 ==2.17.2 *_{{ cdt_build_number|int + 1000 }}
+    - pam-cos6-x86_64 >=1.0.90 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.12.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: ftp://ftp.kernel.org/pub/linux/utils/util-linux-ng
+  license: GPLv1+ and GPLv2 and GPLv2+ and LGPLv2+ and MIT and BSD with advertising and Public Domain
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/util-linux-ng-2.17.2/COPYING.UCB
+  summary: "(CDT) A collection of basic system utilities"
+  description: |
+        The util-linux-ng package contains a large variety of low-level system
+        utilities that are necessary for a Linux system to function. Among others,
+        Util-linux contains the fdisk configuration tool and the login program.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

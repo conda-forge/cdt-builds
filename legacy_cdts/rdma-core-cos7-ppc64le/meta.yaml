@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number }}
   noarch: generic
-  binary_relocation: false
-  detect_binary_files_with_prefix: false
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
   missing_dso_whitelist:
     - '*'
 
@@ -31,16 +31,12 @@ about:
   home: https://github.com/linux-rdma/rdma-core
   license: GPLv2 or BSD
   license_family: GPL2
-  license_file:
-    - COPYING.BSD_FB
-    - COPYING.BSD_MIT
-    - COPYING.GPL2
-    - COPYING.md
-  summary: (CDT) RDMA core userspace libraries and daemons
+  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/rdma-core-22.4/COPYING.md
+  summary: "(CDT) RDMA core userspace libraries and daemons"
   description: |
-    RDMA core userspace infrastructure and documentation, including initscripts,
-    kernel driver-specific modprobe override configs, IPoIB network scripts,
-    dracut rules, and the rdma-ndd utility.
+        RDMA core userspace infrastructure and documentation, including initscripts,
+        kernel driver-specific modprobe override configs, IPoIB network scripts,
+        dracut rules, and the rdma-ndd utility.
 
 extra:
   recipe-maintainers:

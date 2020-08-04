@@ -1,0 +1,42 @@
+package:
+  name: libmlx5-cos6-x86_64
+  version: 1.0.2
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/libmlx5-1.0.2-1.el6.x86_64.rpm
+    sha256: 041aced823d5a339ca7209ec7169616aa90275361316936c2b2bde2f7982d174
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/libmlx5-1.0.2-1.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://www.openfabrics.org/
+  license: GPLv2 or BSD
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libmlx5-1.0.2/COPYING
+  summary: "(CDT) Mellanox Connect-IB InfiniBand HCA Userspace Driver"
+  description: |
+        libmlx5 provides a device-specific userspace driver for Mellanox Connect-IB
+        HCAs for use with the libibverbs library.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

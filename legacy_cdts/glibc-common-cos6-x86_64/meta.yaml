@@ -1,0 +1,51 @@
+package:
+  name: glibc-common-cos6-x86_64
+  version: 2.12
+
+source:
+  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/glibc-common-2.12-1.212.el6.x86_64.rpm
+    sha256: 721dfba71f7402d94070fe155f468666f2b785d56a638eec3d6ba3dc97fbef75
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/glibc-2.12-1.212.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - glibc-cos6-x86_64 ==2.12 *_{{ cdt_build_number }}
+    - tzdata-cos6-x86_64 >=2015g *_{{ cdt_build_number }}
+  host:
+    - glibc-cos6-x86_64 ==2.12 *_{{ cdt_build_number }}
+    - tzdata-cos6-x86_64 >=2015g *_{{ cdt_build_number }}
+  run:
+    - glibc-cos6-x86_64 ==2.12 *_{{ cdt_build_number }}
+    - tzdata-cos6-x86_64 >=2015g *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://sources.redhat.com/glibc/
+  license: LGPLv2+ and LGPLv2+ with exceptions and GPLv2+
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) Common binaries and locale data for glibc"
+  description: |
+        The glibc-common package includes common binaries for the GNU libc libraries,
+        as well as national language (locale) support.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
