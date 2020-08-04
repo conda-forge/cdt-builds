@@ -13,19 +13,7 @@ conda activate base
 
 cat .ci_scripts/condarc > $HOME/.condarc
 
-conda install -yq \
-  python=3.7 \
-  conda-build \
-  anaconda-client \
-  conda-forge-pinning \
-  shyaml \
-  tqdm \
-  click \
-  ruamel.yaml \
-  ruamel.yaml.jinja2 \
-  wurlitzer \
-  rpm-tools \
-  jinja2
+conda env update -n=base -f=./env.yml
 
 conda list
 
