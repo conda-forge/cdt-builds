@@ -224,6 +224,12 @@ libICE-devel:
 libjpeg-turbo:
   custom: false
   license_file: licenses/libjpeg-turbo-license
+libmlx4:
+  custom: false
+  license_file: licenses/libmlx4-license
+libmlx5:
+  custom: false
+  license_file: licenses/libmlx5-license
 libnl-devel:
   # generates libnl too
   custom: false
