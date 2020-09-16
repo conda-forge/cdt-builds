@@ -667,3 +667,4 @@ register_repo("conda-forge", "cdt-builds", config=cfg)
 | [`xorg-x11-util-macros-cos7-aarch64`](https://anaconda.org/conda-forge/xorg-x11-util-macros-cos7-aarch64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/xorg-x11-util-macros-cos7-aarch64.svg)](https://anaconda.org/conda-forge/xorg-x11-util-macros-cos7-aarch64) |
 | [`xorg-x11-util-macros-cos7-ppc64le`](https://anaconda.org/conda-forge/xorg-x11-util-macros-cos7-ppc64le) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/xorg-x11-util-macros-cos7-ppc64le.svg)](https://anaconda.org/conda-forge/xorg-x11-util-macros-cos7-ppc64le) |
 | [`xorg-x11-util-macros-cos7-x86_64`](https://anaconda.org/conda-forge/xorg-x11-util-macros-cos7-x86_64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/xorg-x11-util-macros-cos7-x86_64.svg)](https://anaconda.org/conda-forge/xorg-x11-util-macros-cos7-x86_64) |
+
