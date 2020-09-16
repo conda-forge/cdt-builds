@@ -1,0 +1,43 @@
+package:
+  name: centos-release-cos7-x86_64
+  version: 7
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/centos-release-7-8.2003.0.el7.centos.x86_64.rpm
+    sha256: 6f8ae8790b1619fadcd5e97ff0aafe0b08becc9b707ec653a6a4c12298c23506
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/centos-release-7-8.2003.0.el7.centos.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-64 2.17.*
+  run:
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: centos-release-cos7-x86_64
+  license: GPL-2.0-only
+  license_family: GPL2
+  license_file: centos-release-license
+  summary: (CDT) CentOS Linux release file
+  description: |
+    CentOS Linux release files
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

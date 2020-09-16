@@ -1,0 +1,45 @@
+package:
+  name: systemd-libs-cos7-aarch64
+  version: 219
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/systemd-libs-219-73.el7.1.aarch64.rpm
+    sha256: dd24e7e4497e8a3a33855e984d697b5e6eb8b1cac2a4ee71ba8f5bde980a77a9
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/systemd-219-73.el7.1.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.freedesktop.org/wiki/Software/systemd
+  license: LGPLv2+ and MIT
+  license_family: LGPL
+  license_file:
+    - LICENSE.LGPL2.1
+    - LICENSE.MIT
+  summary: (CDT) systemd libraries
+  description: |
+    Libraries for systemd and udev, as well as the systemd PAM module.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
