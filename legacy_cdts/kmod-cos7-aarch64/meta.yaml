@@ -1,0 +1,44 @@
+package:
+  name: kmod-cos7-aarch64
+  version: 20
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/kmod-20-28.el7.aarch64.rpm
+    sha256: e411d2817416f2d2524f08edfbd40b5ac3d7364d0a36fbadd2e7418cfbd8a000
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/kmod-20-28.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://git.kernel.org/?p=utils/kernel/kmod/kmod.git;a=summary
+  license: GPL-2.0-or-later
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/kmod-20/COPYING
+  summary: "(CDT) Linux kernel module management utilities"
+  description: |
+        The kmod package provides various programs needed for automatic loading and
+        unloading of modules under 2.6, 3.x, and later kernels, as well as other
+        module management programs. Device drivers and filesystems are two examples of
+        loaded and unloaded modules.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -44,6 +44,11 @@ cairo-devel:
     - licenses/cairo-copying
     - licenses/cairo-copying-lgpl-2.1
     - licenses/cairo-copying-mpl-1.1
+centos-release:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file: licenses/centos-release-license
 chkconfig:
   custom: false
 copy-jdk-configs:
@@ -522,6 +527,21 @@ rdma-core-devel:
     - licenses/rdma-core-licenses/COPYING.BSD_MIT
     - licenses/rdma-core-licenses/COPYING.GPL2
     - licenses/rdma-core-licenses/COPYING.md
+systemd:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file:
+    - licenses/systemd-licenses/LICENSE.GPL2
+    - licenses/systemd-licenses/LICENSE.LGPL2.1
+    - licenses/systemd-licenses/LICENSE.MIT
+systemd-libs:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file:
+    - licenses/systemd-licenses/LICENSE.LGPL2.1
+    - licenses/systemd-licenses/LICENSE.MIT
 webkitgtk:
   custom: false
   skipped_cdts:
