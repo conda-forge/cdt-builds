@@ -1,0 +1,54 @@
+package:
+  name: systemd-devel-cos7-ppc64le
+  version: 219
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/systemd-devel-219-73.el7.1.ppc64le.rpm
+    sha256: 91dc2ee1a41d4ded8ffbf4d7690867a115f8449c000613cee7a49c381f0140cd
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/systemd-219-73.el7.1.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - systemd-cos7-ppc64le ==219 *_{{ cdt_build_number }}
+    - systemd-libs-cos7-ppc64le ==219 *_{{ cdt_build_number }}
+  host:
+    - systemd-cos7-ppc64le ==219 *_{{ cdt_build_number }}
+    - systemd-libs-cos7-ppc64le ==219 *_{{ cdt_build_number }}
+  run:
+    - systemd-cos7-ppc64le ==219 *_{{ cdt_build_number }}
+    - systemd-libs-cos7-ppc64le ==219 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.freedesktop.org/wiki/Software/systemd
+  license: LGPLv2+ and MIT
+  license_family: LGPL
+  license_file:
+    - LICENSE.GPL2
+    - LICENSE.LGPL2.1
+    - LICENSE.MIT
+  summary: (CDT) Development headers for systemd
+  description: |
+    Development headers and auxiliary files for developing applications for
+    systemd.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

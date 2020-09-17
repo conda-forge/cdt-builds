@@ -535,6 +535,14 @@ systemd:
     - licenses/systemd-licenses/LICENSE.GPL2
     - licenses/systemd-licenses/LICENSE.LGPL2.1
     - licenses/systemd-licenses/LICENSE.MIT
+systemd-devel:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file:
+    - licenses/systemd-licenses/LICENSE.GPL2
+    - licenses/systemd-licenses/LICENSE.LGPL2.1
+    - licenses/systemd-licenses/LICENSE.MIT
 systemd-libs:
   custom: false
   skipped_cdts:
