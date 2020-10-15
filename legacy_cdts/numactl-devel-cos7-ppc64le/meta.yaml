@@ -1,0 +1,50 @@
+package:
+  name: numactl-devel-cos7-ppc64le
+  version: 2.0.12
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/numactl-devel-2.0.12-5.el7.ppc64le.rpm
+    sha256: 898d7f0b3ec3c37036a503acc91e8bf6a64b735ec9e9fcf44579437deac78c89
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/numactl-2.0.12-5.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - numactl-libs-cos7-ppc64le ==2.0.12 *_{{ cdt_build_number }}
+  host:
+    - numactl-libs-cos7-ppc64le ==2.0.12 *_{{ cdt_build_number }}
+  run:
+    - numactl-libs-cos7-ppc64le ==2.0.12 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/numactl/numactl
+  license: LGPLv2 and GPLv2
+  license_family: GPL2
+  license_file:
+    - numactl-copyright.txt
+    - numactl-gpl2.txt
+    - numactl-lgpl2.txt
+  summary: (CDT) Development package for building Applications that use numa
+  description: |
+    Provides development headers for numa library calls
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
