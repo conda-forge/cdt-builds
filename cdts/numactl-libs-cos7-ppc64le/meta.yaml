@@ -1,0 +1,47 @@
+package:
+  name: numactl-libs-cos7-ppc64le
+  version: 2.0.12
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/numactl-libs-2.0.12-5.el7.ppc64le.rpm
+    sha256: 645fbaa8c7d906cbe1ff11c219529ab6a68733f5bd01061159c3a12acc521f95
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/numactl-2.0.12-5.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/numactl/numactl
+  license: LGPLv2 and GPLv2
+  license_family: GPL2
+  license_file:
+    - numactl-copyright.txt
+    - numactl-gpl2.txt
+    - numactl-lgpl2.txt
+  summary: (CDT) libnuma libraries
+  description: |
+    numactl-libs provides libnuma, a library to do allocations with NUMA policy in
+    applications.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
