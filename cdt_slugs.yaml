@@ -448,6 +448,14 @@ numactl:
     - licenses/numactl-copyright.txt
     - licenses/numactl-gpl2.txt
     - licenses/numactl-lgpl2.txt
+numactl-libs:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file:
+    - licenses/numactl-copyright.txt
+    - licenses/numactl-gpl2.txt
+    - licenses/numactl-lgpl2.txt
 numactl-devel:
   custom: false
   skipped_cdts:
