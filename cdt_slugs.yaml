@@ -440,10 +440,6 @@ nss-util:
   license_file: licenses/nss-license
 numactl:
   custom: false
-  skipped_cdts:
-    - cos7-x86_64
-    - cos7-aarch64
-    - cos7-ppc64le
   license_file:
     - licenses/numactl-copyright.txt
     - licenses/numactl-gpl2.txt
@@ -458,10 +454,6 @@ numactl-libs:
     - licenses/numactl-lgpl2.txt
 numactl-devel:
   custom: false
-  skipped_cdts:
-    - cos7-x86_64
-    - cos7-aarch64
-    - cos7-ppc64le
   license_file:
     - licenses/numactl-copyright.txt
     - licenses/numactl-gpl2.txt
