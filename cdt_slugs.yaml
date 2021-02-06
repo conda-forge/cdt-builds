@@ -499,6 +499,10 @@ pciutils-libs:
 pciutils-devel:
   custom: false
   license_file: licenses/pciutils-license
+pcre:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
 pixman:
   custom: false
   license_file: licenses/pixman-license
