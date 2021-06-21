@@ -40,7 +40,7 @@ about:
   home: https://github.com/NVIDIA/libglvnd
   license: MIT
   license_family: MIT
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  license_file: libglvnd-license
   summary: "(CDT) GLES support for libglvnd"
   description: |
         libGLESv[12] are the common dispatch interface for the GLES API.

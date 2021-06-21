@@ -37,7 +37,7 @@ about:
   home: https://github.com/NVIDIA/libglvnd
   license: MIT
   license_family: MIT
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  license_file: libglvnd-license
   summary: "(CDT) OpenGL support for libglvnd"
   description: |
         libOpenGL is the common dispatch interface for the workstation OpenGL API.
