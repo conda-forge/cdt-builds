@@ -1,0 +1,41 @@
+package:
+  name: libglvnd-devel-cos7-aarch64
+  version: 1.0.1
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libglvnd-devel-1.0.1-0.8.git5baa1e5.el7.aarch64.rpm
+    sha256: dd1889e284cf590cebbf3bf10d04c56dbc8abcfde7382de425164ae7a85a7ba3
+    no_hoist: true
+    folder: binary
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/NVIDIA/libglvnd
+  license: MIT
+  license_family: MIT
+  license_file: libglvnd-license
+  summary: (CDT) The GL Vendor-Neutral Dispatch library
+  description: |
+    libglvnd is an implementation of the vendor-neutral dispatch layer for
+    arbitrating OpenGL API calls between multiple vendors on a per-screen basis.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
