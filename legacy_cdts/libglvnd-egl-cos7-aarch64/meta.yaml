@@ -1,0 +1,50 @@
+package:
+  name: libglvnd-egl-cos7-aarch64
+  version: 1.0.1
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libglvnd-egl-1.0.1-0.8.git5baa1e5.el7.aarch64.rpm
+    sha256: 593f06c36c5a8caf87d9755be4123ecbc9014bb144544fb5d27396ffe9d72d52
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libglvnd-1.0.1-0.8.git5baa1e5.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libglvnd-cos7-aarch64 ==1.0.1 *_{{ cdt_build_number }}
+    - mesa-libegl-cos7-aarch64 >=13.0.4 *_{{ cdt_build_number }}
+  host:
+    - libglvnd-cos7-aarch64 ==1.0.1 *_{{ cdt_build_number }}
+    - mesa-libegl-cos7-aarch64 >=13.0.4 *_{{ cdt_build_number }}
+  run:
+    - libglvnd-cos7-aarch64 ==1.0.1 *_{{ cdt_build_number }}
+    - mesa-libegl-cos7-aarch64 >=13.0.4 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/NVIDIA/libglvnd
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) EGL support for libglvnd"
+  description: |
+        libEGL are the common dispatch interface for the EGL API.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
