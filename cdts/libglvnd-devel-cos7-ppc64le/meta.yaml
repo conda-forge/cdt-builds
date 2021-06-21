@@ -7,6 +7,9 @@ source:
     sha256: 0461e5cead63c3abf1e4c5261fe4de127d6400a95fe5709e09749ba76c406333
     no_hoist: true
     folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libglvnd-1.0.1-0.8.git5baa1e5.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
 
 build:
   number: {{ cdt_build_number|int + 1000 }}
@@ -17,11 +20,29 @@ build:
     - '*'
 
 requirements:
+  build:
+    - libglvnd-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-core-devel-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-egl-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-gles-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-glx-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-opengl-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
   host:
+    - libglvnd-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-core-devel-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-egl-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-gles-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-glx-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-opengl-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
+    - libglvnd-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-core-devel-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-egl-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-gles-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-glx-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-opengl-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
-
 test:
   commands:
     - echo "it installs!"
@@ -31,10 +52,10 @@ about:
   license: MIT
   license_family: MIT
   license_file: libglvnd-license
-  summary: (CDT) The GL Vendor-Neutral Dispatch library
+  summary: (CDT) Development files for libglvnd
   description: |
-    libglvnd is an implementation of the vendor-neutral dispatch layer for
-    arbitrating OpenGL API calls between multiple vendors on a per-screen basis.
+    The libglvnd-devel package contains libraries and header files for developing
+    applications that use libglvnd.
 
 extra:
   recipe-maintainers:

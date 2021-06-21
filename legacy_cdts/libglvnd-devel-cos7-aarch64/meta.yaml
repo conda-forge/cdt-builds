@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -52,11 +52,11 @@ about:
   home: https://github.com/NVIDIA/libglvnd
   license: MIT
   license_family: MIT
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
-  summary: "(CDT) Development files for libglvnd"
+  license_file: libglvnd-license
+  summary: (CDT) Development files for libglvnd
   description: |
-        The libglvnd-devel package contains libraries and header files for developing
-        applications that use libglvnd.
+    The libglvnd-devel package contains libraries and header files for developing
+    applications that use libglvnd.
 
 extra:
   recipe-maintainers:

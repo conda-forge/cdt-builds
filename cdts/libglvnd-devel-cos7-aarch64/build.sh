@@ -24,7 +24,6 @@ popd > /dev/null 2>&1
 
 # CONDA-FORGE BUILD APPEND
 pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
-libgl_file=$(find . -maxdepth 1 -type l)
 ls -lah .
 popd > /dev/null 2>&1
 
