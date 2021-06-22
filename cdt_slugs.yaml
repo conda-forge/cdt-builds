@@ -166,6 +166,18 @@ libglvnd:
   skipped_cdts:
     - cos6-x86_64
   license_file: licenses/libglvnd-license
+libglvnd-devel:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file: licenses/libglvnd-license
+  build_append:
+    all: |
+      pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
+      ls -lah .
+      popd > /dev/null 2>&1
+  dep_remove:
+    - mesa-libgl  
 libglvnd-glx:
   custom: false
   skipped_cdts:
