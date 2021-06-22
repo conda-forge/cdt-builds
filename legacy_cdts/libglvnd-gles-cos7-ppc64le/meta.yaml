@@ -22,13 +22,10 @@ build:
 requirements:
   build:
     - libglvnd-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number }}
-    - mesa-libegl-cos7-ppc64le >=13.0.4 *_{{ cdt_build_number }}
   host:
     - libglvnd-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number }}
-    - mesa-libegl-cos7-ppc64le >=13.0.4 *_{{ cdt_build_number }}
   run:
     - libglvnd-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number }}
-    - mesa-libegl-cos7-ppc64le >=13.0.4 *_{{ cdt_build_number }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

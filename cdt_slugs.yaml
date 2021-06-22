@@ -181,6 +181,8 @@ libglvnd-gles:
   skipped_cdts:
     - cos6-x86_64
   license_file: licenses/libglvnd-license
+  dep_remove:
+    - mesa-libegl
 libglvnd-opengl:
   custom: false
   skipped_cdts:
