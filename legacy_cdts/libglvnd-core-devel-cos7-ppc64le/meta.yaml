@@ -1,0 +1,44 @@
+package:
+  name: libglvnd-core-devel-cos7-ppc64le
+  version: 1.0.1
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libglvnd-core-devel-1.0.1-0.8.git5baa1e5.el7.ppc64le.rpm
+    sha256: 85422bf47186ef474a521922163f75ba1fb10ab23a5f7b2f9b5241953d68acd9
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libglvnd-1.0.1-0.8.git5baa1e5.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/NVIDIA/libglvnd
+  license: MIT
+  license_family: MIT
+  license_file: libglvnd-license
+  summary: (CDT) Core development files for libglvnd
+  description: |
+    The libglvnd-core-devel package is a bootstrap trick for Mesa, which wants to
+    build against the libglvnd headers but does not link against any of its
+    libraries (and, initially, has file conflicts with them). If you are not Mesa
+    you almost certainly want libglvnd-devel instead.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

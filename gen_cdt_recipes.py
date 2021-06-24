@@ -3,6 +3,7 @@ import subprocess
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import shutil
 import collections
+import glob
 
 import tqdm
 import click
@@ -15,6 +16,58 @@ from cdt_config import (
     CUSTOM_CDT_PATH,
 )
 from render_readme import render_readme
+
+
+def _ignore_url_build_changes(base_dir):
+    print("fixing build url only changes for path '%s'..." % base_dir)
+    line_slugs = [
+        "-  - url:",
+        "-    sha256:",
+        "-  # - url:",
+    ]
+
+    cdts = glob.glob(os.path.join(base_dir, "*"))
+    for cdt in cdts:
+        fnames = glob.glob(os.path.join(cdt, "*"))
+        changed_files = set()
+        for fname in fnames:
+            if _is_changed_or_not_tracked(fname):
+                changed_files.add(fname)
+
+        if (
+            len(changed_files) == 1
+            and set([os.path.basename(f) for f in changed_files]) == set(["meta.yaml"])
+        ):
+            print("    cdt:", cdt)
+            diff = subprocess.run(
+                "git diff %s" % fname,
+                shell=True,
+                capture_output=True,
+            )
+            diff_lines = []
+            start = False
+            for line in diff.stdout.decode("utf-8").splitlines():
+                if line.startswith("@@"):
+                    start = True
+                if start:
+                    diff_lines.append(line)
+
+            print("        diff:", "\n        " + "\n        ".join(diff_lines))
+            bad_line = False
+            for line in diff_lines:
+                if (
+                    line.startswith("-")
+                    and not any([line.startswith(s) for s in line_slugs])
+                ):
+                    bad_line = True
+                    break
+
+            if not bad_line:
+                print("        rolling back changes")
+                subprocess.run(
+                    "git co -- %s" % fname,
+                    shell=True,
+                )
 
 
 def _is_changed_or_not_tracked(pth):
@@ -270,7 +323,11 @@ def _fix_cdt_builds(*, cdts, arch_dist_tuples, cdt_path):
     "--fast", default=False, is_flag=True,
     help="Use a global src cache. May fail due to race conditions."
 )
-def _main(force, no_legacy, fast):
+@click.option(
+    "--keep-url-changes", default=False, is_flag=True,
+    help="Keep changes to CDT urls. If you use this, you need to bump the build number!"
+)
+def _main(force, no_legacy, fast, keep_url_changes):
     """
     Generate all CDT recipes.
     """
@@ -396,6 +453,11 @@ def _main(force, no_legacy, fast):
             cdt_path=LEGACY_CDT_PATH
         )
 
+        if not keep_url_changes:
+            _ignore_url_build_changes(
+                LEGACY_CDT_PATH
+            )
+
     # new CDTs for the new compilers with a single sysroot
     arch_dist_tuples = [
         ("x86_64", "centos6"), ("x86_64", "centos7"),
@@ -424,9 +486,14 @@ def _main(force, no_legacy, fast):
         cdt_path=CDT_PATH
     )
 
+    if not keep_url_changes:
+        _ignore_url_build_changes(
+            CDT_PATH
+        )
+
     # make the readme
     render_readme()
-    
+
     print(
         "finished generating CDTs - make sure to add any changes in the repo "
         "via 'git add *' before making a commit!",

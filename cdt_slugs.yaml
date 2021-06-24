@@ -166,6 +166,35 @@ libglvnd:
   skipped_cdts:
     - cos6-x86_64
   license_file: licenses/libglvnd-license
+libglvnd-core-devel:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file: licenses/libglvnd-license
+libglvnd-egl:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file: licenses/libglvnd-license
+libglvnd-gles:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file: licenses/libglvnd-license
+  dep_remove:
+    - mesa-libegl
+libglvnd-opengl:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file: licenses/libglvnd-license
+libglvnd-devel:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file: licenses/libglvnd-license
+  dep_remove:
+    - mesa-libgl
 libglvnd-glx:
   custom: false
   skipped_cdts:
