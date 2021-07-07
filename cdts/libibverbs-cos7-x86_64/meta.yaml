@@ -3,19 +3,19 @@ package:
   version: 22.4
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libibverbs-22.4-1.el7.x86_64.rpm
-    sha256: a54d2c5ce32f34ccccaffc7bb62a1d984b480711e1065bfb1aabf5e88622ed0c
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libibverbs-22.4-5.el7.x86_64.rpm
+    sha256: cb9496c8beed47f2280f84960f36ad2453a8e3e028538e5c80860d32822e1bf7
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/rdma-core-22.4-1.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/rdma-core-22.4-5.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
-  binary_relocation: false
-  detect_binary_files_with_prefix: false
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
   missing_dso_whitelist:
     - '*'
 
@@ -37,22 +37,22 @@ about:
   home: https://github.com/linux-rdma/rdma-core
   license: GPLv2 or BSD
   license_family: GPL2
-  license_file: libibverbs-devel-license
-  summary: (CDT) A library and drivers for direct userspace use of RDMA (InfiniBand/iWARP/RoCE) hardware
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) A library and drivers for direct userspace use of RDMA (InfiniBand/iWARP/RoCE) hardware"
   description: |
-    libibverbs is a library that allows userspace processes to use RDMA "verbs" as
-    described in the InfiniBand Architecture Specification and the RDMA Protocol
-    Verbs Specification.  This includes direct hardware access from userspace to
-    InfiniBand/iWARP adapters (kernel bypass) for fast path operations.  Device-
-    specific plug-in ibverbs userspace drivers are included:  - libbxnt_re:
-    Broadcom NetXtreme-E RoCE HCA - libcxgb3: Chelsio T3 iWARP HCA - libcxgb4:
-    Chelsio T4 iWARP HCA - libhfi1: Intel Omni-Path HFI - libhns: HiSilicon Hip06
-    SoC - libi40iw: Intel Ethernet Connection X722 RDMA - libipathverbs: QLogic
-    InfiniPath HCA - libmlx4: Mellanox ConnectX-3 InfiniBand HCA - libmlx5:
-    Mellanox Connect-IB/X-4+ InfiniBand HCA - libmthca: Mellanox InfiniBand HCA -
-    libnes: NetEffect RNIC - libocrdma: Emulex OneConnect RDMA/RoCE Device -
-    libqedr: QLogic QL4xxx RoCE HCA - librxe: A software implementation of the
-    RoCE protocol - libvmw_pvrdma: VMware paravirtual RDMA device
+        libibverbs is a library that allows userspace processes to use RDMA "verbs" as
+        described in the InfiniBand Architecture Specification and the RDMA Protocol
+        Verbs Specification.  This includes direct hardware access from userspace to
+        InfiniBand/iWARP adapters (kernel bypass) for fast path operations.  Device-
+        specific plug-in ibverbs userspace drivers are included:  - libbxnt_re:
+        Broadcom NetXtreme-E RoCE HCA - libcxgb3: Chelsio T3 iWARP HCA - libcxgb4:
+        Chelsio T4 iWARP HCA - libhfi1: Intel Omni-Path HFI - libhns: HiSilicon Hip06
+        SoC - libi40iw: Intel Ethernet Connection X722 RDMA - libipathverbs: QLogic
+        InfiniPath HCA - libmlx4: Mellanox ConnectX-3 InfiniBand HCA - libmlx5:
+        Mellanox Connect-IB/X-4+ InfiniBand HCA - libmthca: Mellanox InfiniBand HCA -
+        libnes: NetEffect RNIC - libocrdma: Emulex OneConnect RDMA/RoCE Device -
+        libqedr: QLogic QL4xxx RoCE HCA - librxe: A software implementation of the
+        RoCE protocol - libvmw_pvrdma: VMware paravirtual RDMA device
 
 extra:
   recipe-maintainers:

@@ -1,0 +1,47 @@
+package:
+  name: libxkbcommon-devel-cos7-aarch64
+  version: 0.7.1
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libxkbcommon-devel-0.7.1-3.el7.aarch64.rpm
+    sha256: fb6f1b847528eafa3633ae8dc90d76573b1dd69417fb13173831d6dbd9b41e4d
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libxkbcommon-0.7.1-3.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libxkbcommon-cos7-aarch64 ==0.7.1 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libxkbcommon-cos7-aarch64 ==0.7.1 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - libxkbcommon-cos7-aarch64 ==0.7.1 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) X.Org X11 XKB parsing development package"
+  description: |
+        X.Org X11 XKB parsing development package
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,47 @@
+package:
+  name: xcb-util-image-devel-cos7-ppc64le
+  version: 0.4.0
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/xcb-util-image-devel-0.4.0-2.el7.ppc64le.rpm
+    sha256: 5d6e1c77e9f73cf2dc302ca87af5340c60be2361f722fa6168c21a8bd45dd59a
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/xcb-util-image-0.4.0-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - xcb-util-image-cos7-ppc64le ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - xcb-util-image-cos7-ppc64le ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - xcb-util-image-cos7-ppc64le ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://xcb.freedesktop.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) Development and header files for xcb-util-image"
+  description: |
+        Development files for xcb-util-image.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

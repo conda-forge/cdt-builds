@@ -1,0 +1,48 @@
+package:
+  name: libxcb-devel-cos7-aarch64
+  version: 1.13
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libxcb-devel-1.13-1.el7.aarch64.rpm
+    sha256: 3dd124054651f9c7f62f131fd6af368f440330b066f5efe242b43bf8fe470aab
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libxcb-1.13-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libxcb-cos7-aarch64 ==1.13 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libxcb-cos7-aarch64 ==1.13 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - libxcb-cos7-aarch64 ==1.13 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://xcb.freedesktop.org/
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) Development files for libxcb"
+  description: |
+        The libxcb-devel package contains libraries and header files for developing
+        applications that use libxcb.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
