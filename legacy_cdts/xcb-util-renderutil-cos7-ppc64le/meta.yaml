@@ -1,0 +1,42 @@
+package:
+  name: xcb-util-renderutil-cos7-ppc64le
+  version: 0.3.9
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/xcb-util-renderutil-0.3.9-3.el7.ppc64le.rpm
+    sha256: 10dadc592a16472290207ec44781c6e652f8db4f4da3772792fbf6976b46216e
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/xcb-util-renderutil-0.3.9-3.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://xcb.freedesktop.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/xcb-util-renderutil-0.3.9/COPYING
+  summary: "(CDT) Convenience functions for the Render extension"
+  description: |
+        XCB util-renderutil module provides the following library:    - renderutil:
+        Convenience functions for the Render extension.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

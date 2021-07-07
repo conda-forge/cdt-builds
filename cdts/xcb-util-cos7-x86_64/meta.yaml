@@ -1,0 +1,48 @@
+package:
+  name: xcb-util-cos7-x86_64
+  version: 0.4.0
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/xcb-util-0.4.0-2.el7.x86_64.rpm
+    sha256: 5e3365c77d8f0fa6d7f8bd42e100f885d0f75aa6177909ef8bb3db6d9701c7de
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/xcb-util-0.4.0-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-64 2.17.*
+  run:
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://xcb.freedesktop.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/xcb-util-0.4.0/COPYING
+  summary: "(CDT) Convenience libraries sitting on top of libxcb"
+  description: |
+        The xcb-util module provides a number of libraries which sit on top of libxcb,
+        the core X protocol library, and some of the extension libraries. These
+        experimental libraries provide convenience functions and interfaces which make
+        the raw X protocol more usable. Some of the libraries also provide client-side
+        code which is not strictly part of the X protocol but which have traditionally
+        been provided by Xlib.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

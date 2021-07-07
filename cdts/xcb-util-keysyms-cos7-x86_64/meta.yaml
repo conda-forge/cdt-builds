@@ -1,0 +1,44 @@
+package:
+  name: xcb-util-keysyms-cos7-x86_64
+  version: 0.4.0
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/xcb-util-keysyms-0.4.0-1.el7.x86_64.rpm
+    sha256: b26af1c981d6c263d105a3b9cc01f5fdfff998f58e267bbba4a34866068127c0
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/xcb-util-keysyms-0.4.0-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-64 2.17.*
+  run:
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://xcb.freedesktop.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) Standard X key constants and keycodes conversion on top of libxcb"
+  description: |
+        XCB util-keysyms module provides the following library:    - keysyms: Standard
+        X key constants and conversion to/from keycodes.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

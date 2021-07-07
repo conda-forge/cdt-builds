@@ -3,19 +3,19 @@ package:
   version: 22.4
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/librdmacm-22.4-1.el7.x86_64.rpm
-    sha256: b2366cabf7044a26fd0a9376b02b99dcf0540128856ebc616ecfc1e4f6d9e4a0
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/librdmacm-22.4-5.el7.x86_64.rpm
+    sha256: 18b0bb258d4bc5812c8fb624b0e38babfcf04af9955ab01c4d947ce0cca422b2
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/rdma-core-22.4-1.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/rdma-core-22.4-5.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
-  binary_relocation: false
-  detect_binary_files_with_prefix: false
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
   missing_dso_whitelist:
     - '*'
 
@@ -40,10 +40,10 @@ about:
   home: https://github.com/linux-rdma/rdma-core
   license: GPLv2 or BSD
   license_family: GPL2
-  license_file: librdmacm-devel-license
-  summary: (CDT) Userspace RDMA Connection Manager
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) Userspace RDMA Connection Manager"
   description: |
-    librdmacm provides a userspace RDMA Communication Managment API.
+        librdmacm provides a userspace RDMA Communication Managment API.
 
 extra:
   recipe-maintainers:
