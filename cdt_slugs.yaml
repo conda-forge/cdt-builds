@@ -334,6 +334,9 @@ libXau-devel:
 libxcb:
   custom: false
   license_file: licenses/libxcb-license
+libxcb-devel:
+  custom: false
+  license_file: licenses/libxcb-license
 libXcomposite:
   custom: false
 libXcomposite-devel:
@@ -371,6 +374,9 @@ libXinerama:
 libXinerama-devel:
   custom: false
   license_file: licenses/libxinerma-license
+libxkbcommon-devel:
+  custom: false
+  license_file: licenses/libxkbcommon-license
 libxml2-devel:
   custom: false
   license_file: licenses/libxml2-license
@@ -597,6 +603,21 @@ webkitgtk-devel:
     - cos7-aarch64
     - cos7-ppc64le
   license_file: licenses/webkitgtk-license
+xcb-util-devel:
+  custom: false
+  license_file: licenses/xcb-util-license
+xcb-util-image-devel:
+  custom: false
+  license_file: licenses/xcb-util-image-license
+xcb-util-keysyms-devel:
+  custom: false
+  license_file: licenses/xcb-util-keysyms-license
+xcb-util-renderutil-devel:
+  custom: false
+  license_file: licenses/xcb-util-renderutil-license
+xcb-util-wm-devel:
+  custom: false
+  license_file: licenses/xcb-util-wm-license
 xorg-x11-proto-devel:
   custom: false
   license_file:
