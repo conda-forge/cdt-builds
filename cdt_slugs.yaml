@@ -609,6 +609,9 @@ xcb-util-devel:
 xcb-util-image-devel:
   custom: false
   license_file: licenses/xcb-util-image-license
+xcb-util-keysyms:
+  custom: false
+  license_file: licenses/xcb-util-keysyms-license
 xcb-util-keysyms-devel:
   custom: false
   license_file: licenses/xcb-util-keysyms-license
