@@ -1,0 +1,44 @@
+package:
+  name: xcb-util-image-cos7-ppc64le
+  version: 0.4.0
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/xcb-util-image-0.4.0-2.el7.ppc64le.rpm
+    sha256: 56535f72f9bad7c9114df81f4dc24164d3dec3fa80a6f41572613477cb185287
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/xcb-util-image-0.4.0-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://xcb.freedesktop.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/xcb-util-image-0.4.0/COPYING
+  summary: "(CDT) Port of Xlib's XImage and XShmImage functions on top of libxcb"
+  description: |
+        XCB util-image module provides the following library:    - image: Port of
+        Xlib's XImage and XShmImage functions.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

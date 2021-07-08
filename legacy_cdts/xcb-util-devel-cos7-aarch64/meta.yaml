@@ -1,0 +1,47 @@
+package:
+  name: xcb-util-devel-cos7-aarch64
+  version: 0.4.0
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/xcb-util-devel-0.4.0-2.el7.aarch64.rpm
+    sha256: 296215992bef0ce3e2cd2e68951757645dd8077bbfc86113cc169dccd69ce7d9
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/xcb-util-0.4.0-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - xcb-util-cos7-aarch64 ==0.4.0 *_{{ cdt_build_number }}
+  host:
+    - xcb-util-cos7-aarch64 ==0.4.0 *_{{ cdt_build_number }}
+  run:
+    - xcb-util-cos7-aarch64 ==0.4.0 *_{{ cdt_build_number }}
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://xcb.freedesktop.org
+  license: MIT
+  license_family: MIT
+  license_file: xcb-util-license
+  summary: (CDT) Development and header files for xcb-util
+  description: |
+    Development files for xcb-util.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

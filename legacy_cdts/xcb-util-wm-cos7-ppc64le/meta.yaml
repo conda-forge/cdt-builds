@@ -1,0 +1,43 @@
+package:
+  name: xcb-util-wm-cos7-ppc64le
+  version: 0.4.1
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/xcb-util-wm-0.4.1-5.el7.ppc64le.rpm
+    sha256: 2a54a493eddf849759cd08b4bfaf6bc0cee3decf28ff78215d062f254471734c
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/xcb-util-wm-0.4.1-5.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://xcb.freedesktop.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/xcb-util-wm-0.4.1/COPYING
+  summary: "(CDT) Client and window-manager helper library on top of libxcb"
+  description: |
+        XCB util-wm module provides the following libraries:    - ewmh: Both client
+        and window-manager helpers for EWMH.   - icccm: Both client and window-manager
+        helpers for ICCCM.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
