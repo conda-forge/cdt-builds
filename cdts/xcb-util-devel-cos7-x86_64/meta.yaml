@@ -1,0 +1,47 @@
+package:
+  name: xcb-util-devel-cos7-x86_64
+  version: 0.4.0
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/xcb-util-devel-0.4.0-2.el7.x86_64.rpm
+    sha256: 97bab516914a1e0e3cf33a748c3d917647e73bcc45a91975a2f9aff6e52db0c4
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/xcb-util-0.4.0-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - xcb-util-cos7-x86_64 ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - xcb-util-cos7-x86_64 ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - xcb-util-cos7-x86_64 ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://xcb.freedesktop.org
+  license: MIT
+  license_family: MIT
+  license_file: xcb-util-license
+  summary: (CDT) Development and header files for xcb-util
+  description: |
+    Development files for xcb-util.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
