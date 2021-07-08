@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -37,10 +37,10 @@ about:
   home: http://xcb.freedesktop.org
   license: MIT
   license_family: MIT
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
-  summary: "(CDT) Development and header files for xcb-util-vm"
+  license_file: xcb-util-wm-license
+  summary: (CDT) Development and header files for xcb-util-vm
   description: |
-        Development files for xcb-util-wm.
+    Development files for xcb-util-wm.
 
 extra:
   recipe-maintainers:

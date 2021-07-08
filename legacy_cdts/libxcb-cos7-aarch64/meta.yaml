@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -31,12 +31,12 @@ about:
   home: https://xcb.freedesktop.org/
   license: MIT
   license_family: MIT
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
-  summary: "(CDT) A C binding to the X11 protocol"
+  license_file: libxcb-license
+  summary: (CDT) A C binding to the X11 protocol
   description: |
-        The X protocol C-language Binding (XCB) is a replacement for Xlib featuring a
-        small footprint, latency hiding, direct access to the protocol, improved
-        threading support, and extensibility.
+    The X protocol C-language Binding (XCB) is a replacement for Xlib featuring a
+    small footprint, latency hiding, direct access to the protocol, improved
+    threading support, and extensibility.
 
 extra:
   recipe-maintainers:

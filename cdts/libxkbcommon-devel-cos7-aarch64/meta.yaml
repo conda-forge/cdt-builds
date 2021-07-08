@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -37,10 +37,10 @@ about:
   home: http://www.x.org
   license: MIT
   license_family: MIT
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
-  summary: "(CDT) X.Org X11 XKB parsing development package"
+  license_file: libxkbcommon-license
+  summary: (CDT) X.Org X11 XKB parsing development package
   description: |
-        X.Org X11 XKB parsing development package
+    X.Org X11 XKB parsing development package
 
 extra:
   recipe-maintainers:

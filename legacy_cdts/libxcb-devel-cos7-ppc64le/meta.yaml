@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -37,11 +37,11 @@ about:
   home: https://xcb.freedesktop.org/
   license: MIT
   license_family: MIT
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
-  summary: "(CDT) Development files for libxcb"
+  license_file: libxcb-license
+  summary: (CDT) Development files for libxcb
   description: |
-        The libxcb-devel package contains libraries and header files for developing
-        applications that use libxcb.
+    The libxcb-devel package contains libraries and header files for developing
+    applications that use libxcb.
 
 extra:
   recipe-maintainers:
