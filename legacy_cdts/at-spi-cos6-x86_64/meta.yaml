@@ -23,19 +23,16 @@ requirements:
   build:
     - orbit2-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number|int }}
     - atk-cos6-x86_64 >=1.13.0 *_{{ cdt_build_number|int }}
-    - gail-cos6-x86_64 >=2.24.23 *_{{ cdt_build_number|int }}
     - gtk2-cos6-x86_64 >=2.10.0 *_{{ cdt_build_number|int }}
     - libbonobo-cos6-x86_64 >=2.4.0 *_{{ cdt_build_number|int }}
   host:
     - orbit2-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number|int }}
     - atk-cos6-x86_64 >=1.13.0 *_{{ cdt_build_number|int }}
-    - gail-cos6-x86_64 >=2.24.23 *_{{ cdt_build_number|int }}
     - gtk2-cos6-x86_64 >=2.10.0 *_{{ cdt_build_number|int }}
     - libbonobo-cos6-x86_64 >=2.4.0 *_{{ cdt_build_number|int }}
   run:
     - orbit2-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number|int }}
     - atk-cos6-x86_64 >=1.13.0 *_{{ cdt_build_number|int }}
-    - gail-cos6-x86_64 >=2.24.23 *_{{ cdt_build_number|int }}
     - gtk2-cos6-x86_64 >=2.10.0 *_{{ cdt_build_number|int }}
     - libbonobo-cos6-x86_64 >=2.4.0 *_{{ cdt_build_number|int }}
   run_constrained:

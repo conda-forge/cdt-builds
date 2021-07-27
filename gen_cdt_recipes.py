@@ -250,7 +250,7 @@ def _fix_cdt_deps(*, cdts, arch_dist_tuples, cdt_path):
                     with open(os.path.join(pth, "meta.yaml"), "r") as fp:
                         meta = yaml.load(fp)
                 except Exception:
-                    print("ERROR: could not adjust license for %s" % pth)
+                    print("ERROR: could not adjust deps for %s" % pth)
                     continue
 
                 if "requirements" in meta:
@@ -263,6 +263,37 @@ def _fix_cdt_deps(*, cdts, arch_dist_tuples, cdt_path):
                                     for d in cfg["dep_remove"]
                                 ):
                                     new_deps.append(dep)
+                            meta["requirements"][sec] = new_deps
+
+                    with open(os.path.join(pth, "meta.yaml"), "w") as fp:
+                        meta = yaml.dump(meta, fp)
+
+            if 'dep_replace' in cfg and os.path.exists(pth):
+                try:
+                    yaml = YAML(typ="jinja2")
+                    yaml.indent(mapping=2, sequence=4, offset=2)
+                    yaml.width = 320
+                    with open(os.path.join(pth, "meta.yaml"), "r") as fp:
+                        meta = yaml.load(fp)
+                except Exception:
+                    print("ERROR: could not adjust deps for %s" % pth)
+                    continue
+
+                if "requirements" in meta:
+                    for sec in ["build", "host", "run"]:
+                        if sec in meta["requirements"]:
+                            new_deps = []
+                            for dep in meta["requirements"][sec]:
+                                if not any(
+                                    dep.startswith(d)
+                                    for d in cfg["dep_replace"]
+                                ):
+                                    new_deps.append(dep)
+                                else:
+                                    for d, dr in cfg["dep_replace"].items():
+                                        if dep.startswith(d):
+                                            new_deps.append(dr + dep[len(d):])
+                                            break
                             meta["requirements"][sec] = new_deps
 
                     with open(os.path.join(pth, "meta.yaml"), "w") as fp:

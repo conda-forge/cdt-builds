@@ -6,9 +6,13 @@ alsa-lib-devel:
 at-spi:
   custom: false
   license_file: licenses/at-spi-license
+  dep_remove:
+    - gail
 at-spi-devel:
   custom: false
   license_file: licenses/at-spi-license
+  dep_remove:
+    - gail-devel
 atk:
   custom: false
   license_file: licenses/atk-copying
@@ -170,6 +174,8 @@ java-1.7.0-openjdk-headless:
   custom: false
   skipped_cdts:
     - cos6-x86_64
+  dep_replace:
+    jpackage-utils-cos7: javapackages-tools-cos7
   build_append:
     all: |
       jvm_slug=$(compgen -G "${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-*")

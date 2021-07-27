@@ -189,7 +189,7 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
                 skipped.add(node)
             elif not _has_all_cdt_deps(node, cdt_meta):
                 raise RuntimeError(
-                    "CDT %s cannot be built"
+                    "CDT %s cannot be built "
                     "since not all deps are available!" % node
                 )
 

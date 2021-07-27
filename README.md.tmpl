@@ -26,8 +26,10 @@ The following options are available when adding a CDT in the configuration file:
    `build.sh` file for a given distribution and platform. For example, one might set a key
    `cos6-x86_64` in this mapping and set the value to `echo 'hi!'` to add `echo 'hi!'` to
    the build script for only `cos6-x86_64`.
- - `recursive` (boolean): Set to `false` to disable recrusive generation of a CDTs
-   dependencies. The default is `true`.
+ - `dep_remove` (list of strings): Set to a list of strings for deps that should be remove
+ - `dep_replace` (dict mapping dep to replace to new dep): Set to a dict of deps to be 
+   replaced by another dep. this can be used for aliased RPMs.
+
 
 ## Adding a CDT package
 

@@ -23,24 +23,20 @@ requirements:
   build:
     - orbit2-cos7-ppc64le >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
     - atk-cos7-ppc64le >=1.29.2 *_{{ cdt_build_number|int + 1000 }}
-    - gail-cos7-ppc64le >=2.24.31 *_{{ cdt_build_number|int + 1000 }}
     - gtk2-cos7-ppc64le >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
     - libbonobo-cos7-ppc64le >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
   host:
     - orbit2-cos7-ppc64le >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
     - atk-cos7-ppc64le >=1.29.2 *_{{ cdt_build_number|int + 1000 }}
-    - gail-cos7-ppc64le >=2.24.31 *_{{ cdt_build_number|int + 1000 }}
     - gtk2-cos7-ppc64le >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
     - libbonobo-cos7-ppc64le >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
     - orbit2-cos7-ppc64le >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
     - atk-cos7-ppc64le >=1.29.2 *_{{ cdt_build_number|int + 1000 }}
-    - gail-cos7-ppc64le >=2.24.31 *_{{ cdt_build_number|int + 1000 }}
     - gtk2-cos7-ppc64le >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
     - libbonobo-cos7-ppc64le >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
-
 test:
   commands:
     - echo "it installs!"

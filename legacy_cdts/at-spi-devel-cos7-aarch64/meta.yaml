@@ -24,21 +24,18 @@ requirements:
     - orbit2-devel-cos7-aarch64 >=2.6.0 *_{{ cdt_build_number|int }}
     - at-spi-cos7-aarch64 ==1.32.0 *_{{ cdt_build_number|int }}
     - atk-devel-cos7-aarch64 >=1.29.2 *_{{ cdt_build_number|int }}
-    - gail-devel-cos7-aarch64 >=2.24.31 *_{{ cdt_build_number|int }}
     - gtk2-devel-cos7-aarch64 >=2.10.0 *_{{ cdt_build_number|int }}
     - libbonobo-devel-cos7-aarch64 >=2.4.0 *_{{ cdt_build_number|int }}
   host:
     - orbit2-devel-cos7-aarch64 >=2.6.0 *_{{ cdt_build_number|int }}
     - at-spi-cos7-aarch64 ==1.32.0 *_{{ cdt_build_number|int }}
     - atk-devel-cos7-aarch64 >=1.29.2 *_{{ cdt_build_number|int }}
-    - gail-devel-cos7-aarch64 >=2.24.31 *_{{ cdt_build_number|int }}
     - gtk2-devel-cos7-aarch64 >=2.10.0 *_{{ cdt_build_number|int }}
     - libbonobo-devel-cos7-aarch64 >=2.4.0 *_{{ cdt_build_number|int }}
   run:
     - orbit2-devel-cos7-aarch64 >=2.6.0 *_{{ cdt_build_number|int }}
     - at-spi-cos7-aarch64 ==1.32.0 *_{{ cdt_build_number|int }}
     - atk-devel-cos7-aarch64 >=1.29.2 *_{{ cdt_build_number|int }}
-    - gail-devel-cos7-aarch64 >=2.24.31 *_{{ cdt_build_number|int }}
     - gtk2-devel-cos7-aarch64 >=2.10.0 *_{{ cdt_build_number|int }}
     - libbonobo-devel-cos7-aarch64 >=2.4.0 *_{{ cdt_build_number|int }}
   run_constrained:

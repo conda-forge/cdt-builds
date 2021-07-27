@@ -23,24 +23,20 @@ requirements:
   build:
     - orbit2-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
     - atk-cos6-x86_64 >=1.13.0 *_{{ cdt_build_number|int + 1000 }}
-    - gail-cos6-x86_64 >=2.24.23 *_{{ cdt_build_number|int + 1000 }}
     - gtk2-cos6-x86_64 >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
     - libbonobo-cos6-x86_64 >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
   host:
     - orbit2-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
     - atk-cos6-x86_64 >=1.13.0 *_{{ cdt_build_number|int + 1000 }}
-    - gail-cos6-x86_64 >=2.24.23 *_{{ cdt_build_number|int + 1000 }}
     - gtk2-cos6-x86_64 >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
     - libbonobo-cos6-x86_64 >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
   run:
     - orbit2-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
     - atk-cos6-x86_64 >=1.13.0 *_{{ cdt_build_number|int + 1000 }}
-    - gail-cos6-x86_64 >=2.24.23 *_{{ cdt_build_number|int + 1000 }}
     - gtk2-cos6-x86_64 >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
     - libbonobo-cos6-x86_64 >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
-
 test:
   commands:
     - echo "it installs!"
