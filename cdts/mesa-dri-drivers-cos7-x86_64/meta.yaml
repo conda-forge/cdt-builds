@@ -3,11 +3,11 @@ package:
   version: 18.3.4
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/mesa-dri-drivers-18.3.4-7.el7.x86_64.rpm
-    sha256: 6db5965786c8e7fb13cfceb0a6879439a1f2122cd196e9e740298f14cf108712
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/mesa-dri-drivers-18.3.4-10.el7.x86_64.rpm
+    sha256: fd30b3a238ec32ab270c053e3d4cc3b88e6c0de52594ee1b92f6411302ffdca3
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-7.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-10.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

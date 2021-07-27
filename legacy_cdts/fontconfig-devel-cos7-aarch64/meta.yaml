@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,14 +21,14 @@ build:
 
 requirements:
   build:
-    - fontconfig-cos7-aarch64 ==2.13.0 *_{{ cdt_build_number }}
-    - freetype-devel-cos7-aarch64 >=2.8 *_{{ cdt_build_number }}
+    - fontconfig-cos7-aarch64 ==2.13.0 *_{{ cdt_build_number|int }}
+    - freetype-devel-cos7-aarch64 >=2.8 *_{{ cdt_build_number|int }}
   host:
-    - fontconfig-cos7-aarch64 ==2.13.0 *_{{ cdt_build_number }}
-    - freetype-devel-cos7-aarch64 >=2.8 *_{{ cdt_build_number }}
+    - fontconfig-cos7-aarch64 ==2.13.0 *_{{ cdt_build_number|int }}
+    - freetype-devel-cos7-aarch64 >=2.8 *_{{ cdt_build_number|int }}
   run:
-    - fontconfig-cos7-aarch64 ==2.13.0 *_{{ cdt_build_number }}
-    - freetype-devel-cos7-aarch64 >=2.8 *_{{ cdt_build_number }}
+    - fontconfig-cos7-aarch64 ==2.13.0 *_{{ cdt_build_number|int }}
+    - freetype-devel-cos7-aarch64 >=2.8 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

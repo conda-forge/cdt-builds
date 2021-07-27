@@ -3,7 +3,7 @@ package:
   version: 2.24.2
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/libbonobo-2.24.2-5.el6.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/libbonobo-2.24.2-5.el6.x86_64.rpm
     sha256: 869924ce84fd6cab150c3daa2b8a227f217f070b031679d639ff621dd042cd0e
     no_hoist: true
     folder: binary
@@ -12,10 +12,10 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -31,10 +31,12 @@ about:
   home: http://ftp.gnome.org
   license: GPLv2+ and LGPLv2+
   license_family: GPL2
-  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libbonobo-2.24.2/COPYING
-  summary: "(CDT) Bonobo component system"
+  license_file:
+    - libbonobo-copying
+    - libbonobo-copying.lib
+  summary: (CDT) Bonobo component system
   description: |
-        Bonobo is a component system based on CORBA, used by the GNOME desktop.
+    Bonobo is a component system based on CORBA, used by the GNOME desktop.
 
 extra:
   recipe-maintainers:

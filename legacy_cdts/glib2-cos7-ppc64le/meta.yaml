@@ -3,19 +3,19 @@ package:
   version: 2.56.1
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/glib2-2.56.1-5.el7.ppc64le.rpm
-    sha256: e06de42bd5658024389883bdaf66198c269ab31670418aa56201b77bd136c00f
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/glib2-2.56.1-7.el7.ppc64le.rpm
+    sha256: 2936bfd4ed1c58bd682976cc45e66ca81c3a69a4886b495214b972730695eb64
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/glib2-2.56.1-5.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/glib2-2.56.1-7.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -31,13 +31,13 @@ about:
   home: http://www.gtk.org
   license: LGPL-2.0-or-later
   license_family: LGPL
-  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/glib2-2.56.1/COPYING
-  summary: "(CDT) A library of handy utility functions"
+  license_file: glib2-copying
+  summary: (CDT) A library of handy utility functions
   description: |
-        GLib is the low-level core library that forms the basis for projects such as
-        GTK+ and GNOME. It provides data structure handling for C, portability
-        wrappers, and interfaces for such runtime functionality as an event loop,
-        threads, dynamic loading, and an object system.
+    GLib is the low-level core library that forms the basis for projects such as
+    GTK+ and GNOME. It provides data structure handling for C, portability
+    wrappers, and interfaces for such runtime functionality as an event loop,
+    threads, dynamic loading, and an object system.
 
 extra:
   recipe-maintainers:

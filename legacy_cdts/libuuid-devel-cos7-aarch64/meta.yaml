@@ -3,16 +3,16 @@ package:
   version: 2.23.2
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libuuid-devel-2.23.2-63.el7.aarch64.rpm
-    sha256: 029052862b97ed0e9252080c1812bfca2bba095cd92342c24c6a75cbf2d524b0
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libuuid-devel-2.23.2-65.el7.aarch64.rpm
+    sha256: adaff395abdea2920633c8b9ae16db51fcf2af355ff334dddc80d2e373660da5
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/util-linux-2.23.2-63.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/util-linux-2.23.2-65.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,11 +21,11 @@ build:
 
 requirements:
   build:
-    - libuuid-cos7-aarch64 ==2.23.2 *_{{ cdt_build_number }}
+    - libuuid-cos7-aarch64 ==2.23.2 *_{{ cdt_build_number|int }}
   host:
-    - libuuid-cos7-aarch64 ==2.23.2 *_{{ cdt_build_number }}
+    - libuuid-cos7-aarch64 ==2.23.2 *_{{ cdt_build_number|int }}
   run:
-    - libuuid-cos7-aarch64 ==2.23.2 *_{{ cdt_build_number }}
+    - libuuid-cos7-aarch64 ==2.23.2 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

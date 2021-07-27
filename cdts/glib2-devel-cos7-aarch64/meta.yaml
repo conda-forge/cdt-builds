@@ -3,11 +3,11 @@ package:
   version: 2.56.1
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/glib2-devel-2.56.1-5.el7.aarch64.rpm
-    sha256: 7d2ae7be15023b234d8c3627dea3c025fcb1a7a6b238b6832cf676f0924a8ad0
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/glib2-devel-2.56.1-7.el7.aarch64.rpm
+    sha256: 49159d37b2d89b43cb9d0545cfe523d622e466f5c603f576035f54e1a7eae1a6
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/glib2-2.56.1-5.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/glib2-2.56.1-7.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

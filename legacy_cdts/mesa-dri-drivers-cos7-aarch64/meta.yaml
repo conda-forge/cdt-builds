@@ -3,16 +3,16 @@ package:
   version: 18.3.4
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-dri-drivers-18.3.4-7.el7.aarch64.rpm
-    sha256: c00b692f2a08850099a9f58f2b505c5030078de883e2c63ec2e2f7152de0f52b
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-dri-drivers-18.3.4-10.el7.aarch64.rpm
+    sha256: c8cd7f6759d26246b59adbc8ba958dd4a82f09e24e2a268a1cb4b9f3f34cec3f
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-7.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-10.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,11 +21,11 @@ build:
 
 requirements:
   build:
-    - libdrm-cos7-aarch64 >=2.4.83 *_{{ cdt_build_number }}
+    - libdrm-cos7-aarch64 >=2.4.83 *_{{ cdt_build_number|int }}
   host:
-    - libdrm-cos7-aarch64 >=2.4.83 *_{{ cdt_build_number }}
+    - libdrm-cos7-aarch64 >=2.4.83 *_{{ cdt_build_number|int }}
   run:
-    - libdrm-cos7-aarch64 >=2.4.83 *_{{ cdt_build_number }}
+    - libdrm-cos7-aarch64 >=2.4.83 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

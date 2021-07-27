@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,14 +21,14 @@ build:
 
 requirements:
   build:
-    - libglvnd-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number }}
-    - mesa-libegl-cos7-ppc64le >=13.0.4 *_{{ cdt_build_number }}
+    - libglvnd-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int }}
+    - mesa-libegl-cos7-ppc64le >=13.0.4 *_{{ cdt_build_number|int }}
   host:
-    - libglvnd-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number }}
-    - mesa-libegl-cos7-ppc64le >=13.0.4 *_{{ cdt_build_number }}
+    - libglvnd-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int }}
+    - mesa-libegl-cos7-ppc64le >=13.0.4 *_{{ cdt_build_number|int }}
   run:
-    - libglvnd-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number }}
-    - mesa-libegl-cos7-ppc64le >=13.0.4 *_{{ cdt_build_number }}
+    - libglvnd-cos7-ppc64le ==1.0.1 *_{{ cdt_build_number|int }}
+    - mesa-libegl-cos7-ppc64le >=13.0.4 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

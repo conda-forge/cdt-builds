@@ -3,16 +3,16 @@ package:
   version: 18.3.4
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/mesa-libGL-18.3.4-7.el7.ppc64le.rpm
-    sha256: 16f23536f80b81516be6d94e3536732572edfc44d8b1e012a37a89e8d958def1
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/mesa-libGL-18.3.4-10.el7.ppc64le.rpm
+    sha256: ba1cd56a71ac90429a8441a8eb57e37086d830cfe9d2ffadcdc578a2cf61be14
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-7.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-10.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,17 +21,17 @@ build:
 
 requirements:
   build:
-    - libdrm-cos7-ppc64le >=2.4.83 *_{{ cdt_build_number }}
-    - libglvnd-glx-cos7-ppc64le >=1.0.1 *_{{ cdt_build_number }}
-    - mesa-libglapi-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number }}
+    - libdrm-cos7-ppc64le >=2.4.83 *_{{ cdt_build_number|int }}
+    - libglvnd-glx-cos7-ppc64le >=1.0.1 *_{{ cdt_build_number|int }}
+    - mesa-libglapi-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number|int }}
   host:
-    - libdrm-cos7-ppc64le >=2.4.83 *_{{ cdt_build_number }}
-    - libglvnd-glx-cos7-ppc64le >=1.0.1 *_{{ cdt_build_number }}
-    - mesa-libglapi-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number }}
+    - libdrm-cos7-ppc64le >=2.4.83 *_{{ cdt_build_number|int }}
+    - libglvnd-glx-cos7-ppc64le >=1.0.1 *_{{ cdt_build_number|int }}
+    - mesa-libglapi-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number|int }}
   run:
-    - libdrm-cos7-ppc64le >=2.4.83 *_{{ cdt_build_number }}
-    - libglvnd-glx-cos7-ppc64le >=1.0.1 *_{{ cdt_build_number }}
-    - mesa-libglapi-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number }}
+    - libdrm-cos7-ppc64le >=2.4.83 *_{{ cdt_build_number|int }}
+    - libglvnd-glx-cos7-ppc64le >=1.0.1 *_{{ cdt_build_number|int }}
+    - mesa-libglapi-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

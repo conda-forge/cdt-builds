@@ -12,23 +12,23 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
 requirements:
   build:
-    - glib-networking-cos7-ppc64le >=2.38.0 *_{{ cdt_build_number }}
-    - glib2-cos7-ppc64le >=2.38.0 *_{{ cdt_build_number }}
+    - glib-networking-cos7-ppc64le >=2.38.0 *_{{ cdt_build_number|int }}
+    - glib2-cos7-ppc64le >=2.38.0 *_{{ cdt_build_number|int }}
   host:
-    - glib-networking-cos7-ppc64le >=2.38.0 *_{{ cdt_build_number }}
-    - glib2-cos7-ppc64le >=2.38.0 *_{{ cdt_build_number }}
+    - glib-networking-cos7-ppc64le >=2.38.0 *_{{ cdt_build_number|int }}
+    - glib2-cos7-ppc64le >=2.38.0 *_{{ cdt_build_number|int }}
   run:
-    - glib-networking-cos7-ppc64le >=2.38.0 *_{{ cdt_build_number }}
-    - glib2-cos7-ppc64le >=2.38.0 *_{{ cdt_build_number }}
+    - glib-networking-cos7-ppc64le >=2.38.0 *_{{ cdt_build_number|int }}
+    - glib2-cos7-ppc64le >=2.38.0 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 
@@ -40,16 +40,16 @@ about:
   home: https://wiki.gnome.org/Projects/libsoup
   license: LGPLv2
   license_family: LGPL
-  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/libsoup-2.62.2/COPYING
-  summary: "(CDT) Soup, an HTTP library implementation"
+  license_file: libsoup-license
+  summary: (CDT) Soup, an HTTP library implementation
   description: |
-        Libsoup is an HTTP library implementation in C. It was originally part of a
-        SOAP (Simple Object Access Protocol) implementation called Soup, but the SOAP
-        and non-SOAP parts have now been split into separate packages.  libsoup uses
-        the Glib main loop and is designed to work well with GTK applications. This
-        enables GNOME applications to access HTTP servers on the network in a
-        completely asynchronous fashion, very similar to the Gtk+ programming model (a
-        synchronous operation mode is also supported for those who want it).
+    Libsoup is an HTTP library implementation in C. It was originally part of a
+    SOAP (Simple Object Access Protocol) implementation called Soup, but the SOAP
+    and non-SOAP parts have now been split into separate packages.  libsoup uses
+    the Glib main loop and is designed to work well with GTK applications. This
+    enables GNOME applications to access HTTP servers on the network in a
+    completely asynchronous fashion, very similar to the Gtk+ programming model (a
+    synchronous operation mode is also supported for those who want it).
 
 extra:
   recipe-maintainers:

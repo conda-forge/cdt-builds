@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: False
   detect_binary_files_with_prefix: False
@@ -21,11 +21,11 @@ build:
 
 requirements:
   build:
-    - python-javapackages-cos7-aarch64 ==3.4.1 *_{{ cdt_build_number }}
+    - python-javapackages-cos7-aarch64 ==3.4.1 *_{{ cdt_build_number|int }}
   host:
-    - python-javapackages-cos7-aarch64 ==3.4.1 *_{{ cdt_build_number }}
+    - python-javapackages-cos7-aarch64 ==3.4.1 *_{{ cdt_build_number|int }}
   run:
-    - python-javapackages-cos7-aarch64 ==3.4.1 *_{{ cdt_build_number }}
+    - python-javapackages-cos7-aarch64 ==3.4.1 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

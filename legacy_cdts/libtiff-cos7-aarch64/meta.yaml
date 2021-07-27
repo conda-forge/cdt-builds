@@ -3,16 +3,16 @@ package:
   version: 4.0.3
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libtiff-4.0.3-32.el7.aarch64.rpm
-    sha256: 0afdd1feb45e2531a456c042ce94cebd3053f85f0bfe03d3bd404c0600961493
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libtiff-4.0.3-35.el7.aarch64.rpm
+    sha256: ba1f5f7bbab91a77e8f8c4fd40c95784964e66b6ba46430e9f00bc429846878a
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libtiff-4.0.3-32.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libtiff-4.0.3-35.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: False
   detect_binary_files_with_prefix: False

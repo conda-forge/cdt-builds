@@ -3,7 +3,7 @@ package:
   version: 4.19.0
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/nspr-4.19.0-1.el6.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/nspr-4.19.0-1.el6.x86_64.rpm
     sha256: f7dc13dea884b7d3bd374059629be73e9e74e6a5939e0fd5dd4285a1e889d031
     no_hoist: true
     folder: binary
@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false

@@ -21,13 +21,6 @@ popd > /dev/null 2>&1
 
 # START OF INSERTED BUILD APPENDS
 
-
-# CONDA-FORGE BUILD APPEND
-pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
-ls -lah .
-popd > /dev/null 2>&1
-
-
 # END OF INSERTED BUILD APPENDS
 
 # this code makes sure that any symlinks are relative and their targets exist

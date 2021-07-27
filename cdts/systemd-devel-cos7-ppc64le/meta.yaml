@@ -3,11 +3,11 @@ package:
   version: 219
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/systemd-devel-219-73.el7.1.ppc64le.rpm
-    sha256: 91dc2ee1a41d4ded8ffbf4d7690867a115f8449c000613cee7a49c381f0140cd
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/systemd-devel-219-78.el7.ppc64le.rpm
+    sha256: 8d00a0b7182f1010ef09a0f37231bcbd1ecb35bdc07d59422fadc1e129a4cf96
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/systemd-219-73.el7.1.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/systemd-219-78.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

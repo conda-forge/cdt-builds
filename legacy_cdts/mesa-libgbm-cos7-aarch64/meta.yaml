@@ -3,16 +3,16 @@ package:
   version: 18.3.4
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-libgbm-18.3.4-7.el7.aarch64.rpm
-    sha256: c1badb5ab3fdd9f66eee7814edcb54628fb96b15a401bb980efee2a7709b0308
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-libgbm-18.3.4-10.el7.aarch64.rpm
+    sha256: df214382734fd4b2a0dc0800c57dd4f0b8023df55218e979553d6cc6bb7ee1aa
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-7.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-10.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,14 +21,14 @@ build:
 
 requirements:
   build:
-    - libdrm-cos7-aarch64 >=2.4.83 *_{{ cdt_build_number }}
-    - mesa-libglapi-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
+    - libdrm-cos7-aarch64 >=2.4.83 *_{{ cdt_build_number|int }}
+    - mesa-libglapi-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number|int }}
   host:
-    - libdrm-cos7-aarch64 >=2.4.83 *_{{ cdt_build_number }}
-    - mesa-libglapi-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
+    - libdrm-cos7-aarch64 >=2.4.83 *_{{ cdt_build_number|int }}
+    - mesa-libglapi-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number|int }}
   run:
-    - libdrm-cos7-aarch64 >=2.4.83 *_{{ cdt_build_number }}
-    - mesa-libglapi-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
+    - libdrm-cos7-aarch64 >=2.4.83 *_{{ cdt_build_number|int }}
+    - mesa-libglapi-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

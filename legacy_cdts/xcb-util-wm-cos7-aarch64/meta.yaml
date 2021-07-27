@@ -12,10 +12,10 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -31,12 +31,12 @@ about:
   home: http://xcb.freedesktop.org
   license: MIT
   license_family: MIT
-  license_file: {{ SRC_DIR }}/binary/usr/share/doc/xcb-util-wm-0.4.1/COPYING
-  summary: "(CDT) Client and window-manager helper library on top of libxcb"
+  license_file: xcb-util-wm-license
+  summary: (CDT) Client and window-manager helper library on top of libxcb
   description: |
-        XCB util-wm module provides the following libraries:    - ewmh: Both client
-        and window-manager helpers for EWMH.   - icccm: Both client and window-manager
-        helpers for ICCCM.
+    XCB util-wm module provides the following libraries:    - ewmh: Both client
+    and window-manager helpers for EWMH.   - icccm: Both client and window-manager
+    helpers for ICCCM.
 
 extra:
   recipe-maintainers:

@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,17 +21,17 @@ build:
 
 requirements:
   build:
-    - orbit2-devel-cos7-aarch64 >=2.7.5 *_{{ cdt_build_number }}
-    - libbonobo-cos7-aarch64 ==2.32.1 *_{{ cdt_build_number }}
-    - libxml2-devel-cos7-aarch64 >=2.4.21 *_{{ cdt_build_number }}
+    - orbit2-devel-cos7-aarch64 >=2.7.5 *_{{ cdt_build_number|int }}
+    - libbonobo-cos7-aarch64 ==2.32.1 *_{{ cdt_build_number|int }}
+    - libxml2-devel-cos7-aarch64 >=2.4.21 *_{{ cdt_build_number|int }}
   host:
-    - orbit2-devel-cos7-aarch64 >=2.7.5 *_{{ cdt_build_number }}
-    - libbonobo-cos7-aarch64 ==2.32.1 *_{{ cdt_build_number }}
-    - libxml2-devel-cos7-aarch64 >=2.4.21 *_{{ cdt_build_number }}
+    - orbit2-devel-cos7-aarch64 >=2.7.5 *_{{ cdt_build_number|int }}
+    - libbonobo-cos7-aarch64 ==2.32.1 *_{{ cdt_build_number|int }}
+    - libxml2-devel-cos7-aarch64 >=2.4.21 *_{{ cdt_build_number|int }}
   run:
-    - orbit2-devel-cos7-aarch64 >=2.7.5 *_{{ cdt_build_number }}
-    - libbonobo-cos7-aarch64 ==2.32.1 *_{{ cdt_build_number }}
-    - libxml2-devel-cos7-aarch64 >=2.4.21 *_{{ cdt_build_number }}
+    - orbit2-devel-cos7-aarch64 >=2.7.5 *_{{ cdt_build_number|int }}
+    - libbonobo-cos7-aarch64 ==2.32.1 *_{{ cdt_build_number|int }}
+    - libxml2-devel-cos7-aarch64 >=2.4.21 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

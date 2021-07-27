@@ -1,13 +1,13 @@
 package:
   name: ca-certificates-cos7-aarch64
-  version: 2019.2.32
+  version: 2020.2.41
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/ca-certificates-2019.2.32-76.el7_7.noarch.rpm
-    sha256: 4d0ee8447f85e63c5208eae9b5fdaeb81facbd14e9a829ee5fd87b12cb4712b1
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/ca-certificates-2020.2.41-70.0.el7_8.noarch.rpm
+    sha256: 1095e8edd8713c148159831eda79522d8eae5c52f1930b7a570a157f3ccf2fc2
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/ca-certificates-2019.2.32-76.el7_7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/ca-certificates-2020.2.41-70.0.el7_8.src.rpm
   #   no_hoist: true
   #   folder: source
 

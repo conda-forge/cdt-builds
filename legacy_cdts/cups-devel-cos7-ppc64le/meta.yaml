@@ -3,16 +3,16 @@ package:
   version: 1.6.3
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/cups-devel-1.6.3-43.el7.ppc64le.rpm
-    sha256: 51165108c0e963222d7f786d4a30c45a08956cd660f41b9a4d7871b0f376a15e
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/cups-devel-1.6.3-51.el7.ppc64le.rpm
+    sha256: 472607d505e5b7321d8697c893310a79f7c1947dea33e73da677d96341ec6174
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/cups-1.6.3-43.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/cups-1.6.3-51.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,11 +21,11 @@ build:
 
 requirements:
   build:
-    - cups-libs-cos7-ppc64le ==1.6.3 *_{{ cdt_build_number }}
+    - cups-libs-cos7-ppc64le ==1.6.3 *_{{ cdt_build_number|int }}
   host:
-    - cups-libs-cos7-ppc64le ==1.6.3 *_{{ cdt_build_number }}
+    - cups-libs-cos7-ppc64le ==1.6.3 *_{{ cdt_build_number|int }}
   run:
-    - cups-libs-cos7-ppc64le ==1.6.3 *_{{ cdt_build_number }}
+    - cups-libs-cos7-ppc64le ==1.6.3 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,11 +21,11 @@ build:
 
 requirements:
   build:
-    - libxau-cos7-aarch64 ==1.0.8 *_{{ cdt_build_number }}
+    - libxau-cos7-aarch64 ==1.0.8 *_{{ cdt_build_number|int }}
   host:
-    - libxau-cos7-aarch64 ==1.0.8 *_{{ cdt_build_number }}
+    - libxau-cos7-aarch64 ==1.0.8 *_{{ cdt_build_number|int }}
   run:
-    - libxau-cos7-aarch64 ==1.0.8 *_{{ cdt_build_number }}
+    - libxau-cos7-aarch64 ==1.0.8 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

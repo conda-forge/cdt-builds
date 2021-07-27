@@ -3,7 +3,7 @@ package:
   version: 2.24.2
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/libbonobo-devel-2.24.2-5.el6.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/libbonobo-devel-2.24.2-5.el6.x86_64.rpm
     sha256: 95a12e113b8ac8f7a502093d5f5c28de8f5a47783a05c2e128901f2d26303004
     no_hoist: true
     folder: binary
@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,17 +21,17 @@ build:
 
 requirements:
   build:
-    - orbit2-devel-cos6-x86_64 >=2.7.5 *_{{ cdt_build_number }}
-    - libbonobo-cos6-x86_64 ==2.24.2 *_{{ cdt_build_number }}
-    - libxml2-devel-cos6-x86_64 >=2.4.21 *_{{ cdt_build_number }}
+    - orbit2-devel-cos6-x86_64 >=2.7.5 *_{{ cdt_build_number|int }}
+    - libbonobo-cos6-x86_64 ==2.24.2 *_{{ cdt_build_number|int }}
+    - libxml2-devel-cos6-x86_64 >=2.4.21 *_{{ cdt_build_number|int }}
   host:
-    - orbit2-devel-cos6-x86_64 >=2.7.5 *_{{ cdt_build_number }}
-    - libbonobo-cos6-x86_64 ==2.24.2 *_{{ cdt_build_number }}
-    - libxml2-devel-cos6-x86_64 >=2.4.21 *_{{ cdt_build_number }}
+    - orbit2-devel-cos6-x86_64 >=2.7.5 *_{{ cdt_build_number|int }}
+    - libbonobo-cos6-x86_64 ==2.24.2 *_{{ cdt_build_number|int }}
+    - libxml2-devel-cos6-x86_64 >=2.4.21 *_{{ cdt_build_number|int }}
   run:
-    - orbit2-devel-cos6-x86_64 >=2.7.5 *_{{ cdt_build_number }}
-    - libbonobo-cos6-x86_64 ==2.24.2 *_{{ cdt_build_number }}
-    - libxml2-devel-cos6-x86_64 >=2.4.21 *_{{ cdt_build_number }}
+    - orbit2-devel-cos6-x86_64 >=2.7.5 *_{{ cdt_build_number|int }}
+    - libbonobo-cos6-x86_64 ==2.24.2 *_{{ cdt_build_number|int }}
+    - libxml2-devel-cos6-x86_64 >=2.4.21 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
 

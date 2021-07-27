@@ -28,7 +28,7 @@ jvm_slug=$(basename ${jvm_slug})
 
 pushd ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre/lib/security > /dev/null 2>&1
 mkdir -p ../../../../../../../etc/pki/java/cacerts
-popd > /dev/null 2>&1      
+popd > /dev/null 2>&1
 
 
 # END OF INSERTED BUILD APPENDS

@@ -3,16 +3,16 @@ package:
   version: 219
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/systemd-219-73.el7.1.ppc64le.rpm
-    sha256: bd258783af45d85b8b01ed4bc23012a621ba2d23830830dd8584cc3b094f7760
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/systemd-219-78.el7.ppc64le.rpm
+    sha256: de1a4b7aba6b27e98e91d7b3cb17086cfcd6f79a55a5cbe257d5e42d761e58ea
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/systemd-219-73.el7.1.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/systemd-219-78.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,17 +21,17 @@ build:
 
 requirements:
   build:
-    - kmod-cos7-ppc64le >=18 *_{{ cdt_build_number }}
-    - centos-release-cos7-ppc64le >=7 *_{{ cdt_build_number }}
-    - systemd-libs-cos7-ppc64le ==219 *_{{ cdt_build_number }}
+    - kmod-cos7-ppc64le >=18 *_{{ cdt_build_number|int }}
+    - redhat-release-cos7-ppc64le >=7 *_{{ cdt_build_number|int }}
+    - systemd-libs-cos7-ppc64le ==219 *_{{ cdt_build_number|int }}
   host:
-    - kmod-cos7-ppc64le >=18 *_{{ cdt_build_number }}
-    - centos-release-cos7-ppc64le >=7 *_{{ cdt_build_number }}
-    - systemd-libs-cos7-ppc64le ==219 *_{{ cdt_build_number }}
+    - kmod-cos7-ppc64le >=18 *_{{ cdt_build_number|int }}
+    - redhat-release-cos7-ppc64le >=7 *_{{ cdt_build_number|int }}
+    - systemd-libs-cos7-ppc64le ==219 *_{{ cdt_build_number|int }}
   run:
-    - kmod-cos7-ppc64le >=18 *_{{ cdt_build_number }}
-    - centos-release-cos7-ppc64le >=7 *_{{ cdt_build_number }}
-    - systemd-libs-cos7-ppc64le ==219 *_{{ cdt_build_number }}
+    - kmod-cos7-ppc64le >=18 *_{{ cdt_build_number|int }}
+    - redhat-release-cos7-ppc64le >=7 *_{{ cdt_build_number|int }}
+    - systemd-libs-cos7-ppc64le ==219 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

@@ -3,7 +3,7 @@ package:
   version: 2.0.1
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/expat-devel-2.0.1-13.el6_8.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/expat-devel-2.0.1-13.el6_8.x86_64.rpm
     sha256: 64684a601f126ca5e307fa152b56af0bb7cd31cb231a6d9560573d50bbe94326
     no_hoist: true
     folder: binary
@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,11 +21,11 @@ build:
 
 requirements:
   build:
-    - expat-cos6-x86_64 ==2.0.1 *_{{ cdt_build_number }}
+    - expat-cos6-x86_64 ==2.0.1 *_{{ cdt_build_number|int }}
   host:
-    - expat-cos6-x86_64 ==2.0.1 *_{{ cdt_build_number }}
+    - expat-cos6-x86_64 ==2.0.1 *_{{ cdt_build_number|int }}
   run:
-    - expat-cos6-x86_64 ==2.0.1 *_{{ cdt_build_number }}
+    - expat-cos6-x86_64 ==2.0.1 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
 

@@ -3,16 +3,16 @@ package:
   version: 2.9.1
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libxml2-devel-2.9.1-6.el7.4.ppc64le.rpm
-    sha256: 4286119797e25f1f63540a90565513650cb0298014275d02c75af7f26e608684
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libxml2-devel-2.9.1-6.el7.5.ppc64le.rpm
+    sha256: 651f42efcff7516b5573857d83d2f7ac8dc53cfbf98302a89d52abce686caca6
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libxml2-2.9.1-6.el7.4.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libxml2-2.9.1-6.el7.5.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,11 +21,11 @@ build:
 
 requirements:
   build:
-    - libxml2-cos7-ppc64le ==2.9.1 *_{{ cdt_build_number }}
+    - libxml2-cos7-ppc64le ==2.9.1 *_{{ cdt_build_number|int }}
   host:
-    - libxml2-cos7-ppc64le ==2.9.1 *_{{ cdt_build_number }}
+    - libxml2-cos7-ppc64le ==2.9.1 *_{{ cdt_build_number|int }}
   run:
-    - libxml2-cos7-ppc64le ==2.9.1 *_{{ cdt_build_number }}
+    - libxml2-cos7-ppc64le ==2.9.1 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

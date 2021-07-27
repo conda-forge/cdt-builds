@@ -3,7 +3,7 @@ package:
   version: 1.7.0.181
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/java-1.7.0-openjdk-1.7.0.181-2.6.14.10.el6.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/java-1.7.0-openjdk-1.7.0.181-2.6.14.10.el6.x86_64.rpm
     sha256: bdfe88c5d5958e0840d6271d98f91e2573705969f1cfd660a1fe2aeb3e8b2fc5
     no_hoist: true
     folder: binary
@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,23 +21,23 @@ build:
 
 requirements:
   build:
-    - copy-jdk-configs-cos6-x86_64 >=3.3 *_{{ cdt_build_number }}
-    - jpackage-utils-cos6-x86_64 >=1.7.3 *_{{ cdt_build_number }}
-    - libjpeg-turbo-cos6-x86_64 ==1.2.1 *_{{ cdt_build_number }}
-    - nss-cos6-x86_64 >=3.28.4 *_{{ cdt_build_number }}
-    - nss-softokn-cos6-x86_64 >=3.14.3 *_{{ cdt_build_number }}
+    - copy-jdk-configs-cos6-x86_64 >=3.3 *_{{ cdt_build_number|int }}
+    - jpackage-utils-cos6-x86_64 >=1.7.3 *_{{ cdt_build_number|int }}
+    - libjpeg-cos6-x86_64 ==1.2.1 *_{{ cdt_build_number|int }}
+    - nss-cos6-x86_64 >=3.28.4 *_{{ cdt_build_number|int }}
+    - nss-softokn-cos6-x86_64 >=3.14.3 *_{{ cdt_build_number|int }}
   host:
-    - copy-jdk-configs-cos6-x86_64 >=3.3 *_{{ cdt_build_number }}
-    - jpackage-utils-cos6-x86_64 >=1.7.3 *_{{ cdt_build_number }}
-    - libjpeg-turbo-cos6-x86_64 ==1.2.1 *_{{ cdt_build_number }}
-    - nss-cos6-x86_64 >=3.28.4 *_{{ cdt_build_number }}
-    - nss-softokn-cos6-x86_64 >=3.14.3 *_{{ cdt_build_number }}
+    - copy-jdk-configs-cos6-x86_64 >=3.3 *_{{ cdt_build_number|int }}
+    - jpackage-utils-cos6-x86_64 >=1.7.3 *_{{ cdt_build_number|int }}
+    - libjpeg-cos6-x86_64 ==1.2.1 *_{{ cdt_build_number|int }}
+    - nss-cos6-x86_64 >=3.28.4 *_{{ cdt_build_number|int }}
+    - nss-softokn-cos6-x86_64 >=3.14.3 *_{{ cdt_build_number|int }}
   run:
-    - copy-jdk-configs-cos6-x86_64 >=3.3 *_{{ cdt_build_number }}
-    - jpackage-utils-cos6-x86_64 >=1.7.3 *_{{ cdt_build_number }}
-    - libjpeg-turbo-cos6-x86_64 ==1.2.1 *_{{ cdt_build_number }}
-    - nss-cos6-x86_64 >=3.28.4 *_{{ cdt_build_number }}
-    - nss-softokn-cos6-x86_64 >=3.14.3 *_{{ cdt_build_number }}
+    - copy-jdk-configs-cos6-x86_64 >=3.3 *_{{ cdt_build_number|int }}
+    - jpackage-utils-cos6-x86_64 >=1.7.3 *_{{ cdt_build_number|int }}
+    - libjpeg-cos6-x86_64 ==1.2.1 *_{{ cdt_build_number|int }}
+    - nss-cos6-x86_64 >=3.28.4 *_{{ cdt_build_number|int }}
+    - nss-softokn-cos6-x86_64 >=3.14.3 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
 

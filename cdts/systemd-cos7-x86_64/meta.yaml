@@ -3,11 +3,11 @@ package:
   version: 219
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/systemd-219-73.el7.1.x86_64.rpm
-    sha256: 0dbc8b8a2fedeb4a8d7a152068ab89ed14ecc54911ac3b93e0492976942b48e7
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/systemd-219-78.el7.x86_64.rpm
+    sha256: 82cf5ffa95261d087220b9f3ae60d532a0a3b692bbb92277f896aaa3ee1f9c2f
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/systemd-219-73.el7.1.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/systemd-219-78.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -22,16 +22,16 @@ build:
 requirements:
   build:
     - kmod-cos7-x86_64 >=18 *_{{ cdt_build_number|int + 1000 }}
-    - centos-release-cos7-x86_64 >=7 *_{{ cdt_build_number|int + 1000 }}
+    - redhat-release-cos7-x86_64 >=7 *_{{ cdt_build_number|int + 1000 }}
     - systemd-libs-cos7-x86_64 ==219 *_{{ cdt_build_number|int + 1000 }}
   host:
     - kmod-cos7-x86_64 >=18 *_{{ cdt_build_number|int + 1000 }}
-    - centos-release-cos7-x86_64 >=7 *_{{ cdt_build_number|int + 1000 }}
+    - redhat-release-cos7-x86_64 >=7 *_{{ cdt_build_number|int + 1000 }}
     - systemd-libs-cos7-x86_64 ==219 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
     - kmod-cos7-x86_64 >=18 *_{{ cdt_build_number|int + 1000 }}
-    - centos-release-cos7-x86_64 >=7 *_{{ cdt_build_number|int + 1000 }}
+    - redhat-release-cos7-x86_64 >=7 *_{{ cdt_build_number|int + 1000 }}
     - systemd-libs-cos7-x86_64 ==219 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 

@@ -99,6 +99,8 @@ def _make_cdt_recipes(*, extra, cdt_path, arch_dist_tuples, cdts, exec, force):
     futures = {}
     for arch, dist in arch_dist_tuples:
         for cdt, cfg in cdts.items():
+            _extra = extra + ""
+
             if cfg["custom"]:
                 continue
 
@@ -108,11 +110,6 @@ def _make_cdt_recipes(*, extra, cdt_path, arch_dist_tuples, cdts, exec, force):
             ):
                 continue
 
-            if cfg.get("recursive", True):
-                _extra = extra + " --recursive"
-            else:
-                _extra = extra
-
             _pth = os.path.join(
                 cdt_path,
                 cdt.lower() + "-" + _gen_dist_arch_str(arch, dist),
@@ -120,6 +117,15 @@ def _make_cdt_recipes(*, extra, cdt_path, arch_dist_tuples, cdts, exec, force):
 
             if not force and os.path.exists(_pth):
                 continue
+
+            if "build_number_bump" in cfg:
+                _extra += " --build-number-bump=%d" % cfg["build_number_bump"]
+
+            print(
+                "making CDT:",
+                cdt.lower() + "-" + _gen_dist_arch_str(arch, dist),
+                flush=True,
+            )
 
             futures[exec.submit(
                 subprocess.run,

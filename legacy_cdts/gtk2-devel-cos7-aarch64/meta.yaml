@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,23 +21,23 @@ build:
 
 requirements:
   build:
-    - atk-devel-cos7-aarch64 >=1.29.4 *_{{ cdt_build_number }}
-    - cairo-devel-cos7-aarch64 >=1.6.0 *_{{ cdt_build_number }}
-    - glib2-devel-cos7-aarch64 >=2.28.0 *_{{ cdt_build_number }}
-    - gtk2-cos7-aarch64 ==2.24.31 *_{{ cdt_build_number }}
-    - pango-devel-cos7-aarch64 >=1.20.0 *_{{ cdt_build_number }}
+    - atk-devel-cos7-aarch64 >=1.29.4 *_{{ cdt_build_number|int }}
+    - cairo-devel-cos7-aarch64 >=1.6.0 *_{{ cdt_build_number|int }}
+    - glib2-devel-cos7-aarch64 >=2.28.0 *_{{ cdt_build_number|int }}
+    - gtk2-cos7-aarch64 ==2.24.31 *_{{ cdt_build_number|int }}
+    - pango-devel-cos7-aarch64 >=1.20.0 *_{{ cdt_build_number|int }}
   host:
-    - atk-devel-cos7-aarch64 >=1.29.4 *_{{ cdt_build_number }}
-    - cairo-devel-cos7-aarch64 >=1.6.0 *_{{ cdt_build_number }}
-    - glib2-devel-cos7-aarch64 >=2.28.0 *_{{ cdt_build_number }}
-    - gtk2-cos7-aarch64 ==2.24.31 *_{{ cdt_build_number }}
-    - pango-devel-cos7-aarch64 >=1.20.0 *_{{ cdt_build_number }}
+    - atk-devel-cos7-aarch64 >=1.29.4 *_{{ cdt_build_number|int }}
+    - cairo-devel-cos7-aarch64 >=1.6.0 *_{{ cdt_build_number|int }}
+    - glib2-devel-cos7-aarch64 >=2.28.0 *_{{ cdt_build_number|int }}
+    - gtk2-cos7-aarch64 ==2.24.31 *_{{ cdt_build_number|int }}
+    - pango-devel-cos7-aarch64 >=1.20.0 *_{{ cdt_build_number|int }}
   run:
-    - atk-devel-cos7-aarch64 >=1.29.4 *_{{ cdt_build_number }}
-    - cairo-devel-cos7-aarch64 >=1.6.0 *_{{ cdt_build_number }}
-    - glib2-devel-cos7-aarch64 >=2.28.0 *_{{ cdt_build_number }}
-    - gtk2-cos7-aarch64 ==2.24.31 *_{{ cdt_build_number }}
-    - pango-devel-cos7-aarch64 >=1.20.0 *_{{ cdt_build_number }}
+    - atk-devel-cos7-aarch64 >=1.29.4 *_{{ cdt_build_number|int }}
+    - cairo-devel-cos7-aarch64 >=1.6.0 *_{{ cdt_build_number|int }}
+    - glib2-devel-cos7-aarch64 >=2.28.0 *_{{ cdt_build_number|int }}
+    - gtk2-cos7-aarch64 ==2.24.31 *_{{ cdt_build_number|int }}
+    - pango-devel-cos7-aarch64 >=1.20.0 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

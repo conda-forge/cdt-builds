@@ -1,13 +1,13 @@
 package:
   name: java-1.7.0-openjdk-cos7-x86_64
-  version: 1.7.0.251
+  version: 1.7.0.261
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/java-1.7.0-openjdk-1.7.0.251-2.6.21.1.el7.x86_64.rpm
-    sha256: 675b0c7526491c53c5e06af5bb54d180f350b8c5e6ef63b12cf75a226136565e
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/java-1.7.0-openjdk-1.7.0.261-2.6.22.2.el7_8.x86_64.rpm
+    sha256: fabe67fc9df555934da2d72279096fd3c24b3e2ff47850f5896505890f38a0a4
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/java-1.7.0-openjdk-1.7.0.251-2.6.21.1.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/java-1.7.0-openjdk-1.7.0.261-2.6.22.2.el7_8.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -21,12 +21,12 @@ build:
 
 requirements:
   build:
-    - java-1.7.0-openjdk-headless-cos7-x86_64 ==1.7.0.251 *_{{ cdt_build_number|int + 1000 }}
+    - java-1.7.0-openjdk-headless-cos7-x86_64 ==1.7.0.261 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - java-1.7.0-openjdk-headless-cos7-x86_64 ==1.7.0.251 *_{{ cdt_build_number|int + 1000 }}
+    - java-1.7.0-openjdk-headless-cos7-x86_64 ==1.7.0.261 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - java-1.7.0-openjdk-headless-cos7-x86_64 ==1.7.0.251 *_{{ cdt_build_number|int + 1000 }}
+    - java-1.7.0-openjdk-headless-cos7-x86_64 ==1.7.0.261 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

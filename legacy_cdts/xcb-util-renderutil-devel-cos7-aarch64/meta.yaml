@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,11 +21,11 @@ build:
 
 requirements:
   build:
-    - xcb-util-renderutil-cos7-aarch64 ==0.3.9 *_{{ cdt_build_number }}
+    - xcb-util-renderutil-cos7-aarch64 ==0.3.9 *_{{ cdt_build_number|int }}
   host:
-    - xcb-util-renderutil-cos7-aarch64 ==0.3.9 *_{{ cdt_build_number }}
+    - xcb-util-renderutil-cos7-aarch64 ==0.3.9 *_{{ cdt_build_number|int }}
   run:
-    - xcb-util-renderutil-cos7-aarch64 ==0.3.9 *_{{ cdt_build_number }}
+    - xcb-util-renderutil-cos7-aarch64 ==0.3.9 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 
