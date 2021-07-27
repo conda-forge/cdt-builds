@@ -22,15 +22,15 @@ build:
 requirements:
   build:
     - kmod-cos7-aarch64 >=18 *_{{ cdt_build_number|int }}
-    - redhat-release-cos7-aarch64 >=7 *_{{ cdt_build_number|int }}
+    - centos-release-cos7-aarch64 >=7 *_{{ cdt_build_number|int }}
     - systemd-libs-cos7-aarch64 ==219 *_{{ cdt_build_number|int }}
   host:
     - kmod-cos7-aarch64 >=18 *_{{ cdt_build_number|int }}
-    - redhat-release-cos7-aarch64 >=7 *_{{ cdt_build_number|int }}
+    - centos-release-cos7-aarch64 >=7 *_{{ cdt_build_number|int }}
     - systemd-libs-cos7-aarch64 ==219 *_{{ cdt_build_number|int }}
   run:
     - kmod-cos7-aarch64 >=18 *_{{ cdt_build_number|int }}
-    - redhat-release-cos7-aarch64 >=7 *_{{ cdt_build_number|int }}
+    - centos-release-cos7-aarch64 >=7 *_{{ cdt_build_number|int }}
     - systemd-libs-cos7-aarch64 ==219 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999

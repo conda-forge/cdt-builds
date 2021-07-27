@@ -28,7 +28,6 @@ requirements:
   run:
     - java-1.7.0-openjdk-headless-cos7-ppc64le ==1.7.0.261 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
-
 test:
   commands:
     - echo "it installs!"
