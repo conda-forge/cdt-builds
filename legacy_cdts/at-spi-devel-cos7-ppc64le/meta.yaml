@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,26 +21,23 @@ build:
 
 requirements:
   build:
-    - orbit2-devel-cos7-ppc64le >=2.6.0 *_{{ cdt_build_number }}
-    - at-spi-cos7-ppc64le ==1.32.0 *_{{ cdt_build_number }}
-    - atk-devel-cos7-ppc64le >=1.29.2 *_{{ cdt_build_number }}
-    - gtk2-devel-cos7-ppc64le >=2.24.31 *_{{ cdt_build_number }}
-    - gtk2-devel-cos7-ppc64le >=2.10.0 *_{{ cdt_build_number }}
-    - libbonobo-devel-cos7-ppc64le >=2.4.0 *_{{ cdt_build_number }}
+    - orbit2-devel-cos7-ppc64le >=2.6.0 *_{{ cdt_build_number|int }}
+    - at-spi-cos7-ppc64le ==1.32.0 *_{{ cdt_build_number|int }}
+    - atk-devel-cos7-ppc64le >=1.29.2 *_{{ cdt_build_number|int }}
+    - gtk2-devel-cos7-ppc64le >=2.10.0 *_{{ cdt_build_number|int }}
+    - libbonobo-devel-cos7-ppc64le >=2.4.0 *_{{ cdt_build_number|int }}
   host:
-    - orbit2-devel-cos7-ppc64le >=2.6.0 *_{{ cdt_build_number }}
-    - at-spi-cos7-ppc64le ==1.32.0 *_{{ cdt_build_number }}
-    - atk-devel-cos7-ppc64le >=1.29.2 *_{{ cdt_build_number }}
-    - gtk2-devel-cos7-ppc64le >=2.24.31 *_{{ cdt_build_number }}
-    - gtk2-devel-cos7-ppc64le >=2.10.0 *_{{ cdt_build_number }}
-    - libbonobo-devel-cos7-ppc64le >=2.4.0 *_{{ cdt_build_number }}
+    - orbit2-devel-cos7-ppc64le >=2.6.0 *_{{ cdt_build_number|int }}
+    - at-spi-cos7-ppc64le ==1.32.0 *_{{ cdt_build_number|int }}
+    - atk-devel-cos7-ppc64le >=1.29.2 *_{{ cdt_build_number|int }}
+    - gtk2-devel-cos7-ppc64le >=2.10.0 *_{{ cdt_build_number|int }}
+    - libbonobo-devel-cos7-ppc64le >=2.4.0 *_{{ cdt_build_number|int }}
   run:
-    - orbit2-devel-cos7-ppc64le >=2.6.0 *_{{ cdt_build_number }}
-    - at-spi-cos7-ppc64le ==1.32.0 *_{{ cdt_build_number }}
-    - atk-devel-cos7-ppc64le >=1.29.2 *_{{ cdt_build_number }}
-    - gtk2-devel-cos7-ppc64le >=2.24.31 *_{{ cdt_build_number }}
-    - gtk2-devel-cos7-ppc64le >=2.10.0 *_{{ cdt_build_number }}
-    - libbonobo-devel-cos7-ppc64le >=2.4.0 *_{{ cdt_build_number }}
+    - orbit2-devel-cos7-ppc64le >=2.6.0 *_{{ cdt_build_number|int }}
+    - at-spi-cos7-ppc64le ==1.32.0 *_{{ cdt_build_number|int }}
+    - atk-devel-cos7-ppc64le >=1.29.2 *_{{ cdt_build_number|int }}
+    - gtk2-devel-cos7-ppc64le >=2.10.0 *_{{ cdt_build_number|int }}
+    - libbonobo-devel-cos7-ppc64le >=2.4.0 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

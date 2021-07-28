@@ -3,7 +3,7 @@ package:
   version: 3.2.21
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/libnl3-devel-3.2.21-8.el6.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/libnl3-devel-3.2.21-8.el6.x86_64.rpm
     sha256: 7961489c21152e24aa78ce2e6a7f7699c137f2dc14c0cc0e6ca9c6a66446b37f
     no_hoist: true
     folder: binary

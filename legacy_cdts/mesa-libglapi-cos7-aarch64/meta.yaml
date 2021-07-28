@@ -3,16 +3,16 @@ package:
   version: 18.3.4
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-libglapi-18.3.4-7.el7.aarch64.rpm
-    sha256: 4011012f4942a079d5cfb4fd6bab72446332a1117fda7d935106558c8272ba73
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-libglapi-18.3.4-10.el7.aarch64.rpm
+    sha256: 16e6bb375c3499f629cae7b6ea851692119eddcd204abb87b04db8ec626bb4ef
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-7.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-10.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false

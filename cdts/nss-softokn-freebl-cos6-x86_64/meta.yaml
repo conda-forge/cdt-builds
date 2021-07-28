@@ -3,7 +3,7 @@ package:
   version: 3.14.3
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/nss-softokn-freebl-3.14.3-23.3.el6_8.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/nss-softokn-freebl-3.14.3-23.3.el6_8.x86_64.rpm
     sha256: bccc1e55c5cf90d7ee5ef2d25253fc8dd2c3854121a65711f5f5618b097ffb70
     no_hoist: true
     folder: binary

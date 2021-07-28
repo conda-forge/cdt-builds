@@ -12,32 +12,32 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
 requirements:
   build:
-    - atk-cos7-aarch64 >=1.29.4 *_{{ cdt_build_number }}
-    - glib2-cos7-aarch64 >=2.28.0 *_{{ cdt_build_number }}
-    - libxrandr-cos7-aarch64 >=1.2.99.4 *_{{ cdt_build_number }}
-    - libtiff-cos7-aarch64 >=3.6.1 *_{{ cdt_build_number }}
-    - pango-cos7-aarch64 >=1.20.0 *_{{ cdt_build_number }}
+    - atk-cos7-aarch64 >=1.29.4 *_{{ cdt_build_number|int }}
+    - glib2-cos7-aarch64 >=2.28.0 *_{{ cdt_build_number|int }}
+    - libxrandr-cos7-aarch64 >=1.2.99.4 *_{{ cdt_build_number|int }}
+    - libtiff-cos7-aarch64 >=3.6.1 *_{{ cdt_build_number|int }}
+    - pango-cos7-aarch64 >=1.20.0 *_{{ cdt_build_number|int }}
   host:
-    - atk-cos7-aarch64 >=1.29.4 *_{{ cdt_build_number }}
-    - glib2-cos7-aarch64 >=2.28.0 *_{{ cdt_build_number }}
-    - libxrandr-cos7-aarch64 >=1.2.99.4 *_{{ cdt_build_number }}
-    - libtiff-cos7-aarch64 >=3.6.1 *_{{ cdt_build_number }}
-    - pango-cos7-aarch64 >=1.20.0 *_{{ cdt_build_number }}
+    - atk-cos7-aarch64 >=1.29.4 *_{{ cdt_build_number|int }}
+    - glib2-cos7-aarch64 >=2.28.0 *_{{ cdt_build_number|int }}
+    - libxrandr-cos7-aarch64 >=1.2.99.4 *_{{ cdt_build_number|int }}
+    - libtiff-cos7-aarch64 >=3.6.1 *_{{ cdt_build_number|int }}
+    - pango-cos7-aarch64 >=1.20.0 *_{{ cdt_build_number|int }}
   run:
-    - atk-cos7-aarch64 >=1.29.4 *_{{ cdt_build_number }}
-    - glib2-cos7-aarch64 >=2.28.0 *_{{ cdt_build_number }}
-    - libxrandr-cos7-aarch64 >=1.2.99.4 *_{{ cdt_build_number }}
-    - libtiff-cos7-aarch64 >=3.6.1 *_{{ cdt_build_number }}
-    - pango-cos7-aarch64 >=1.20.0 *_{{ cdt_build_number }}
+    - atk-cos7-aarch64 >=1.29.4 *_{{ cdt_build_number|int }}
+    - glib2-cos7-aarch64 >=2.28.0 *_{{ cdt_build_number|int }}
+    - libxrandr-cos7-aarch64 >=1.2.99.4 *_{{ cdt_build_number|int }}
+    - libtiff-cos7-aarch64 >=3.6.1 *_{{ cdt_build_number|int }}
+    - pango-cos7-aarch64 >=1.20.0 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 
@@ -49,12 +49,12 @@ about:
   home: http://www.gtk.org
   license: LGPL-2.0-or-later
   license_family: LGPL
-  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/gtk2-2.24.31/COPYING
-  summary: "(CDT) The GIMP ToolKit (GTK+), a library for creating GUIs for X"
+  license_file: gtk2-copying
+  summary: (CDT) The GIMP ToolKit (GTK+), a library for creating GUIs for X
   description: |
-        GTK+ is a multi-platform toolkit for creating graphical user interfaces.
-        Offering a complete set of widgets, GTK+ is suitable for projects ranging from
-        small one-off tools to complete application suites.
+    GTK+ is a multi-platform toolkit for creating graphical user interfaces.
+    Offering a complete set of widgets, GTK+ is suitable for projects ranging from
+    small one-off tools to complete application suites.
 
 extra:
   recipe-maintainers:

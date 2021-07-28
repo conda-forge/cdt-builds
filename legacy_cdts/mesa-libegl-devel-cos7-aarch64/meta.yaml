@@ -3,16 +3,16 @@ package:
   version: 18.3.4
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-libEGL-devel-18.3.4-7.el7.aarch64.rpm
-    sha256: 03c40e7f1dbea596cf3743769d0bec276f19eda8b7cf1f8d3a69f6915b008f85
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-libEGL-devel-18.3.4-10.el7.aarch64.rpm
+    sha256: bea0470994bf198eccf8e77da11d25ed459c17564245b2ff2414e88a34cc327b
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-7.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-10.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,14 +21,14 @@ build:
 
 requirements:
   build:
-    - mesa-khr-devel-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
-    - mesa-libegl-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
+    - mesa-khr-devel-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number|int }}
+    - mesa-libegl-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number|int }}
   host:
-    - mesa-khr-devel-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
-    - mesa-libegl-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
+    - mesa-khr-devel-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number|int }}
+    - mesa-libegl-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number|int }}
   run:
-    - mesa-khr-devel-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
-    - mesa-libegl-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
+    - mesa-khr-devel-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number|int }}
+    - mesa-libegl-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

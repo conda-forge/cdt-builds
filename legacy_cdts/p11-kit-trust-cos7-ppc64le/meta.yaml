@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,11 +21,11 @@ build:
 
 requirements:
   build:
-    - p11-kit-cos7-ppc64le ==0.23.5 *_{{ cdt_build_number }}
+    - p11-kit-cos7-ppc64le ==0.23.5 *_{{ cdt_build_number|int }}
   host:
-    - p11-kit-cos7-ppc64le ==0.23.5 *_{{ cdt_build_number }}
+    - p11-kit-cos7-ppc64le ==0.23.5 *_{{ cdt_build_number|int }}
   run:
-    - p11-kit-cos7-ppc64le ==0.23.5 *_{{ cdt_build_number }}
+    - p11-kit-cos7-ppc64le ==0.23.5 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

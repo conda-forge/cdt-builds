@@ -3,9 +3,19 @@ alsa-lib:
 alsa-lib-devel:
   custom: false
   license_file: licenses/alsa-lib-license
+at-spi:
+  custom: false
+  license_file: licenses/at-spi-license
+  dep_remove:
+    - gail
 at-spi-devel:
   custom: false
   license_file: licenses/at-spi-license
+  dep_remove:
+    - gail-devel
+atk:
+  custom: false
+  license_file: licenses/atk-copying
 atk-devel:
   custom: false
   license_file: licenses/atk-copying
@@ -38,6 +48,12 @@ ca-certificates:
         echo "PLACEHOLDER"> ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
         ln -s ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt ${SYSROOT_DIR}/etc/pki/tls/certs/ca-bundle.trust.crt
       popd > /dev/null 2>&1
+cairo:
+  custom: false
+  license_file:
+    - licenses/cairo-copying
+    - licenses/cairo-copying-lgpl-2.1
+    - licenses/cairo-copying-mpl-1.1
 cairo-devel:
   custom: false
   license_file:
@@ -59,6 +75,9 @@ cups-libs:
 cups-devel:
   custom: false
   license_file: licenses/cups-license
+expat:
+  custom: false
+  license_file: licenses/expat-license
 expat-devel:
   custom: false
   license_file: licenses/expat-license
@@ -79,22 +98,58 @@ fontconfig:
 fontconfig-devel:
   custom: false
   license_file: licenses/fontconfig-copying
+freetype:
+  custom: false
+  license_file: licenses/freetype-license.txt
 freetype-devel:
   custom: false
   license_file: licenses/freetype-license.txt
+fribidi:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+gdk-pixbuf2:
+  custom: false
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
+gdk-pixbuf2-devel:
+  custom: false
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
+glib-networking:
+  custom: false
+glib2:
+  custom: false
+  license_file: licenses/glib2-copying
 glib2-devel:
   custom: false
   license_file: licenses/glib2-copying
 GConf2:
   custom: false
+gtk2:
+  custom: false
+  license_file: licenses/gtk2-copying
 gtk2-devel:
   custom: false
   license_file: licenses/gtk2-copying
+gtkmm24:
+  custom: false
+  license_file:
+    - licenses/gtkmm-license
+    - licenses/gtkmm-tools-license
 gtkmm24-devel:
   custom: false
   license_file:
     - licenses/gtkmm-license
     - licenses/gtkmm-tools-license
+harfbuzz:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
 ibacm:
   custom: false
   # `ibacm` is part of rdma-core and under the same licenses
@@ -107,6 +162,8 @@ ibacm:
 java-1.7.0-openjdk:
   custom: false
   license_file: licenses/openjdk-license
+  dep_replace:
+    libjpeg-cos6: libjpeg-turbo-cos6
   build_append:
     cos6-x86_64: |
       jvm_slug=$(compgen -G "${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-*")
@@ -119,6 +176,8 @@ java-1.7.0-openjdk-headless:
   custom: false
   skipped_cdts:
     - cos6-x86_64
+  dep_replace:
+    jpackage-utils-cos7: javapackages-tools-cos7
   build_append:
     all: |
       jvm_slug=$(compgen -G "${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-*")
@@ -142,14 +201,29 @@ javapackages-tools:
         rm -f abs2rel.sh
         ln -s ${SYSROOT_DIR}/usr/bin/abs2rel ${SYSROOT_DIR}/usr/share/java-utils/abs2rel.sh
       popd > /dev/null 2>&1
+jpackage-utils:
+  custom: false
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
 kernel-headers:
   custom: false
   license_file: null
+kmod:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
 libXxf86vm:
   custom: false
 libXxf86vm-devel:
   custom: false
   license_file: licenses/libxxf86vm-license
+libbonobo:
+  custom: false
+  license_file:
+    - licenses/libbonobo-copying
+    - licenses/libbonobo-copying.lib
 libbonobo-devel:
   custom: false
   license_file:
@@ -234,6 +308,10 @@ libibumad:
     - licenses/rdma-core-licenses/COPYING.md
 libibumad-devel:
   custom: false
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
   # `libibumad` is part of rdma-core and under the same licenses
   # https://github.com/linux-rdma/rdma-core/tree/v22.4/libibumad
   license_file:
@@ -241,6 +319,9 @@ libibumad-devel:
     - licenses/rdma-core-licenses/COPYING.BSD_MIT
     - licenses/rdma-core-licenses/COPYING.GPL2
     - licenses/rdma-core-licenses/COPYING.md
+libIDL:
+  custom: false
+  license_file: licenses/libidl-copying
 libIDL-devel:
   custom: false
   license_file: licenses/libidl-copying
@@ -249,6 +330,10 @@ libibverbs:
   license_file: licenses/libibverbs-devel-license
 libibverbs-devel:
   custom: false
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
   license_file: licenses/libibverbs-devel-license
 libICE:
   custom: false
@@ -258,8 +343,10 @@ libICE-devel:
 libjpeg-turbo:
   custom: false
   license_file: licenses/libjpeg-turbo-license
+libnl:
+  custom: false
+  license_file: licenses/libnl-devel-license
 libnl-devel:
-  # generates libnl too
   custom: false
   license_file: licenses/libnl-devel-license
 libnl3-cli:
@@ -270,6 +357,9 @@ libnl3:
 libnl3-devel:
   custom: false
   license_file: licenses/libnl3-license
+libpng:
+  custom: false
+  license_file: licenses/libpng-license
 libpng-devel:
   custom: false
   license_file: licenses/libpng-license
@@ -278,6 +368,10 @@ librdmacm:
   license_file: licenses/librdmacm-devel-license
 librdmacm-devel:
   custom: false
+  skipped_cdts:
+    - cos7-x86_64
+    - cos7-aarch64
+    - cos7-ppc64le
   license_file: licenses/librdmacm-devel-license
 libselinux:
   custom: false
@@ -296,9 +390,16 @@ libSM:
 libSM-devel:
   custom: false
   license_file: licenses/libsm-license
+libsoup:
+  custom: false
+  license_file: licenses/libsoup-license
 libsoup-devel:
   custom: false
   license_file: licenses/libsoup-license
+libthai:
+  custom: false
+libtiff:
+  custom: false
 libudev:
   custom: false
   skipped_cdts:
@@ -376,14 +477,25 @@ libXinerama:
 libXinerama-devel:
   custom: false
   license_file: licenses/libxinerma-license
+libxkbcommon:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file: licenses/libxkbcommon-license
 libxkbcommon-devel:
   custom: false
   skipped_cdts:
     - cos6-x86_64
   license_file: licenses/libxkbcommon-license
+libxml2:
+  custom: false
+  license_file: licenses/libxml2-license
 libxml2-devel:
   custom: false
   license_file: licenses/libxml2-license
+libXrandr:
+  custom: false
+  license_file: licenses/libxrandr-license
 libXrandr-devel:
   custom: false
   license_file: licenses/libxrandr-license
@@ -392,6 +504,9 @@ libXrender:
 libXrender-devel:
   custom: false
   license_file: licenses/libxrender-license
+libXScrnSaver:
+  custom: false
+  license_file: licenses/libxscrnsaver-license
 libXScrnSaver-devel:
   custom: false
   license_file: licenses/libxscrnsaver-license
@@ -408,6 +523,7 @@ libXt-devel:
   license_file: licenses/libxt-license
 libXtst:
   custom: false
+  license_file: licenses/libxtst-license
 libXtst-devel:
   custom: false
   license_file: licenses/libxtst-license
@@ -497,6 +613,11 @@ numactl-devel:
     - licenses/numactl-copyright.txt
     - licenses/numactl-gpl2.txt
     - licenses/numactl-lgpl2.txt
+ORBit2:
+  custom: false
+  license_file:
+    - licenses/orbit2-copying
+    - licenses/orbit2-copying.lib
 ORBit2-devel:
   custom: false
   license_file:
@@ -535,6 +656,9 @@ pango-devel:
 pciutils-libs:
   custom: false
   license_file: licenses/pciutils-license
+pciutils:
+  custom: false
+  license_file: licenses/pciutils-license
 pciutils-devel:
   custom: false
   license_file: licenses/pciutils-license
@@ -548,6 +672,8 @@ pixman:
 pixman-devel:
   custom: false
   license_file: licenses/pixman-license
+pkgconfig:
+  custom: false
 python-javapackages:
   custom: false
   skipped_cdts:
@@ -578,6 +704,8 @@ systemd:
     - licenses/systemd-licenses/LICENSE.GPL2
     - licenses/systemd-licenses/LICENSE.LGPL2.1
     - licenses/systemd-licenses/LICENSE.MIT
+  dep_replace:
+    redhat-release-cos7: centos-release-cos7
 systemd-devel:
   custom: false
   skipped_cdts:
@@ -607,11 +735,21 @@ webkitgtk-devel:
     - cos7-aarch64
     - cos7-ppc64le
   license_file: licenses/webkitgtk-license
+xcb-util:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file: licenses/xcb-util-license
 xcb-util-devel:
   custom: false
   skipped_cdts:
     - cos6-x86_64
   license_file: licenses/xcb-util-license
+xcb-util-image:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file: licenses/xcb-util-image-license
 xcb-util-image-devel:
   custom: false
   skipped_cdts:
@@ -627,11 +765,21 @@ xcb-util-keysyms-devel:
   skipped_cdts:
     - cos6-x86_64
   license_file: licenses/xcb-util-keysyms-license
+xcb-util-renderutil:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file: licenses/xcb-util-renderutil-license
 xcb-util-renderutil-devel:
   custom: false
   skipped_cdts:
     - cos6-x86_64
   license_file: licenses/xcb-util-renderutil-license
+xcb-util-wm:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file: licenses/xcb-util-wm-license
 xcb-util-wm-devel:
   custom: false
   skipped_cdts:
@@ -677,6 +825,9 @@ xorg-x11-proto-devel:
     - licenses/xorg-x11-proto-devel/COPYING-xf86rushproto
     - licenses/xorg-x11-proto-devel/COPYING-xf86vidmodeproto
     - licenses/xorg-x11-proto-devel/COPYING-xineramaproto
+xorg-x11-server-common:
+  custom: false
+  license_file: licenses/x11-license
 xorg-x11-server-Xvfb:
   custom: false
   license_file: licenses/x11-license

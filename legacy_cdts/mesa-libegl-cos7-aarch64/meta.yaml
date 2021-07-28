@@ -3,16 +3,16 @@ package:
   version: 18.3.4
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-libEGL-18.3.4-7.el7.aarch64.rpm
-    sha256: 595979376078b190ea755c1bb752c1ac1037a76379431613aec9a68377065136
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-libEGL-18.3.4-10.el7.aarch64.rpm
+    sha256: ec700086703a3385a1903ebc0394f9f08843527d737d8fb6cd7620eb785b21d5
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-7.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-10.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,11 +21,11 @@ build:
 
 requirements:
   build:
-    - mesa-libgbm-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
+    - mesa-libgbm-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number|int }}
   host:
-    - mesa-libgbm-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
+    - mesa-libgbm-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number|int }}
   run:
-    - mesa-libgbm-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number }}
+    - mesa-libgbm-cos7-aarch64 ==18.3.4 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

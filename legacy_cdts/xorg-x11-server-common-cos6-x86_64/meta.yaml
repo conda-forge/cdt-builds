@@ -3,7 +3,7 @@ package:
   version: 1.17.4
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/xorg-x11-server-common-1.17.4-17.el6.centos.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/xorg-x11-server-common-1.17.4-17.el6.centos.x86_64.rpm
     sha256: eda900d7276fbd94ee9245a797d125823f3e8f6fba6a39de8f483bd74b5df178
     no_hoist: true
     folder: binary
@@ -12,20 +12,20 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
 requirements:
   build:
-    - pixman-cos6-x86_64 >=0.30.0 *_{{ cdt_build_number }}
+    - pixman-cos6-x86_64 >=0.30.0 *_{{ cdt_build_number|int }}
   host:
-    - pixman-cos6-x86_64 >=0.30.0 *_{{ cdt_build_number }}
+    - pixman-cos6-x86_64 >=0.30.0 *_{{ cdt_build_number|int }}
   run:
-    - pixman-cos6-x86_64 >=0.30.0 *_{{ cdt_build_number }}
+    - pixman-cos6-x86_64 >=0.30.0 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
 
@@ -37,10 +37,10 @@ about:
   home: http://www.x.org
   license: MIT
   license_family: MIT
-  license_file: {{ SRC_DIR }}/binary/usr/share/doc/xorg-x11-server-common-1.17.4/COPYING
-  summary: "(CDT) Xorg server common files"
+  license_file: x11-license
+  summary: (CDT) Xorg server common files
   description: |
-        Common files shared among all X servers.
+    Common files shared among all X servers.
 
 extra:
   recipe-maintainers:

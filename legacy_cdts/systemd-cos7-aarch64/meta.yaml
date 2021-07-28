@@ -3,16 +3,16 @@ package:
   version: 219
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/systemd-219-73.el7.1.aarch64.rpm
-    sha256: f66853a2013cf2dcb8e1958863f2aa9e61f4ea79edc7c9534160f17a0f6524d7
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/systemd-219-78.el7.aarch64.rpm
+    sha256: a1053023a03316139b711cd9a27fa1d44e0869816be630b118cce3a92679a2ad
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/systemd-219-73.el7.1.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/systemd-219-78.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,17 +21,17 @@ build:
 
 requirements:
   build:
-    - kmod-cos7-aarch64 >=18 *_{{ cdt_build_number }}
-    - centos-release-cos7-aarch64 >=7 *_{{ cdt_build_number }}
-    - systemd-libs-cos7-aarch64 ==219 *_{{ cdt_build_number }}
+    - kmod-cos7-aarch64 >=18 *_{{ cdt_build_number|int }}
+    - centos-release-cos7-aarch64 >=7 *_{{ cdt_build_number|int }}
+    - systemd-libs-cos7-aarch64 ==219 *_{{ cdt_build_number|int }}
   host:
-    - kmod-cos7-aarch64 >=18 *_{{ cdt_build_number }}
-    - centos-release-cos7-aarch64 >=7 *_{{ cdt_build_number }}
-    - systemd-libs-cos7-aarch64 ==219 *_{{ cdt_build_number }}
+    - kmod-cos7-aarch64 >=18 *_{{ cdt_build_number|int }}
+    - centos-release-cos7-aarch64 >=7 *_{{ cdt_build_number|int }}
+    - systemd-libs-cos7-aarch64 ==219 *_{{ cdt_build_number|int }}
   run:
-    - kmod-cos7-aarch64 >=18 *_{{ cdt_build_number }}
-    - centos-release-cos7-aarch64 >=7 *_{{ cdt_build_number }}
-    - systemd-libs-cos7-aarch64 ==219 *_{{ cdt_build_number }}
+    - kmod-cos7-aarch64 >=18 *_{{ cdt_build_number|int }}
+    - centos-release-cos7-aarch64 >=7 *_{{ cdt_build_number|int }}
+    - systemd-libs-cos7-aarch64 ==219 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

@@ -3,16 +3,16 @@ package:
   version: 2.23.2
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libuuid-2.23.2-63.el7.aarch64.rpm
-    sha256: 91978ee76921ce4387dc8c837f8d1318bbc4ca0dd1531bb63ffba1678e4c93db
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libuuid-2.23.2-65.el7.aarch64.rpm
+    sha256: 82892b803734ab60fa8e7a4e6abeabc80719edd2761ec64d50a677e95e770408
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/util-linux-2.23.2-63.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/util-linux-2.23.2-65.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false

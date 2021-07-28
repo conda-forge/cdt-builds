@@ -12,10 +12,10 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -31,11 +31,11 @@ about:
   home: http://www.x.org
   license: MIT
   license_family: MIT
-  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/libxkbcommon-0.7.1/LICENSE
-  summary: "(CDT) X.Org X11 XKB parsing library"
+  license_file: libxkbcommon-license
+  summary: (CDT) X.Org X11 XKB parsing library
   description: |
-        libxkbcommon is the X.Org library for compiling XKB maps into formats usable
-        by the X Server or other display servers.
+    libxkbcommon is the X.Org library for compiling XKB maps into formats usable
+    by the X Server or other display servers.
 
 extra:
   recipe-maintainers:

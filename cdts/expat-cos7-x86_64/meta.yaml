@@ -3,19 +3,19 @@ package:
   version: 2.1.0
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/expat-2.1.0-11.el7.x86_64.rpm
-    sha256: 973f8a8043f73a6205f5d957e778594444a975dbb9b28fe23170c5f58a946d00
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/expat-2.1.0-12.el7.x86_64.rpm
+    sha256: c73d74dee6c977bda30983111a290f054a8301797f32a20b550b4242679f057e
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/expat-2.1.0-11.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/expat-2.1.0-12.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -33,14 +33,14 @@ about:
   home: http://www.libexpat.org/
   license: MIT
   license_family: MIT
-  license_file: {{ SRC_DIR }}/binary/usr/share/doc/expat-2.1.0/COPYING
-  summary: "(CDT) An XML parser library"
+  license_file: expat-license
+  summary: (CDT) An XML parser library
   description: |
-        This is expat, the C library for parsing XML, written by James Clark. Expat is
-        a stream oriented XML parser. This means that you register handlers with the
-        parser prior to starting the parse. These handlers are called when the parser
-        discovers the associated structures in the document being parsed. A start tag
-        is an example of the kind of structures for which you may register handlers.
+    This is expat, the C library for parsing XML, written by James Clark. Expat is
+    a stream oriented XML parser. This means that you register handlers with the
+    parser prior to starting the parse. These handlers are called when the parser
+    discovers the associated structures in the document being parsed. A start tag
+    is an example of the kind of structures for which you may register handlers.
 
 extra:
   recipe-maintainers:

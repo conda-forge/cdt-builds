@@ -3,7 +3,7 @@ package:
   version: 1.30.0
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/atk-devel-1.30.0-1.el6.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/atk-devel-1.30.0-1.el6.x86_64.rpm
     sha256: 2469c560033cc10d449d0a5065b3c5c4c78d5e7e9ca6cbf43ae66e8175af4ab3
     no_hoist: true
     folder: binary
@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,14 +21,14 @@ build:
 
 requirements:
   build:
-    - atk-cos6-x86_64 ==1.30.0 *_{{ cdt_build_number }}
-    - glib2-devel-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number }}
+    - atk-cos6-x86_64 ==1.30.0 *_{{ cdt_build_number|int }}
+    - glib2-devel-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number|int }}
   host:
-    - atk-cos6-x86_64 ==1.30.0 *_{{ cdt_build_number }}
-    - glib2-devel-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number }}
+    - atk-cos6-x86_64 ==1.30.0 *_{{ cdt_build_number|int }}
+    - glib2-devel-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number|int }}
   run:
-    - atk-cos6-x86_64 ==1.30.0 *_{{ cdt_build_number }}
-    - glib2-devel-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number }}
+    - atk-cos6-x86_64 ==1.30.0 *_{{ cdt_build_number|int }}
+    - glib2-devel-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
 

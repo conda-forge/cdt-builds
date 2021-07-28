@@ -3,16 +3,16 @@ package:
   version: 22.4
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libibverbs-22.4-1.el7.ppc64le.rpm
-    sha256: 495155b8db643c011b94704fb2c79f8e7853637d379b85ffd78d03888ad4743e
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libibverbs-22.4-5.el7.ppc64le.rpm
+    sha256: 2b08eb0365fa9fcf412d1e531bcb1e7cec74a2fbac0f3f5d30edeb3c087b3e97
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/rdma-core-22.4-1.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/rdma-core-22.4-5.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,11 +21,11 @@ build:
 
 requirements:
   build:
-    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int }}
   host:
-    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int }}
   run:
-    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

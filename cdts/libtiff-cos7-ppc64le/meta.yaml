@@ -3,11 +3,11 @@ package:
   version: 4.0.3
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libtiff-4.0.3-32.el7.ppc64le.rpm
-    sha256: 43475d30edcfe55cd95a29b07db8b46f509b43a785ec30029f277098965f074f
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libtiff-4.0.3-35.el7.ppc64le.rpm
+    sha256: 5cb1196dc091c47734e1c12e5e9c44e5a78ec7329d762e3cc3dbf6d2b5c7f9cb
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libtiff-4.0.3-32.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libtiff-4.0.3-35.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -3,7 +3,7 @@ package:
   version: 3.14.3
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/nss-softokn-3.14.3-23.3.el6_8.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/nss-softokn-3.14.3-23.3.el6_8.x86_64.rpm
     sha256: 7e4298904daec41067f01c8943055560cd153d1f39c668c6d2fa978a3d66dd81
     no_hoist: true
     folder: binary

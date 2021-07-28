@@ -3,7 +3,7 @@ package:
   version: 1.28.1
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/at-spi-1.28.1-2.el6.centos.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/at-spi-1.28.1-2.el6.centos.x86_64.rpm
     sha256: fd951cd7fd7bd1533b2c1f5d16c213d0406a5edbddf49e1405650a946998a9fa
     no_hoist: true
     folder: binary
@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -23,24 +23,20 @@ requirements:
   build:
     - orbit2-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
     - atk-cos6-x86_64 >=1.13.0 *_{{ cdt_build_number|int + 1000 }}
-    - gtk2-cos6-x86_64 >=2.24.23 *_{{ cdt_build_number|int + 1000 }}
     - gtk2-cos6-x86_64 >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
     - libbonobo-cos6-x86_64 >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
   host:
     - orbit2-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
     - atk-cos6-x86_64 >=1.13.0 *_{{ cdt_build_number|int + 1000 }}
-    - gtk2-cos6-x86_64 >=2.24.23 *_{{ cdt_build_number|int + 1000 }}
     - gtk2-cos6-x86_64 >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
     - libbonobo-cos6-x86_64 >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
   run:
     - orbit2-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
     - atk-cos6-x86_64 >=1.13.0 *_{{ cdt_build_number|int + 1000 }}
-    - gtk2-cos6-x86_64 >=2.24.23 *_{{ cdt_build_number|int + 1000 }}
     - gtk2-cos6-x86_64 >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
     - libbonobo-cos6-x86_64 >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.12.*
-
 test:
   commands:
     - echo "it installs!"
@@ -49,13 +45,13 @@ about:
   home: http://developer.gnome.org/projects/gap/
   license: LGPL-2.0-or-later
   license_family: LGPL
-  license_file: {{ SRC_DIR }}/binary/usr/share/doc/at-spi-1.28.1/COPYING
-  summary: "(CDT) Assistive Technology Service Provider Interface"
+  license_file: at-spi-license
+  summary: (CDT) Assistive Technology Service Provider Interface
   description: |
-        at-spi allows assistive technologies to access GTK-based applications.
-        Essentially it exposes the internals of applications for automation, so tools
-        such as screen readers, magnifiers, or even scripting interfaces can query and
-        interact with GUI controls.
+    at-spi allows assistive technologies to access GTK-based applications.
+    Essentially it exposes the internals of applications for automation, so tools
+    such as screen readers, magnifiers, or even scripting interfaces can query and
+    interact with GUI controls.
 
 extra:
   recipe-maintainers:

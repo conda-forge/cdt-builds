@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -33,13 +33,15 @@ about:
   home: http://www.gtkmm.org/
   license: LGPL-2.0-or-later
   license_family: LGPL
-  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/gtkmm24-2.24.5/COPYING
-  summary: "(CDT) C++ interface for GTK2 (a GUI library for X)"
+  license_file:
+    - gtkmm-license
+    - gtkmm-tools-license
+  summary: (CDT) C++ interface for GTK2 (a GUI library for X)
   description: |
-        gtkmm provides a C++ interface to the GTK+ GUI library. gtkmm2 wraps GTK+ 2.
-        Highlights include typesafe callbacks, widgets extensible via inheritance and
-        a comprehensive set of widget classes that can be freely combined to quickly
-        create complex user interfaces.
+    gtkmm provides a C++ interface to the GTK+ GUI library. gtkmm2 wraps GTK+ 2.
+    Highlights include typesafe callbacks, widgets extensible via inheritance and
+    a comprehensive set of widget classes that can be freely combined to quickly
+    create complex user interfaces.
 
 extra:
   recipe-maintainers:

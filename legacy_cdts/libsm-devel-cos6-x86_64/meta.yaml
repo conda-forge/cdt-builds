@@ -3,7 +3,7 @@ package:
   version: 1.2.1
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/libSM-devel-1.2.1-2.el6.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/libSM-devel-1.2.1-2.el6.x86_64.rpm
     sha256: c6a29a7d1e969851783a0d9e339f260fc81a14e910719f6cc5b76e0130f494c4
     no_hoist: true
     folder: binary
@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,11 +21,11 @@ build:
 
 requirements:
   build:
-    - libsm-cos6-x86_64 ==1.2.1 *_{{ cdt_build_number }}
+    - libsm-cos6-x86_64 ==1.2.1 *_{{ cdt_build_number|int }}
   host:
-    - libsm-cos6-x86_64 ==1.2.1 *_{{ cdt_build_number }}
+    - libsm-cos6-x86_64 ==1.2.1 *_{{ cdt_build_number|int }}
   run:
-    - libsm-cos6-x86_64 ==1.2.1 *_{{ cdt_build_number }}
+    - libsm-cos6-x86_64 ==1.2.1 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
 

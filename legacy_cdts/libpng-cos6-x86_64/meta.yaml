@@ -3,7 +3,7 @@ package:
   version: 1.2.49
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/libpng-1.2.49-2.el6_7.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/libpng-1.2.49-2.el6_7.x86_64.rpm
     sha256: 0f18ee677b60fe81a24f200cc8db1c9bde26a404cc812e77a73b2bcfd4dd40de
     no_hoist: true
     folder: binary
@@ -12,10 +12,10 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -31,14 +31,14 @@ about:
   home: http://www.libpng.org/pub/png/
   license: zlib
   license_family: Other
-  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libpng-1.2.49/LICENSE
-  summary: "(CDT) A library of functions for manipulating PNG image format files"
+  license_file: libpng-license
+  summary: (CDT) A library of functions for manipulating PNG image format files
   description: |
-        The libpng package contains a library of functions for creating and
-        manipulating PNG (Portable Network Graphics) image format files.  PNG is a
-        bit-mapped graphics format similar to the GIF format.  PNG was created to
-        replace the GIF format, since GIF uses a patented data compression algorithm.
-        Libpng should be installed if you need to manipulate PNG format image files.
+    The libpng package contains a library of functions for creating and
+    manipulating PNG (Portable Network Graphics) image format files.  PNG is a
+    bit-mapped graphics format similar to the GIF format.  PNG was created to
+    replace the GIF format, since GIF uses a patented data compression algorithm.
+    Libpng should be installed if you need to manipulate PNG format image files.
 
 extra:
   recipe-maintainers:

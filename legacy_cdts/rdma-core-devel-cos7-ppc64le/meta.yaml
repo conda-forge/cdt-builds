@@ -3,16 +3,16 @@ package:
   version: 22.4
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/rdma-core-devel-22.4-1.el7.ppc64le.rpm
-    sha256: daa87c62ede17669648c8414f8bfe1f078b0524a76ade07882ad2c0b70dabbcd
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/rdma-core-devel-22.4-5.el7.ppc64le.rpm
+    sha256: 1b33df41496ecf92a6ad62b753518904aece9aa0b9deabb1ca2d0eabd9cecbe3
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/rdma-core-22.4-1.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/rdma-core-22.4-5.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,23 +21,23 @@ build:
 
 requirements:
   build:
-    - ibacm-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
-    - libibumad-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
-    - libibverbs-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
-    - librdmacm-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
-    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+    - ibacm-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int }}
+    - libibumad-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int }}
+    - libibverbs-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int }}
+    - librdmacm-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int }}
+    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int }}
   host:
-    - ibacm-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
-    - libibumad-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
-    - libibverbs-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
-    - librdmacm-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
-    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+    - ibacm-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int }}
+    - libibumad-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int }}
+    - libibverbs-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int }}
+    - librdmacm-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int }}
+    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int }}
   run:
-    - ibacm-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
-    - libibumad-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
-    - libibverbs-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
-    - librdmacm-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
-    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number }}
+    - ibacm-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int }}
+    - libibumad-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int }}
+    - libibverbs-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int }}
+    - librdmacm-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int }}
+    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

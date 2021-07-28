@@ -1,18 +1,18 @@
 package:
   name: java-1.7.0-openjdk-cos7-ppc64le
-  version: 1.7.0.251
+  version: 1.7.0.261
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/java-1.7.0-openjdk-1.7.0.251-2.6.21.1.el7.ppc64le.rpm
-    sha256: 677f933f24ce8b747519979ec195a0a43ffbb4663249aa8be0548a7c6b11dfda
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/java-1.7.0-openjdk-1.7.0.261-2.6.22.2.el7_8.ppc64le.rpm
+    sha256: 025812f6ee9c05e5f8f06367eea904cff689a7c2ca5b451bff46fe70f5812b33
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/java-1.7.0-openjdk-1.7.0.251-2.6.21.1.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/java-1.7.0-openjdk-1.7.0.261-2.6.22.2.el7_8.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,11 +21,11 @@ build:
 
 requirements:
   build:
-    - java-1.7.0-openjdk-headless-cos7-ppc64le ==1.7.0.251 *_{{ cdt_build_number }}
+    - java-1.7.0-openjdk-headless-cos7-ppc64le ==1.7.0.261 *_{{ cdt_build_number|int }}
   host:
-    - java-1.7.0-openjdk-headless-cos7-ppc64le ==1.7.0.251 *_{{ cdt_build_number }}
+    - java-1.7.0-openjdk-headless-cos7-ppc64le ==1.7.0.261 *_{{ cdt_build_number|int }}
   run:
-    - java-1.7.0-openjdk-headless-cos7-ppc64le ==1.7.0.251 *_{{ cdt_build_number }}
+    - java-1.7.0-openjdk-headless-cos7-ppc64le ==1.7.0.261 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

@@ -3,7 +3,7 @@ package:
   version: 2.24.23
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/gtk2-devel-2.24.23-9.el6.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/gtk2-devel-2.24.23-9.el6.x86_64.rpm
     sha256: ec76f800b0b0c8a2428d4f647b858e785ec11ad86bf96109649568bbc6cd4752
     no_hoist: true
     folder: binary
@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,26 +21,26 @@ build:
 
 requirements:
   build:
-    - atk-devel-cos6-x86_64 >=1.29.4 *_{{ cdt_build_number }}
-    - cairo-devel-cos6-x86_64 >=1.6.0 *_{{ cdt_build_number }}
-    - gdk-pixbuf2-devel-cos6-x86_64 >=2.24.1 *_{{ cdt_build_number }}
-    - glib2-devel-cos6-x86_64 >=2.28.0 *_{{ cdt_build_number }}
-    - gtk2-cos6-x86_64 ==2.24.23 *_{{ cdt_build_number }}
-    - pango-devel-cos6-x86_64 >=1.20.0 *_{{ cdt_build_number }}
+    - atk-devel-cos6-x86_64 >=1.29.4 *_{{ cdt_build_number|int }}
+    - cairo-devel-cos6-x86_64 >=1.6.0 *_{{ cdt_build_number|int }}
+    - gdk-pixbuf2-devel-cos6-x86_64 >=2.24.1 *_{{ cdt_build_number|int }}
+    - glib2-devel-cos6-x86_64 >=2.28.0 *_{{ cdt_build_number|int }}
+    - gtk2-cos6-x86_64 ==2.24.23 *_{{ cdt_build_number|int }}
+    - pango-devel-cos6-x86_64 >=1.20.0 *_{{ cdt_build_number|int }}
   host:
-    - atk-devel-cos6-x86_64 >=1.29.4 *_{{ cdt_build_number }}
-    - cairo-devel-cos6-x86_64 >=1.6.0 *_{{ cdt_build_number }}
-    - gdk-pixbuf2-devel-cos6-x86_64 >=2.24.1 *_{{ cdt_build_number }}
-    - glib2-devel-cos6-x86_64 >=2.28.0 *_{{ cdt_build_number }}
-    - gtk2-cos6-x86_64 ==2.24.23 *_{{ cdt_build_number }}
-    - pango-devel-cos6-x86_64 >=1.20.0 *_{{ cdt_build_number }}
+    - atk-devel-cos6-x86_64 >=1.29.4 *_{{ cdt_build_number|int }}
+    - cairo-devel-cos6-x86_64 >=1.6.0 *_{{ cdt_build_number|int }}
+    - gdk-pixbuf2-devel-cos6-x86_64 >=2.24.1 *_{{ cdt_build_number|int }}
+    - glib2-devel-cos6-x86_64 >=2.28.0 *_{{ cdt_build_number|int }}
+    - gtk2-cos6-x86_64 ==2.24.23 *_{{ cdt_build_number|int }}
+    - pango-devel-cos6-x86_64 >=1.20.0 *_{{ cdt_build_number|int }}
   run:
-    - atk-devel-cos6-x86_64 >=1.29.4 *_{{ cdt_build_number }}
-    - cairo-devel-cos6-x86_64 >=1.6.0 *_{{ cdt_build_number }}
-    - gdk-pixbuf2-devel-cos6-x86_64 >=2.24.1 *_{{ cdt_build_number }}
-    - glib2-devel-cos6-x86_64 >=2.28.0 *_{{ cdt_build_number }}
-    - gtk2-cos6-x86_64 ==2.24.23 *_{{ cdt_build_number }}
-    - pango-devel-cos6-x86_64 >=1.20.0 *_{{ cdt_build_number }}
+    - atk-devel-cos6-x86_64 >=1.29.4 *_{{ cdt_build_number|int }}
+    - cairo-devel-cos6-x86_64 >=1.6.0 *_{{ cdt_build_number|int }}
+    - gdk-pixbuf2-devel-cos6-x86_64 >=2.24.1 *_{{ cdt_build_number|int }}
+    - glib2-devel-cos6-x86_64 >=2.28.0 *_{{ cdt_build_number|int }}
+    - gtk2-cos6-x86_64 ==2.24.23 *_{{ cdt_build_number|int }}
+    - pango-devel-cos6-x86_64 >=1.20.0 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
 

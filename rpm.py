@@ -193,9 +193,11 @@ def _gen_cdts(single_sysroot):
             "centos6": {
                 "dirname": "centos6",
                 "short_name": "cos6",
-                "base_url": "http://mirror.centos.org/centos/6.10/os/{base_architecture}/CentOS/",  # noqa
+                # "base_url": "http://mirror.centos.org/centos/6.10/os/{base_architecture}/CentOS/",  # noqa
+                "base_url": "https://vault.centos.org/6.10/os/{base_architecture}/Packages/",  # noqa
                 "sbase_url": "http://vault.centos.org/6.10/os/Source/SPackages/",
-                "repomd_url": "http://mirror.centos.org/centos/6.10/os/{base_architecture}/repodata/repomd.xml",  # noqa
+                # "repomd_url": "http://mirror.centos.org/centos/6.10/os/{base_architecture}/repodata/repomd.xml",  # noqa
+                "repomd_url": "https://vault.centos.org/6.10/os/{base_architecture}/repodata/repomd.xml",  # noqa
                 "host_machine": (
                     "{architecture}-conda-linux-gnu"
                     if single_sysroot else
@@ -643,12 +645,20 @@ def write_conda_recipes(
     build_number,
     conda_forge_style,
     single_sysroot,
+    build_number_bump,
 ):
 
-    if single_sysroot:
-        build_number_jinja2 = "{{ cdt_build_number|int + 1000 }}"
+    if build_number_bump is None:
+        _extra_build_num_str = ""
     else:
-        build_number_jinja2 = "{{ cdt_build_number }}"
+        _extra_build_num_str = " + %s" % build_number_bump
+
+    if single_sysroot:
+        build_number_jinja2 = (
+            "{{ cdt_build_number|int + 1000%s }}" % _extra_build_num_str
+        )
+    else:
+        build_number_jinja2 = "{{ cdt_build_number|int%s }}" % _extra_build_num_str
 
     entry, entry_name, arch = find_repo_entry_and_arch(
         repo_primary, architectures, dict({"name": package})
@@ -742,6 +752,7 @@ def write_conda_recipes(
                 build_number,
                 conda_forge_style,
                 single_sysroot,
+                build_number_bump,
             )
 
     sn = cdt["short_name"] + "-" + arch
@@ -867,6 +878,7 @@ def write_conda_recipe(
     conda_forge_style,
     single_sysroot,
     cdt_info,
+    build_number_bump,
 ):
     cdt_name = distro
     bits = "32" if architecture in ("armv6", "armv7a", "i686", "i386") else "64"
@@ -927,6 +939,7 @@ def write_conda_recipe(
             build_number,
             conda_forge_style,
             single_sysroot,
+            build_number_bump,
         )
 
 
@@ -941,6 +954,7 @@ def write_conda_recipe(
 @click.option("--conda-forge-style", default=False, is_flag=True)
 @click.option("--single-sysroot", default=False, is_flag=True)
 @click.option("--build-number", default="2", type=str)
+@click.option("--build-number-bump", default=None, type=str)
 @click.option("--use-global-cache", default=False, is_flag=True)
 def skeletonize(
     packages,
@@ -953,6 +967,7 @@ def skeletonize(
     conda_forge_style,
     single_sysroot,
     build_number,
+    build_number_bump,
     use_global_cache,
 ):
     cdt_info = _gen_cdts(single_sysroot)
@@ -973,6 +988,7 @@ def skeletonize(
             conda_forge_style,
             single_sysroot,
             cdt_info,
+            build_number_bump,
         )
 
     if use_global_cache:

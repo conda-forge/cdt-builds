@@ -3,7 +3,7 @@ package:
   version: 3.36.0
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/nss-util-3.36.0-1.el6.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/nss-util-3.36.0-1.el6.x86_64.rpm
     sha256: 928a4ae279634a99963b4525a665c882431a50b9c5f28548572e8f00254f2d88
     no_hoist: true
     folder: binary
@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,11 +21,11 @@ build:
 
 requirements:
   build:
-    - nspr-cos6-x86_64 >=4.19.0 *_{{ cdt_build_number }}
+    - nspr-cos6-x86_64 >=4.19.0 *_{{ cdt_build_number|int }}
   host:
-    - nspr-cos6-x86_64 >=4.19.0 *_{{ cdt_build_number }}
+    - nspr-cos6-x86_64 >=4.19.0 *_{{ cdt_build_number|int }}
   run:
-    - nspr-cos6-x86_64 >=4.19.0 *_{{ cdt_build_number }}
+    - nspr-cos6-x86_64 >=4.19.0 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
 

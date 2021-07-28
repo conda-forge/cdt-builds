@@ -3,16 +3,16 @@ package:
   version: 219
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/systemd-libs-219-73.el7.1.aarch64.rpm
-    sha256: dd24e7e4497e8a3a33855e984d697b5e6eb8b1cac2a4ee71ba8f5bde980a77a9
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/systemd-libs-219-78.el7.aarch64.rpm
+    sha256: 2d74cc808489701fcbaeb9311b6b3ed79af5aa41b7365bad31b3ce0d0aaa13fd
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/systemd-219-73.el7.1.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/systemd-219-78.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false

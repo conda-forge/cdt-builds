@@ -12,20 +12,20 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
 requirements:
   build:
-    - pciutils-libs-cos7-ppc64le ==3.5.1 *_{{ cdt_build_number }}
+    - pciutils-libs-cos7-ppc64le ==3.5.1 *_{{ cdt_build_number|int }}
   host:
-    - pciutils-libs-cos7-ppc64le ==3.5.1 *_{{ cdt_build_number }}
+    - pciutils-libs-cos7-ppc64le ==3.5.1 *_{{ cdt_build_number|int }}
   run:
-    - pciutils-libs-cos7-ppc64le ==3.5.1 *_{{ cdt_build_number }}
+    - pciutils-libs-cos7-ppc64le ==3.5.1 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 
@@ -37,12 +37,12 @@ about:
   home: http://atrey.karlin.mff.cuni.cz/~mj/pciutils.shtml
   license: GPL-2.0-or-later
   license_family: GPL2
-  license_file: {{ SRC_DIR }}/binary/usr/share/doc/pciutils-3.5.1/COPYING
-  summary: "(CDT) PCI bus related utilities"
+  license_file: pciutils-license
+  summary: (CDT) PCI bus related utilities
   description: |
-        The pciutils package contains various utilities for inspecting and setting
-        devices connected to the PCI bus. The utilities provided require kernel
-        version 2.1.82 or newer (which support the /proc/bus/pci interface).
+    The pciutils package contains various utilities for inspecting and setting
+    devices connected to the PCI bus. The utilities provided require kernel
+    version 2.1.82 or newer (which support the /proc/bus/pci interface).
 
 extra:
   recipe-maintainers:

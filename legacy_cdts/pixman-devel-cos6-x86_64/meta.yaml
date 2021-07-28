@@ -3,7 +3,7 @@ package:
   version: 0.32.8
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/pixman-devel-0.32.8-1.el6.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/pixman-devel-0.32.8-1.el6.x86_64.rpm
     sha256: e2b0d664ebc9b1d37f9260e0eb2b8adf336f1347898412a41bd74a9bc022cbe8
     no_hoist: true
     folder: binary
@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,11 +21,11 @@ build:
 
 requirements:
   build:
-    - pixman-cos6-x86_64 ==0.32.8 *_{{ cdt_build_number }}
+    - pixman-cos6-x86_64 ==0.32.8 *_{{ cdt_build_number|int }}
   host:
-    - pixman-cos6-x86_64 ==0.32.8 *_{{ cdt_build_number }}
+    - pixman-cos6-x86_64 ==0.32.8 *_{{ cdt_build_number|int }}
   run:
-    - pixman-cos6-x86_64 ==0.32.8 *_{{ cdt_build_number }}
+    - pixman-cos6-x86_64 ==0.32.8 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
 

@@ -3,16 +3,16 @@ package:
   version: 7
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/centos-release-7-8.2003.0.el7.centos.aarch64.rpm
-    sha256: e3eb1933bb93383becdf7981e51df14771230e7644579c2eea33d39a2782f913
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/centos-release-7-9.2009.0.el7.centos.aarch64.rpm
+    sha256: 0588cbe9e9b38367f4d5f2e24ecffc08d28c4f65ccf860f478688a832719ebe5
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/centos-release-7-8.2003.0.el7.centos.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/centos-release-7-9.2009.0.el7.centos.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false

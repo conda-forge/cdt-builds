@@ -26,8 +26,10 @@ The following options are available when adding a CDT in the configuration file:
    `build.sh` file for a given distribution and platform. For example, one might set a key
    `cos6-x86_64` in this mapping and set the value to `echo 'hi!'` to add `echo 'hi!'` to
    the build script for only `cos6-x86_64`.
- - `recursive` (boolean): Set to `false` to disable recrusive generation of a CDTs
-   dependencies. The default is `true`.
+ - `dep_remove` (list of strings): Set to a list of strings for deps that should be remove
+ - `dep_replace` (dict mapping dep to replace to new dep): Set to a dict of deps to be 
+   replaced by another dep. this can be used for aliased RPMs.
+
 
 ## Adding a CDT package
 
@@ -388,6 +390,7 @@ register_repo("conda-forge", "cdt-builds", config=cfg)
 | [`libthai-cos7-aarch64`](https://anaconda.org/conda-forge/libthai-cos7-aarch64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libthai-cos7-aarch64.svg)](https://anaconda.org/conda-forge/libthai-cos7-aarch64) |
 | [`libthai-cos7-ppc64le`](https://anaconda.org/conda-forge/libthai-cos7-ppc64le) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libthai-cos7-ppc64le.svg)](https://anaconda.org/conda-forge/libthai-cos7-ppc64le) |
 | [`libthai-cos7-x86_64`](https://anaconda.org/conda-forge/libthai-cos7-x86_64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libthai-cos7-x86_64.svg)](https://anaconda.org/conda-forge/libthai-cos7-x86_64) |
+| [`libtiff-cos6-x86_64`](https://anaconda.org/conda-forge/libtiff-cos6-x86_64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libtiff-cos6-x86_64.svg)](https://anaconda.org/conda-forge/libtiff-cos6-x86_64) |
 | [`libtiff-cos7-aarch64`](https://anaconda.org/conda-forge/libtiff-cos7-aarch64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libtiff-cos7-aarch64.svg)](https://anaconda.org/conda-forge/libtiff-cos7-aarch64) |
 | [`libtiff-cos7-ppc64le`](https://anaconda.org/conda-forge/libtiff-cos7-ppc64le) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libtiff-cos7-ppc64le.svg)](https://anaconda.org/conda-forge/libtiff-cos7-ppc64le) |
 | [`libtiff-cos7-x86_64`](https://anaconda.org/conda-forge/libtiff-cos7-x86_64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libtiff-cos7-x86_64.svg)](https://anaconda.org/conda-forge/libtiff-cos7-x86_64) |
@@ -644,6 +647,7 @@ register_repo("conda-forge", "cdt-builds", config=cfg)
 | [`pango-devel-cos7-aarch64`](https://anaconda.org/conda-forge/pango-devel-cos7-aarch64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pango-devel-cos7-aarch64.svg)](https://anaconda.org/conda-forge/pango-devel-cos7-aarch64) |
 | [`pango-devel-cos7-ppc64le`](https://anaconda.org/conda-forge/pango-devel-cos7-ppc64le) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pango-devel-cos7-ppc64le.svg)](https://anaconda.org/conda-forge/pango-devel-cos7-ppc64le) |
 | [`pango-devel-cos7-x86_64`](https://anaconda.org/conda-forge/pango-devel-cos7-x86_64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pango-devel-cos7-x86_64.svg)](https://anaconda.org/conda-forge/pango-devel-cos7-x86_64) |
+| [`pciutils-cos6-x86_64`](https://anaconda.org/conda-forge/pciutils-cos6-x86_64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pciutils-cos6-x86_64.svg)](https://anaconda.org/conda-forge/pciutils-cos6-x86_64) |
 | [`pciutils-cos7-aarch64`](https://anaconda.org/conda-forge/pciutils-cos7-aarch64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pciutils-cos7-aarch64.svg)](https://anaconda.org/conda-forge/pciutils-cos7-aarch64) |
 | [`pciutils-cos7-ppc64le`](https://anaconda.org/conda-forge/pciutils-cos7-ppc64le) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pciutils-cos7-ppc64le.svg)](https://anaconda.org/conda-forge/pciutils-cos7-ppc64le) |
 | [`pciutils-cos7-x86_64`](https://anaconda.org/conda-forge/pciutils-cos7-x86_64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pciutils-cos7-x86_64.svg)](https://anaconda.org/conda-forge/pciutils-cos7-x86_64) |

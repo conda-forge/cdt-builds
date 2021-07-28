@@ -3,7 +3,7 @@ package:
   version: 1.6.4
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/libX11-devel-1.6.4-3.el6.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/libX11-devel-1.6.4-3.el6.x86_64.rpm
     sha256: cb25b7e7d62c154e8784c0e916c58ba8811a9d4feb4ce3224f07105f66d358b4
     no_hoist: true
     folder: binary
@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,11 +21,11 @@ build:
 
 requirements:
   build:
-    - libx11-cos6-x86_64 ==1.6.4 *_{{ cdt_build_number }}
+    - libx11-cos6-x86_64 ==1.6.4 *_{{ cdt_build_number|int }}
   host:
-    - libx11-cos6-x86_64 ==1.6.4 *_{{ cdt_build_number }}
+    - libx11-cos6-x86_64 ==1.6.4 *_{{ cdt_build_number|int }}
   run:
-    - libx11-cos6-x86_64 ==1.6.4 *_{{ cdt_build_number }}
+    - libx11-cos6-x86_64 ==1.6.4 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
 

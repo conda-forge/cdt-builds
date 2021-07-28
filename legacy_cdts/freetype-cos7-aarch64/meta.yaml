@@ -12,10 +12,10 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -31,14 +31,14 @@ about:
   home: http://www.freetype.org
   license: (FTL or GPLv2+) and BSD and MIT and Public Domain and zlib with acknowledgement
   license_family: GPL2
-  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/freetype-2.8/LICENSE.TXT
-  summary: "(CDT) A free and portable font rendering engine"
+  license_file: freetype-license.txt
+  summary: (CDT) A free and portable font rendering engine
   description: |
-        The FreeType engine is a free and portable font rendering engine, developed to
-        provide advanced font support for a variety of platforms and environments.
-        FreeType is a library which can open and manages font files as well as
-        efficiently load, hint and render individual glyphs. FreeType is not a font
-        server or a complete text-rendering library.
+    The FreeType engine is a free and portable font rendering engine, developed to
+    provide advanced font support for a variety of platforms and environments.
+    FreeType is a library which can open and manages font files as well as
+    efficiently load, hint and render individual glyphs. FreeType is not a font
+    server or a complete text-rendering library.
 
 extra:
   recipe-maintainers:

@@ -3,16 +3,16 @@ package:
   version: 22.4
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/rdma-core-22.4-1.el7.ppc64le.rpm
-    sha256: ff2de929b1ef5b4d67552d71a296e57397a3f03ed55b8b1401509e5f3df4c4de
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/rdma-core-22.4-5.el7.ppc64le.rpm
+    sha256: 7e044c49fd04dcf8109c37b6bfa5d7493409e98f85add083140475aff8d9e566
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/rdma-core-22.4-1.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/rdma-core-22.4-5.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false

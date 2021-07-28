@@ -3,16 +3,16 @@ package:
   version: 18.3.4
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/mesa-khr-devel-18.3.4-7.el7.ppc64le.rpm
-    sha256: da6b96656b08165f4faf3484d067cbe416aa753aa75d07180c8d3bae929bb370
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/mesa-khr-devel-18.3.4-10.el7.ppc64le.rpm
+    sha256: 54ff34c19bfd6935b09aee1897751da04a1b81e9669d894dc4a19424d5dc6fe6
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-7.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-10.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false

@@ -3,7 +3,7 @@ package:
   version: 1.28.1
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/at-spi-devel-1.28.1-2.el6.centos.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/at-spi-devel-1.28.1-2.el6.centos.x86_64.rpm
     sha256: bd943b4ef72e2e671e9154cb3d569ff6466e56b5c1186385841f45e6effc73ee
     no_hoist: true
     folder: binary
@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,26 +21,23 @@ build:
 
 requirements:
   build:
-    - orbit2-devel-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number }}
-    - at-spi-cos6-x86_64 ==1.28.1 *_{{ cdt_build_number }}
-    - atk-devel-cos6-x86_64 >=1.13.0 *_{{ cdt_build_number }}
-    - gtk2-devel-cos6-x86_64 >=2.24.23 *_{{ cdt_build_number }}
-    - gtk2-devel-cos6-x86_64 >=2.10.0 *_{{ cdt_build_number }}
-    - libbonobo-devel-cos6-x86_64 >=2.4.0 *_{{ cdt_build_number }}
+    - orbit2-devel-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number|int }}
+    - at-spi-cos6-x86_64 ==1.28.1 *_{{ cdt_build_number|int }}
+    - atk-devel-cos6-x86_64 >=1.13.0 *_{{ cdt_build_number|int }}
+    - gtk2-devel-cos6-x86_64 >=2.10.0 *_{{ cdt_build_number|int }}
+    - libbonobo-devel-cos6-x86_64 >=2.4.0 *_{{ cdt_build_number|int }}
   host:
-    - orbit2-devel-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number }}
-    - at-spi-cos6-x86_64 ==1.28.1 *_{{ cdt_build_number }}
-    - atk-devel-cos6-x86_64 >=1.13.0 *_{{ cdt_build_number }}
-    - gtk2-devel-cos6-x86_64 >=2.24.23 *_{{ cdt_build_number }}
-    - gtk2-devel-cos6-x86_64 >=2.10.0 *_{{ cdt_build_number }}
-    - libbonobo-devel-cos6-x86_64 >=2.4.0 *_{{ cdt_build_number }}
+    - orbit2-devel-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number|int }}
+    - at-spi-cos6-x86_64 ==1.28.1 *_{{ cdt_build_number|int }}
+    - atk-devel-cos6-x86_64 >=1.13.0 *_{{ cdt_build_number|int }}
+    - gtk2-devel-cos6-x86_64 >=2.10.0 *_{{ cdt_build_number|int }}
+    - libbonobo-devel-cos6-x86_64 >=2.4.0 *_{{ cdt_build_number|int }}
   run:
-    - orbit2-devel-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number }}
-    - at-spi-cos6-x86_64 ==1.28.1 *_{{ cdt_build_number }}
-    - atk-devel-cos6-x86_64 >=1.13.0 *_{{ cdt_build_number }}
-    - gtk2-devel-cos6-x86_64 >=2.24.23 *_{{ cdt_build_number }}
-    - gtk2-devel-cos6-x86_64 >=2.10.0 *_{{ cdt_build_number }}
-    - libbonobo-devel-cos6-x86_64 >=2.4.0 *_{{ cdt_build_number }}
+    - orbit2-devel-cos6-x86_64 >=2.6.0 *_{{ cdt_build_number|int }}
+    - at-spi-cos6-x86_64 ==1.28.1 *_{{ cdt_build_number|int }}
+    - atk-devel-cos6-x86_64 >=1.13.0 *_{{ cdt_build_number|int }}
+    - gtk2-devel-cos6-x86_64 >=2.10.0 *_{{ cdt_build_number|int }}
+    - libbonobo-devel-cos6-x86_64 >=2.4.0 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
 

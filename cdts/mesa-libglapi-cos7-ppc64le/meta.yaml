@@ -3,11 +3,11 @@ package:
   version: 18.3.4
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/mesa-libglapi-18.3.4-7.el7.ppc64le.rpm
-    sha256: 5c87e0a0f9b1bad2d04ce189f32033a70986762d769d2bfd0d19215716cb0e2d
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/mesa-libglapi-18.3.4-10.el7.ppc64le.rpm
+    sha256: 5a5c24400ece48401ed7d2ba3992e6a3e76fbe92167cc8e5c838e2203763aaa1
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-7.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-10.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

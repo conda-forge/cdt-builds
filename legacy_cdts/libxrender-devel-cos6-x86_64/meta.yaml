@@ -3,7 +3,7 @@ package:
   version: 0.9.10
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/libXrender-devel-0.9.10-1.el6.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/libXrender-devel-0.9.10-1.el6.x86_64.rpm
     sha256: 4ee248cb32dc0037e4521db916fbfe578963a27792998932be1d43f29e58f537
     no_hoist: true
     folder: binary
@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,11 +21,11 @@ build:
 
 requirements:
   build:
-    - libxrender-cos6-x86_64 ==0.9.10 *_{{ cdt_build_number }}
+    - libxrender-cos6-x86_64 ==0.9.10 *_{{ cdt_build_number|int }}
   host:
-    - libxrender-cos6-x86_64 ==0.9.10 *_{{ cdt_build_number }}
+    - libxrender-cos6-x86_64 ==0.9.10 *_{{ cdt_build_number|int }}
   run:
-    - libxrender-cos6-x86_64 ==0.9.10 *_{{ cdt_build_number }}
+    - libxrender-cos6-x86_64 ==0.9.10 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
 

@@ -12,10 +12,10 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -31,16 +31,18 @@ about:
   home: http://www.gnome.org/projects/ORBit2
   license: LGPLv2+ and GPLv2+
   license_family: GPL2
-  license_file: {{ SRC_DIR }}/binary/usr/share/doc/ORBit2-2.14.19/COPYING
-  summary: "(CDT) A high-performance CORBA Object Request Broker"
+  license_file:
+    - orbit2-copying
+    - orbit2-copying.lib
+  summary: (CDT) A high-performance CORBA Object Request Broker
   description: |
-        ORBit is a high-performance CORBA (Common Object Request Broker Architecture)
-        ORB (object request broker). It allows programs to send requests and receive
-        replies from other programs, regardless of the locations of the two programs.
-        CORBA is an architecture that enables communication between program objects,
-        regardless of the programming language they're written in or the operating
-        system they run on.  You will need to install this package and ORBit-devel if
-        you want to write programs that use CORBA technology.
+    ORBit is a high-performance CORBA (Common Object Request Broker Architecture)
+    ORB (object request broker). It allows programs to send requests and receive
+    replies from other programs, regardless of the locations of the two programs.
+    CORBA is an architecture that enables communication between program objects,
+    regardless of the programming language they're written in or the operating
+    system they run on.  You will need to install this package and ORBit-devel if
+    you want to write programs that use CORBA technology.
 
 extra:
   recipe-maintainers:

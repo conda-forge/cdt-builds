@@ -12,20 +12,20 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
 requirements:
   build:
-    - libx11-cos7-ppc64le >=1.5.99.902 *_{{ cdt_build_number }}
+    - libx11-cos7-ppc64le >=1.5.99.902 *_{{ cdt_build_number|int }}
   host:
-    - libx11-cos7-ppc64le >=1.5.99.902 *_{{ cdt_build_number }}
+    - libx11-cos7-ppc64le >=1.5.99.902 *_{{ cdt_build_number|int }}
   run:
-    - libx11-cos7-ppc64le >=1.5.99.902 *_{{ cdt_build_number }}
+    - libx11-cos7-ppc64le >=1.5.99.902 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 
@@ -37,10 +37,10 @@ about:
   home: http://www.x.org
   license: MIT
   license_family: MIT
-  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libXtst-1.2.3/COPYING
-  summary: "(CDT) X.Org X11 libXtst runtime library"
+  license_file: libxtst-license
+  summary: (CDT) X.Org X11 libXtst runtime library
   description: |
-        X.Org X11 libXtst runtime library
+    X.Org X11 libXtst runtime library
 
 extra:
   recipe-maintainers:

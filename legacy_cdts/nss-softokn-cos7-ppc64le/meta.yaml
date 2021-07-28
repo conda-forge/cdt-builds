@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,17 +21,17 @@ build:
 
 requirements:
   build:
-    - nspr-cos7-ppc64le >=4.21.0 *_{{ cdt_build_number }}
-    - nss-softokn-freebl-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number }}
-    - nss-util-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number }}
+    - nspr-cos7-ppc64le >=4.21.0 *_{{ cdt_build_number|int }}
+    - nss-softokn-freebl-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number|int }}
+    - nss-util-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number|int }}
   host:
-    - nspr-cos7-ppc64le >=4.21.0 *_{{ cdt_build_number }}
-    - nss-softokn-freebl-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number }}
-    - nss-util-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number }}
+    - nspr-cos7-ppc64le >=4.21.0 *_{{ cdt_build_number|int }}
+    - nss-softokn-freebl-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number|int }}
+    - nss-util-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number|int }}
   run:
-    - nspr-cos7-ppc64le >=4.21.0 *_{{ cdt_build_number }}
-    - nss-softokn-freebl-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number }}
-    - nss-util-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number }}
+    - nspr-cos7-ppc64le >=4.21.0 *_{{ cdt_build_number|int }}
+    - nss-softokn-freebl-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number|int }}
+    - nss-util-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

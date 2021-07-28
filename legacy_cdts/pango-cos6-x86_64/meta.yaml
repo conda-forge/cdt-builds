@@ -3,7 +3,7 @@ package:
   version: 1.28.1
 
 source:
-  - url: http://mirror.centos.org/centos/6.10/os/x86_64/Packages/pango-1.28.1-11.el6.x86_64.rpm
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/pango-1.28.1-11.el6.x86_64.rpm
     sha256: 0663a5ce99cebf5285d96c4d92fc83155e859976bfd72980bf8691c3e89f92ad
     no_hoist: true
     folder: binary
@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: False
   detect_binary_files_with_prefix: False
@@ -21,23 +21,23 @@ build:
 
 requirements:
   build:
-    - cairo-cos6-x86_64 >=1.7.6 *_{{ cdt_build_number }}
-    - freetype-cos6-x86_64 >=2.1.3 *_{{ cdt_build_number }}
-    - freetype-cos6-x86_64 >=2.1.3 *_{{ cdt_build_number }}
-    - glib2-cos6-x86_64 >=2.17.3 *_{{ cdt_build_number }}
-    - libthai-cos6-x86_64 >=0.1.9 *_{{ cdt_build_number }}
+    - cairo-cos6-x86_64 >=1.7.6 *_{{ cdt_build_number|int }}
+    - freetype-cos6-x86_64 >=2.1.3 *_{{ cdt_build_number|int }}
+    - freetype-cos6-x86_64 >=2.1.3 *_{{ cdt_build_number|int }}
+    - glib2-cos6-x86_64 >=2.17.3 *_{{ cdt_build_number|int }}
+    - libthai-cos6-x86_64 >=0.1.9 *_{{ cdt_build_number|int }}
   host:
-    - cairo-cos6-x86_64 >=1.7.6 *_{{ cdt_build_number }}
-    - freetype-cos6-x86_64 >=2.1.3 *_{{ cdt_build_number }}
-    - freetype-cos6-x86_64 >=2.1.3 *_{{ cdt_build_number }}
-    - glib2-cos6-x86_64 >=2.17.3 *_{{ cdt_build_number }}
-    - libthai-cos6-x86_64 >=0.1.9 *_{{ cdt_build_number }}
+    - cairo-cos6-x86_64 >=1.7.6 *_{{ cdt_build_number|int }}
+    - freetype-cos6-x86_64 >=2.1.3 *_{{ cdt_build_number|int }}
+    - freetype-cos6-x86_64 >=2.1.3 *_{{ cdt_build_number|int }}
+    - glib2-cos6-x86_64 >=2.17.3 *_{{ cdt_build_number|int }}
+    - libthai-cos6-x86_64 >=0.1.9 *_{{ cdt_build_number|int }}
   run:
-    - cairo-cos6-x86_64 >=1.7.6 *_{{ cdt_build_number }}
-    - freetype-cos6-x86_64 >=2.1.3 *_{{ cdt_build_number }}
-    - freetype-cos6-x86_64 >=2.1.3 *_{{ cdt_build_number }}
-    - glib2-cos6-x86_64 >=2.17.3 *_{{ cdt_build_number }}
-    - libthai-cos6-x86_64 >=0.1.9 *_{{ cdt_build_number }}
+    - cairo-cos6-x86_64 >=1.7.6 *_{{ cdt_build_number|int }}
+    - freetype-cos6-x86_64 >=2.1.3 *_{{ cdt_build_number|int }}
+    - freetype-cos6-x86_64 >=2.1.3 *_{{ cdt_build_number|int }}
+    - glib2-cos6-x86_64 >=2.17.3 *_{{ cdt_build_number|int }}
+    - libthai-cos6-x86_64 >=0.1.9 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-64 ==99999999999
 

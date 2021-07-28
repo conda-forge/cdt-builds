@@ -3,19 +3,19 @@ package:
   version: 1.5.13
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libpng-1.5.13-7.el7_2.ppc64le.rpm
-    sha256: 6f69b468e80ed22e1031a571acd87bd0d0f9b36aba577ec0151a0c2ed0f82a14
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libpng-1.5.13-8.el7.ppc64le.rpm
+    sha256: 0233a7c7d5eacd56030bcb0b6580268a1df4c49f655f2195b4f7cf9949454ba0
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libpng-1.5.13-7.el7_2.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libpng-1.5.13-8.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -31,14 +31,14 @@ about:
   home: http://www.libpng.org/pub/png/
   license: zlib
   license_family: Other
-  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libpng-1.5.13/LICENSE
-  summary: "(CDT) A library of functions for manipulating PNG image format files"
+  license_file: libpng-license
+  summary: (CDT) A library of functions for manipulating PNG image format files
   description: |
-        The libpng package contains a library of functions for creating and
-        manipulating PNG (Portable Network Graphics) image format files.  PNG is a
-        bit-mapped graphics format similar to the GIF format.  PNG was created to
-        replace the GIF format, since GIF uses a patented data compression algorithm.
-        Libpng should be installed if you need to manipulate PNG format image files.
+    The libpng package contains a library of functions for creating and
+    manipulating PNG (Portable Network Graphics) image format files.  PNG is a
+    bit-mapped graphics format similar to the GIF format.  PNG was created to
+    replace the GIF format, since GIF uses a patented data compression algorithm.
+    Libpng should be installed if you need to manipulate PNG format image files.
 
 extra:
   recipe-maintainers:

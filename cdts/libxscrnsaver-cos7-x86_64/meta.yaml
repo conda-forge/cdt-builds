@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -33,10 +33,10 @@ about:
   home: http://www.x.org
   license: MIT
   license_family: MIT
-  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libXScrnSaver-1.2.2/COPYING
-  summary: "(CDT) X.Org X11 libXss runtime library"
+  license_file: libxscrnsaver-license
+  summary: (CDT) X.Org X11 libXss runtime library
   description: |
-        X.Org X11 libXss runtime library
+    X.Org X11 libXss runtime library
 
 extra:
   recipe-maintainers:

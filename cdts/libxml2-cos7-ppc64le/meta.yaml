@@ -3,19 +3,19 @@ package:
   version: 2.9.1
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libxml2-2.9.1-6.el7.4.ppc64le.rpm
-    sha256: d1a054389c86c8884aea17172cff073b571737434198f2a0010eea052056c2e2
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libxml2-2.9.1-6.el7.5.ppc64le.rpm
+    sha256: 6ecbc530230cf838e4b8a2899837a66df77287427d64fcc18456b05d50b881f4
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libxml2-2.9.1-6.el7.4.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libxml2-2.9.1-6.el7.5.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -33,17 +33,17 @@ about:
   home: http://xmlsoft.org/
   license: MIT
   license_family: MIT
-  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libxml2-2.9.1/Copyright
-  summary: "(CDT) Library providing XML and HTML support"
+  license_file: libxml2-license
+  summary: (CDT) Library providing XML and HTML support
   description: |
-        This library allows to manipulate XML files. It includes support to read,
-        modify and write XML and HTML files. There is DTDs support this includes
-        parsing and validation even with complex DtDs, either at parse time or later
-        once the document has been modified. The output can be a simple SAX stream or
-        and in-memory DOM like representations. In this case one can use the built-in
-        XPath and XPointer implementation to select sub nodes or ranges. A flexible
-        Input/Output mechanism is available, with existing HTTP and FTP modules and
-        combined to an URI library.
+    This library allows to manipulate XML files. It includes support to read,
+    modify and write XML and HTML files. There is DTDs support this includes
+    parsing and validation even with complex DtDs, either at parse time or later
+    once the document has been modified. The output can be a simple SAX stream or
+    and in-memory DOM like representations. In this case one can use the built-in
+    XPath and XPointer implementation to select sub nodes or ranges. A flexible
+    Input/Output mechanism is available, with existing HTTP and FTP modules and
+    combined to an URI library.
 
 extra:
   recipe-maintainers:

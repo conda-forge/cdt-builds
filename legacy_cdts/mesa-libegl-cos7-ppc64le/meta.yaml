@@ -3,16 +3,16 @@ package:
   version: 18.3.4
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/mesa-libEGL-18.3.4-7.el7.ppc64le.rpm
-    sha256: 46942deeae28a729348a61c1d6f8173212087900061c59b578d397d7d0e2bb30
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/mesa-libEGL-18.3.4-10.el7.ppc64le.rpm
+    sha256: 9e722d09265089ba1eb68b7ffd958d86cefe08cc143bee39ef846a95415ac756
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-7.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-10.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,11 +21,11 @@ build:
 
 requirements:
   build:
-    - mesa-libgbm-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number }}
+    - mesa-libgbm-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number|int }}
   host:
-    - mesa-libgbm-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number }}
+    - mesa-libgbm-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number|int }}
   run:
-    - mesa-libgbm-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number }}
+    - mesa-libgbm-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-ppc64le ==99999999999
 

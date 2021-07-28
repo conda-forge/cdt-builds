@@ -3,11 +3,11 @@ package:
   version: 2.9.1
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libxml2-devel-2.9.1-6.el7.4.x86_64.rpm
-    sha256: af5a71abb33a55c2651b3ba2ee9fa8d2c3cef13fdcbea31693e1db0bfb118650
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libxml2-devel-2.9.1-6.el7.5.x86_64.rpm
+    sha256: 7d950d5df5125f76ff94df054c7cafcb30fefd49f9d43fd8fc044aed52e00556
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libxml2-2.9.1-6.el7.4.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libxml2-2.9.1-6.el7.5.src.rpm
   #   no_hoist: true
   #   folder: source
 

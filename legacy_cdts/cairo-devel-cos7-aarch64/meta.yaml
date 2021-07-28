@@ -12,7 +12,7 @@ source:
   #   folder: source
 
 build:
-  number: {{ cdt_build_number }}
+  number: {{ cdt_build_number|int }}
   noarch: generic
   binary_relocation: false
   detect_binary_files_with_prefix: false
@@ -21,11 +21,11 @@ build:
 
 requirements:
   build:
-    - cairo-cos7-aarch64 ==1.15.12 *_{{ cdt_build_number }}
+    - cairo-cos7-aarch64 ==1.15.12 *_{{ cdt_build_number|int }}
   host:
-    - cairo-cos7-aarch64 ==1.15.12 *_{{ cdt_build_number }}
+    - cairo-cos7-aarch64 ==1.15.12 *_{{ cdt_build_number|int }}
   run:
-    - cairo-cos7-aarch64 ==1.15.12 *_{{ cdt_build_number }}
+    - cairo-cos7-aarch64 ==1.15.12 *_{{ cdt_build_number|int }}
   run_constrained:
     - sysroot_linux-aarch64 ==99999999999
 

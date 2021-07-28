@@ -3,11 +3,11 @@ package:
   version: 2.1.0
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/expat-devel-2.1.0-11.el7.aarch64.rpm
-    sha256: f7df66a2c45299cda07c271f830b03d28b1bfc542f0b26daac1bcac6a46103bd
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/expat-devel-2.1.0-12.el7.aarch64.rpm
+    sha256: eb818da9347fa683079771a80a725cdd73f29373000868f602d2d8c591040eb7
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/expat-2.1.0-11.el7.src.rpm
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/expat-2.1.0-12.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
