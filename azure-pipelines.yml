@@ -54,34 +54,7 @@ jobs:
 
         echo "cmd args: ${DISTARCH} ${LEGACYCDT}"
         python build_cdt_recipes.py ${DISTARCH} ${LEGACYCDT}
-    displayName: build CDTs
-
-  - bash: |
-        set -e
-
-        source $HOME/miniforge3/etc/profile.d/conda.sh
-        conda activate base
-        cat .ci_scripts/condarc > $HOME/.condarc
-
-        echo "is fork: ${IS_FORK}"
-        echo "branch: ${BUILD_SOURCEBRANCHNAME}"
-        echo "cdts built:"
-        for pth in $(compgen -G "$HOME/miniforge3/conda-bld/*/*.tar.bz2" | sort); do
-          echo ${pth#$HOME/miniforge3/conda-bld/}
-        done
-        echo  " "
-
-        if [[ ${ANACONDA_TOKEN} ]] && [[ "$BUILD_SOURCEBRANCHNAME" == "master" ]] && [[ "${IS_FORK}" == "False" ]]; then
-          if [[ $(compgen -G "$HOME/miniforge3/conda-bld/*/*.tar.bz2" | sort) ]]; then
-            echo "uploading the CDTs"
-            anaconda --token ${ANACONDA_TOKEN} upload --skip-existing $HOME/miniforge3/conda-bld/*/*.tar.bz2
-          else
-            echo "no CDTs built so not uploading anything"
-          fi
-        else
-          echo "skipping uploads since on fork or non-master branch"
-        fi
-    displayName: upload CDTs
+    displayName: build and upload CDTs
     env:
       ANACONDA_TOKEN: $(anaconda.token)
       IS_FORK: $(System.PullRequest.IsFork)
