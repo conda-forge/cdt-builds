@@ -174,14 +174,18 @@ def _build_cdt(cdt_meta_node, no_temp=False):
         cdt_file = glob.glob(
             os.path.expandvars("${HOME}/miniforge3/conda-bld/*/%s.tar.bz2" % cdt_slug)
         )
-        assert len(cdt_file) == 0
-        c_up = subprocess.run(
-            "anaconda --token ${ANACONDA_TOKEN} upload --skip-existing %s" % cdt_file,
-            shell=True,
-            text=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-        )
+        assert len(cdt_file) == 1
+        for _ in range(5):
+            c_up = subprocess.run(
+                "anaconda --token ${ANACONDA_TOKEN} upload "
+                "--skip-existing %s" % cdt_file,
+                shell=True,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+            )
+            if c_up.returncode == 0:
+                break
     else:
         c_up = None
 
