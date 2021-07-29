@@ -261,10 +261,15 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
 
                     if (
                         c.returncode == 0
-                        and c_up is not None
-                        and c_up.returncode == 0
+                        and (
+                            c_up is None
+                            or c_up.returncode == 0
+                        )
                     ):
-                        pbar.write("built %s" % node, file=sys.stderr)
+                        if c_up is None:
+                            pbar.write("built %s" % node, file=sys.stderr)
+                        else:
+                            pbar.write("built and uploaded %s" % node, file=sys.stderr)
                         sys.stderr.flush()
                         built.add(node)
                         pbar.update(1)
