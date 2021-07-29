@@ -164,7 +164,7 @@ def _build_cdt(cdt_meta_node, no_temp=False):
         if c.returncode == 0:
             break
 
-        return c
+    return c
 
 
 def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
