@@ -133,33 +133,63 @@ def _is_buildable(node, cdt_meta, pkgs):
 
 
 def _build_cdt(cdt_meta_node, no_temp=False):
-    if no_temp:
-        c = subprocess.run(
-            (
-                "conda build --use-local -m conda_build_config.yaml "
-                + cdt_meta_node["recipe_path"]
-            ),
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            text=True,
-            shell=True
+    for _ in range(5):
+        if no_temp:
+            c = subprocess.run(
+                (
+                    "conda build --use-local -m conda_build_config.yaml "
+                    + cdt_meta_node["recipe_path"]
+                ),
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                text=True,
+                shell=True
+            )
+        else:
+            with tempfile.TemporaryDirectory() as tmpdir:
+                with tempfile.TemporaryDirectory() as pkg_tmpdir:
+                    c = subprocess.run(
+                        (
+                            "CONDA_PKGS_DIRS=" + str(pkg_tmpdir) + " "
+                            "conda build --use-local -m conda_build_config.yaml "
+                            + "--cache-dir " + str(tmpdir) + " "
+                            + cdt_meta_node["recipe_path"]
+                        ),
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.STDOUT,
+                        text=True,
+                        shell=True
+                    )
+
+        if c.returncode == 0:
+            break
+
+    if (
+        os.environ.get("IS_FORK", "True") == "False"
+        and "ANACONDA_TOKEN" in os.environ
+        and os.environ.get("BUILD_SOURCEBRANCHNAME", None) == "master"
+        and c.returncode == 0
+    ):
+        cdt_slug = os.path.basename(cdt_meta_node["recipe_path"])
+        cdt_file = glob.glob(
+            os.path.expandvars("${HOME}/miniforge3/conda-bld/*/%s.tar.bz2" % cdt_slug)
         )
+        assert len(cdt_file) == 1
+        for _ in range(5):
+            c_up = subprocess.run(
+                "anaconda --token ${ANACONDA_TOKEN} upload "
+                "--skip-existing %s" % cdt_file,
+                shell=True,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+            )
+            if c_up.returncode == 0:
+                break
     else:
-        with tempfile.TemporaryDirectory() as tmpdir:
-            with tempfile.TemporaryDirectory() as pkg_tmpdir:
-                c = subprocess.run(
-                    (
-                        "CONDA_PKGS_DIRS=" + str(pkg_tmpdir) + " "
-                        "conda build --use-local -m conda_build_config.yaml "
-                        + "--cache-dir " + str(tmpdir) + " "
-                        + cdt_meta_node["recipe_path"]
-                    ),
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.STDOUT,
-                    text=True,
-                    shell=True
-                )
-    return c
+        c_up = None
+
+    return c, c_up
 
 
 def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
@@ -214,15 +244,32 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
 
                 for fut in as_completed(futures):
                     node = futures[fut]
-                    c = fut.result()
+                    c, c_up = fut.result()
                     build_logs += (
                         "\n\n"
                         + LINE_SEP
                         + "\n"
                         + c.stdout
                     )
-                    if c.returncode == 0:
-                        pbar.write("built %s" % node, file=sys.stderr)
+                    if c_up is not None:
+                        build_logs += (
+                            "\n\n"
+                            + LINE_SEP
+                            + "\n"
+                            + c_up.stdout
+                        )
+
+                    if (
+                        c.returncode == 0
+                        and (
+                            c_up is None
+                            or c_up.returncode == 0
+                        )
+                    ):
+                        if c_up is None:
+                            pbar.write("built %s" % node, file=sys.stderr)
+                        else:
+                            pbar.write("built and uploaded %s" % node, file=sys.stderr)
                         sys.stderr.flush()
                         built.add(node)
                         pbar.update(1)
