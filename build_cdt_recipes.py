@@ -167,7 +167,7 @@ def _build_cdt(cdt_meta_node, no_temp=False):
     if (
         os.environ.get("IS_FORK", "True") == "False"
         and "ANACONDA_TOKEN" in os.environ
-        and os.environ.get("BUILD_SOURCEBRANCHNAME", None) == "master"
+        and os.environ.get("BUILD_SOURCEBRANCHNAME", None) == "main"
         and c.returncode == 0
     ):
         cdt_slug = os.path.basename(cdt_meta_node["recipe_path"])
