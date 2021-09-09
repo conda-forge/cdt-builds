@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -31,11 +31,11 @@ about:
   home: http://e2fsprogs.sourceforge.net/
   license: MIT
   license_family: MIT
-  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libcom_err-1.42.9/COPYING
-  summary: "(CDT) Common error description library"
+  license_file: libcom_err-copying
+  summary: (CDT) Common error description library
   description: |
-        This is the common error description library, part of e2fsprogs.  libcom_err
-        is an attempt to present a common error-handling mechanism.
+    This is the common error description library, part of e2fsprogs.  libcom_err
+    is an attempt to present a common error-handling mechanism.
 
 extra:
   recipe-maintainers:

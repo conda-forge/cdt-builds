@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -31,11 +31,11 @@ about:
   home: http://avahi.org
   license: LGPL-2.0-or-later
   license_family: LGPL
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
-  summary: "(CDT) Libraries for avahi run-time use"
+  license_file: avahi-license
+  summary: (CDT) Libraries for avahi run-time use
   description: |
-        The avahi-libs package contains the libraries needed to run programs that use
-        avahi.
+    The avahi-libs package contains the libraries needed to run programs that use
+    avahi.
 
 extra:
   recipe-maintainers:
