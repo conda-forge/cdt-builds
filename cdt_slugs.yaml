@@ -19,6 +19,16 @@ atk:
 atk-devel:
   custom: false
   license_file: licenses/atk-copying
+avahi-libs:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file: licenses/avahi-license
+avahi-devel:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file: licenses/avahi-license
 ca-certificates:
   custom: false
   license_file: null
@@ -229,6 +239,16 @@ libbonobo-devel:
   license_file:
     - licenses/libbonobo-copying
     - licenses/libbonobo-copying.lib
+libcom_err:
+  custom: false
+  license_file: licenses/libcom_err-copying
+  skipped_cdts:
+    - cos6-x86_64
+libcom_err-devel:
+  custom: false
+  license_file: licenses/libcom_err-copying
+  skipped_cdts:
+    - cos6-x86_64
 libdrm:
   custom: false
   license_file: null
