@@ -1,0 +1,42 @@
+package:
+  name: libcom_err-cos7-ppc64le
+  version: 1.42.9
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libcom_err-1.42.9-19.el7.ppc64le.rpm
+    sha256: 1e36ab6a193dcdbacf07db85f76c3fed8129667e841a1a77e260bdaafeb45c82
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/e2fsprogs-1.42.9-19.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://e2fsprogs.sourceforge.net/
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libcom_err-1.42.9/COPYING
+  summary: "(CDT) Common error description library"
+  description: |
+        This is the common error description library, part of e2fsprogs.  libcom_err
+        is an attempt to present a common error-handling mechanism.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

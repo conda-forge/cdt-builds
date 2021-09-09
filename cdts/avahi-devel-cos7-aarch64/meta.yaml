@@ -1,0 +1,48 @@
+package:
+  name: avahi-devel-cos7-aarch64
+  version: 0.6.31
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/avahi-devel-0.6.31-20.el7.aarch64.rpm
+    sha256: c6e3fec92b6ef96ba083cf41aaf0c53902900e37687e8d85a4ab27fe89387992
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/avahi-0.6.31-20.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - avahi-libs-cos7-aarch64 ==0.6.31 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - avahi-libs-cos7-aarch64 ==0.6.31 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - avahi-libs-cos7-aarch64 ==0.6.31 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://avahi.org
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) Libraries and header files for avahi development"
+  description: |
+        The avahi-devel package contains the header files and libraries necessary for
+        developing programs using avahi.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
