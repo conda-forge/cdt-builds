@@ -27,7 +27,7 @@ The following options are available when adding a CDT in the configuration file:
    `cos6-x86_64` in this mapping and set the value to `echo 'hi!'` to add `echo 'hi!'` to
    the build script for only `cos6-x86_64`.
  - `dep_remove` (list of strings): Set to a list of strings for deps that should be remove
- - `dep_replace` (dict mapping dep to replace to new dep): Set to a dict of deps to be
+ - `dep_replace` (dict mapping dep to replace to new dep): Set to a dict of deps to be 
    replaced by another dep. this can be used for aliased RPMs.
 
 
@@ -135,6 +135,12 @@ register_repo("conda-forge", "cdt-builds", config=cfg)
 | [`atk-devel-cos7-aarch64`](https://anaconda.org/conda-forge/atk-devel-cos7-aarch64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/atk-devel-cos7-aarch64.svg)](https://anaconda.org/conda-forge/atk-devel-cos7-aarch64) |
 | [`atk-devel-cos7-ppc64le`](https://anaconda.org/conda-forge/atk-devel-cos7-ppc64le) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/atk-devel-cos7-ppc64le.svg)](https://anaconda.org/conda-forge/atk-devel-cos7-ppc64le) |
 | [`atk-devel-cos7-x86_64`](https://anaconda.org/conda-forge/atk-devel-cos7-x86_64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/atk-devel-cos7-x86_64.svg)](https://anaconda.org/conda-forge/atk-devel-cos7-x86_64) |
+| [`avahi-devel-cos7-aarch64`](https://anaconda.org/conda-forge/avahi-devel-cos7-aarch64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/avahi-devel-cos7-aarch64.svg)](https://anaconda.org/conda-forge/avahi-devel-cos7-aarch64) |
+| [`avahi-devel-cos7-ppc64le`](https://anaconda.org/conda-forge/avahi-devel-cos7-ppc64le) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/avahi-devel-cos7-ppc64le.svg)](https://anaconda.org/conda-forge/avahi-devel-cos7-ppc64le) |
+| [`avahi-devel-cos7-x86_64`](https://anaconda.org/conda-forge/avahi-devel-cos7-x86_64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/avahi-devel-cos7-x86_64.svg)](https://anaconda.org/conda-forge/avahi-devel-cos7-x86_64) |
+| [`avahi-libs-cos7-aarch64`](https://anaconda.org/conda-forge/avahi-libs-cos7-aarch64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/avahi-libs-cos7-aarch64.svg)](https://anaconda.org/conda-forge/avahi-libs-cos7-aarch64) |
+| [`avahi-libs-cos7-ppc64le`](https://anaconda.org/conda-forge/avahi-libs-cos7-ppc64le) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/avahi-libs-cos7-ppc64le.svg)](https://anaconda.org/conda-forge/avahi-libs-cos7-ppc64le) |
+| [`avahi-libs-cos7-x86_64`](https://anaconda.org/conda-forge/avahi-libs-cos7-x86_64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/avahi-libs-cos7-x86_64.svg)](https://anaconda.org/conda-forge/avahi-libs-cos7-x86_64) |
 | [`ca-certificates-cos6-x86_64`](https://anaconda.org/conda-forge/ca-certificates-cos6-x86_64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ca-certificates-cos6-x86_64.svg)](https://anaconda.org/conda-forge/ca-certificates-cos6-x86_64) |
 | [`ca-certificates-cos7-aarch64`](https://anaconda.org/conda-forge/ca-certificates-cos7-aarch64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ca-certificates-cos7-aarch64.svg)](https://anaconda.org/conda-forge/ca-certificates-cos7-aarch64) |
 | [`ca-certificates-cos7-ppc64le`](https://anaconda.org/conda-forge/ca-certificates-cos7-ppc64le) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ca-certificates-cos7-ppc64le.svg)](https://anaconda.org/conda-forge/ca-certificates-cos7-ppc64le) |
@@ -260,6 +266,12 @@ register_repo("conda-forge", "cdt-builds", config=cfg)
 | [`libbonobo-devel-cos7-aarch64`](https://anaconda.org/conda-forge/libbonobo-devel-cos7-aarch64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libbonobo-devel-cos7-aarch64.svg)](https://anaconda.org/conda-forge/libbonobo-devel-cos7-aarch64) |
 | [`libbonobo-devel-cos7-ppc64le`](https://anaconda.org/conda-forge/libbonobo-devel-cos7-ppc64le) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libbonobo-devel-cos7-ppc64le.svg)](https://anaconda.org/conda-forge/libbonobo-devel-cos7-ppc64le) |
 | [`libbonobo-devel-cos7-x86_64`](https://anaconda.org/conda-forge/libbonobo-devel-cos7-x86_64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libbonobo-devel-cos7-x86_64.svg)](https://anaconda.org/conda-forge/libbonobo-devel-cos7-x86_64) |
+| [`libcom_err-cos7-aarch64`](https://anaconda.org/conda-forge/libcom_err-cos7-aarch64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libcom_err-cos7-aarch64.svg)](https://anaconda.org/conda-forge/libcom_err-cos7-aarch64) |
+| [`libcom_err-cos7-ppc64le`](https://anaconda.org/conda-forge/libcom_err-cos7-ppc64le) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libcom_err-cos7-ppc64le.svg)](https://anaconda.org/conda-forge/libcom_err-cos7-ppc64le) |
+| [`libcom_err-cos7-x86_64`](https://anaconda.org/conda-forge/libcom_err-cos7-x86_64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libcom_err-cos7-x86_64.svg)](https://anaconda.org/conda-forge/libcom_err-cos7-x86_64) |
+| [`libcom_err-devel-cos7-aarch64`](https://anaconda.org/conda-forge/libcom_err-devel-cos7-aarch64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libcom_err-devel-cos7-aarch64.svg)](https://anaconda.org/conda-forge/libcom_err-devel-cos7-aarch64) |
+| [`libcom_err-devel-cos7-ppc64le`](https://anaconda.org/conda-forge/libcom_err-devel-cos7-ppc64le) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libcom_err-devel-cos7-ppc64le.svg)](https://anaconda.org/conda-forge/libcom_err-devel-cos7-ppc64le) |
+| [`libcom_err-devel-cos7-x86_64`](https://anaconda.org/conda-forge/libcom_err-devel-cos7-x86_64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libcom_err-devel-cos7-x86_64.svg)](https://anaconda.org/conda-forge/libcom_err-devel-cos7-x86_64) |
 | [`libdrm-cos6-x86_64`](https://anaconda.org/conda-forge/libdrm-cos6-x86_64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libdrm-cos6-x86_64.svg)](https://anaconda.org/conda-forge/libdrm-cos6-x86_64) |
 | [`libdrm-cos7-aarch64`](https://anaconda.org/conda-forge/libdrm-cos7-aarch64) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libdrm-cos7-aarch64.svg)](https://anaconda.org/conda-forge/libdrm-cos7-aarch64) |
 | [`libdrm-cos7-ppc64le`](https://anaconda.org/conda-forge/libdrm-cos7-ppc64le) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libdrm-cos7-ppc64le.svg)](https://anaconda.org/conda-forge/libdrm-cos7-ppc64le) |
