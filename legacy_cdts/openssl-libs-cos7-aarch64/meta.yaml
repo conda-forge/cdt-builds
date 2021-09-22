@@ -1,0 +1,49 @@
+package:
+  name: openssl-libs-cos7-aarch64
+  version: 1.0.2k
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/openssl-libs-1.0.2k-19.el7.aarch64.rpm
+    sha256: 0953e8982ad5010c729acc97c85f1846ef3e966dc52643b6306f9814fb759538
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/openssl-1.0.2k-19.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - ca-certificates-cos7-aarch64 >=2008 *_{{ cdt_build_number|int }}
+  host:
+    - ca-certificates-cos7-aarch64 >=2008 *_{{ cdt_build_number|int }}
+  run:
+    - ca-certificates-cos7-aarch64 >=2008 *_{{ cdt_build_number|int }}
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.openssl.org/
+  license: OpenSSL
+  license_family: Other
+  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/openssl-libs-1.0.2k/LICENSE
+  summary: "(CDT) A general purpose cryptography library with TLS implementation"
+  description: |
+        OpenSSL is a toolkit for supporting cryptography. The openssl-libs package
+        contains the libraries that are used by various applications which support
+        cryptographic algorithms and protocols.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
