@@ -613,6 +613,12 @@ numactl-devel:
     - licenses/numactl-copyright.txt
     - licenses/numactl-gpl2.txt
     - licenses/numactl-lgpl2.txt
+openssl-libs:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+  license_file:
+    - licenses/openssl-license
 ORBit2:
   custom: false
   license_file:
