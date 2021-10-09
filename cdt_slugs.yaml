@@ -72,9 +72,12 @@ chkconfig:
   custom: false
 copy-jdk-configs:
   custom: false
+cracklib:
+  custom: false
+  license_file: licenses/cracklib-copying.lib
 cracklib-dicts:
   custom: false
-  license_file: licenses/cracklib-dicts-copying.lib
+  license_file: licenses/cracklib-copying.lib
 cups-libs:
   custom: false
   license_file: licenses/cups-license
