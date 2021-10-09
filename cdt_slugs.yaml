@@ -3,6 +3,8 @@ alsa-lib:
 alsa-lib-devel:
   custom: false
   license_file: licenses/alsa-lib-license
+audit-libs:
+  custom: false
 at-spi:
   custom: false
   license_file: licenses/at-spi-license
@@ -629,6 +631,8 @@ p11-kit:
 p11-kit-trust:
   custom: false
   license_file: licenses/p11-kit-license
+pam-devel:
+  custom: false
 pango:
   custom: false
   build_append:

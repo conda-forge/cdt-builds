@@ -1,0 +1,44 @@
+package:
+  name: audit-libs-cos6-x86_64
+  version: 2.4.5
+
+source:
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/audit-libs-2.4.5-6.el6.x86_64.rpm
+    sha256: 17a8113af3c178a241cbee63eb42931c4d3c72f5a889a433f04fe08934d007f9
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/audit-2.4.5-6.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-64 2.12.*
+  run:
+    - sysroot_linux-64 2.12.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://people.redhat.com/sgrubb/audit/
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) Dynamic library for libaudit"
+  description: |
+        The audit-libs package contains the dynamic libraries needed for applications
+        to use the audit framework.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
