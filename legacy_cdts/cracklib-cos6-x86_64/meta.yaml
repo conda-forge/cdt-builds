@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -31,21 +31,21 @@ about:
   home: http://sourceforge.net/projects/cracklib/
   license: LGPL-2.0-or-later
   license_family: LGPL
-  license_file: {{ SRC_DIR }}/binary/usr/share/doc/cracklib-2.8.16/README-LICENSE
-  summary: "(CDT) A password-checking library"
+  license_file: cracklib-copying.lib
+  summary: (CDT) A password-checking library
   description: |
-        CrackLib tests passwords to determine whether they match certain security-
-        oriented characteristics, with the purpose of stopping users from choosing
-        passwords that are easy to guess. CrackLib performs several tests on
-        passwords: it tries to generate words from a username and gecos entry and
-        checks those words against the password; it checks for simplistic patterns in
-        passwords; and it checks for the password in a dictionary.  CrackLib is
-        actually a library containing a particular C function which is used to check
-        the password, as well as other C functions. CrackLib is not a replacement for
-        a passwd program; it must be used in conjunction with an existing passwd
-        program.  Install the cracklib package if you need a program to check users'
-        passwords to see if they are at least minimally secure. If you install
-        CrackLib, you will also want to install the cracklib-dicts package.
+    CrackLib tests passwords to determine whether they match certain security-
+    oriented characteristics, with the purpose of stopping users from choosing
+    passwords that are easy to guess. CrackLib performs several tests on
+    passwords: it tries to generate words from a username and gecos entry and
+    checks those words against the password; it checks for simplistic patterns in
+    passwords; and it checks for the password in a dictionary.  CrackLib is
+    actually a library containing a particular C function which is used to check
+    the password, as well as other C functions. CrackLib is not a replacement for
+    a passwd program; it must be used in conjunction with an existing passwd
+    program.  Install the cracklib package if you need a program to check users'
+    passwords to see if they are at least minimally secure. If you install
+    CrackLib, you will also want to install the cracklib-dicts package.
 
 extra:
   recipe-maintainers:

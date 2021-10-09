@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int + 1000 }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -23,24 +23,20 @@ requirements:
   build:
     - audit-libs-cos7-aarch64 >=1.0.8 *_{{ cdt_build_number|int + 1000 }}
     - cracklib-dicts-cos7-aarch64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
-    - glibc-cos7-aarch64 >=2.3.90 *_{{ cdt_build_number|int + 1000 }}
     - libpwquality-cos7-aarch64 >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
     - libselinux-cos7-aarch64 >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
   host:
     - audit-libs-cos7-aarch64 >=1.0.8 *_{{ cdt_build_number|int + 1000 }}
     - cracklib-dicts-cos7-aarch64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
-    - glibc-cos7-aarch64 >=2.3.90 *_{{ cdt_build_number|int + 1000 }}
     - libpwquality-cos7-aarch64 >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
     - libselinux-cos7-aarch64 >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
     - audit-libs-cos7-aarch64 >=1.0.8 *_{{ cdt_build_number|int + 1000 }}
     - cracklib-dicts-cos7-aarch64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
-    - glibc-cos7-aarch64 >=2.3.90 *_{{ cdt_build_number|int + 1000 }}
     - libpwquality-cos7-aarch64 >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
     - libselinux-cos7-aarch64 >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
-
 test:
   commands:
     - echo "it installs!"
@@ -50,11 +46,11 @@ about:
   license: BSD and GPLv2+
   license_family: GPL2
   license_file: {{ SRC_DIR }}/binary/usr/share/doc/pam-1.1.8/html/sag-copyright.html
-  summary: "(CDT) An extensible library which provides authentication for applications"
+  summary: (CDT) An extensible library which provides authentication for applications
   description: |
-        PAM (Pluggable Authentication Modules) is a system security tool that allows
-        system administrators to set authentication policy without having to recompile
-        programs that handle authentication.
+    PAM (Pluggable Authentication Modules) is a system security tool that allows
+    system administrators to set authentication policy without having to recompile
+    programs that handle authentication.
 
 extra:
   recipe-maintainers:

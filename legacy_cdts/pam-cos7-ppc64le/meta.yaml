@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -23,19 +23,16 @@ requirements:
   build:
     - audit-libs-cos7-ppc64le >=1.0.8 *_{{ cdt_build_number|int }}
     - cracklib-dicts-cos7-ppc64le >=2.8 *_{{ cdt_build_number|int }}
-    - glibc-cos7-ppc64le >=2.3.90 *_{{ cdt_build_number|int }}
     - libpwquality-cos7-ppc64le >=0.9.9 *_{{ cdt_build_number|int }}
     - libselinux-cos7-ppc64le >=1.33.2 *_{{ cdt_build_number|int }}
   host:
     - audit-libs-cos7-ppc64le >=1.0.8 *_{{ cdt_build_number|int }}
     - cracklib-dicts-cos7-ppc64le >=2.8 *_{{ cdt_build_number|int }}
-    - glibc-cos7-ppc64le >=2.3.90 *_{{ cdt_build_number|int }}
     - libpwquality-cos7-ppc64le >=0.9.9 *_{{ cdt_build_number|int }}
     - libselinux-cos7-ppc64le >=1.33.2 *_{{ cdt_build_number|int }}
   run:
     - audit-libs-cos7-ppc64le >=1.0.8 *_{{ cdt_build_number|int }}
     - cracklib-dicts-cos7-ppc64le >=2.8 *_{{ cdt_build_number|int }}
-    - glibc-cos7-ppc64le >=2.3.90 *_{{ cdt_build_number|int }}
     - libpwquality-cos7-ppc64le >=0.9.9 *_{{ cdt_build_number|int }}
     - libselinux-cos7-ppc64le >=1.33.2 *_{{ cdt_build_number|int }}
   run_constrained:
@@ -50,11 +47,11 @@ about:
   license: BSD and GPLv2+
   license_family: GPL2
   license_file: {{ SRC_DIR }}/binary/usr/share/doc/pam-1.1.8/html/sag-copyright.html
-  summary: "(CDT) An extensible library which provides authentication for applications"
+  summary: (CDT) An extensible library which provides authentication for applications
   description: |
-        PAM (Pluggable Authentication Modules) is a system security tool that allows
-        system administrators to set authentication policy without having to recompile
-        programs that handle authentication.
+    PAM (Pluggable Authentication Modules) is a system security tool that allows
+    system administrators to set authentication policy without having to recompile
+    programs that handle authentication.
 
 extra:
   recipe-maintainers:

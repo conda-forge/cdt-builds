@@ -644,6 +644,8 @@ p11-kit-trust:
   license_file: licenses/p11-kit-license
 pam:
   custom: false
+  dep_remove:
+    - glibc
 pam-devel:
   custom: false
 pango:

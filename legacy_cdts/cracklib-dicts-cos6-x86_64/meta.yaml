@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -37,14 +37,14 @@ about:
   home: http://sourceforge.net/projects/cracklib/
   license: LGPL-2.0-or-later
   license_family: LGPL
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
-  summary: "(CDT) The standard CrackLib dictionaries"
+  license_file: cracklib-copying.lib
+  summary: (CDT) The standard CrackLib dictionaries
   description: |
-        The cracklib-dicts package includes the CrackLib dictionaries. CrackLib will
-        need to use the dictionary appropriate to your system, which is normally put
-        in /usr/share/dict/words. Cracklib-dicts also contains the utilities necessary
-        for the creation of new dictionaries.  If you are installing CrackLib, you
-        should also install cracklib-dicts.
+    The cracklib-dicts package includes the CrackLib dictionaries. CrackLib will
+    need to use the dictionary appropriate to your system, which is normally put
+    in /usr/share/dict/words. Cracklib-dicts also contains the utilities necessary
+    for the creation of new dictionaries.  If you are installing CrackLib, you
+    should also install cracklib-dicts.
 
 extra:
   recipe-maintainers:
