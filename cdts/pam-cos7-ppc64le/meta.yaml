@@ -1,0 +1,61 @@
+package:
+  name: pam-cos7-ppc64le
+  version: 1.1.8
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/pam-1.1.8-23.el7.ppc64le.rpm
+    sha256: 11072fbe0ec2f182155ac4105f9467ff0aedfc73bdecc82aeed7d32c93025bfc
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/pam-1.1.8-23.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - audit-libs-cos7-ppc64le >=1.0.8 *_{{ cdt_build_number|int + 1000 }}
+    - cracklib-dicts-cos7-ppc64le >=2.8 *_{{ cdt_build_number|int + 1000 }}
+    - glibc-cos7-ppc64le >=2.3.90 *_{{ cdt_build_number|int + 1000 }}
+    - libpwquality-cos7-ppc64le >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
+    - libselinux-cos7-ppc64le >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - audit-libs-cos7-ppc64le >=1.0.8 *_{{ cdt_build_number|int + 1000 }}
+    - cracklib-dicts-cos7-ppc64le >=2.8 *_{{ cdt_build_number|int + 1000 }}
+    - glibc-cos7-ppc64le >=2.3.90 *_{{ cdt_build_number|int + 1000 }}
+    - libpwquality-cos7-ppc64le >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
+    - libselinux-cos7-ppc64le >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - audit-libs-cos7-ppc64le >=1.0.8 *_{{ cdt_build_number|int + 1000 }}
+    - cracklib-dicts-cos7-ppc64le >=2.8 *_{{ cdt_build_number|int + 1000 }}
+    - glibc-cos7-ppc64le >=2.3.90 *_{{ cdt_build_number|int + 1000 }}
+    - libpwquality-cos7-ppc64le >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
+    - libselinux-cos7-ppc64le >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.linux-pam.org/
+  license: BSD and GPLv2+
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/pam-1.1.8/html/sag-copyright.html
+  summary: "(CDT) An extensible library which provides authentication for applications"
+  description: |
+        PAM (Pluggable Authentication Modules) is a system security tool that allows
+        system administrators to set authentication policy without having to recompile
+        programs that handle authentication.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

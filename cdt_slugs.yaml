@@ -72,6 +72,9 @@ chkconfig:
   custom: false
 copy-jdk-configs:
   custom: false
+cracklib-dicts:
+  custom: false
+  license_file: licenses/cracklib-dicts-copying.lib
 cups-libs:
   custom: false
   license_file: licenses/cups-license
@@ -632,6 +635,8 @@ p11-kit:
 p11-kit-trust:
   custom: false
   license_file: licenses/p11-kit-license
+pam:
+  custom: false
 pam-devel:
   custom: false
 pango:
