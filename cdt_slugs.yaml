@@ -372,6 +372,10 @@ libpng:
 libpng-devel:
   custom: false
   license_file: licenses/libpng-license
+libpwquality:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
 librdmacm:
   custom: false
   license_file: licenses/librdmacm-devel-license

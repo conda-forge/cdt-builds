@@ -1,0 +1,49 @@
+package:
+  name: libpwquality-cos7-ppc64le
+  version: 1.2.3
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libpwquality-1.2.3-5.el7.ppc64le.rpm
+    sha256: 28a2a967016e384fcdd7c667abafa7ff775d6f18451a98bfda35fc7e7b611b8a
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libpwquality-1.2.3-5.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - cracklib-dicts-cos7-ppc64le >=2.8 *_{{ cdt_build_number|int }}
+  host:
+    - cracklib-dicts-cos7-ppc64le >=2.8 *_{{ cdt_build_number|int }}
+  run:
+    - cracklib-dicts-cos7-ppc64le >=2.8 *_{{ cdt_build_number|int }}
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/libpwquality/libpwquality/
+  license: BSD or GPLv2+
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libpwquality-1.2.3/COPYING
+  summary: "(CDT) A library for password generation and password quality checking"
+  description: |
+        This is a library for password quality checks and generation of random
+        passwords that pass the checks. This library uses the cracklib and cracklib
+        dictionaries to perform some of the checks.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
