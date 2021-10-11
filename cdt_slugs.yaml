@@ -419,6 +419,12 @@ libuuid:
 libuuid-devel:
   custom: false
   license_file: licenses/libuuid-license
+vulkan:
+  custom: false
+  license_file: licenses/vulkan-license
+vulkan-devel:
+  custom: false
+  license_file: licenses/vulkan-license
 libX11:
   custom: false
   license_file: licenses/x11-license

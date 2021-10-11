@@ -1,0 +1,47 @@
+package:
+  name: vulkan-devel-cos7-aarch64
+  version: 1.1.97.0
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/vulkan-devel-1.1.97.0-1.el7.aarch64.rpm
+    sha256: d48a4a9f934b447ccf17b0c34d2db3641f5141716483515d0d40019bd5e2ee2f
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/vulkan-1.1.97.0-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - vulkan-cos7-aarch64 ==1.1.97.0 *_{{ cdt_build_number|int }}
+  host:
+    - vulkan-cos7-aarch64 ==1.1.97.0 *_{{ cdt_build_number|int }}
+  run:
+    - vulkan-cos7-aarch64 ==1.1.97.0 *_{{ cdt_build_number|int }}
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/KhronosGroup
+  license: ASL 2.0
+  license_family: Other
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) Vulkan development package"
+  description: |
+        Development headers for Vulkan applications.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

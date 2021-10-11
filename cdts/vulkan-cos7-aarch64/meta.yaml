@@ -1,0 +1,50 @@
+package:
+  name: vulkan-cos7-aarch64
+  version: 1.1.97.0
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/vulkan-1.1.97.0-1.el7.aarch64.rpm
+    sha256: 7e5318f93c7e96c4be103a82ff7f840d567c2c6d6a956e8c02b849ae90f378b8
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/vulkan-1.1.97.0-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - vulkan-filesystem-cos7-aarch64 ==1.1.97.0 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - vulkan-filesystem-cos7-aarch64 ==1.1.97.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - vulkan-filesystem-cos7-aarch64 ==1.1.97.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/KhronosGroup
+  license: ASL 2.0
+  license_family: Other
+  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/vulkan-1.1.97.0/LICENSE.txt
+  summary: "(CDT) Vulkan loader and validation layers"
+  description: |
+        Vulkan is a new generation graphics and compute API that provides high-
+        efficiency, cross-platform access to modern GPUs used in a wide variety of
+        devices from PCs and consoles to mobile phones and embedded platforms.  This
+        package contains the reference ICD loader and validation layers for Vulkan.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
