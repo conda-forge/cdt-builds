@@ -1,0 +1,47 @@
+package:
+  name: xcb-util-image-devel-cos6-x86_64
+  version: 0.4.0
+
+source:
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/xcb-util-image-devel-0.4.0-3.el6.x86_64.rpm
+    sha256: 36f59decee2c3f6d80d9585b4d8adad04644facb40c146991598d8cbd73823e1
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/xcb-util-image-0.4.0-3.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - xcb-util-image-cos6-x86_64 ==0.4.0 *_{{ cdt_build_number|int }}
+  host:
+    - xcb-util-image-cos6-x86_64 ==0.4.0 *_{{ cdt_build_number|int }}
+  run:
+    - xcb-util-image-cos6-x86_64 ==0.4.0 *_{{ cdt_build_number|int }}
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://xcb.freedesktop.org
+  license: MIT
+  license_family: MIT
+  license_file: xcb-util-image-license
+  summary: (CDT) Development and header files for xcb-util-image
+  description: |
+    Development files for xcb-util-image.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,42 @@
+package:
+  name: xcb-util-keysyms-cos6-x86_64
+  version: 0.4.0
+
+source:
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/xcb-util-keysyms-0.4.0-1.el6.x86_64.rpm
+    sha256: 0e57296fc9cf726cf40fdb5ecb59d184dde757a5f3198b9cb782aa865cc61260
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/xcb-util-keysyms-0.4.0-1.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://xcb.freedesktop.org
+  license: MIT
+  license_family: MIT
+  license_file: xcb-util-keysyms-license
+  summary: (CDT) Standard X key constants and keycodes conversion on top of libxcb
+  description: |
+    XCB util-keysyms module provides the following library:    - keysyms: Standard
+    X key constants and conversion to/from keycodes.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
