@@ -1,0 +1,47 @@
+package:
+  name: xcb-util-keysyms-devel-cos6-x86_64
+  version: 0.4.0
+
+source:
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/xcb-util-keysyms-devel-0.4.0-1.el6.x86_64.rpm
+    sha256: 0450b9845cbefe5f75a5fea572122220faf7a29ca927e39202e47b1aa5d29fe2
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/xcb-util-keysyms-0.4.0-1.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - xcb-util-keysyms-cos6-x86_64 ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - xcb-util-keysyms-cos6-x86_64 ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.12.*
+  run:
+    - xcb-util-keysyms-cos6-x86_64 ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.12.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://xcb.freedesktop.org
+  license: MIT
+  license_family: MIT
+  license_file: xcb-util-keysyms-license
+  summary: (CDT) Development and header files for xcb-util-keysyms
+  description: |
+    Development files for xcb-util-keysyms.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

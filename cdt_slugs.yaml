@@ -756,53 +756,33 @@ webkitgtk-devel:
   license_file: licenses/webkitgtk-license
 xcb-util:
   custom: false
-  skipped_cdts:
-    - cos6-x86_64
   license_file: licenses/xcb-util-license
 xcb-util-devel:
   custom: false
-  skipped_cdts:
-    - cos6-x86_64
   license_file: licenses/xcb-util-license
 xcb-util-image:
   custom: false
-  skipped_cdts:
-    - cos6-x86_64
   license_file: licenses/xcb-util-image-license
 xcb-util-image-devel:
   custom: false
-  skipped_cdts:
-    - cos6-x86_64
   license_file: licenses/xcb-util-image-license
 xcb-util-keysyms:
   custom: false
-  skipped_cdts:
-    - cos6-x86_64
   license_file: licenses/xcb-util-keysyms-license
 xcb-util-keysyms-devel:
   custom: false
-  skipped_cdts:
-    - cos6-x86_64
   license_file: licenses/xcb-util-keysyms-license
 xcb-util-renderutil:
   custom: false
-  skipped_cdts:
-    - cos6-x86_64
   license_file: licenses/xcb-util-renderutil-license
 xcb-util-renderutil-devel:
   custom: false
-  skipped_cdts:
-    - cos6-x86_64
   license_file: licenses/xcb-util-renderutil-license
 xcb-util-wm:
   custom: false
-  skipped_cdts:
-    - cos6-x86_64
   license_file: licenses/xcb-util-wm-license
 xcb-util-wm-devel:
   custom: false
-  skipped_cdts:
-    - cos6-x86_64
   license_file: licenses/xcb-util-wm-license
 xorg-x11-proto-devel:
   custom: false
