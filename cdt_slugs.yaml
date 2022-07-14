@@ -297,6 +297,20 @@ libibcm-devel:
     - cos7-aarch64
     - cos7-ppc64le
   license_file: licenses/libibcm-devel-license
+libibmad:
+  custom: false
+  skipped_cdts:
+    - cos6-aarch64
+    - cos6-ppc64le
+  license_file:
+    - licenses/libibmad-license
+libibmad-devel:
+  custom: false
+  skipped_cdts:
+    - cos6-aarch64
+    - cos6-ppc64le
+  license_file:
+    - licenses/libibmad-license
 libibumad:
   custom: false
   # `libibumad` is part of rdma-core and under the same licenses
