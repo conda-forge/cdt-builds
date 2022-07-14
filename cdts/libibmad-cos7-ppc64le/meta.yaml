@@ -1,0 +1,45 @@
+package:
+  name: libibmad-cos7-ppc64le
+  version: 1.3.13
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libibmad-1.3.13-1.el7.ppc64le.rpm
+    sha256: 7d1cd1f019541fd46d336d908182fa8ec4691d672069ac0b8f0ac0c6b3956d34
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libibmad-1.3.13-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.openfabrics.org/
+  license: GPLv2 or BSD
+  license_family: GPL2
+  license_file:
+    - libibmad-license
+  summary: (CDT) OpenFabrics Alliance InfiniBand MAD library
+  description: |
+    libibmad provides low layer IB functions for use by the IB diagnostic and
+    management programs. These include MAD, SA, SMP, and other basic IB functions.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

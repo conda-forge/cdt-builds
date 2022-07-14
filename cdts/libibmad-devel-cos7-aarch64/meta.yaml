@@ -1,0 +1,48 @@
+package:
+  name: libibmad-devel-cos7-aarch64
+  version: 1.3.13
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libibmad-devel-1.3.13-1.el7.aarch64.rpm
+    sha256: 36bd7814032cc893c7e4283ebadd400cbbaa041aa034110c686bd7bc5a356217
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libibmad-1.3.13-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libibmad-cos7-aarch64 ==1.3.13 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libibmad-cos7-aarch64 ==1.3.13 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - libibmad-cos7-aarch64 ==1.3.13 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.openfabrics.org/
+  license: GPLv2 or BSD
+  license_family: GPL2
+  license_file:
+    - libibmad-license
+  summary: (CDT) Development files for the libibmad library
+  description: |
+    Development files for the libibmad library.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
