@@ -1,0 +1,44 @@
+package:
+  name: opensm-libs-cos7-aarch64
+  version: 3.3.21
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/opensm-libs-3.3.21-3.el7_8.aarch64.rpm
+    sha256: e632beaafcaa0d3e3d35647fd30311ce84177f5d2714b91b2321014e102a0b55
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/opensm-3.3.21-3.el7_8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/linux-rdma/opensm
+  license: GPLv2 or BSD
+  license_family: GPL2
+  license_file:
+    - opensm-license
+  summary: (CDT) Libraries used by opensm and included utilities
+  description: |
+    Shared libraries for Infiniband user space access
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

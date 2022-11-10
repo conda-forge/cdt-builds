@@ -1,0 +1,48 @@
+package:
+  name: opensm-devel-cos6-x86_64
+  version: 3.3.17
+
+source:
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/opensm-devel-3.3.17-1.el6.x86_64.rpm
+    sha256: 4c388b5f39132e01f2e96ec81d37f7222104dc28c6a6b1c8ac5442eed2c5df6d
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/opensm-3.3.17-1.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - opensm-libs-cos6-x86_64 ==3.3.17 *_{{ cdt_build_number|int }}
+  host:
+    - opensm-libs-cos6-x86_64 ==3.3.17 *_{{ cdt_build_number|int }}
+  run:
+    - opensm-libs-cos6-x86_64 ==3.3.17 *_{{ cdt_build_number|int }}
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.openfabrics.org/
+  license: GPLv2 or BSD
+  license_family: GPL2
+  license_file:
+    - opensm-license
+  summary: (CDT) Development files for the opensm-libs libraries
+  description: |
+    Development environment for the opensm libraries
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
