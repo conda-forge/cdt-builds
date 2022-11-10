@@ -1,0 +1,42 @@
+package:
+  name: opensm-libs-cos6-x86_64
+  version: 3.3.17
+
+source:
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/opensm-libs-3.3.17-1.el6.x86_64.rpm
+    sha256: eb3027cbc2a340d7093c8ad18c6c8933670d02e3cbede1e8db86db3ffcbe0f06
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/opensm-3.3.17-1.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.openfabrics.org/
+  license: GPLv2 or BSD
+  license_family: GPL2
+  license_file:
+    - opensm-license
+  summary: (CDT) Libraries used by opensm and included utilities
+  description: |
+    Shared libraries for Infiniband user space access
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
