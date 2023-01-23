@@ -110,16 +110,8 @@ fribidi:
     - cos6-x86_64
 gdk-pixbuf2:
   custom: false
-  skipped_cdts:
-    - cos7-x86_64
-    - cos7-aarch64
-    - cos7-ppc64le
 gdk-pixbuf2-devel:
   custom: false
-  skipped_cdts:
-    - cos7-x86_64
-    - cos7-aarch64
-    - cos7-ppc64le
 glib-networking:
   custom: false
 glib2:
