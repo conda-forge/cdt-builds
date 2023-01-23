@@ -1,0 +1,51 @@
+package:
+  name: gdk-pixbuf2-devel-cos7-aarch64
+  version: 2.36.12
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/gdk-pixbuf2-devel-2.36.12-3.el7.aarch64.rpm
+    sha256: 063337ffb8fb0f28058488feb43b88faba0b9b50f48d831d13062ac4b56d14bd
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/gdk-pixbuf2-2.36.12-3.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - gdk-pixbuf2-cos7-aarch64 ==2.36.12 *_{{ cdt_build_number|int }}
+    - glib2-devel-cos7-aarch64 >=2.48.0 *_{{ cdt_build_number|int }}
+  host:
+    - gdk-pixbuf2-cos7-aarch64 ==2.36.12 *_{{ cdt_build_number|int }}
+    - glib2-devel-cos7-aarch64 >=2.48.0 *_{{ cdt_build_number|int }}
+  run:
+    - gdk-pixbuf2-cos7-aarch64 ==2.36.12 *_{{ cdt_build_number|int }}
+    - glib2-devel-cos7-aarch64 >=2.48.0 *_{{ cdt_build_number|int }}
+  run_constrained:
+    - sysroot_linux-aarch64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.gtk.org
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/usr/share/gtk-doc/html/gdk-pixbuf/license.html
+  summary: "(CDT) Development files for gdk-pixbuf"
+  description: |
+        This package contains the libraries and header files that are needed for
+        writing applications that are using gdk-pixbuf.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
