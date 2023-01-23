@@ -142,6 +142,7 @@ gtk3:
     - cos6-x86_64
 gtk3-devel:
   custom: false
+  license_file: COPYING
   skipped_cdts:
     - cos6-x86_64
 gtkmm24:
