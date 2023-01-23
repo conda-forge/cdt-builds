@@ -1,0 +1,49 @@
+package:
+  name: cairo-gobject-cos7-ppc64le
+  version: 1.15.12
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/cairo-gobject-1.15.12-4.el7.ppc64le.rpm
+    sha256: 3f1ac67e199e7cad0353dad11a91028c6b9bfa9103b2e27f1bd6cb656c55de02
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/cairo-1.15.12-4.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - cairo-cos7-ppc64le ==1.15.12 *_{{ cdt_build_number|int }}
+  host:
+    - cairo-cos7-ppc64le ==1.15.12 *_{{ cdt_build_number|int }}
+  run:
+    - cairo-cos7-ppc64le ==1.15.12 *_{{ cdt_build_number|int }}
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://cairographics.org
+  license: LGPLv2 or MPLv1.1
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) GObject bindings for cairo"
+  description: |
+        Cairo is a 2D graphics library designed to provide high-quality display and
+        print output.  This package contains functionality to make cairo graphics
+        library integrate well with the GObject object system used by GNOME.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
