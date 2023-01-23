@@ -235,6 +235,10 @@ libdrm:
 libdrm-devel:
   custom: false
   license_file: null
+libepoxy:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
 libglvnd:
   custom: false
   skipped_cdts:
@@ -433,6 +437,14 @@ libuuid:
 libuuid-devel:
   custom: false
   license_file: licenses/libuuid-license
+libwayland-client:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+libwayland-cursor:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
 libX11:
   custom: false
   license_file: licenses/x11-license
