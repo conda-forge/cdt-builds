@@ -1,0 +1,43 @@
+package:
+  name: libwayland-client-cos7-aarch64
+  version: 1.15.0
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libwayland-client-1.15.0-1.el7.aarch64.rpm
+    sha256: 24558a47bf2c5e9e793a6fdcb2f9fc23033287cc372c8a394988e49a346efda8
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/wayland-1.15.0-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://wayland.freedesktop.org/
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/libwayland-client-1.15.0/COPYING
+  summary: "(CDT) Wayland client library"
+  description: |
+        Wayland client library
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

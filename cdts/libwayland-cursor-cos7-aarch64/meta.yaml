@@ -1,0 +1,43 @@
+package:
+  name: libwayland-cursor-cos7-aarch64
+  version: 1.15.0
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libwayland-cursor-1.15.0-1.el7.aarch64.rpm
+    sha256: ee83375ae15cb26e0a8ab0d9b676cc0191909b711d15214bf0f491ab639a21ec
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/wayland-1.15.0-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://wayland.freedesktop.org/
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/libwayland-cursor-1.15.0/COPYING
+  summary: "(CDT) Wayland cursor library"
+  description: |
+        Wayland cursor library
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

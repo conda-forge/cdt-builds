@@ -1,0 +1,43 @@
+package:
+  name: libepoxy-cos7-aarch64
+  version: 1.5.2
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libepoxy-1.5.2-1.el7.aarch64.rpm
+    sha256: d0c80236f1ff5c92f72f4b9faa0cb86e5d780578068f3644ab28007f73912132
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libepoxy-1.5.2-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://github.com/anholt/libepoxy
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) epoxy runtime library"
+  description: |
+        A library for handling OpenGL function pointer management.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
