@@ -136,6 +136,14 @@ gtk2:
 gtk2-devel:
   custom: false
   license_file: licenses/gtk2-copying
+gtk3:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+gtk3-devel:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
 gtkmm24:
   custom: false
   license_file:
