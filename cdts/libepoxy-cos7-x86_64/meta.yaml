@@ -33,7 +33,7 @@ about:
   home: http://github.com/anholt/libepoxy
   license: MIT
   license_family: MIT
-  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  license_file: COPYING
   summary: "(CDT) epoxy runtime library"
   description: |
         A library for handling OpenGL function pointer management.
