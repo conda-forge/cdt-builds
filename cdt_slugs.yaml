@@ -62,6 +62,10 @@ cairo-devel:
     - licenses/cairo-copying-mpl-1.1
 cairo-gobject:
   custom: false
+  license_file:
+    - licenses/cairo-copying
+    - licenses/cairo-copying-lgpl-2.1
+    - licenses/cairo-copying-mpl-1.1
   skipped_cdts:
     - cos6-x86_64
 centos-release:
