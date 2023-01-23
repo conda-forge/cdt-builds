@@ -53,7 +53,6 @@ import tempfile
 import subprocess
 
 import click
-from conda_build.conda_interface import iteritems
 from conda_build.source import download_to_cache
 from conda_build.license_family import guess_license_family
 from conda_build.config import Config
@@ -340,7 +339,7 @@ def find_repo_entry_and_arch(repo_primary, architectures, depend):
         found_package_name = dep_name
     except Exception:
         # Look through the provides of all packages.
-        for name, package in iteritems(repo_primary):
+        for name, package in repo_primary.items():
             for arch in architectures:
                 if arch in package:
                     if "provides" in package[arch]:
@@ -904,7 +903,7 @@ def write_conda_recipe(
         }
     )
     cdt = dict()
-    for k, v in iteritems(cdt_info[cdt_name]):
+    for k, v in cdt_info[cdt_name].items():
         if isinstance(v, string_types):
             cdt[k] = v.format(**architecture_bits)
         else:
