@@ -14,8 +14,8 @@ source:
 build:
   number: {{ cdt_build_number|int }}
   noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
 
@@ -41,11 +41,11 @@ about:
     - cairo-copying
     - cairo-copying-lgpl-2.1
     - cairo-copying-mpl-1.1
-  summary: "(CDT) GObject bindings for cairo"
+  summary: (CDT) GObject bindings for cairo
   description: |
-        Cairo is a 2D graphics library designed to provide high-quality display and
-        print output.  This package contains functionality to make cairo graphics
-        library integrate well with the GObject object system used by GNOME.
+    Cairo is a 2D graphics library designed to provide high-quality display and
+    print output.  This package contains functionality to make cairo graphics
+    library integrate well with the GObject object system used by GNOME.
 
 extra:
   recipe-maintainers:

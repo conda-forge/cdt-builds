@@ -68,6 +68,10 @@ cairo-gobject:
     - licenses/cairo-copying-mpl-1.1
   skipped_cdts:
     - cos6-x86_64
+cairo-gobject-devel:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
 centos-release:
   custom: false
   skipped_cdts:
