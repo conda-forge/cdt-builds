@@ -17,7 +17,6 @@ build:
     - '*'
 
 requirements:
-  build:
   host:
     - sysroot_linux-64 2.12.*
   run:
