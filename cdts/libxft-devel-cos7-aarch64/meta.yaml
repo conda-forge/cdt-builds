@@ -1,0 +1,47 @@
+package:
+  name: libxft-devel-cos7-aarch64
+  version: 2.3.2
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libXft-devel-2.3.2-2.el7.aarch64.rpm
+    sha256: 2164191fb14e7b60155f7e3d55efb799af6dc98f4b138b3c71d079bd4f7b4e65
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXft-2.3.2-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libxft-cos7-aarch64 ==2.3.2 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libxft-cos7-aarch64 ==2.3.2 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - libxft-cos7-aarch64 ==2.3.2 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) X.Org X11 libXft development package"
+  description: |
+        X.Org X11 libXft development package
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

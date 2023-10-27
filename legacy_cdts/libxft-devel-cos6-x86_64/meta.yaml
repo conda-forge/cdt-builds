@@ -1,0 +1,47 @@
+package:
+  name: libxft-devel-cos6-x86_64
+  version: 2.3.2
+
+source:
+  - url: https://vault.centos.org/6.10/os/x86_64/Packages/libXft-devel-2.3.2-1.el6.x86_64.rpm
+    sha256: 3059b776f66acda0e2f9c0558f7d3be184b882a81243e748a85632c635bf243c
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/6.10/os/Source/SPackages/libXft-2.3.2-1.el6.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libxft-cos6-x86_64 ==2.3.2 *_{{ cdt_build_number|int }}
+  host:
+    - libxft-cos6-x86_64 ==2.3.2 *_{{ cdt_build_number|int }}
+  run:
+    - libxft-cos6-x86_64 ==2.3.2 *_{{ cdt_build_number|int }}
+  run_constrained:
+    - sysroot_linux-64 ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: "(CDT) X.Org X11 libXft development package"
+  description: |
+        X.Org X11 libXft development package
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
