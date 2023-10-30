@@ -1,0 +1,52 @@
+package:
+  name: cairo-gobject-devel-cos7-ppc64le
+  version: 1.15.12
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/cairo-gobject-devel-1.15.12-4.el7.ppc64le.rpm
+    sha256: 0baf914b36e70403b143b88827f3b7f471283cca507e4afb35b2701827d87c18
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/cairo-1.15.12-4.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - cairo-devel-cos7-ppc64le ==1.15.12 *_{{ cdt_build_number|int }}
+    - cairo-gobject-cos7-ppc64le ==1.15.12 *_{{ cdt_build_number|int }}
+  host:
+    - cairo-devel-cos7-ppc64le ==1.15.12 *_{{ cdt_build_number|int }}
+    - cairo-gobject-cos7-ppc64le ==1.15.12 *_{{ cdt_build_number|int }}
+  run:
+    - cairo-devel-cos7-ppc64le ==1.15.12 *_{{ cdt_build_number|int }}
+    - cairo-gobject-cos7-ppc64le ==1.15.12 *_{{ cdt_build_number|int }}
+  run_constrained:
+    - sysroot_linux-ppc64le ==99999999999
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://cairographics.org
+  license: LGPLv2 or MPLv1.1
+  license_family: LGPL
+  summary: "(CDT) Development files for cairo-gobject"
+  description: |
+        Cairo is a 2D graphics library designed to provide high-quality display and
+        print output.  This package contains libraries, header files and developer
+        documentation needed for developing software which uses the cairo Gobject
+        library.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

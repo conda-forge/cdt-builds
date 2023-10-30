@@ -1,0 +1,74 @@
+package:
+  name: gtk3-cos7-x86_64
+  version: 3.22.30
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/gtk3-3.22.30-5.el7.x86_64.rpm
+    sha256: 48a2201b9a9326eb1931ae206bbc6b786de5632df046692f7d9e2f6e1dce7df7
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/gtk3-3.22.30-5.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - atk-cos7-x86_64 >=2.15.1 *_{{ cdt_build_number|int + 1000 }}
+    - cairo-cos7-x86_64 >=1.14.0 *_{{ cdt_build_number|int + 1000 }}
+    - cairo-gobject-cos7-x86_64 >=1.14.0 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-cos7-x86_64 >=2.49.4 *_{{ cdt_build_number|int + 1000 }}
+    - libxrandr-cos7-x86_64 >=1.5.0 *_{{ cdt_build_number|int + 1000 }}
+    - libepoxy-cos7-x86_64 >=1.0 *_{{ cdt_build_number|int + 1000 }}
+    - libwayland-client-cos7-x86_64 >=1.9.91 *_{{ cdt_build_number|int + 1000 }}
+    - libwayland-cursor-cos7-x86_64 >=1.9.91 *_{{ cdt_build_number|int + 1000 }}
+    - pango-cos7-x86_64 >=1.37.3 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - atk-cos7-x86_64 >=2.15.1 *_{{ cdt_build_number|int + 1000 }}
+    - cairo-cos7-x86_64 >=1.14.0 *_{{ cdt_build_number|int + 1000 }}
+    - cairo-gobject-cos7-x86_64 >=1.14.0 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-cos7-x86_64 >=2.49.4 *_{{ cdt_build_number|int + 1000 }}
+    - libxrandr-cos7-x86_64 >=1.5.0 *_{{ cdt_build_number|int + 1000 }}
+    - libepoxy-cos7-x86_64 >=1.0 *_{{ cdt_build_number|int + 1000 }}
+    - libwayland-client-cos7-x86_64 >=1.9.91 *_{{ cdt_build_number|int + 1000 }}
+    - libwayland-cursor-cos7-x86_64 >=1.9.91 *_{{ cdt_build_number|int + 1000 }}
+    - pango-cos7-x86_64 >=1.37.3 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - atk-cos7-x86_64 >=2.15.1 *_{{ cdt_build_number|int + 1000 }}
+    - cairo-cos7-x86_64 >=1.14.0 *_{{ cdt_build_number|int + 1000 }}
+    - cairo-gobject-cos7-x86_64 >=1.14.0 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-cos7-x86_64 >=2.49.4 *_{{ cdt_build_number|int + 1000 }}
+    - libxrandr-cos7-x86_64 >=1.5.0 *_{{ cdt_build_number|int + 1000 }}
+    - libepoxy-cos7-x86_64 >=1.0 *_{{ cdt_build_number|int + 1000 }}
+    - libwayland-client-cos7-x86_64 >=1.9.91 *_{{ cdt_build_number|int + 1000 }}
+    - libwayland-cursor-cos7-x86_64 >=1.9.91 *_{{ cdt_build_number|int + 1000 }}
+    - pango-cos7-x86_64 >=1.37.3 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.gtk.org
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/gtk3-3.22.30/COPYING
+  summary: "(CDT) GTK+ graphical user interface library"
+  description: |
+        GTK+ is a multi-platform toolkit for creating graphical user interfaces.
+        Offering a complete set of widgets, GTK+ is suitable for projects ranging from
+        small one-off tools to complete application suites.  This package contains
+        version 3 of GTK+.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
