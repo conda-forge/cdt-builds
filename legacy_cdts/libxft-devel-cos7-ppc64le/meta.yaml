@@ -1,10 +1,10 @@
 package:
-  name: libxft-cos7-aarch64
+  name: libxft-devel-cos7-ppc64le
   version: 2.3.2
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libXft-2.3.2-2.el7.aarch64.rpm
-    sha256: 9cb1b9c20cf56a15f83e2242d8c46a66095d97e88480be4c2c0cd623b90ab731
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libXft-devel-2.3.2-2.el7.ppc64le.rpm
+    sha256: 74b1f076c4bd367ffeb93d24e12eb2aacba812e206d92346c4aa87dcd1ab1fb4
     no_hoist: true
     folder: binary
   # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXft-2.3.2-2.el7.src.rpm
@@ -21,13 +21,13 @@ build:
 
 requirements:
   build:
-    - fontconfig-cos7-aarch64 >=2.2 *_{{ cdt_build_number|int }}
+    - libxft-cos7-ppc64le ==2.3.2 *_{{ cdt_build_number|int }}
   host:
-    - fontconfig-cos7-aarch64 >=2.2 *_{{ cdt_build_number|int }}
+    - libxft-cos7-ppc64le ==2.3.2 *_{{ cdt_build_number|int }}
   run:
-    - fontconfig-cos7-aarch64 >=2.2 *_{{ cdt_build_number|int }}
+    - libxft-cos7-ppc64le ==2.3.2 *_{{ cdt_build_number|int }}
   run_constrained:
-    - sysroot_linux-aarch64 ==99999999999
+    - sysroot_linux-ppc64le ==99999999999
 
 test:
   commands:
@@ -38,9 +38,9 @@ about:
   license: MIT
   license_family: MIT
   license_file: libXft-license
-  summary: (CDT) X.Org X11 libXft runtime library
+  summary: (CDT) X.Org X11 libXft development package
   description: |
-    X.Org X11 libXft runtime library
+    X.Org X11 libXft development package
 
 extra:
   recipe-maintainers:

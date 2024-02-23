@@ -481,6 +481,10 @@ libXfixes-devel:
   license_file: licenses/libxfixes-license
 libXft:
   custom: false
+  license_file: licenses/libXft-license
+libXft-devel:
+  custom: false
+  license_file: licenses/libXft-license
 libXi:
   custom: false
 libXi-devel:
