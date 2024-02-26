@@ -19,18 +19,6 @@ pushd ${SRC_DIR}/binary > /dev/null 2>&1
 rsync -K -a . "${SYSROOT_DIR}"
 popd > /dev/null 2>&1
 
-# START OF INSERTED BUILD APPENDS
-
-
-# CONDA-FORGE BUILD APPEND
-pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
-rm libGLX_system.so.0
-ln -s libGLX_mesa.so.0 libGLX_system.so.0
-popd > /dev/null 2>&1
-
-
-# END OF INSERTED BUILD APPENDS
-
 # this code makes sure that any symlinks are relative and their targets exist
 # the CDT would fail at test time, but doing it here produces useful error
 # messages for fixing things
