@@ -1,0 +1,50 @@
+package:
+  name: mesa-libglu-cos7-x86_64
+  version: 9.0.0
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/mesa-libGLU-9.0.0-4.el7.x86_64.rpm
+    sha256: b21eb09f310635c5f6c426f2013e9cab95c95f1446522a575c16a58099ee465b
+    no_hoist: true
+    folder: binary
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libdrm-cos7-x86_64 >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-glx-cos7-x86_64 >=1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libglapi-cos7-x86_64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libdrm-cos7-x86_64 >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-glx-cos7-x86_64 >=1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libglapi-cos7-x86_64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - libdrm-cos7-x86_64 >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-glx-cos7-x86_64 >=1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libglapi-cos7-x86_64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.mesa3d.org
+  license: MIT
+  license_family: MIT
+  license_file: mesa-license
+  summary: (CDT) Mesa libGLU runtime libraries
+  description: |
+    Mesa libGLU runtime library.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

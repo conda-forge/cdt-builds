@@ -591,6 +591,18 @@ mesa-libGL:
 mesa-libGL-devel:
   custom: false
   license_file: licenses/mesa-license
+mesa-libGLU:
+  custom: true
+  license_file: licenses/mesa-license
+  build_append:
+    cos7-x86_64: |
+      pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
+      rm libGLX_system.so.0
+      ln -s libGLX_mesa.so.0 libGLX_system.so.0
+      popd > /dev/null 2>&1
+mesa-libGLU-devel:
+  custom: true
+  license_file: licenses/mesa-license
 mesa-libglapi:
   custom: false
   skipped_cdts:
