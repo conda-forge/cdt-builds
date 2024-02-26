@@ -19,14 +19,14 @@ build:
 requirements:
   build:
     - mesa-khr-devel-cos7-x86_64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
-    - mesa-libglu-cos7-x86_64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libglu-cos7-x86_64 ==9.0.0 *_{{ cdt_build_number|int + 1000 }}
   host:
     - mesa-khr-devel-cos7-x86_64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
-    - mesa-libglu-cos7-x86_64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libglu-cos7-x86_64 ==9.0.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
     - mesa-khr-devel-cos7-x86_64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
-    - mesa-libglu-cos7-x86_64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libglu-cos7-x86_64 ==9.0.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:
