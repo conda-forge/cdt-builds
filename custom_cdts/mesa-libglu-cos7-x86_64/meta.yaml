@@ -4,7 +4,7 @@ package:
 
 source:
   - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/mesa-libGLU-9.0.0-4.el7.x86_64.rpm
-    sha256: 26bdb56b8ebc02374ebb284b0fa67ceb6f755a213f1e23a83fee3f9722363957
+    sha256: b21eb09f310635c5f6c426f2013e9cab95c95f1446522a575c16a58099ee465b
     no_hoist: true
     folder: binary
 
