@@ -12,7 +12,7 @@ import tqdm
 import click
 from ruamel.yaml import YAML
 
-from conda_build.conda_interface import get_index
+from conda.core.index import get_index
 
 from cdt_config import (
     LEGACY_CDT_PATH,
@@ -95,15 +95,14 @@ def _get_recipe_attrs(recipe, channel_index):
 def _build_cdt_meta(recipes, dist_arch_slug):
     print("getting conda-forge/label/main channel index...", flush=True)
     channel_url = '/'.join(['conda-forge', 'label', 'main'])
-    dist_index = get_index(
-        [channel_url],
-        prepend=False,
-        use_cache=False
-    )
     channel_index = {
-        c.to_filename(): a
-        for c, a in dist_index.items()
-        if a['subdir'] == 'noarch'
+        prec.fn: prec
+        for prec in get_index(
+            [channel_url],
+            prepend=False,
+            use_cache=False,
+        )
+        if prec.subdir == 'noarch'
     }
 
     cdt_meta = {}
