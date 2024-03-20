@@ -1,10 +1,10 @@
 package:
-  name: libxft-cos7-aarch64
+  name: libxft-devel-cos7-aarch64
   version: 2.3.2
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libXft-2.3.2-2.el7.aarch64.rpm
-    sha256: 9cb1b9c20cf56a15f83e2242d8c46a66095d97e88480be4c2c0cd623b90ab731
+  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libXft-devel-2.3.2-2.el7.aarch64.rpm
+    sha256: 2164191fb14e7b60155f7e3d55efb799af6dc98f4b138b3c71d079bd4f7b4e65
     no_hoist: true
     folder: binary
   # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXft-2.3.2-2.el7.src.rpm
@@ -21,12 +21,12 @@ build:
 
 requirements:
   build:
-    - fontconfig-cos7-aarch64 >=2.2 *_{{ cdt_build_number|int + 1000 }}
+    - libxft-cos7-aarch64 ==2.3.2 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - fontconfig-cos7-aarch64 >=2.2 *_{{ cdt_build_number|int + 1000 }}
+    - libxft-cos7-aarch64 ==2.3.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - fontconfig-cos7-aarch64 >=2.2 *_{{ cdt_build_number|int + 1000 }}
+    - libxft-cos7-aarch64 ==2.3.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:
@@ -38,9 +38,9 @@ about:
   license: MIT
   license_family: MIT
   license_file: libXft-license
-  summary: (CDT) X.Org X11 libXft runtime library
+  summary: (CDT) X.Org X11 libXft development package
   description: |
-    X.Org X11 libXft runtime library
+    X.Org X11 libXft development package
 
 extra:
   recipe-maintainers:
