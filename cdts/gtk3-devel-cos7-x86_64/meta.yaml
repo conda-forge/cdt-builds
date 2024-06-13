@@ -1,0 +1,50 @@
+package:
+  name: gtk3-devel-cos7-x86_64
+  version: 3.22.30
+
+source:
+  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/gtk3-devel-3.22.30-5.el7.x86_64.rpm
+    sha256: ee056a5506c876093a2cddc4575792a1b94b2af824b6eaf926088e7a4884675f
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/gtk3-3.22.30-5.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - gtk3-cos7-x86_64 ==3.22.30 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - gtk3-cos7-x86_64 ==3.22.30 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - gtk3-cos7-x86_64 ==3.22.30 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.gtk.org
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: COPYING
+  summary: "(CDT) Development files for GTK+"
+  description: |
+        This package contains the libraries and header files that are needed for
+        writing applications with version 3 of the GTK+ widget toolkit. If you plan to
+        develop applications with GTK+, consider installing the gtk3-devel-docs
+        package.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

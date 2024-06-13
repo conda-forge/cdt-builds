@@ -60,6 +60,18 @@ cairo-devel:
     - licenses/cairo-copying
     - licenses/cairo-copying-lgpl-2.1
     - licenses/cairo-copying-mpl-1.1
+cairo-gobject:
+  custom: false
+  license_file:
+    - licenses/cairo-copying
+    - licenses/cairo-copying-lgpl-2.1
+    - licenses/cairo-copying-mpl-1.1
+  skipped_cdts:
+    - cos6-x86_64
+cairo-gobject-devel:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
 centos-release:
   custom: false
   skipped_cdts:
@@ -110,16 +122,8 @@ fribidi:
     - cos6-x86_64
 gdk-pixbuf2:
   custom: false
-  skipped_cdts:
-    - cos7-x86_64
-    - cos7-aarch64
-    - cos7-ppc64le
 gdk-pixbuf2-devel:
   custom: false
-  skipped_cdts:
-    - cos7-x86_64
-    - cos7-aarch64
-    - cos7-ppc64le
 glib-networking:
   custom: false
 glib2:
@@ -136,6 +140,15 @@ gtk2:
 gtk2-devel:
   custom: false
   license_file: licenses/gtk2-copying
+gtk3:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+gtk3-devel:
+  custom: false
+  license_file: COPYING
+  skipped_cdts:
+    - cos6-x86_64
 gtkmm24:
   custom: false
   license_file:
@@ -235,6 +248,10 @@ libdrm:
 libdrm-devel:
   custom: false
   license_file: null
+libepoxy:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
 libglvnd:
   custom: false
   skipped_cdts:
@@ -433,6 +450,14 @@ libuuid:
 libuuid-devel:
   custom: false
   license_file: licenses/libuuid-license
+libwayland-client:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
+libwayland-cursor:
+  custom: false
+  skipped_cdts:
+    - cos6-x86_64
 libX11:
   custom: false
   license_file: licenses/x11-license

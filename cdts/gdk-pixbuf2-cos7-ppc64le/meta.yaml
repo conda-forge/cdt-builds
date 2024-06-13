@@ -1,0 +1,48 @@
+package:
+  name: gdk-pixbuf2-cos7-ppc64le
+  version: 2.36.12
+
+source:
+  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/gdk-pixbuf2-2.36.12-3.el7.ppc64le.rpm
+    sha256: 2e8e9001bc1d4fb6a2fb10aa9c1fbdb6611281fe4d6632bafc7f8c36fd3954c4
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/gdk-pixbuf2-2.36.12-3.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - glib2-cos7-ppc64le >=2.48.0 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - glib2-cos7-ppc64le >=2.48.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - glib2-cos7-ppc64le >=2.48.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.gtk.org
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/gdk-pixbuf2-2.36.12/COPYING
+  summary: "(CDT) An image loading library"
+  description: |
+        gdk-pixbuf is an image loading library that can be extended by loadable
+        modules for new image formats. It is used by toolkits such as GTK+ or clutter.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
