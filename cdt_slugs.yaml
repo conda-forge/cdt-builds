@@ -308,16 +308,10 @@ libibcm-devel:
   license_file: licenses/libibcm-devel-license
 libibmad:
   custom: false
-  skipped_cdts:
-    - cos6-aarch64
-    - cos6-ppc64le
   license_file:
     - licenses/libibmad-license
 libibmad-devel:
   custom: false
-  skipped_cdts:
-    - cos6-aarch64
-    - cos6-ppc64le
   license_file:
     - licenses/libibmad-license
 libibumad:
@@ -658,23 +652,14 @@ numactl-devel:
     - licenses/numactl-lgpl2.txt
 opensm:
   custom: false
-  skipped_cdts:
-    - cos6-aarch64
-    - cos6-ppc64le
   license_file:
     - licenses/opensm-license
 opensm-libs:
   custom: false
-  skipped_cdts:
-    - cos6-aarch64
-    - cos6-ppc64le
   license_file:
     - licenses/opensm-license
 opensm-devel:
   custom: false
-  skipped_cdts:
-    - cos6-aarch64
-    - cos6-ppc64le
   license_file:
     - licenses/opensm-license
 ORBit2:
