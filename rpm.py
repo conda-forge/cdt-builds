@@ -217,9 +217,9 @@ def _gen_cdts(single_sysroot):
             "centos7": {
                 "dirname": "centos7",
                 "short_name": "cos7",
-                "base_url": "http://vault.centos.org/7.7.1908/os/{base_architecture}/Packages/",  # noqa
-                "sbase_url": "http://vault.centos.org/7.7.1908/os/Source/SPackages/",
-                "repomd_url": "http://vault.centos.org/7.7.1908/os/{base_architecture}/repodata/repomd.xml",  # noqa
+                "base_url": "http://vault.centos.org/7.9.2009/os/{base_architecture}/Packages/",  # noqa
+                "sbase_url": "http://vault.centos.org/7.9.2009/os/Source/SPackages/",
+                "repomd_url": "http://vault.centos.org/7.9.2009/os/{base_architecture}/repodata/repomd.xml",  # noqa
                 "host_machine": (
                     "{architecture}-conda-linux-gnu"
                     if single_sysroot else
@@ -240,9 +240,9 @@ def _gen_cdts(single_sysroot):
             "centos7-alt": {
                 "dirname": "centos7",
                 "short_name": "cos7",
-                "base_url": "https://vault.centos.org/altarch/7.7.1908/os/{base_architecture}/Packages/",  # noqa
-                "sbase_url": "http://vault.centos.org/7.7.1908/os/Source/SPackages/",
-                "repomd_url": "https://vault.centos.org/altarch/7.7.1908/os/{base_architecture}/repodata/repomd.xml",  # noqa
+                "base_url": "https://vault.centos.org/altarch/7.9.2009/os/{base_architecture}/Packages/",  # noqa
+                "sbase_url": "http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/",
+                "repomd_url": "https://vault.centos.org/altarch/7.9.2009/os/{base_architecture}/repodata/repomd.xml",  # noqa
                 "host_machine": (
                     "{gnu_architecture}-conda-linux-gnu"
                     if single_sysroot else
