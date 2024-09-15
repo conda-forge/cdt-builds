@@ -65,7 +65,7 @@ def _ignore_url_build_changes(base_dir):
             if not bad_line:
                 print("        rolling back changes")
                 subprocess.run(
-                    "git co -- %s" % fname,
+                    "git reset -- %s" % fname,
                     shell=True,
                 )
 
