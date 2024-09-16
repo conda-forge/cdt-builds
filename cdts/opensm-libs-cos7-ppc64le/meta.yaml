@@ -3,11 +3,11 @@ package:
   version: 3.3.21
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/opensm-libs-3.3.21-3.el7_8.ppc64le.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/opensm-libs-3.3.21-3.el7_8.ppc64le.rpm
     sha256: c65cfc36d6c40a62e990c7ff83ab1407d6a1248dfc2f380b69552f21a2f16bbb
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/opensm-3.3.21-3.el7_8.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/opensm-3.3.21-3.el7_8.src.rpm
   #   no_hoist: true
   #   folder: source
 

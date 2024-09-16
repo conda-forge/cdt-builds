@@ -3,11 +3,11 @@ package:
   version: 2.24.5
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/gtkmm24-2.24.5-1.el7.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/gtkmm24-2.24.5-1.el7.x86_64.rpm
     sha256: fbd2c68f6c4d4b0dd71ba2fa2388e40b4b0ae15f068887453108c643502645e2
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/gtkmm24-2.24.5-1.el7.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/gtkmm24-2.24.5-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

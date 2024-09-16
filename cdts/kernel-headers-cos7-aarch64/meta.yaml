@@ -3,11 +3,11 @@ package:
   version: 4.18.0
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/kernel-headers-4.18.0-193.28.1.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/kernel-headers-4.18.0-193.28.1.el7.aarch64.rpm
     sha256: 56fffc40800cd7c30830009c860f04c8dba1110a6271efd804a0bb01e0bdf8a4
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/kernel-4.18.0-193.28.1.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/kernel-4.18.0-193.28.1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

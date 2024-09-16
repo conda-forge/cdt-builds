@@ -3,11 +3,11 @@ package:
   version: 1.6.3
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/cups-libs-1.6.3-51.el7.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/cups-libs-1.6.3-51.el7.x86_64.rpm
     sha256: 6bc3348c3378657d278baee6451312ff4070626c46f52fb640f30e6502e26683
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/cups-1.6.3-51.el7.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/cups-1.6.3-51.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

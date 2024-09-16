@@ -3,11 +3,11 @@ package:
   version: 1.13
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libxcb-1.13-1.el7.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libxcb-1.13-1.el7.x86_64.rpm
     sha256: 125d6cdbea06799872b77b6322bf5cb107d7c0c70218827bf6b649f08ca527c5
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libxcb-1.13-1.el7.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libxcb-1.13-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

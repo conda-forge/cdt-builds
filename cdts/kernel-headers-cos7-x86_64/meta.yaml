@@ -3,11 +3,11 @@ package:
   version: 3.10.0
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/kernel-headers-3.10.0-1160.el7.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/kernel-headers-3.10.0-1160.el7.x86_64.rpm
     sha256: 81b4e4f401d2402736ceba4627eaafd5b615c2cc45aa4d4f941ea79562045139
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/kernel-3.10.0-1160.el7.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/kernel-3.10.0-1160.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

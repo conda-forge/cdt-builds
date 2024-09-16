@@ -3,11 +3,11 @@ package:
   version: 1.0.1
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libglvnd-core-devel-1.0.1-0.8.git5baa1e5.el7.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libglvnd-core-devel-1.0.1-0.8.git5baa1e5.el7.x86_64.rpm
     sha256: d2fbbe03d60015cbaa05f437825816dc9af19e78664fbcb58c689dd252a7841c
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libglvnd-1.0.1-0.8.git5baa1e5.el7.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libglvnd-1.0.1-0.8.git5baa1e5.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

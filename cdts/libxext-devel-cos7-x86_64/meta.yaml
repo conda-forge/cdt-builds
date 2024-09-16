@@ -3,11 +3,11 @@ package:
   version: 1.3.3
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libXext-devel-1.3.3-3.el7.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libXext-devel-1.3.3-3.el7.x86_64.rpm
     sha256: a393ca6681725798d068fd5c4dbb9fab678f6955e10b1b368c96b96b76a8b54b
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXext-1.3.3-3.el7.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libXext-1.3.3-3.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

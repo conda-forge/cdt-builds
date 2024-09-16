@@ -3,11 +3,11 @@ package:
   version: 2.23.2
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libuuid-devel-2.23.2-65.el7.ppc64le.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libuuid-devel-2.23.2-65.el7.ppc64le.rpm
     sha256: 2d9f722ed9f71a594d221479ce7a46252f9ccbf0f7430fad82e67359adbaf90d
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/util-linux-2.23.2-65.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/util-linux-2.23.2-65.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

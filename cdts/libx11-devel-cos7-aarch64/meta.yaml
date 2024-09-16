@@ -3,11 +3,11 @@ package:
   version: 1.6.7
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libX11-devel-1.6.7-2.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libX11-devel-1.6.7-2.el7.aarch64.rpm
     sha256: 19a7d745987c284969c125f0af7849ad731e967a341a9b1be8e5cddf758c54bc
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libX11-1.6.7-2.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libX11-1.6.7-2.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

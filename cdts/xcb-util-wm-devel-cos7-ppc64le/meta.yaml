@@ -3,11 +3,11 @@ package:
   version: 0.4.1
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/xcb-util-wm-devel-0.4.1-5.el7.ppc64le.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/xcb-util-wm-devel-0.4.1-5.el7.ppc64le.rpm
     sha256: 85b5ef8e3f18830e3c80ffb7acd1017cc4dfcd786c2cc4a917634796a80311d9
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/xcb-util-wm-0.4.1-5.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/xcb-util-wm-0.4.1-5.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

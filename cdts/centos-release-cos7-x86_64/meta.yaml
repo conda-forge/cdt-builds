@@ -3,11 +3,11 @@ package:
   version: 7
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/centos-release-7-9.2009.0.el7.centos.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/centos-release-7-9.2009.0.el7.centos.x86_64.rpm
     sha256: 084d7a4cd25d9ecb77dd607072b72829c28602438d96804a4637d371d9c20d1f
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/centos-release-7-9.2009.0.el7.centos.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/centos-release-7-9.2009.0.el7.centos.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -3,11 +3,11 @@ package:
   version: 1.2.2
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libSM-devel-1.2.2-2.el7.ppc64le.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libSM-devel-1.2.2-2.el7.ppc64le.rpm
     sha256: 0967d96cd46a7c47788fd2986dcb234e9fe1dfa21dc81bb44069c33c3cdbce60
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libSM-1.2.2-2.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libSM-1.2.2-2.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

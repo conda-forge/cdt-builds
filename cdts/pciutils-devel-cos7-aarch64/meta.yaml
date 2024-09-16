@@ -3,11 +3,11 @@ package:
   version: 3.5.1
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/pciutils-devel-3.5.1-3.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/pciutils-devel-3.5.1-3.el7.aarch64.rpm
     sha256: 9c90f99e801b09334efd3bea12217d938c6da1bc78b3bd138b6eb39e8e02fef0
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/pciutils-3.5.1-3.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/pciutils-3.5.1-3.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

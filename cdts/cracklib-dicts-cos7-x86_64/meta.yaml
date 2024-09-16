@@ -3,11 +3,11 @@ package:
   version: 2.9.0
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/cracklib-dicts-2.9.0-11.el7.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/cracklib-dicts-2.9.0-11.el7.x86_64.rpm
     sha256: 39edb2d55f639a5602b4663dc66b61af3fe8e2365dd823101ecb8aeaf543cf06
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/cracklib-2.9.0-11.el7.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/cracklib-2.9.0-11.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -3,11 +3,11 @@ package:
   version: 1.1.4
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libXdamage-devel-1.1.4-4.1.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libXdamage-devel-1.1.4-4.1.el7.aarch64.rpm
     sha256: c70eeac31841ba08349db03ee50c92a61ddc48f7f927a603d11e118fc16f7327
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXdamage-1.1.4-4.1.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXdamage-1.1.4-4.1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

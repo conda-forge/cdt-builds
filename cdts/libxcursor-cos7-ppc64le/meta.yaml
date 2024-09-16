@@ -3,11 +3,11 @@ package:
   version: 1.1.15
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libXcursor-1.1.15-1.el7.ppc64le.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libXcursor-1.1.15-1.el7.ppc64le.rpm
     sha256: a24bb5952fdcf990dabba7bf8debd7b7120aaaae0be4188c9b50420ad232ca5f
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXcursor-1.1.15-1.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXcursor-1.1.15-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

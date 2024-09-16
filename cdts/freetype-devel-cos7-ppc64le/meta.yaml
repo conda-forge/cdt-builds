@@ -3,11 +3,11 @@ package:
   version: 2.8
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/freetype-devel-2.8-14.el7.ppc64le.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/freetype-devel-2.8-14.el7.ppc64le.rpm
     sha256: 3a1342fea6210981507a4d5cd5761fabe593f4839399470637242c3e69413973
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/freetype-2.8-14.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/freetype-2.8-14.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

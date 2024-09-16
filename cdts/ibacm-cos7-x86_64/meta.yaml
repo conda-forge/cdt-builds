@@ -3,11 +3,11 @@ package:
   version: 22.4
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/ibacm-22.4-5.el7.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/ibacm-22.4-5.el7.x86_64.rpm
     sha256: c2f6f494fd9a9c1743d32312305838edfdcb297f3e80b08cc328360903895bb8
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/rdma-core-22.4-5.el7.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/rdma-core-22.4-5.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

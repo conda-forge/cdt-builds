@@ -3,11 +3,11 @@ package:
   version: 3.44.0
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/nss-3.44.0-7.el7_7.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/nss-3.44.0-7.el7_7.x86_64.rpm
     sha256: 76e4a0944647a345ea932e8d79058f9856e05895528f8b0596eb9099a7772f22
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/nss-3.44.0-7.el7_7.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/nss-3.44.0-7.el7_7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -3,11 +3,11 @@ package:
   version: 20
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/kmod-20-28.el7.ppc64le.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/kmod-20-28.el7.ppc64le.rpm
     sha256: 60ec982827beeaa84d7fbc7160126843eddeefa3b9d75823faa0ff39f0939c7e
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/kmod-20-28.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/kmod-20-28.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

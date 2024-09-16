@@ -3,11 +3,11 @@ package:
   version: 2.0.12
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/numactl-2.0.12-5.el7.ppc64le.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/numactl-2.0.12-5.el7.ppc64le.rpm
     sha256: 188d558d22ab46eacd64b29fad9d115012a39481d2a7c60198d33442c4766386
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/numactl-2.0.12-5.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/numactl-2.0.12-5.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

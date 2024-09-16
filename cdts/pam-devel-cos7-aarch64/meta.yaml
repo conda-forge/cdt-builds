@@ -3,11 +3,11 @@ package:
   version: 1.1.8
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/pam-devel-1.1.8-23.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/pam-devel-1.1.8-23.el7.aarch64.rpm
     sha256: 25bff8e8908cfc0cd090472f6ab9732221fc0b8a003b7f15aeb29254198c9344
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/pam-1.1.8-23.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/pam-1.1.8-23.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -3,11 +3,11 @@ package:
   version: 0.7.1
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libxkbcommon-devel-0.7.1-3.el7.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libxkbcommon-devel-0.7.1-3.el7.x86_64.rpm
     sha256: e08a3066495c87cc85ec31302cfa9f79bc615bb23182147de0e4eebeec832045
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libxkbcommon-0.7.1-3.el7.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libxkbcommon-0.7.1-3.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

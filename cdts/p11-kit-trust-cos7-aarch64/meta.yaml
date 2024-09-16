@@ -3,11 +3,11 @@ package:
   version: 0.23.5
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/p11-kit-trust-0.23.5-3.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/p11-kit-trust-0.23.5-3.el7.aarch64.rpm
     sha256: de5e0b87ee6d8d13852c2ffb7f03cdb60d4c37e40502156030516f8a0bbd6dea
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/p11-kit-0.23.5-3.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/p11-kit-0.23.5-3.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

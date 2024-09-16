@@ -3,11 +3,11 @@ package:
   version: 1.7.9
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libXi-1.7.9-1.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libXi-1.7.9-1.el7.aarch64.rpm
     sha256: 04fd002ccd765db6ea93aae26fd269301e9b3f0b64568acb85e6c2bdc8f45e18
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXi-1.7.9-1.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXi-1.7.9-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

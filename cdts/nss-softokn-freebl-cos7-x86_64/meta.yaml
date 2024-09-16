@@ -3,11 +3,11 @@ package:
   version: 3.44.0
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/nss-softokn-freebl-3.44.0-8.el7_7.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/nss-softokn-freebl-3.44.0-8.el7_7.x86_64.rpm
     sha256: 9949831b67f6eb68dc9df6df3e4570bd5f9301de3c7d67c41512fcaaadb40da5
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/nss-softokn-3.44.0-8.el7_7.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/nss-softokn-3.44.0-8.el7_7.src.rpm
   #   no_hoist: true
   #   folder: source
 

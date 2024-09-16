@@ -3,11 +3,11 @@ package:
   version: 2.5
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libsepol-2.5-10.el7.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libsepol-2.5-10.el7.x86_64.rpm
     sha256: 8511766d381a8e1cd4c0f72fab7cfd8d78f147cb6bcd2e39844de5850001f3c5
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libsepol-2.5-10.el7.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libsepol-2.5-10.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

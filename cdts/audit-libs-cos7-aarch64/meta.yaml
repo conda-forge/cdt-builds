@@ -3,11 +3,11 @@ package:
   version: 2.8.5
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/audit-libs-2.8.5-4.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/audit-libs-2.8.5-4.el7.aarch64.rpm
     sha256: c67ba5a600a6a94da1ee52fffc4855b6f6c75ae4ad1a568aafec1538849d8395
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/audit-2.8.5-4.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/audit-2.8.5-4.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

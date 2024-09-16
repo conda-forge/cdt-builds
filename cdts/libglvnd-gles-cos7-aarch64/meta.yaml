@@ -3,11 +3,11 @@ package:
   version: 1.0.1
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libglvnd-gles-1.0.1-0.8.git5baa1e5.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libglvnd-gles-1.0.1-0.8.git5baa1e5.el7.aarch64.rpm
     sha256: 147264c9cc9c16ebfb14bc1cb66e3af5c31de7fa60ce2dd9c7c40a09a7635ab7
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libglvnd-1.0.1-0.8.git5baa1e5.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libglvnd-1.0.1-0.8.git5baa1e5.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

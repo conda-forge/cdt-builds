@@ -3,11 +3,11 @@ package:
   version: 0.1.14
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libthai-0.1.14-9.el7.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libthai-0.1.14-9.el7.x86_64.rpm
     sha256: 2453d1e627c5e55924bbf902a9cf59720f5cac9fc0c765cac2d7634835f62f03
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libthai-0.1.14-9.el7.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libthai-0.1.14-9.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
