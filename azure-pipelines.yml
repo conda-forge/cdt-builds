@@ -5,27 +5,14 @@ jobs:
   timeoutInMinutes: 360
   strategy:
     matrix:
-      cos6_x86_64_legacy:
-        DISTARCH: 'cos6-x86_64'
-        LEGACYCDT: '--legacy'
-      cos7_aarch64_legacy:
-        DISTARCH: 'cos7-aarch64'
-        LEGACYCDT: '--legacy'
-      cos7_ppc64le_legacy:
-        DISTARCH: 'cos7-ppc64le'
-        LEGACYCDT: '--legacy'
       cos6_x86_64:
         DISTARCH: 'cos6-x86_64'
-        LEGACYCDT: ''
       cos7_x86_64:
         DISTARCH: 'cos7-x86_64'
-        LEGACYCDT: ''
       cos7_aarch64:
         DISTARCH: 'cos7-aarch64'
-        LEGACYCDT: ''
       cos7_ppc64le:
         DISTARCH: 'cos7-ppc64le'
-        LEGACYCDT: ''
     maxParallel: 0
 
   steps:
@@ -81,12 +68,12 @@ jobs:
 
         mkdir -p build_logs
 
-        echo "cmd args: ${DISTARCH} ${LEGACYCDT}"
-        python build_cdt_recipes.py ${DISTARCH} ${LEGACYCDT}
+        echo "cmd args: ${DISTARCH}"
+        python build_cdt_recipes.py ${DISTARCH}
     displayName: build and upload CDTs
     env:
       ANACONDA_TOKEN: $(anaconda.token)
       IS_FORK: $(System.PullRequest.IsFork)
 
   - publish: build_logs/
-    artifact: build-logs-$(DISTARCH)$(LEGACYCDT)-azurejob$(system.JobId)
+    artifact: build-logs-$(DISTARCH)-azurejob$(system.JobId)

@@ -15,8 +15,6 @@ from ruamel.yaml import YAML
 from conda.core.index import get_index
 
 from cdt_config import (
-    LEGACY_CDT_PATH,
-    LEGACY_CUSTOM_CDT_PATH,
     CDT_PATH,
     CUSTOM_CDT_PATH,
 )
@@ -288,23 +286,15 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
 
 @click.command()
 @click.argument("dist_arch_slug", required=True)
-@click.option(
-    "--legacy", default=False, is_flag=True,
-    help="Build old-style, legacy CDTs in the legacy_* folders."
-)
 def _main(
     dist_arch_slug,
-    legacy
 ):
     """
     Build all CDT recipes for a given DIST_ARCH_SLUG (e.g. cos6-x86_64,
     cos7-aarch64, etc.)
     """
 
-    if legacy:
-        _build_all_cdts(LEGACY_CDT_PATH, LEGACY_CUSTOM_CDT_PATH, dist_arch_slug)
-    else:
-        _build_all_cdts(CDT_PATH, CUSTOM_CDT_PATH, dist_arch_slug)
+    _build_all_cdts(CDT_PATH, CUSTOM_CDT_PATH, dist_arch_slug)
 
 
 if __name__ == "__main__":

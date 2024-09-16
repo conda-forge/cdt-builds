@@ -7,8 +7,6 @@ import tqdm
 from wurlitzer import pipes
 
 from cdt_config import (
-    LEGACY_CDT_PATH,
-    LEGACY_CUSTOM_CDT_PATH,
     CDT_PATH,
     CUSTOM_CDT_PATH,
 )
@@ -42,8 +40,6 @@ def print_names():
     recipes = set(
         glob.glob(CDT_PATH + "/*")
         + glob.glob(CUSTOM_CDT_PATH + "/*")
-        + glob.glob(LEGACY_CDT_PATH + "/*")
-        + glob.glob(LEGACY_CUSTOM_CDT_PATH + "/*")
     )
     recipes = sorted(
         r for r in recipes if not r.endswith("README.md")
