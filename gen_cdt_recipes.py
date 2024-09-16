@@ -454,7 +454,7 @@ def _main(force, fast, keep_url_changes):
         cdt_path=CDT_PATH
     )
 
-    if not keep_url_changes:
+    if not (force or keep_url_changes):
         _ignore_url_build_changes(
             CDT_PATH
         )
