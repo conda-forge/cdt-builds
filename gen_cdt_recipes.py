@@ -381,8 +381,9 @@ def _main(force, fast, keep_url_changes):
         if fast:
             extra += " --use-global-cache"
         arch_dist_tuples = [
-            ("x86_64", "centos6"), ("x86_64", "centos7"),
-            ("aarch64", "centos7"), ("ppc64le", "centos7")
+            ("x86_64", "centos7"),
+            ("aarch64", "centos7"),
+            ("ppc64le", "centos7"),
         ]
         futures.update(
             _make_cdt_recipes(
@@ -426,8 +427,9 @@ def _main(force, fast, keep_url_changes):
 
     # new CDTs for the new compilers with a single sysroot
     arch_dist_tuples = [
-        ("x86_64", "centos6"), ("x86_64", "centos7"),
-        ("aarch64", "centos7"), ("ppc64le", "centos7")
+        ("x86_64", "centos7"),
+        ("aarch64", "centos7"),
+        ("ppc64le", "centos7"),
     ]
     _cleanup_custom_cdt_overlaps(
         cdt_path=CDT_PATH,

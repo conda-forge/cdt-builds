@@ -79,7 +79,7 @@ MADE_RECIPES = set()
 
 # This is used in two places
 default_architecture = "x86_64"
-default_distro = "centos6"
+default_distro = "centos7"
 
 RPM_META = """\
 package:
@@ -189,31 +189,6 @@ exit ${{error_code}}
 def _gen_cdts(single_sysroot):
     return dict(
         {
-            "centos6": {
-                "dirname": "centos6",
-                "short_name": "cos6",
-                # "base_url": "http://mirror.centos.org/centos/6.10/os/{base_architecture}/CentOS/",  # noqa
-                "base_url": "https://vault.centos.org/6.10/os/{base_architecture}/Packages/",  # noqa
-                "sbase_url": "http://vault.centos.org/6.10/os/Source/SPackages/",
-                # "repomd_url": "http://mirror.centos.org/centos/6.10/os/{base_architecture}/repodata/repomd.xml",  # noqa
-                "repomd_url": "https://vault.centos.org/6.10/os/{base_architecture}/repodata/repomd.xml",  # noqa
-                "host_machine": (
-                    "{architecture}-conda-linux-gnu"
-                    if single_sysroot else
-                    "{architecture}-conda_cos6-linux-gnu"
-                ),
-                "host_subdir": "linux-{bits}",
-                "fname_architecture": "{architecture}",
-                "rpm_filename_platform": "el6.{architecture}",
-                "checksummer": hashlib.sha256,
-                "checksummer_name": "sha256",
-                # Some macros are defined in /etc/rpm/macros.* but I cannot find where
-                # these ones are defined. Also, rpm --eval "%{gdk_pixbuf_base_version}"
-                # gives nothing nor does rpm --showrc | grep gdk
-                "macros": {"pyver": "2.6.6", "gdk_pixbuf_base_version": "2.24.1"},
-                "allow_missing_sources": True,
-                "glibc_ver": "2.12",
-            },
             "centos7": {
                 "dirname": "centos7",
                 "short_name": "cos7",
