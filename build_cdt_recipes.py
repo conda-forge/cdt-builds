@@ -290,8 +290,8 @@ def _main(
     dist_arch_slug,
 ):
     """
-    Build all CDT recipes for a given DIST_ARCH_SLUG (e.g. cos6-x86_64,
-    cos7-aarch64, etc.)
+    Build all CDT recipes for a given DIST_ARCH_SLUG (e.g. conda-x86_64
+    for post-CentOS CDTs, or cos6-x86_64, cos7-aarch64, etc. historically)
     """
 
     _build_all_cdts(CDT_PATH, CUSTOM_CDT_PATH, dist_arch_slug)

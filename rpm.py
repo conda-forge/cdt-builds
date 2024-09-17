@@ -232,7 +232,7 @@ def _gen_cdts(single_sysroot):
             },
             "alma8": {
                 "dirname": "alma8",
-                "short_name": "alma8",
+                "short_name": "conda",
                 "base_url": "https://vault.almalinux.org/8.9/{subfolder}/{base_architecture}/os/Packages/",  # noqa
                 "sbase_url": "https://vault.almalinux.org/8.9/{subfolder}/Source/Packages/",
                 "repomd_url": "https://vault.almalinux.org/8.9/{subfolder}/{base_architecture}/os/repodata/repomd.xml",  # noqa

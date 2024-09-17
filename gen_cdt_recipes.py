@@ -114,8 +114,10 @@ def _is_changed_or_not_tracked(pth):
             return False
 
 
-def _gen_dist_arch_str(arch, dist):
-    return "%s-%s" % (dist.replace("ent", ""), arch)
+def _gen_dist_arch_str(dist, arch):
+    # transform centos7 -> cos7; does not affect alma8
+    dist = dist.replace("ent", "")
+    return f"{dist}-{arch}" if dist == "cos7" else f"conda-{arch}"
 
 
 def _make_cdt_recipes(*, extra, cdt_path, dist_arch_tuples, cdts, exec, force):
@@ -135,7 +137,7 @@ def _make_cdt_recipes(*, extra, cdt_path, dist_arch_tuples, cdts, exec, force):
 
             _pth = os.path.join(
                 cdt_path,
-                cdt.lower() + "-" + _gen_dist_arch_str(arch, dist),
+                cdt.lower() + "-" + _gen_dist_arch_str(dist, arch),
             )
 
             if not force and os.path.exists(_pth):
@@ -149,7 +151,7 @@ def _make_cdt_recipes(*, extra, cdt_path, dist_arch_tuples, cdts, exec, force):
 
             print(
                 "making CDT:",
-                cdt.lower() + "-" + _gen_dist_arch_str(arch, dist),
+                cdt.lower() + "-" + _gen_dist_arch_str(dist, arch),
                 flush=True,
             )
 
@@ -176,7 +178,7 @@ def _cleanup_custom_cdt_overlaps(*, cdt_path, dist_arch_tuples, cdts):
 
             pth = os.path.join(
                 cdt_path,
-                cdt.lower() + "-" + dist.replace("ent", "") + "-" + arch,
+                cdt.lower() + "-" + _gen_dist_arch_str(dist, arch),
             )
             if os.path.exists(pth):
                 try:
@@ -223,7 +225,7 @@ def _fix_cdt_licenses(*, cdts, dist_arch_tuples, cdt_path):
         for cdt, cfg in cdts.items():
             pth = os.path.join(
                 cdt_path,
-                cdt.lower() + "-" + dist.replace("ent", "") + "-" + arch,
+                cdt.lower() + "-" + _gen_dist_arch_str(dist, arch)
             )
             if 'license_file' in cfg and os.path.exists(pth):
                 if cfg["license_file"] is None:
@@ -266,7 +268,7 @@ def _fix_cdt_deps(*, cdts, dist_arch_tuples, cdt_path):
         for cdt, cfg in cdts.items():
             pth = os.path.join(
                 cdt_path,
-                cdt.lower() + "-" + dist.replace("ent", "") + "-" + arch,
+                cdt.lower() + "-" + _gen_dist_arch_str(dist, arch),
             )
             if 'dep_remove' in cfg and os.path.exists(pth):
                 try:
@@ -286,7 +288,7 @@ def _fix_cdt_deps(*, cdts, dist_arch_tuples, cdt_path):
                             for dep in meta["requirements"][sec]:
                                 if not any(
                                     dep.startswith(d + "-cos")
-                                    or dep.startswith(d + "-alma")
+                                    or dep.startswith(d + "-conda")
                                     for d in cfg["dep_remove"]
                                 ):
                                     new_deps.append(dep)
@@ -331,7 +333,7 @@ def _fix_cdt_builds(*, cdts, dist_arch_tuples, cdt_path):
     print("adjusting CDT builds for path '%s'..." % cdt_path, flush=True)
     for dist, arch in dist_arch_tuples:
         shortdist = dist.replace("ent", "")
-        distarch = dist.replace("ent", "") + "-" + arch
+        distarch = _gen_dist_arch_str(dist, arch)
         for cdt, cfg in cdts.items():
             pth = os.path.join(
                 cdt_path,
