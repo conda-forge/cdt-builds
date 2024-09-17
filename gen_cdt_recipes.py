@@ -16,6 +16,30 @@ from cdt_config import (
 from render_readme import render_readme
 
 
+# centos7 builds are everything in cdt_slugs.yaml
+DIST_CDT_ALLOWLIST = {
+    "alma8": [
+        "audit-libs",
+        "audit-libs-devel",
+        "cracklib",
+        "cracklib-devel",
+        "cracklib-dicts",
+        "kmod",
+        "kmod-devel",
+        "libselinux",
+        "libselinux-devel",
+        "libpwquality",
+        "libpwquality-devel",
+        "libsepol",
+        "libsepol-devel",
+        "mesa-libgbm",
+        "mesa-libgbm-devel",
+        "pam",
+        "pam-devel",
+    ],
+}
+
+
 def _ignore_url_build_changes(base_dir):
     print("fixing build url only changes for path '%s'..." % base_dir)
     line_slugs = [
@@ -96,16 +120,16 @@ def _gen_dist_arch_str(arch, dist):
 def _make_cdt_recipes(*, extra, cdt_path, dist_arch_tuples, cdts, exec, force):
     futures = {}
     for dist, arch in dist_arch_tuples:
+        # centos7 CDTs are grandfathered in; rest is subject to allowlist
+        allowlist = cdts.keys() if dist == "centos7" else DIST_CDT_ALLOWLIST[dist]
+
         for cdt, cfg in cdts.items():
             _extra = extra + ""
 
             if cfg["custom"]:
                 continue
 
-            if (
-                "skipped_cdts" in cfg
-                and _gen_dist_arch_str(arch, dist) in cfg["skipped_cdts"]
-            ):
+            if cdt not in allowlist:
                 continue
 
             _pth = os.path.join(

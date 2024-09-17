@@ -19,9 +19,6 @@ The following options are available when adding a CDT in the configuration file:
    a string or a list of strings giving the paths to the files, it will copy the licenses
    to the recipe and modify the recipe `meta.yaml` appropriately. If set to `null`, it will
    remove the `license_file` key from the `meta.yaml`.
- - `skipped_cdts` (list of str): Set to a list of the distribution and platforms to skip
-   for this CDT. For example, one might add `cos6-x86_64` to this list to skip making this
-   CDT for CentOS 6 on `x86_64` architectures.
  - `build_append` (dict mapping dist-arch to a string): Set this key to append code to the
    `build.sh` file for a given distribution and platform. For example, one might set a key
    `cos6-x86_64` in this mapping and set the value to `echo 'hi!'` to add `echo 'hi!'` to
