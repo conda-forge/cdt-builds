@@ -3,11 +3,11 @@ package:
   version: 1.32.0
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/at-spi-devel-1.32.0-12.el7.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/at-spi-devel-1.32.0-12.el7.x86_64.rpm
     sha256: 9ed0c0a28fdbe43dd1b91f111e127a07dd87b12606278251c769d0b2ac4c44a0
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/at-spi-1.32.0-12.el7.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/at-spi-1.32.0-12.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

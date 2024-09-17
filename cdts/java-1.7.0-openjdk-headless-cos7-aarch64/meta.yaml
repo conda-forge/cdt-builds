@@ -3,11 +3,11 @@ package:
   version: 1.7.0.261
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/java-1.7.0-openjdk-headless-1.7.0.261-2.6.22.2.el7_8.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/java-1.7.0-openjdk-headless-1.7.0.261-2.6.22.2.el7_8.aarch64.rpm
     sha256: a8de10493e86973aa3251d8fdc268b8a1dd7e9e79c563835506b7ee1a008e50d
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/java-1.7.0-openjdk-1.7.0.261-2.6.22.2.el7_8.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/java-1.7.0-openjdk-1.7.0.261-2.6.22.2.el7_8.src.rpm
   #   no_hoist: true
   #   folder: source
 

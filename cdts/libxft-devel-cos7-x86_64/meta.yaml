@@ -3,11 +3,11 @@ package:
   version: 2.3.2
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libXft-devel-2.3.2-2.el7.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libXft-devel-2.3.2-2.el7.x86_64.rpm
     sha256: 1a8745d90a75e3e4ba4c6ad073f96f7a4cc12bd661fc2a9b46d1d0ff2dd5677d
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXft-2.3.2-2.el7.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libXft-2.3.2-2.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

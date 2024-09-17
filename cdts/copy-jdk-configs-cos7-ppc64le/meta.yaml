@@ -3,11 +3,11 @@ package:
   version: 3.3
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/copy-jdk-configs-3.3-10.el7_5.noarch.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/copy-jdk-configs-3.3-10.el7_5.noarch.rpm
     sha256: 7b7ff9e72fe7a4b6c9e1aae52bdb913d2bb58ea86518e91e179a43acb93f21f8
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/copy-jdk-configs-3.3-10.el7_5.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/copy-jdk-configs-3.3-10.el7_5.src.rpm
   #   no_hoist: true
   #   folder: source
 

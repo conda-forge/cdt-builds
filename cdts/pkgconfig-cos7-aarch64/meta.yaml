@@ -3,11 +3,11 @@ package:
   version: 0.27.1
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/pkgconfig-0.27.1-4.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/pkgconfig-0.27.1-4.el7.aarch64.rpm
     sha256: 5d889be311debee4945736c598ec055ff2ead04d1f1b1a8988cf4d4affe7fed6
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/pkgconfig-0.27.1-4.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/pkgconfig-0.27.1-4.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

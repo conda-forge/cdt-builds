@@ -3,11 +3,11 @@ package:
   version: 22.4
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libibumad-22.4-5.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libibumad-22.4-5.el7.aarch64.rpm
     sha256: f3eb9031498d050772cdb7a879c88effa27124dd5704f23d99cb196e4800f109
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/rdma-core-22.4-5.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/rdma-core-22.4-5.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

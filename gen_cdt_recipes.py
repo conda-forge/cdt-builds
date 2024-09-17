@@ -10,8 +10,6 @@ import click
 from ruamel.yaml import YAML
 
 from cdt_config import (
-    LEGACY_CDT_PATH,
-    LEGACY_CUSTOM_CDT_PATH,
     CDT_PATH,
     CUSTOM_CDT_PATH,
 )
@@ -65,7 +63,7 @@ def _ignore_url_build_changes(base_dir):
             if not bad_line:
                 print("        rolling back changes")
                 subprocess.run(
-                    "git co -- %s" % fname,
+                    "git reset -- %s" % fname,
                     shell=True,
                 )
 
@@ -353,10 +351,6 @@ def _fix_cdt_builds(*, cdts, arch_dist_tuples, cdt_path):
     help="Forcibly regenerate all CDT recipes."
 )
 @click.option(
-    "--no-legacy", default=False, is_flag=True,
-    help="Do not generate the old-style, legacy CDTs in the legacy_* folders."
-)
-@click.option(
     "--fast", default=False, is_flag=True,
     help="Use a global src cache. May fail due to race conditions."
 )
@@ -364,7 +358,7 @@ def _fix_cdt_builds(*, cdts, arch_dist_tuples, cdt_path):
     "--keep-url-changes", default=False, is_flag=True,
     help="Keep changes to CDT urls. If you use this, you need to bump the build number!"
 )
-def _main(force, no_legacy, fast, keep_url_changes):
+def _main(force, fast, keep_url_changes):
     """
     Generate all CDT recipes.
     """
@@ -373,40 +367,12 @@ def _main(force, no_legacy, fast, keep_url_changes):
     with open("cdt_slugs.yaml", "r") as fp:
         cdts = yaml.load(fp)
 
-    if not no_legacy:
-        os.makedirs(LEGACY_CDT_PATH, exist_ok=True)
-        os.makedirs(LEGACY_CUSTOM_CDT_PATH, exist_ok=True)
     os.makedirs(CDT_PATH, exist_ok=True)
     os.makedirs(CUSTOM_CDT_PATH, exist_ok=True)
 
     print("generating CDT recipes...")
     futures = {}
     with ThreadPoolExecutor(max_workers=16) as exec:
-        if not no_legacy:
-            # legacy CDTs for the old compiler sysroots
-
-            # if force:
-            #     _clear_gen_cdts(LEGACY_CDT_PATH)
-
-            extra = "--conda-forge-style"
-            if fast:
-                extra += " --use-global-cache"
-            arch_dist_tuples = [
-                ("x86_64", "centos6"),
-                ("aarch64", "centos7"),
-                ("ppc64le", "centos7")
-            ]
-
-            futures.update(
-                _make_cdt_recipes(
-                    extra=extra,
-                    cdt_path=LEGACY_CDT_PATH,
-                    arch_dist_tuples=arch_dist_tuples,
-                    cdts=cdts,
-                    exec=exec,
-                    force=force)
-                )
-
         # new CDTs for the new compilers with a single sysroot
         # if force:
         #     _clear_gen_cdts(CDT_PATH)
@@ -415,8 +381,9 @@ def _main(force, no_legacy, fast, keep_url_changes):
         if fast:
             extra += " --use-global-cache"
         arch_dist_tuples = [
-            ("x86_64", "centos6"), ("x86_64", "centos7"),
-            ("aarch64", "centos7"), ("ppc64le", "centos7")
+            ("x86_64", "centos7"),
+            ("aarch64", "centos7"),
+            ("ppc64le", "centos7"),
         ]
         futures.update(
             _make_cdt_recipes(
@@ -458,47 +425,11 @@ def _main(force, no_legacy, fast, keep_url_changes):
                         else:
                             tqdm.tqdm.write(line.strip())
 
-    # finally, we have to clean up any CDTs marked as custom that happened to be
-    # made by the templates again
-    if not no_legacy:
-        # legacy CDTs for the old compiler sysroots
-        arch_dist_tuples = [
-            ("x86_64", "centos6"),
-            ("aarch64", "centos7"),
-            ("ppc64le", "centos7")
-        ]
-        _cleanup_custom_cdt_overlaps(
-            cdt_path=LEGACY_CDT_PATH,
-            arch_dist_tuples=arch_dist_tuples,
-            cdts=cdts)
-
-        _fix_cdt_licenses(
-            cdts=cdts,
-            arch_dist_tuples=arch_dist_tuples,
-            cdt_path=LEGACY_CDT_PATH
-        )
-
-        _fix_cdt_deps(
-            cdts=cdts,
-            arch_dist_tuples=arch_dist_tuples,
-            cdt_path=LEGACY_CDT_PATH
-        )
-
-        _fix_cdt_builds(
-            cdts=cdts,
-            arch_dist_tuples=arch_dist_tuples,
-            cdt_path=LEGACY_CDT_PATH
-        )
-
-        if not keep_url_changes:
-            _ignore_url_build_changes(
-                LEGACY_CDT_PATH
-            )
-
     # new CDTs for the new compilers with a single sysroot
     arch_dist_tuples = [
-        ("x86_64", "centos6"), ("x86_64", "centos7"),
-        ("aarch64", "centos7"), ("ppc64le", "centos7")
+        ("x86_64", "centos7"),
+        ("aarch64", "centos7"),
+        ("ppc64le", "centos7"),
     ]
     _cleanup_custom_cdt_overlaps(
         cdt_path=CDT_PATH,
@@ -523,7 +454,7 @@ def _main(force, no_legacy, fast, keep_url_changes):
         cdt_path=CDT_PATH
     )
 
-    if not keep_url_changes:
+    if not (force or keep_url_changes):
         _ignore_url_build_changes(
             CDT_PATH
         )

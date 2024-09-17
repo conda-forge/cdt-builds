@@ -3,11 +3,11 @@ package:
   version: 0.4.4
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libXcomposite-0.4.4-4.1.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libXcomposite-0.4.4-4.1.el7.aarch64.rpm
     sha256: c46f5b6c826b678be9cd5ae4f1ddf7178e74bb68c8ad8ecc0c472ed67286ab5e
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXcomposite-0.4.4-4.1.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXcomposite-0.4.4-4.1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

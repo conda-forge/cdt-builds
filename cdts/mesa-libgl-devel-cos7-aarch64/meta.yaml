@@ -3,11 +3,11 @@ package:
   version: 18.3.4
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/mesa-libGL-devel-18.3.4-10.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/mesa-libGL-devel-18.3.4-10.el7.aarch64.rpm
     sha256: 4414f0b094fef1ec6e2ca623d2e06407f91bf76c0762003768f92383d2328c6c
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/mesa-18.3.4-10.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/mesa-18.3.4-10.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -3,11 +3,11 @@ package:
   version: 3.3.21
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/opensm-devel-3.3.21-3.el7_8.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/opensm-devel-3.3.21-3.el7_8.x86_64.rpm
     sha256: 64398344ec0e54e3f72344d36a58087df6eb4406365d26b4db01c5016fb36d93
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/opensm-3.3.21-3.el7_8.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/opensm-3.3.21-3.el7_8.src.rpm
   #   no_hoist: true
   #   folder: source
 

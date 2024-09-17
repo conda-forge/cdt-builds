@@ -3,11 +3,11 @@ package:
   version: 1.1.4
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libnl-devel-1.1.4-3.el7.ppc64le.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libnl-devel-1.1.4-3.el7.ppc64le.rpm
     sha256: b6151e820d6a4f99be5be148b0ce208ac13fc27bf82c2aeda93acdbc17888f06
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libnl-1.1.4-3.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libnl-1.1.4-3.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

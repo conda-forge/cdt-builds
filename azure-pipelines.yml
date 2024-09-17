@@ -5,33 +5,47 @@ jobs:
   timeoutInMinutes: 360
   strategy:
     matrix:
-      cos6_x86_64_legacy:
-        DISTARCH: 'cos6-x86_64'
-        LEGACYCDT: '--legacy'
-      cos7_aarch64_legacy:
-        DISTARCH: 'cos7-aarch64'
-        LEGACYCDT: '--legacy'
-      cos7_ppc64le_legacy:
-        DISTARCH: 'cos7-ppc64le'
-        LEGACYCDT: '--legacy'
-      cos6_x86_64:
-        DISTARCH: 'cos6-x86_64'
-        LEGACYCDT: ''
       cos7_x86_64:
         DISTARCH: 'cos7-x86_64'
-        LEGACYCDT: ''
       cos7_aarch64:
         DISTARCH: 'cos7-aarch64'
-        LEGACYCDT: ''
       cos7_ppc64le:
         DISTARCH: 'cos7-ppc64le'
-        LEGACYCDT: ''
     maxParallel: 0
 
   steps:
 
   - checkout: self
     clean: true
+
+  - script: |
+         sudo mkdir -p /opt/empty_dir || true
+         for d in \
+                  /opt/ghc \
+                  /opt/hostedtoolcache \
+                  /usr/lib/jvm \
+                  /usr/local/.ghcup \
+                  /usr/local/lib/android \
+                  /usr/local/share/powershell \
+                  /usr/share/dotnet \
+                  /usr/share/swift \
+                  ; do
+           sudo rsync --stats -a --delete /opt/empty_dir/ $d || true
+         done
+         sudo apt-get purge -y -f firefox \
+                                  google-chrome-stable \
+                                  microsoft-edge-stable
+         sudo apt-get autoremove -y >& /dev/null
+         sudo apt-get autoclean -y >& /dev/null
+         df -h
+    displayName: Manage disk space
+
+  - script: |
+         sudo fallocate -l 15GiB /swapfile || true
+         sudo chmod 600 /swapfile || true
+         sudo mkswap /swapfile || true
+         sudo swapon /swapfile || true
+    displayName: Create swap file
 
   - bash: |
         sudo apt-get remove -y --auto-remove gcc
@@ -52,12 +66,12 @@ jobs:
 
         mkdir -p build_logs
 
-        echo "cmd args: ${DISTARCH} ${LEGACYCDT}"
-        python build_cdt_recipes.py ${DISTARCH} ${LEGACYCDT}
+        echo "cmd args: ${DISTARCH}"
+        python build_cdt_recipes.py ${DISTARCH}
     displayName: build and upload CDTs
     env:
       ANACONDA_TOKEN: $(anaconda.token)
       IS_FORK: $(System.PullRequest.IsFork)
 
   - publish: build_logs/
-    artifact: build-logs-$(DISTARCH)$(LEGACYCDT)-azurejob$(system.JobId)
+    artifact: build-logs-$(DISTARCH)-azurejob$(system.JobId)

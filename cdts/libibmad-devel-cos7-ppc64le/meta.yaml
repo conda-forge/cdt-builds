@@ -3,11 +3,11 @@ package:
   version: 1.3.13
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libibmad-devel-1.3.13-1.el7.ppc64le.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libibmad-devel-1.3.13-1.el7.ppc64le.rpm
     sha256: 224ffbac3d622e475a3f2e189ca5be479774327e1fdc7f64f939cfb98e4a92c9
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libibmad-1.3.13-1.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libibmad-1.3.13-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

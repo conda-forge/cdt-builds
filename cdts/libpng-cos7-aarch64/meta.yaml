@@ -3,11 +3,11 @@ package:
   version: 1.5.13
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libpng-1.5.13-8.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libpng-1.5.13-8.el7.aarch64.rpm
     sha256: a132cbe0d407be884e14691031a9a613160577446b8297b378391f943f0ceff0
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libpng-1.5.13-8.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libpng-1.5.13-8.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -3,11 +3,11 @@ package:
   version: 1.0.8
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libXau-1.0.8-2.1.el7.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libXau-1.0.8-2.1.el7.x86_64.rpm
     sha256: c6441b423c19c5ca543d72fe6ed3679f039538ad345cb4284a36781869f8609c
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXau-1.0.8-2.1.el7.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libXau-1.0.8-2.1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

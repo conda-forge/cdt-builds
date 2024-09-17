@@ -3,11 +3,11 @@ package:
   version: 0.4.0
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/xcb-util-image-devel-0.4.0-2.el7.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/xcb-util-image-devel-0.4.0-2.el7.x86_64.rpm
     sha256: e4a714de32cefe5d0b1cc3a9e9c9e46dce42607742e2e094bb47136f289357f6
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/xcb-util-image-0.4.0-2.el7.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/xcb-util-image-0.4.0-2.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

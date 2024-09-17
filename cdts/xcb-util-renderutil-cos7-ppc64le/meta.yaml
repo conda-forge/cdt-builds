@@ -3,11 +3,11 @@ package:
   version: 0.3.9
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/xcb-util-renderutil-0.3.9-3.el7.ppc64le.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/xcb-util-renderutil-0.3.9-3.el7.ppc64le.rpm
     sha256: 10dadc592a16472290207ec44781c6e652f8db4f4da3772792fbf6976b46216e
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/xcb-util-renderutil-0.3.9-3.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/xcb-util-renderutil-0.3.9-3.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

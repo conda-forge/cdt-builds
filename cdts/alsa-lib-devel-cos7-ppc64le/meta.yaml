@@ -3,11 +3,11 @@ package:
   version: 1.1.8
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/alsa-lib-devel-1.1.8-1.el7.ppc64le.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/alsa-lib-devel-1.1.8-1.el7.ppc64le.rpm
     sha256: b60215fe9b765201ff0116fec35deeedffeeacfd79da0231ba03a7a5e71d4fad
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/alsa-lib-1.1.8-1.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/alsa-lib-1.1.8-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

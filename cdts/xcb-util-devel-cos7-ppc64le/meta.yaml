@@ -3,11 +3,11 @@ package:
   version: 0.4.0
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/xcb-util-devel-0.4.0-2.el7.ppc64le.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/xcb-util-devel-0.4.0-2.el7.ppc64le.rpm
     sha256: 35b0809dde97a0f2674d45dc04c3b40039fb9ca3ee1749755e348c334fd56c7f
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/xcb-util-0.4.0-2.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/xcb-util-0.4.0-2.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

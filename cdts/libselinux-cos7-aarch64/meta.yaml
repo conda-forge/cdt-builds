@@ -3,11 +3,11 @@ package:
   version: 2.5
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libselinux-2.5-15.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libselinux-2.5-15.el7.aarch64.rpm
     sha256: ad8cc59068d2eba22acaee283e94f51c4e9132da2091f97a74b0250fe5297846
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libselinux-2.5-15.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libselinux-2.5-15.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

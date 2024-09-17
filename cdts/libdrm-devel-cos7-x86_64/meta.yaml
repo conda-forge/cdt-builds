@@ -3,11 +3,11 @@ package:
   version: 2.4.97
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/libdrm-devel-2.4.97-2.el7.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libdrm-devel-2.4.97-2.el7.x86_64.rpm
     sha256: 4c7f759bcb222a738b8aeb92f2d54913070208806a2879b1a58beb40d77c2dd4
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libdrm-2.4.97-2.el7.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libdrm-2.4.97-2.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

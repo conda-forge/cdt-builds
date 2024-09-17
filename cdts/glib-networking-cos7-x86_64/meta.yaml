@@ -3,11 +3,11 @@ package:
   version: 2.56.1
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/glib-networking-2.56.1-1.el7.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/glib-networking-2.56.1-1.el7.x86_64.rpm
     sha256: 725c4ebc91ab6f818a71e8a91f50777e627d6426155ee8e6a8b9ead6b23f0161
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/glib-networking-2.56.1-1.el7.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/glib-networking-2.56.1-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

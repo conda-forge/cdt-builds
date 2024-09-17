@@ -3,11 +3,11 @@ package:
   version: 1.0.2
 
 source:
-  - url: http://mirror.centos.org/centos/7/os/x86_64/Packages/fribidi-1.0.2-1.el7_7.1.x86_64.rpm
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/fribidi-1.0.2-1.el7_7.1.x86_64.rpm
     sha256: 4f465f6e5d04990c70f786cb6e432bad2ef2094fd06f71213fedaa8bb51ac668
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/fribidi-1.0.2-1.el7_7.1.src.rpm
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/fribidi-1.0.2-1.el7_7.1.src.rpm
   #   no_hoist: true
   #   folder: source
 

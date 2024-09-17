@@ -3,11 +3,11 @@ package:
   version: 0.34.0
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/pixman-devel-0.34.0-1.el7.ppc64le.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/pixman-devel-0.34.0-1.el7.ppc64le.rpm
     sha256: fe7c2d41ff1fdd421844e1d3ec4c609d5c403252a2e6246cd8d3788a627a97ec
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/pixman-0.34.0-1.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/pixman-0.34.0-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -3,11 +3,11 @@ package:
   version: 3.44.0
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/nss-3.44.0-7.el7_7.ppc64le.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/nss-3.44.0-7.el7_7.ppc64le.rpm
     sha256: 348a1040936e8b20ac16adbe3c6a951d3d59e005251800ce50ce2de8a9615c5e
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/nss-3.44.0-7.el7_7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/nss-3.44.0-7.el7_7.src.rpm
   #   no_hoist: true
   #   folder: source
 

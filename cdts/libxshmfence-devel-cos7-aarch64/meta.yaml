@@ -3,11 +3,11 @@ package:
   version: 1.2
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libxshmfence-devel-1.2-1.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libxshmfence-devel-1.2-1.el7.aarch64.rpm
     sha256: 85ca3eab71b96569616ee54991ade334ced7e56234a96c7870b386824792eb96
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libxshmfence-1.2-1.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libxshmfence-1.2-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

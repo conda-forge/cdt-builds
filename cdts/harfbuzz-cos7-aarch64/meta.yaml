@@ -3,11 +3,11 @@ package:
   version: 1.7.5
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/harfbuzz-1.7.5-2.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/harfbuzz-1.7.5-2.el7.aarch64.rpm
     sha256: 8229d1e457c709a2a54cfd05b2682011d253d9060ac53c14c297355540bd225b
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/harfbuzz-1.7.5-2.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/harfbuzz-1.7.5-2.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

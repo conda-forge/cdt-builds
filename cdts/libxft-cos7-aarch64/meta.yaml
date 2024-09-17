@@ -3,11 +3,11 @@ package:
   version: 2.3.2
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libXft-2.3.2-2.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libXft-2.3.2-2.el7.aarch64.rpm
     sha256: 9cb1b9c20cf56a15f83e2242d8c46a66095d97e88480be4c2c0cd623b90ab731
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libXft-2.3.2-2.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXft-2.3.2-2.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

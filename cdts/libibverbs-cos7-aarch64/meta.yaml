@@ -3,11 +3,11 @@ package:
   version: 22.4
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/libibverbs-22.4-5.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libibverbs-22.4-5.el7.aarch64.rpm
     sha256: 0f7f7370f501a47b7ce36ff9a896df3b736453b8e6331f14d997e2ce3e393671
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/rdma-core-22.4-5.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/rdma-core-22.4-5.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

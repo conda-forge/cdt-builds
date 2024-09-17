@@ -3,11 +3,11 @@ package:
   version: 2.32.1
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/ppc64le/Packages/libbonobo-devel-2.32.1-7.el7.ppc64le.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libbonobo-devel-2.32.1-7.el7.ppc64le.rpm
     sha256: 06ac1552ec51ba7fcf586ac79490c5ce1496901494bf4abc8d57eb877a38bd9f
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/libbonobo-2.32.1-7.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libbonobo-2.32.1-7.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

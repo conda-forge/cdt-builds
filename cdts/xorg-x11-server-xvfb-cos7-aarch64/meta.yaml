@@ -3,11 +3,11 @@ package:
   version: 1.20.4
 
 source:
-  - url: http://mirror.centos.org/altarch/7/os/aarch64/Packages/xorg-x11-server-Xvfb-1.20.4-10.el7.aarch64.rpm
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/xorg-x11-server-Xvfb-1.20.4-10.el7.aarch64.rpm
     sha256: 0bbeba9f74db9dc5adbe6e0b2d70e1c9624fc698fef09525517220fff2562c47
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.7.1908/os/Source/SPackages/xorg-x11-server-1.20.4-10.el7.src.rpm
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/xorg-x11-server-1.20.4-10.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
