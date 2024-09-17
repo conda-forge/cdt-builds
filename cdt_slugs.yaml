@@ -6,6 +6,9 @@ alsa-lib-devel:
 audit-libs:
   custom: false
   license_file: licenses/audit-libs-copying.lib
+audit-libs-devel:
+  custom: false
+  license_file: licenses/audit-libs-copying.lib
 at-spi:
   custom: false
   license_file: licenses/at-spi-license
@@ -71,6 +74,9 @@ chkconfig:
 copy-jdk-configs:
   custom: false
 cracklib:
+  custom: false
+  license_file: licenses/cracklib-copying.lib
+cracklib-devel:
   custom: false
   license_file: licenses/cracklib-copying.lib
 cracklib-dicts:
@@ -295,6 +301,9 @@ libpng-devel:
   license_file: licenses/libpng-license
 libpwquality:
   custom: false
+libpwquality-devel:
+  custom: false
+  license_file: licenses/libpwquality-copying
 librdmacm:
   custom: false
   license_file: licenses/librdmacm-devel-license
