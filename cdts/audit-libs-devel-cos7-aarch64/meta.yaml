@@ -22,16 +22,12 @@ build:
 requirements:
   build:
     - audit-libs-cos7-aarch64 ==2.8.5 *_{{ cdt_build_number|int + 1000 }}
-    - kernel-headers-cos7-aarch64 >=2.6.29 *_{{ cdt_build_number|int + 1000 }}
   host:
     - audit-libs-cos7-aarch64 ==2.8.5 *_{{ cdt_build_number|int + 1000 }}
-    - kernel-headers-cos7-aarch64 >=2.6.29 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
     - audit-libs-cos7-aarch64 ==2.8.5 *_{{ cdt_build_number|int + 1000 }}
-    - kernel-headers-cos7-aarch64 >=2.6.29 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
-
 test:
   commands:
     - echo "it installs!"
