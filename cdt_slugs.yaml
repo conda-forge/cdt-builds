@@ -9,6 +9,8 @@ audit-libs:
 audit-libs-devel:
   custom: false
   license_file: licenses/audit-libs-copying.lib
+  dep_remove:
+    - kernel-headers
 at-spi:
   custom: false
   license_file: licenses/at-spi-license
