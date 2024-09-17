@@ -909,10 +909,14 @@ def write_conda_recipe(
             else:
                 cdt["dependency_add"][as_list[0]] = as_list[1:]
 
-    repomd_url = cdt["repomd_url"]
-    repo_primary = get_repo_dict(
-        repomd_url, "primary", massage_primary, cdt, config.src_cache
-    )
+    repo_primary = {}
+    for channel in ["BaseOS", "AppStream", "PowerTools"]:
+        # don't use `cdt`, where we already formatted the subfolder out of the URL
+        formatting_bits["subfolder"] = channel
+        repomd_url = cdt_info[cdt_name]["repomd_url"].format(**formatting_bits)
+        repo_primary |= get_repo_dict(
+            repomd_url, "primary", massage_primary, cdt, config.src_cache
+        )
     for package in packages:
         write_conda_recipes(
             recursive,
