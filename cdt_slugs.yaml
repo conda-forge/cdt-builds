@@ -195,6 +195,9 @@ kmod-devel:
   custom: false
   license_file: licenses/kmod-copying
   subfolder: PowerTools
+kmod-libs:
+  custom: false
+  license_file: licenses/kmod-copying
 libXxf86vm:
   custom: false
 libXxf86vm-devel:

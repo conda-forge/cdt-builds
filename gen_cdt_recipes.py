@@ -26,6 +26,7 @@ DIST_CDT_ALLOWLIST = {
         "cracklib-dicts",
         "kmod",
         "kmod-devel",
+        "kmod-libs",
         "libselinux",
         "libselinux-devel",
         "libpwquality",
