@@ -185,7 +185,6 @@ def _gen_cdts(single_sysroot):
     return dict(
         {
             "centos7": {
-                "dirname": "centos7",
                 "short_name": "cos7",
                 "base_url": "http://vault.centos.org/7.9.2009/os/{base_architecture}/Packages/",  # noqa
                 "sbase_url": "http://vault.centos.org/7.9.2009/os/Source/SPackages/",
@@ -208,7 +207,6 @@ def _gen_cdts(single_sysroot):
                 "glibc_ver": "2.17",
             },
             "centos7-alt": {
-                "dirname": "centos7",
                 "short_name": "cos7",
                 "base_url": "https://vault.centos.org/altarch/7.9.2009/os/{base_architecture}/Packages/",  # noqa
                 "sbase_url": "http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/",
@@ -231,7 +229,6 @@ def _gen_cdts(single_sysroot):
                 "glibc_ver": "2.17",
             },
             "alma8": {
-                "dirname": "alma8",
                 "short_name": "conda",
                 "base_url": "https://vault.almalinux.org/8.9/{subfolder}/{base_architecture}/os/Packages/",  # noqa
                 "sbase_url": "https://vault.almalinux.org/8.9/{subfolder}/Source/Packages/",
