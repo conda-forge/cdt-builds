@@ -1,0 +1,51 @@
+package:
+  name: pam-devel-conda-x86_64
+  version: 1.3.1
+
+source:
+  - url: https://vault.almalinux.org/8.9/BaseOS/x86_64/os/Packages/pam-devel-1.3.1-27.el8.x86_64.rpm
+    sha256: 8fea6c8f1088a98cd376008b793fa7d14c67db28c00c0a1b39aafd1bea6fea11
+    no_hoist: true
+    folder: binary
+  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/pam-1.3.1-27.el8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - pam-conda-x86_64 ==1.3.1 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - pam-conda-x86_64 ==1.3.1 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.28.*
+  run:
+    - pam-conda-x86_64 ==1.3.1 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.28.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.linux-pam.org/
+  license: BSD and GPLv2+
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/pam-devel/html/mwg-copyright.html
+  summary: "(CDT) Files needed for developing PAM-aware applications and modules for PAM"
+  description: |
+        PAM (Pluggable Authentication Modules) is a system security tool that allows
+        system administrators to set authentication policy without having to recompile
+        programs that handle authentication. This package contains header files used
+        for building both PAM-aware applications and modules for use with the PAM
+        system.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

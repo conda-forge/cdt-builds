@@ -1,0 +1,47 @@
+package:
+  name: audit-libs-devel-conda-aarch64
+  version: 3.0.7
+
+source:
+  - url: https://vault.almalinux.org/8.9/BaseOS/aarch64/os/Packages/audit-libs-devel-3.0.7-5.el8.aarch64.rpm
+    sha256: 9c3ecdc3ea6b5c72a809bf1d9cf51c58a23476145cb2edd98fe8adc49efcc397
+    no_hoist: true
+    folder: binary
+  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/audit-3.0.7-5.el8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - audit-libs-conda-aarch64 ==3.0.7 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - audit-libs-conda-aarch64 ==3.0.7 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.28.*
+  run:
+    - audit-libs-conda-aarch64 ==3.0.7 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.28.*
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://people.redhat.com/sgrubb/audit/
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: audit-libs-copying.lib
+  summary: (CDT) Header files for libaudit
+  description: |
+    The audit-libs-devel package contains the header files needed for developing
+    applications that need to use the audit framework libraries.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
