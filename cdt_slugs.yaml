@@ -189,6 +189,10 @@ kernel-headers:
   license_file: null
 kmod:
   custom: false
+  license_file: licenses/kmod-copying
+kmod-devel:
+  custom: false
+  license_file: licenses/kmod-copying
 libXxf86vm:
   custom: false
 libXxf86vm-devel:
@@ -447,6 +451,9 @@ libXtst-devel:
   custom: false
   license_file: licenses/libxtst-license
 mesa-libgbm:
+  custom: false
+  license_file: licenses/mesa-license
+mesa-libgbm-devel:
   custom: false
   license_file: licenses/mesa-license
 mesa-dri-drivers:
