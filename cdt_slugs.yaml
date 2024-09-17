@@ -79,6 +79,7 @@ cracklib:
 cracklib-devel:
   custom: false
   license_file: licenses/cracklib-copying.lib
+  subfolder: PowerTools
 cracklib-dicts:
   custom: false
   license_file: licenses/cracklib-copying.lib
@@ -193,6 +194,7 @@ kmod:
 kmod-devel:
   custom: false
   license_file: licenses/kmod-copying
+  subfolder: PowerTools
 libXxf86vm:
   custom: false
 libXxf86vm-devel:
@@ -308,6 +310,7 @@ libpwquality:
 libpwquality-devel:
   custom: false
   license_file: licenses/libpwquality-copying
+  subfolder: PowerTools
 librdmacm:
   custom: false
   license_file: licenses/librdmacm-devel-license
@@ -453,9 +456,11 @@ libXtst-devel:
 mesa-libgbm:
   custom: false
   license_file: licenses/mesa-license
+  subfolder: AppStream
 mesa-libgbm-devel:
   custom: false
   license_file: licenses/mesa-license
+  subfolder: PowerTools
 mesa-dri-drivers:
   custom: false
   license_file: licenses/mesa-license

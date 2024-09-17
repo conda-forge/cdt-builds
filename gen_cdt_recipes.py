@@ -143,6 +143,9 @@ def _make_cdt_recipes(*, extra, cdt_path, dist_arch_tuples, cdts, exec, force):
             if "build_number_bump" in cfg:
                 _extra += " --build-number-bump=%d" % cfg["build_number_bump"]
 
+            if "subfolder" in cfg:
+                _extra += f" --subfolder={cfg['subfolder']}"
+
             print(
                 "making CDT:",
                 cdt.lower() + "-" + _gen_dist_arch_str(arch, dist),

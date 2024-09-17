@@ -233,9 +233,9 @@ def _gen_cdts(single_sysroot):
             "alma8": {
                 "dirname": "alma8",
                 "short_name": "alma8",
-                "base_url": "https://vault.almalinux.org/8.9/BaseOS/{base_architecture}/os/Packages/",  # noqa
-                "sbase_url": "https://vault.almalinux.org/8.9/BaseOS/Source/Packages/",
-                "repomd_url": "https://vault.almalinux.org/8.9/BaseOS/{base_architecture}/os/repodata/repomd.xml",  # noqa
+                "base_url": "https://vault.almalinux.org/8.9/{subfolder}/{base_architecture}/os/Packages/",  # noqa
+                "sbase_url": "https://vault.almalinux.org/8.9/{subfolder}/Source/Packages/",
+                "repomd_url": "https://vault.almalinux.org/8.9/{subfolder}/{base_architecture}/os/repodata/repomd.xml",  # noqa
                 "host_machine": "{architecture}-conda-linux-gnu",
                 "host_subdir": "linux-{bits}",
                 "fname_architecture": "{architecture}",
@@ -855,6 +855,7 @@ def write_conda_recipe(
     distro,
     output_dir,
     architecture,
+    subfolder,
     recursive,
     override_arch,
     dependency_add,
@@ -880,18 +881,19 @@ def write_conda_recipe(
         gnu_architecture = gnu_architectures[architecture]
     except Exception:
         gnu_architecture = architecture
-    architecture_bits = dict(
+    formatting_bits = dict(
         {
             "architecture": architecture,
             "base_architecture": base_architecture,
             "gnu_architecture": gnu_architecture,
             "bits": bits,
+            "subfolder": subfolder,
         }
     )
     cdt = dict()
     for k, v in cdt_info[cdt_name].items():
         if isinstance(v, string_types):
-            cdt[k] = v.format(**architecture_bits)
+            cdt[k] = v.format(**formatting_bits)
         else:
             cdt[k] = v
 
@@ -934,6 +936,7 @@ def write_conda_recipe(
 @click.option("--version", default=None, type=str)
 @click.option("--recursive", default=False, is_flag=True)
 @click.option("--architecture", default=default_architecture, type=str)
+@click.option("--subfolder", default="BaseOS", type=str)
 @click.option("--no-override-arch", default=False, is_flag=True)
 @click.option("--distro", default=default_distro, type=str)
 @click.option("--conda-forge-style", default=False, is_flag=True)
@@ -947,6 +950,7 @@ def skeletonize(
     version,
     recursive,
     architecture,
+    subfolder,
     no_override_arch,
     distro,
     conda_forge_style,
@@ -965,6 +969,7 @@ def skeletonize(
             distro,
             output_dir,
             architecture,
+            subfolder,
             recursive,
             not no_override_arch,
             None,
