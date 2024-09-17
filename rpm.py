@@ -64,12 +64,7 @@ except ImportError:
     from yaml import SafeDumper
 import yaml
 
-
-try:
-    from urllib.request import urlopen
-except ImportError:
-    from urllib2 import urlopen
-
+from requests import request
 from six import string_types
 from textwrap import wrap
 from xml.etree import cElementTree as ET
@@ -397,7 +392,7 @@ def dictify_pickled(xml_file, src_cache, dict_massager=None, cdt=None):
 
 
 def get_repo_dict(repomd_url, data_type, dict_massager, cdt, src_cache):
-    xmlstring = urlopen(repomd_url).read()
+    xmlstring = request("get", repomd_url).content
     # Remove the default namespace definition (xmlns="http://some/namespace")
     xmlstring = re.sub(b'\sxmlns="[^"]+"', b"", xmlstring, count=1)  # noqa
     repomd = ET.fromstring(xmlstring)
