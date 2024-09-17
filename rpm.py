@@ -235,6 +235,22 @@ def _gen_cdts(single_sysroot):
                 "allow_missing_sources": True,
                 "glibc_ver": "2.17",
             },
+            "alma8": {
+                "dirname": "alma8",
+                "short_name": "alma8",
+                "base_url": "https://vault.almalinux.org/8.9/BaseOS/{base_architecture}/os/Packages/",  # noqa
+                "sbase_url": "https://vault.almalinux.org/8.9/BaseOS/Source/Packages/",
+                "repomd_url": "https://vault.almalinux.org/8.9/BaseOS/{base_architecture}/os/repodata/repomd.xml",  # noqa
+                "host_machine": "{architecture}-conda-linux-gnu",
+                "host_subdir": "linux-{bits}",
+                "fname_architecture": "{architecture}",
+                "rpm_filename_platform": "el8.{architecture}",
+                "checksummer": hashlib.sha256,
+                "checksummer_name": "sha256",
+                "macros": {},
+                "allow_missing_sources": True,
+                "glibc_ver": "2.28",
+            },
         }
     )
 

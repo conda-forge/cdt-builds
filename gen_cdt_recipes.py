@@ -368,6 +368,9 @@ def _main(force, fast, keep_url_changes):
         ("centos7", "aarch64"),
         ("centos7", "ppc64le"),
         ("centos7", "x86_64"),
+        ("alma8", "aarch64"),
+        ("alma8", "ppc64le"),
+        ("alma8", "x86_64"),
     ]
 
     with open("cdt_slugs.yaml", "r") as fp:
