@@ -1,0 +1,48 @@
+package:
+  name: kmod-devel-alma8-x86_64
+  version: 25
+
+source:
+  - url: https://vault.almalinux.org/8.9/PowerTools/x86_64/os/Packages/kmod-devel-25-19.el8.x86_64.rpm
+    sha256: 395c0d0004bfd8c0f4c66910a31afefbfc90a55e48ea98ffedeeab9a178cae6f
+    no_hoist: true
+    folder: binary
+  # - url: https://vault.almalinux.org/8.9/PowerTools/Source/Packages/kmod-25-19.el8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - kmod-libs-alma8-x86_64 ==25 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - kmod-libs-alma8-x86_64 ==25 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.28.*
+  run:
+    - kmod-libs-alma8-x86_64 ==25 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.28.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://git.kernel.org/?p=utils/kernel/kmod/kmod.git;a=summary
+  license: GPL-2.0-or-later
+  license_family: GPL2
+  license_file: kmod-copying
+  summary: (CDT) Header files for kmod development
+  description: |
+    The kmod-devel package provides header files used for development of
+    applications that wish to load or unload Linux kernel modules.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,51 @@
+package:
+  name: audit-libs-devel-cos7-aarch64
+  version: 2.8.5
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/audit-libs-devel-2.8.5-4.el7.aarch64.rpm
+    sha256: 790c548f15ed4064d189cf5694277095a2b112e8c9a065894926b03f7bb0ef6f
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/audit-2.8.5-4.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - audit-libs-cos7-aarch64 ==2.8.5 *_{{ cdt_build_number|int + 1000 }}
+    - kernel-headers-cos7-aarch64 >=2.6.29 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - audit-libs-cos7-aarch64 ==2.8.5 *_{{ cdt_build_number|int + 1000 }}
+    - kernel-headers-cos7-aarch64 >=2.6.29 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - audit-libs-cos7-aarch64 ==2.8.5 *_{{ cdt_build_number|int + 1000 }}
+    - kernel-headers-cos7-aarch64 >=2.6.29 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://people.redhat.com/sgrubb/audit/
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: audit-libs-copying.lib
+  summary: (CDT) Header files for libaudit
+  description: |
+    The audit-libs-devel package contains the header files needed for developing
+    applications that need to use the audit framework libraries.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

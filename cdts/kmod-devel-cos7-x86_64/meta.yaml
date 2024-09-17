@@ -1,0 +1,48 @@
+package:
+  name: kmod-devel-cos7-x86_64
+  version: 20
+
+source:
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/kmod-devel-20-28.el7.x86_64.rpm
+    sha256: 130b1a059d6cf8a99247a5847bc687f10fde59226bbad5043e03f798fc53d3e3
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/kmod-20-28.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - kmod-libs-cos7-x86_64 ==20 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - kmod-libs-cos7-x86_64 ==20 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - kmod-libs-cos7-x86_64 ==20 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://git.kernel.org/?p=utils/kernel/kmod/kmod.git;a=summary
+  license: GPL-2.0-or-later
+  license_family: GPL2
+  license_file: kmod-copying
+  summary: (CDT) Header files for kmod development
+  description: |
+    The kmod-devel package provides header files used for development of
+    applications that wish to load or unload Linux kernel modules.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
