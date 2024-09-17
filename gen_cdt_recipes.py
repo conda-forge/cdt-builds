@@ -286,6 +286,7 @@ def _fix_cdt_deps(*, cdts, dist_arch_tuples, cdt_path):
                             for dep in meta["requirements"][sec]:
                                 if not any(
                                     dep.startswith(d + "-cos")
+                                    or dep.startswith(d + "-alma")
                                     for d in cfg["dep_remove"]
                                 ):
                                     new_deps.append(dep)
