@@ -1,740 +1,740 @@
-alsa-lib:
-  custom: false
-alsa-lib-devel:
-  custom: false
-  license_file: licenses/alsa-lib-license
-audit-libs:
-  custom: false
-  license_file: licenses/audit-libs-copying.lib
-audit-libs-devel:
-  custom: false
-  license_file: licenses/audit-libs-copying.lib
-  dep_remove:
-    - kernel-headers
-at-spi:
-  custom: false
-  license_file: licenses/at-spi-license
-  dep_remove:
-    - gail
-at-spi-devel:
-  custom: false
-  license_file: licenses/at-spi-license
-  dep_remove:
-    - gail-devel
-atk:
-  custom: false
-  license_file: licenses/atk-copying
-atk-devel:
-  custom: false
-  license_file: licenses/atk-copying
-ca-certificates:
-  custom: false
-  license_file: null
-  build_append:
-    cos7: |
-      mkdir -p ${SYSROOT_DIR}/etc/pki/tls/certs
+  alsa-lib:
+    custom: false
+  alsa-lib-devel:
+    custom: false
+    license_file: licenses/alsa-lib-license
+  audit-libs:
+    custom: false
+    license_file: licenses/audit-libs-copying.lib
+  audit-libs-devel:
+    custom: false
+    license_file: licenses/audit-libs-copying.lib
+    dep_remove:
+      - kernel-headers
+  at-spi:
+    custom: false
+    license_file: licenses/at-spi-license
+    dep_remove:
+      - gail
+  at-spi-devel:
+    custom: false
+    license_file: licenses/at-spi-license
+    dep_remove:
+      - gail-devel
+  atk:
+    custom: false
+    license_file: licenses/atk-copying
+  atk-devel:
+    custom: false
+    license_file: licenses/atk-copying
+  ca-certificates:
+    custom: false
+    license_file: null
+    build_append:
+      cos7: |
+        mkdir -p ${SYSROOT_DIR}/etc/pki/tls/certs
 
-      pushd ${SYSROOT_DIR}/etc/pki/java > /dev/null 2>&1
-        rm -f cacerts
-        mkdir -p ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/java/cacerts
-        ln -s ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/java/cacerts ${SYSROOT_DIR}/etc/pki/java/cacerts
-      popd > /dev/null 2>&1
+        pushd ${SYSROOT_DIR}/etc/pki/java > /dev/null 2>&1
+          rm -f cacerts
+          mkdir -p ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/java/cacerts
+          ln -s ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/java/cacerts ${SYSROOT_DIR}/etc/pki/java/cacerts
+        popd > /dev/null 2>&1
 
-      pushd ${SYSROOT_DIR}/etc/pki/tls > /dev/null 2>&1
-        rm -f cert.pem
-        echo "PLACEHOLDER"> ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
-        ln -s ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem ${SYSROOT_DIR}/etc/pki/tls/cert.pem
-      popd > /dev/null 2>&1
+        pushd ${SYSROOT_DIR}/etc/pki/tls > /dev/null 2>&1
+          rm -f cert.pem
+          echo "PLACEHOLDER"> ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
+          ln -s ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem ${SYSROOT_DIR}/etc/pki/tls/cert.pem
+        popd > /dev/null 2>&1
 
-      pushd ${SYSROOT_DIR}/etc/pki/tls/certs > /dev/null 2>&1
-        rm -f ca-bundle.crt
-        ln -s ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem ${SYSROOT_DIR}/etc/pki/tls/certs/ca-bundle.crt
-      popd > /dev/null 2>&1
+        pushd ${SYSROOT_DIR}/etc/pki/tls/certs > /dev/null 2>&1
+          rm -f ca-bundle.crt
+          ln -s ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem ${SYSROOT_DIR}/etc/pki/tls/certs/ca-bundle.crt
+        popd > /dev/null 2>&1
 
-      pushd ${SYSROOT_DIR}/etc/pki/tls/certs > /dev/null 2>&1
-        rm ca-bundle.trust.crt
-        echo "PLACEHOLDER"> ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
-        ln -s ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt ${SYSROOT_DIR}/etc/pki/tls/certs/ca-bundle.trust.crt
-      popd > /dev/null 2>&1
-cairo:
-  custom: false
-  license_file:
-    - licenses/cairo-copying
-    - licenses/cairo-copying-lgpl-2.1
-    - licenses/cairo-copying-mpl-1.1
-cairo-devel:
-  custom: false
-  license_file:
-    - licenses/cairo-copying
-    - licenses/cairo-copying-lgpl-2.1
-    - licenses/cairo-copying-mpl-1.1
-centos-release:
-  custom: false
-  license_file: licenses/centos-release-license
-chkconfig:
-  custom: false
-copy-jdk-configs:
-  custom: false
-cracklib:
-  custom: false
-  license_file: licenses/cracklib-copying.lib
-cracklib-devel:
-  custom: false
-  license_file: licenses/cracklib-copying.lib
-  subfolder: PowerTools
-cracklib-dicts:
-  custom: false
-  license_file: licenses/cracklib-copying.lib
-cups-libs:
-  custom: false
-  license_file: licenses/cups-license
-cups-devel:
-  custom: false
-  license_file: licenses/cups-license
-expat:
-  custom: false
-  license_file: licenses/expat-license
-expat-devel:
-  custom: false
-  license_file: licenses/expat-license
-fontconfig:
-  custom: false
-  build_append:
-    all: |
-      pushd ${SYSROOT_DIR}/etc/fonts/conf.d > /dev/null 2>&1
-      for fulllnk in $(find . -maxdepth 1 -type l); do
-        lnk=$(basename ${fulllnk})
-        lnk_dst=$(readlink ${lnk})
-        if [[ ${lnk_dst:0:1} == "/" ]]; then
-          rm -f ${lnk}
-          ln -s ${SYSROOT_DIR}${lnk_dst} ${SYSROOT_DIR}/etc/fonts/conf.d/${lnk}
-        fi
-      done
-      popd > /dev/null 2>&1
-fontconfig-devel:
-  custom: false
-  license_file: licenses/fontconfig-copying
-freetype:
-  custom: false
-  license_file: licenses/freetype-license.txt
-freetype-devel:
-  custom: false
-  license_file: licenses/freetype-license.txt
-fribidi:
-  custom: false
-glib-networking:
-  custom: false
-glib2:
-  custom: false
-  license_file: licenses/glib2-copying
-glib2-devel:
-  custom: false
-  license_file: licenses/glib2-copying
-GConf2:
-  custom: false
-gtk2:
-  custom: false
-  license_file: licenses/gtk2-copying
-gtk2-devel:
-  custom: false
-  license_file: licenses/gtk2-copying
-gtkmm24:
-  custom: false
-  license_file:
-    - licenses/gtkmm-license
-    - licenses/gtkmm-tools-license
-gtkmm24-devel:
-  custom: false
-  license_file:
-    - licenses/gtkmm-license
-    - licenses/gtkmm-tools-license
-harfbuzz:
-  custom: false
-ibacm:
-  custom: false
-  # `ibacm` is part of rdma-core and under the same licenses
-  # https://github.com/linux-rdma/rdma-core/tree/v22.4/ibacm
-  license_file:
-    - licenses/rdma-core-licenses/COPYING.BSD_FB
-    - licenses/rdma-core-licenses/COPYING.BSD_MIT
-    - licenses/rdma-core-licenses/COPYING.GPL2
-    - licenses/rdma-core-licenses/COPYING.md
-java-1.7.0-openjdk:
-  custom: false
-  license_file: licenses/openjdk-license
-java-1.7.0-openjdk-headless:
-  custom: false
-  dep_replace:
-    jpackage-utils-cos7: javapackages-tools-cos7
-  build_append:
-    all: |
-      jvm_slug=$(compgen -G "${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-*")
-      jvm_slug=$(basename ${jvm_slug})
+        pushd ${SYSROOT_DIR}/etc/pki/tls/certs > /dev/null 2>&1
+          rm ca-bundle.trust.crt
+          echo "PLACEHOLDER"> ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
+          ln -s ${SYSROOT_DIR}/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt ${SYSROOT_DIR}/etc/pki/tls/certs/ca-bundle.trust.crt
+        popd > /dev/null 2>&1
+  cairo:
+    custom: false
+    license_file:
+      - licenses/cairo-copying
+      - licenses/cairo-copying-lgpl-2.1
+      - licenses/cairo-copying-mpl-1.1
+  cairo-devel:
+    custom: false
+    license_file:
+      - licenses/cairo-copying
+      - licenses/cairo-copying-lgpl-2.1
+      - licenses/cairo-copying-mpl-1.1
+  centos-release:
+    custom: false
+    license_file: licenses/centos-release-license
+  chkconfig:
+    custom: false
+  copy-jdk-configs:
+    custom: false
+  cracklib:
+    custom: false
+    license_file: licenses/cracklib-copying.lib
+  cracklib-devel:
+    custom: false
+    license_file: licenses/cracklib-copying.lib
+    subfolder: PowerTools
+  cracklib-dicts:
+    custom: false
+    license_file: licenses/cracklib-copying.lib
+  cups-libs:
+    custom: false
+    license_file: licenses/cups-license
+  cups-devel:
+    custom: false
+    license_file: licenses/cups-license
+  expat:
+    custom: false
+    license_file: licenses/expat-license
+  expat-devel:
+    custom: false
+    license_file: licenses/expat-license
+  fontconfig:
+    custom: false
+    build_append:
+      all: |
+        pushd ${SYSROOT_DIR}/etc/fonts/conf.d > /dev/null 2>&1
+        for fulllnk in $(find . -maxdepth 1 -type l); do
+          lnk=$(basename ${fulllnk})
+          lnk_dst=$(readlink ${lnk})
+          if [[ ${lnk_dst:0:1} == "/" ]]; then
+            rm -f ${lnk}
+            ln -s ${SYSROOT_DIR}${lnk_dst} ${SYSROOT_DIR}/etc/fonts/conf.d/${lnk}
+          fi
+        done
+        popd > /dev/null 2>&1
+  fontconfig-devel:
+    custom: false
+    license_file: licenses/fontconfig-copying
+  freetype:
+    custom: false
+    license_file: licenses/freetype-license.txt
+  freetype-devel:
+    custom: false
+    license_file: licenses/freetype-license.txt
+  fribidi:
+    custom: false
+  glib-networking:
+    custom: false
+  glib2:
+    custom: false
+    license_file: licenses/glib2-copying
+  glib2-devel:
+    custom: false
+    license_file: licenses/glib2-copying
+  GConf2:
+    custom: false
+  gtk2:
+    custom: false
+    license_file: licenses/gtk2-copying
+  gtk2-devel:
+    custom: false
+    license_file: licenses/gtk2-copying
+  gtkmm24:
+    custom: false
+    license_file:
+      - licenses/gtkmm-license
+      - licenses/gtkmm-tools-license
+  gtkmm24-devel:
+    custom: false
+    license_file:
+      - licenses/gtkmm-license
+      - licenses/gtkmm-tools-license
+  harfbuzz:
+    custom: false
+  ibacm:
+    custom: false
+    # `ibacm` is part of rdma-core and under the same licenses
+    # https://github.com/linux-rdma/rdma-core/tree/v22.4/ibacm
+    license_file:
+      - licenses/rdma-core-licenses/COPYING.BSD_FB
+      - licenses/rdma-core-licenses/COPYING.BSD_MIT
+      - licenses/rdma-core-licenses/COPYING.GPL2
+      - licenses/rdma-core-licenses/COPYING.md
+  java-1.7.0-openjdk:
+    custom: false
+    license_file: licenses/openjdk-license
+  java-1.7.0-openjdk-headless:
+    custom: false
+    dep_replace:
+      jpackage-utils-cos7: javapackages-tools-cos7
+    build_append:
+      all: |
+        jvm_slug=$(compgen -G "${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-*")
+        jvm_slug=$(basename ${jvm_slug})
 
-      pushd ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre-abrt > /dev/null 2>&1
-      rm -rf lib
-      ln -s ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre/lib ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre-abrt/lib
-      popd > /dev/null 2>&1
+        pushd ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre-abrt > /dev/null 2>&1
+        rm -rf lib
+        ln -s ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre/lib ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre-abrt/lib
+        popd > /dev/null 2>&1
 
-      pushd ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre/lib/security > /dev/null 2>&1
-      mkdir -p ../../../../../../../etc/pki/java/cacerts
-      popd > /dev/null 2>&1
-javapackages-tools:
-  custom: false
-  build_append:
-    all: |
-      pushd ${SYSROOT_DIR}/usr/share/java-utils > /dev/null 2>&1
-        rm -f abs2rel.sh
-        ln -s ${SYSROOT_DIR}/usr/bin/abs2rel ${SYSROOT_DIR}/usr/share/java-utils/abs2rel.sh
-      popd > /dev/null 2>&1
-kernel-headers:
-  custom: false
-  license_file: null
-kmod:
-  custom: false
-  license_file: licenses/kmod-copying
-kmod-devel:
-  custom: false
-  license_file: licenses/kmod-copying
-  subfolder: PowerTools
-kmod-libs:
-  custom: false
-  license_file: licenses/kmod-copying
-libXxf86vm:
-  custom: false
-libXxf86vm-devel:
-  custom: false
-  license_file: licenses/libxxf86vm-license
-libbonobo:
-  custom: false
-  license_file:
-    - licenses/libbonobo-copying
-    - licenses/libbonobo-copying.lib
-libbonobo-devel:
-  custom: false
-  license_file:
-    - licenses/libbonobo-copying
-    - licenses/libbonobo-copying.lib
-libdrm:
-  custom: false
-  license_file: null
-libdrm-devel:
-  custom: false
-  license_file: null
-libglvnd:
-  custom: false
-  license_file: licenses/libglvnd-license
-libglvnd-core-devel:
-  custom: false
-  license_file: licenses/libglvnd-license
-libglvnd-egl:
-  custom: false
-  license_file: licenses/libglvnd-license
-libglvnd-gles:
-  custom: false
-  license_file: licenses/libglvnd-license
-  dep_remove:
-    - mesa-libegl
-libglvnd-opengl:
-  custom: false
-  license_file: licenses/libglvnd-license
-libglvnd-devel:
-  custom: false
-  license_file: licenses/libglvnd-license
-  dep_remove:
-    - mesa-libgl
-libglvnd-glx:
-  custom: false
-  license_file: licenses/libglvnd-license
-  build_append:
-    all: |
-      pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
-      libgl_file=$(find . -maxdepth 1 -name "libGL.so.*.*.*")
-      libgl_file=$(basename ${libgl_file})
-      ln -fs ${libgl_file} libGL.so
-      ls -lah .
-      popd > /dev/null 2>&1
-  dep_remove:
-    - mesa-libgl
-libibmad:
-  custom: false
-  license_file:
-    - licenses/libibmad-license
-libibmad-devel:
-  custom: false
-  license_file:
-    - licenses/libibmad-license
-libibumad:
-  custom: false
-  # `libibumad` is part of rdma-core and under the same licenses
-  # https://github.com/linux-rdma/rdma-core/tree/v22.4/libibumad
-  license_file:
-    - licenses/rdma-core-licenses/COPYING.BSD_FB
-    - licenses/rdma-core-licenses/COPYING.BSD_MIT
-    - licenses/rdma-core-licenses/COPYING.GPL2
-    - licenses/rdma-core-licenses/COPYING.md
-libIDL:
-  custom: false
-  license_file: licenses/libidl-copying
-libIDL-devel:
-  custom: false
-  license_file: licenses/libidl-copying
-libibverbs:
-  custom: false
-  license_file: licenses/libibverbs-devel-license
-libICE:
-  custom: false
-libICE-devel:
-  custom: false
-  license_file: licenses/libice-license
-libjpeg-turbo:
-  custom: false
-  license_file: licenses/libjpeg-turbo-license
-libnl:
-  custom: false
-  license_file: licenses/libnl-devel-license
-libnl-devel:
-  custom: false
-  license_file: licenses/libnl-devel-license
-libnl3-cli:
-  custom: false
-libnl3:
-  custom: false
-  license_file: licenses/libnl3-license
-libnl3-devel:
-  custom: false
-  license_file: licenses/libnl3-license
-libpng:
-  custom: false
-  license_file: licenses/libpng-license
-libpng-devel:
-  custom: false
-  license_file: licenses/libpng-license
-libpwquality:
-  custom: false
-libpwquality-devel:
-  custom: false
-  license_file: licenses/libpwquality-copying
-  subfolder: PowerTools
-librdmacm:
-  custom: false
-  license_file: licenses/librdmacm-devel-license
-libselinux:
-  custom: false
-  license_file: null
-libselinux-devel:
-  custom: false
-  license_file: null
-libsepol:
-  custom: false
-  license_file: licenses/libsepol-license
-libsepol-devel:
-  custom: false
-  license_file: licenses/libsepol-license
-libSM:
-  custom: false
-libSM-devel:
-  custom: false
-  license_file: licenses/libsm-license
-libsoup:
-  custom: false
-  license_file: licenses/libsoup-license
-libsoup-devel:
-  custom: false
-  license_file: licenses/libsoup-license
-libthai:
-  custom: false
-libtiff:
-  custom: false
-libuuid:
-  custom: false
-  license_file: licenses/libuuid-license
-libuuid-devel:
-  custom: false
-  license_file: licenses/libuuid-license
-libX11:
-  custom: false
-  license_file: licenses/x11-license
-libX11-common:
-  custom: false
-libX11-devel:
-  custom: false
-  license_file: licenses/x11-license
-libXau:
-  custom: false
-libXau-devel:
-  custom: false
-  license_file: licenses/libxau-license
-libxcb:
-  custom: false
-  license_file: licenses/libxcb-license
-libxcb-devel:
-  custom: false
-  license_file: licenses/libxcb-license
-libXcomposite:
-  custom: false
-libXcomposite-devel:
-  custom: false
-  license_file: licenses/libxcomposite-license
-libXcursor:
-  custom: false
-libXcursor-devel:
-  custom: false
-  license_file: licenses/libxcursor-license
-libXdamage:
-  custom: false
-libXdamage-devel:
-  custom: false
-  license_file: licenses/libxdamage-license
-libXext:
-  custom: false
-libXext-devel:
-  custom: false
-  license_file: licenses/libxext-license
-libXfixes:
-  custom: false
-libXfixes-devel:
-  custom: false
-  license_file: licenses/libxfixes-license
-libXft:
-  custom: false
-  license_file: licenses/libXft-license
-libXft-devel:
-  custom: false
-  license_file: licenses/libXft-license
-libXi:
-  custom: false
-libXi-devel:
-  custom: false
-  license_file: licenses/libxi-license
-libXinerama:
-  custom: false
-libXinerama-devel:
-  custom: false
-  license_file: licenses/libxinerma-license
-libxkbcommon:
-  custom: false
-  license_file: licenses/libxkbcommon-license
-libxkbcommon-devel:
-  custom: false
-  license_file: licenses/libxkbcommon-license
-libxml2:
-  custom: false
-  license_file: licenses/libxml2-license
-libxml2-devel:
-  custom: false
-  license_file: licenses/libxml2-license
-libXrandr:
-  custom: false
-  license_file: licenses/libxrandr-license
-libXrandr-devel:
-  custom: false
-  license_file: licenses/libxrandr-license
-libXrender:
-  custom: false
-libXrender-devel:
-  custom: false
-  license_file: licenses/libxrender-license
-libXScrnSaver:
-  custom: false
-  license_file: licenses/libxscrnsaver-license
-libXScrnSaver-devel:
-  custom: false
-  license_file: licenses/libxscrnsaver-license
-libxshmfence:
-  custom: false
-  license_file: licenses/libxshmfence-license
-libxshmfence-devel:
-  custom: false
-  license_file: licenses/libxshmfence-license
-libXt:
-  custom: false
-libXt-devel:
-  custom: false
-  license_file: licenses/libxt-license
-libXtst:
-  custom: false
-  license_file: licenses/libxtst-license
-libXtst-devel:
-  custom: false
-  license_file: licenses/libxtst-license
-mesa-libgbm:
-  custom: false
-  license_file: licenses/mesa-license
-  subfolder: AppStream
-mesa-libgbm-devel:
-  custom: false
-  license_file: licenses/mesa-license
-  subfolder: PowerTools
-mesa-dri-drivers:
-  custom: false
-  license_file: licenses/mesa-license
-mesa-khr-devel:
-  custom: false
-  license_file: licenses/mesa-license
-mesa-libEGL:
-  custom: false
-  license_file: licenses/mesa-license
-mesa-libEGL-devel:
-  custom: false
-  license_file: licenses/mesa-license
-mesa-libGL:
-  custom: false
-  license_file: licenses/mesa-license
-  build_append:
-    cos7-aarch64: |
-      pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
-      rm libGLX_system.so.0
-      ln -s libGLX_mesa.so.0 libGLX_system.so.0
-      popd > /dev/null 2>&1
-    cos7-ppc64le: |
-      pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
-      rm libGLX_system.so.0
-      ln -s libGLX_mesa.so.0 libGLX_system.so.0
-      popd > /dev/null 2>&1
-    cos7-x86_64: |
-      pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
-      rm libGLX_system.so.0
-      ln -s libGLX_mesa.so.0 libGLX_system.so.0
-      popd > /dev/null 2>&1
-mesa-libGL-devel:
-  custom: false
-  license_file: licenses/mesa-license
-mesa-libGLU:
-  custom: true
-  license_file: licenses/mesa-license
-  build_append:
-    cos7-x86_64: |
-      pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
-      rm libGLX_system.so.0
-      ln -s libGLX_mesa.so.0 libGLX_system.so.0
-      popd > /dev/null 2>&1
-mesa-libGLU-devel:
-  custom: true
-  license_file: licenses/mesa-license
-mesa-libglapi:
-  custom: false
-  license_file: licenses/mesa-license
-nspr:
-  custom: false
-  license_file: licenses/nspr-license
-nss:
-  custom: false
-  license_file: licenses/nss-license
-nss-softokn:
-  custom: false
-  license_file: licenses/nss-license
-nss-softokn-freebl:
-  custom: false
-  license_file: licenses/nss-license
-nss-util:
-  custom: false
-  license_file: licenses/nss-license
-numactl:
-  custom: false
-  license_file:
-    - licenses/numactl-copyright.txt
-    - licenses/numactl-gpl2.txt
-    - licenses/numactl-lgpl2.txt
-numactl-libs:
-  custom: false
-  license_file:
-    - licenses/numactl-copyright.txt
-    - licenses/numactl-gpl2.txt
-    - licenses/numactl-lgpl2.txt
-numactl-devel:
-  custom: false
-  license_file:
-    - licenses/numactl-copyright.txt
-    - licenses/numactl-gpl2.txt
-    - licenses/numactl-lgpl2.txt
-opensm:
-  custom: false
-  license_file:
-    - licenses/opensm-license
-opensm-libs:
-  custom: false
-  license_file:
-    - licenses/opensm-license
-opensm-devel:
-  custom: false
-  license_file:
-    - licenses/opensm-license
-ORBit2:
-  custom: false
-  license_file:
-    - licenses/orbit2-copying
-    - licenses/orbit2-copying.lib
-ORBit2-devel:
-  custom: false
-  license_file:
-    - licenses/orbit2-copying
-    - licenses/orbit2-copying.lib
-p11-kit:
-  custom: false
-  license_file: licenses/p11-kit-license
-p11-kit-trust:
-  custom: false
-  license_file: licenses/p11-kit-license
-pam:
-  custom: false
-  dep_remove:
-    - glibc
-pam-devel:
-  custom: false
-pango:
-  custom: false
-  build_append:
-    cos7-aarch64: |
-      pushd ${SYSROOT_DIR}/usr/bin > /dev/null 2>&1
-      rm -f pango-querymodules-64
-      echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
-      chmod u+x pango-querymodules-64
-      popd > /dev/null 2>&1
-    cos7-ppc64le: |
-      pushd ${SYSROOT_DIR}/usr/bin > /dev/null 2>&1
-      rm -f pango-querymodules-64
-      echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
-      chmod u+x pango-querymodules-64
-      popd > /dev/null 2>&1
-    cos7-x86_64: |
-      pushd ${SYSROOT_DIR}/usr/bin > /dev/null 2>&1
-      rm -f pango-querymodules-64
-      echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
-      chmod u+x pango-querymodules-64
-      popd > /dev/null 2>&1
-pango-devel:
-  custom: false
-  license_file: licenses/pango-copying
-pciutils-libs:
-  custom: false
-  license_file: licenses/pciutils-license
-pciutils:
-  custom: false
-  license_file: licenses/pciutils-license
-pciutils-devel:
-  custom: false
-  license_file: licenses/pciutils-license
-pcre:
-  custom: false
-pixman:
-  custom: false
-  license_file: licenses/pixman-license
-pixman-devel:
-  custom: false
-  license_file: licenses/pixman-license
-pkgconfig:
-  custom: false
-python-javapackages:
-  custom: false
-rdma-core:
-  custom: false
-  license_file:
-    - licenses/rdma-core-licenses/COPYING.BSD_FB
-    - licenses/rdma-core-licenses/COPYING.BSD_MIT
-    - licenses/rdma-core-licenses/COPYING.GPL2
-    - licenses/rdma-core-licenses/COPYING.md
-rdma-core-devel:
-  custom: false
-  license_file:
-    - licenses/rdma-core-licenses/COPYING.BSD_FB
-    - licenses/rdma-core-licenses/COPYING.BSD_MIT
-    - licenses/rdma-core-licenses/COPYING.GPL2
-    - licenses/rdma-core-licenses/COPYING.md
-systemd:
-  custom: false
-  license_file:
-    - licenses/systemd-licenses/LICENSE.GPL2
-    - licenses/systemd-licenses/LICENSE.LGPL2.1
-    - licenses/systemd-licenses/LICENSE.MIT
-  dep_replace:
-    redhat-release-cos7: centos-release-cos7
-systemd-devel:
-  custom: false
-  license_file:
-    - licenses/systemd-licenses/LICENSE.GPL2
-    - licenses/systemd-licenses/LICENSE.LGPL2.1
-    - licenses/systemd-licenses/LICENSE.MIT
-systemd-libs:
-  custom: false
-  license_file:
-    - licenses/systemd-licenses/LICENSE.LGPL2.1
-    - licenses/systemd-licenses/LICENSE.MIT
-xcb-util:
-  custom: false
-  license_file: licenses/xcb-util-license
-xcb-util-devel:
-  custom: false
-  license_file: licenses/xcb-util-license
-xcb-util-image:
-  custom: false
-  license_file: licenses/xcb-util-image-license
-xcb-util-image-devel:
-  custom: false
-  license_file: licenses/xcb-util-image-license
-xcb-util-keysyms:
-  custom: false
-  license_file: licenses/xcb-util-keysyms-license
-xcb-util-keysyms-devel:
-  custom: false
-  license_file: licenses/xcb-util-keysyms-license
-xcb-util-renderutil:
-  custom: false
-  license_file: licenses/xcb-util-renderutil-license
-xcb-util-renderutil-devel:
-  custom: false
-  license_file: licenses/xcb-util-renderutil-license
-xcb-util-wm:
-  custom: false
-  license_file: licenses/xcb-util-wm-license
-xcb-util-wm-devel:
-  custom: false
-  license_file: licenses/xcb-util-wm-license
-xorg-x11-proto-devel:
-  custom: false
-  license_file:
-    - licenses/xorg-x11-proto-devel/COPYING-applewmproto
-    - licenses/xorg-x11-proto-devel/COPYING-bigreqsproto
-    - licenses/xorg-x11-proto-devel/COPYING-compositeproto
-    - licenses/xorg-x11-proto-devel/COPYING-damageproto
-    - licenses/xorg-x11-proto-devel/COPYING-dmxproto
-    - licenses/xorg-x11-proto-devel/COPYING-dri2proto
-    - licenses/xorg-x11-proto-devel/COPYING-dri3proto
-    - licenses/xorg-x11-proto-devel/COPYING-evieproto
-    - licenses/xorg-x11-proto-devel/COPYING-fixesproto
-    - licenses/xorg-x11-proto-devel/COPYING-fontcacheproto
-    - licenses/xorg-x11-proto-devel/COPYING-fontsproto
-    - licenses/xorg-x11-proto-devel/COPYING-glproto
-    - licenses/xorg-x11-proto-devel/COPYING-inputproto
-    - licenses/xorg-x11-proto-devel/COPYING-kbproto
-    - licenses/xorg-x11-proto-devel/COPYING-lg3dproto
-    - licenses/xorg-x11-proto-devel/COPYING-panoramixproto
-    - licenses/xorg-x11-proto-devel/COPYING-pmproto
-    - licenses/xorg-x11-proto-devel/COPYING-presentproto
-    - licenses/xorg-x11-proto-devel/COPYING-printproto
-    - licenses/xorg-x11-proto-devel/COPYING-randrproto
-    - licenses/xorg-x11-proto-devel/COPYING-recordproto
-    - licenses/xorg-x11-proto-devel/COPYING-renderproto
-    - licenses/xorg-x11-proto-devel/COPYING-resourceproto
-    - licenses/xorg-x11-proto-devel/COPYING-scrnsaverproto
-    - licenses/xorg-x11-proto-devel/COPYING-trapproto
-    - licenses/xorg-x11-proto-devel/COPYING-videoproto
-    - licenses/xorg-x11-proto-devel/COPYING-windowswmproto
-    - licenses/xorg-x11-proto-devel/COPYING-x11proto
-    - licenses/xorg-x11-proto-devel/COPYING-xcmiscproto
-    - licenses/xorg-x11-proto-devel/COPYING-xextproto
-    - licenses/xorg-x11-proto-devel/COPYING-xf86bigfontproto
-    - licenses/xorg-x11-proto-devel/COPYING-xf86dgaproto
-    - licenses/xorg-x11-proto-devel/COPYING-xf86driproto
-    - licenses/xorg-x11-proto-devel/COPYING-xf86miscproto
-    - licenses/xorg-x11-proto-devel/COPYING-xf86rushproto
-    - licenses/xorg-x11-proto-devel/COPYING-xf86vidmodeproto
-    - licenses/xorg-x11-proto-devel/COPYING-xineramaproto
-xorg-x11-server-common:
-  custom: false
-  license_file: licenses/x11-license
-xorg-x11-server-Xvfb:
-  custom: false
-  license_file: licenses/x11-license
-xorg-x11-util-macros:
-  custom: false
+        pushd ${SYSROOT_DIR}/usr/lib/jvm/${jvm_slug}/jre/lib/security > /dev/null 2>&1
+        mkdir -p ../../../../../../../etc/pki/java/cacerts
+        popd > /dev/null 2>&1
+  javapackages-tools:
+    custom: false
+    build_append:
+      all: |
+        pushd ${SYSROOT_DIR}/usr/share/java-utils > /dev/null 2>&1
+          rm -f abs2rel.sh
+          ln -s ${SYSROOT_DIR}/usr/bin/abs2rel ${SYSROOT_DIR}/usr/share/java-utils/abs2rel.sh
+        popd > /dev/null 2>&1
+  kernel-headers:
+    custom: false
+    license_file: null
+  kmod:
+    custom: false
+    license_file: licenses/kmod-copying
+  kmod-devel:
+    custom: false
+    license_file: licenses/kmod-copying
+    subfolder: PowerTools
+  kmod-libs:
+    custom: false
+    license_file: licenses/kmod-copying
+  libXxf86vm:
+    custom: false
+  libXxf86vm-devel:
+    custom: false
+    license_file: licenses/libxxf86vm-license
+  libbonobo:
+    custom: false
+    license_file:
+      - licenses/libbonobo-copying
+      - licenses/libbonobo-copying.lib
+  libbonobo-devel:
+    custom: false
+    license_file:
+      - licenses/libbonobo-copying
+      - licenses/libbonobo-copying.lib
+  libdrm:
+    custom: false
+    license_file: null
+  libdrm-devel:
+    custom: false
+    license_file: null
+  libglvnd:
+    custom: false
+    license_file: licenses/libglvnd-license
+  libglvnd-core-devel:
+    custom: false
+    license_file: licenses/libglvnd-license
+  libglvnd-egl:
+    custom: false
+    license_file: licenses/libglvnd-license
+  libglvnd-gles:
+    custom: false
+    license_file: licenses/libglvnd-license
+    dep_remove:
+      - mesa-libegl
+  libglvnd-opengl:
+    custom: false
+    license_file: licenses/libglvnd-license
+  libglvnd-devel:
+    custom: false
+    license_file: licenses/libglvnd-license
+    dep_remove:
+      - mesa-libgl
+  libglvnd-glx:
+    custom: false
+    license_file: licenses/libglvnd-license
+    build_append:
+      all: |
+        pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
+        libgl_file=$(find . -maxdepth 1 -name "libGL.so.*.*.*")
+        libgl_file=$(basename ${libgl_file})
+        ln -fs ${libgl_file} libGL.so
+        ls -lah .
+        popd > /dev/null 2>&1
+    dep_remove:
+      - mesa-libgl
+  libibmad:
+    custom: false
+    license_file:
+      - licenses/libibmad-license
+  libibmad-devel:
+    custom: false
+    license_file:
+      - licenses/libibmad-license
+  libibumad:
+    custom: false
+    # `libibumad` is part of rdma-core and under the same licenses
+    # https://github.com/linux-rdma/rdma-core/tree/v22.4/libibumad
+    license_file:
+      - licenses/rdma-core-licenses/COPYING.BSD_FB
+      - licenses/rdma-core-licenses/COPYING.BSD_MIT
+      - licenses/rdma-core-licenses/COPYING.GPL2
+      - licenses/rdma-core-licenses/COPYING.md
+  libIDL:
+    custom: false
+    license_file: licenses/libidl-copying
+  libIDL-devel:
+    custom: false
+    license_file: licenses/libidl-copying
+  libibverbs:
+    custom: false
+    license_file: licenses/libibverbs-devel-license
+  libICE:
+    custom: false
+  libICE-devel:
+    custom: false
+    license_file: licenses/libice-license
+  libjpeg-turbo:
+    custom: false
+    license_file: licenses/libjpeg-turbo-license
+  libnl:
+    custom: false
+    license_file: licenses/libnl-devel-license
+  libnl-devel:
+    custom: false
+    license_file: licenses/libnl-devel-license
+  libnl3-cli:
+    custom: false
+  libnl3:
+    custom: false
+    license_file: licenses/libnl3-license
+  libnl3-devel:
+    custom: false
+    license_file: licenses/libnl3-license
+  libpng:
+    custom: false
+    license_file: licenses/libpng-license
+  libpng-devel:
+    custom: false
+    license_file: licenses/libpng-license
+  libpwquality:
+    custom: false
+  libpwquality-devel:
+    custom: false
+    license_file: licenses/libpwquality-copying
+    subfolder: PowerTools
+  librdmacm:
+    custom: false
+    license_file: licenses/librdmacm-devel-license
+  libselinux:
+    custom: false
+    license_file: null
+  libselinux-devel:
+    custom: false
+    license_file: null
+  libsepol:
+    custom: false
+    license_file: licenses/libsepol-license
+  libsepol-devel:
+    custom: false
+    license_file: licenses/libsepol-license
+  libSM:
+    custom: false
+  libSM-devel:
+    custom: false
+    license_file: licenses/libsm-license
+  libsoup:
+    custom: false
+    license_file: licenses/libsoup-license
+  libsoup-devel:
+    custom: false
+    license_file: licenses/libsoup-license
+  libthai:
+    custom: false
+  libtiff:
+    custom: false
+  libuuid:
+    custom: false
+    license_file: licenses/libuuid-license
+  libuuid-devel:
+    custom: false
+    license_file: licenses/libuuid-license
+  libX11:
+    custom: false
+    license_file: licenses/x11-license
+  libX11-common:
+    custom: false
+  libX11-devel:
+    custom: false
+    license_file: licenses/x11-license
+  libXau:
+    custom: false
+  libXau-devel:
+    custom: false
+    license_file: licenses/libxau-license
+  libxcb:
+    custom: false
+    license_file: licenses/libxcb-license
+  libxcb-devel:
+    custom: false
+    license_file: licenses/libxcb-license
+  libXcomposite:
+    custom: false
+  libXcomposite-devel:
+    custom: false
+    license_file: licenses/libxcomposite-license
+  libXcursor:
+    custom: false
+  libXcursor-devel:
+    custom: false
+    license_file: licenses/libxcursor-license
+  libXdamage:
+    custom: false
+  libXdamage-devel:
+    custom: false
+    license_file: licenses/libxdamage-license
+  libXext:
+    custom: false
+  libXext-devel:
+    custom: false
+    license_file: licenses/libxext-license
+  libXfixes:
+    custom: false
+  libXfixes-devel:
+    custom: false
+    license_file: licenses/libxfixes-license
+  libXft:
+    custom: false
+    license_file: licenses/libXft-license
+  libXft-devel:
+    custom: false
+    license_file: licenses/libXft-license
+  libXi:
+    custom: false
+  libXi-devel:
+    custom: false
+    license_file: licenses/libxi-license
+  libXinerama:
+    custom: false
+  libXinerama-devel:
+    custom: false
+    license_file: licenses/libxinerma-license
+  libxkbcommon:
+    custom: false
+    license_file: licenses/libxkbcommon-license
+  libxkbcommon-devel:
+    custom: false
+    license_file: licenses/libxkbcommon-license
+  libxml2:
+    custom: false
+    license_file: licenses/libxml2-license
+  libxml2-devel:
+    custom: false
+    license_file: licenses/libxml2-license
+  libXrandr:
+    custom: false
+    license_file: licenses/libxrandr-license
+  libXrandr-devel:
+    custom: false
+    license_file: licenses/libxrandr-license
+  libXrender:
+    custom: false
+  libXrender-devel:
+    custom: false
+    license_file: licenses/libxrender-license
+  libXScrnSaver:
+    custom: false
+    license_file: licenses/libxscrnsaver-license
+  libXScrnSaver-devel:
+    custom: false
+    license_file: licenses/libxscrnsaver-license
+  libxshmfence:
+    custom: false
+    license_file: licenses/libxshmfence-license
+  libxshmfence-devel:
+    custom: false
+    license_file: licenses/libxshmfence-license
+  libXt:
+    custom: false
+  libXt-devel:
+    custom: false
+    license_file: licenses/libxt-license
+  libXtst:
+    custom: false
+    license_file: licenses/libxtst-license
+  libXtst-devel:
+    custom: false
+    license_file: licenses/libxtst-license
+  mesa-libgbm:
+    custom: false
+    license_file: licenses/mesa-license
+    subfolder: AppStream
+  mesa-libgbm-devel:
+    custom: false
+    license_file: licenses/mesa-license
+    subfolder: PowerTools
+  mesa-dri-drivers:
+    custom: false
+    license_file: licenses/mesa-license
+  mesa-khr-devel:
+    custom: false
+    license_file: licenses/mesa-license
+  mesa-libEGL:
+    custom: false
+    license_file: licenses/mesa-license
+  mesa-libEGL-devel:
+    custom: false
+    license_file: licenses/mesa-license
+  mesa-libGL:
+    custom: false
+    license_file: licenses/mesa-license
+    build_append:
+      cos7-aarch64: |
+        pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
+        rm libGLX_system.so.0
+        ln -s libGLX_mesa.so.0 libGLX_system.so.0
+        popd > /dev/null 2>&1
+      cos7-ppc64le: |
+        pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
+        rm libGLX_system.so.0
+        ln -s libGLX_mesa.so.0 libGLX_system.so.0
+        popd > /dev/null 2>&1
+      cos7-x86_64: |
+        pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
+        rm libGLX_system.so.0
+        ln -s libGLX_mesa.so.0 libGLX_system.so.0
+        popd > /dev/null 2>&1
+  mesa-libGL-devel:
+    custom: false
+    license_file: licenses/mesa-license
+  mesa-libGLU:
+    custom: true
+    license_file: licenses/mesa-license
+    build_append:
+      cos7-x86_64: |
+        pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
+        rm libGLX_system.so.0
+        ln -s libGLX_mesa.so.0 libGLX_system.so.0
+        popd > /dev/null 2>&1
+  mesa-libGLU-devel:
+    custom: true
+    license_file: licenses/mesa-license
+  mesa-libglapi:
+    custom: false
+    license_file: licenses/mesa-license
+  nspr:
+    custom: false
+    license_file: licenses/nspr-license
+  nss:
+    custom: false
+    license_file: licenses/nss-license
+  nss-softokn:
+    custom: false
+    license_file: licenses/nss-license
+  nss-softokn-freebl:
+    custom: false
+    license_file: licenses/nss-license
+  nss-util:
+    custom: false
+    license_file: licenses/nss-license
+  numactl:
+    custom: false
+    license_file:
+      - licenses/numactl-copyright.txt
+      - licenses/numactl-gpl2.txt
+      - licenses/numactl-lgpl2.txt
+  numactl-libs:
+    custom: false
+    license_file:
+      - licenses/numactl-copyright.txt
+      - licenses/numactl-gpl2.txt
+      - licenses/numactl-lgpl2.txt
+  numactl-devel:
+    custom: false
+    license_file:
+      - licenses/numactl-copyright.txt
+      - licenses/numactl-gpl2.txt
+      - licenses/numactl-lgpl2.txt
+  opensm:
+    custom: false
+    license_file:
+      - licenses/opensm-license
+  opensm-libs:
+    custom: false
+    license_file:
+      - licenses/opensm-license
+  opensm-devel:
+    custom: false
+    license_file:
+      - licenses/opensm-license
+  ORBit2:
+    custom: false
+    license_file:
+      - licenses/orbit2-copying
+      - licenses/orbit2-copying.lib
+  ORBit2-devel:
+    custom: false
+    license_file:
+      - licenses/orbit2-copying
+      - licenses/orbit2-copying.lib
+  p11-kit:
+    custom: false
+    license_file: licenses/p11-kit-license
+  p11-kit-trust:
+    custom: false
+    license_file: licenses/p11-kit-license
+  pam:
+    custom: false
+    dep_remove:
+      - glibc
+  pam-devel:
+    custom: false
+  pango:
+    custom: false
+    build_append:
+      cos7-aarch64: |
+        pushd ${SYSROOT_DIR}/usr/bin > /dev/null 2>&1
+        rm -f pango-querymodules-64
+        echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
+        chmod u+x pango-querymodules-64
+        popd > /dev/null 2>&1
+      cos7-ppc64le: |
+        pushd ${SYSROOT_DIR}/usr/bin > /dev/null 2>&1
+        rm -f pango-querymodules-64
+        echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
+        chmod u+x pango-querymodules-64
+        popd > /dev/null 2>&1
+      cos7-x86_64: |
+        pushd ${SYSROOT_DIR}/usr/bin > /dev/null 2>&1
+        rm -f pango-querymodules-64
+        echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
+        chmod u+x pango-querymodules-64
+        popd > /dev/null 2>&1
+  pango-devel:
+    custom: false
+    license_file: licenses/pango-copying
+  pciutils-libs:
+    custom: false
+    license_file: licenses/pciutils-license
+  pciutils:
+    custom: false
+    license_file: licenses/pciutils-license
+  pciutils-devel:
+    custom: false
+    license_file: licenses/pciutils-license
+  pcre:
+    custom: false
+  pixman:
+    custom: false
+    license_file: licenses/pixman-license
+  pixman-devel:
+    custom: false
+    license_file: licenses/pixman-license
+  pkgconfig:
+    custom: false
+  python-javapackages:
+    custom: false
+  rdma-core:
+    custom: false
+    license_file:
+      - licenses/rdma-core-licenses/COPYING.BSD_FB
+      - licenses/rdma-core-licenses/COPYING.BSD_MIT
+      - licenses/rdma-core-licenses/COPYING.GPL2
+      - licenses/rdma-core-licenses/COPYING.md
+  rdma-core-devel:
+    custom: false
+    license_file:
+      - licenses/rdma-core-licenses/COPYING.BSD_FB
+      - licenses/rdma-core-licenses/COPYING.BSD_MIT
+      - licenses/rdma-core-licenses/COPYING.GPL2
+      - licenses/rdma-core-licenses/COPYING.md
+  systemd:
+    custom: false
+    license_file:
+      - licenses/systemd-licenses/LICENSE.GPL2
+      - licenses/systemd-licenses/LICENSE.LGPL2.1
+      - licenses/systemd-licenses/LICENSE.MIT
+    dep_replace:
+      redhat-release-cos7: centos-release-cos7
+  systemd-devel:
+    custom: false
+    license_file:
+      - licenses/systemd-licenses/LICENSE.GPL2
+      - licenses/systemd-licenses/LICENSE.LGPL2.1
+      - licenses/systemd-licenses/LICENSE.MIT
+  systemd-libs:
+    custom: false
+    license_file:
+      - licenses/systemd-licenses/LICENSE.LGPL2.1
+      - licenses/systemd-licenses/LICENSE.MIT
+  xcb-util:
+    custom: false
+    license_file: licenses/xcb-util-license
+  xcb-util-devel:
+    custom: false
+    license_file: licenses/xcb-util-license
+  xcb-util-image:
+    custom: false
+    license_file: licenses/xcb-util-image-license
+  xcb-util-image-devel:
+    custom: false
+    license_file: licenses/xcb-util-image-license
+  xcb-util-keysyms:
+    custom: false
+    license_file: licenses/xcb-util-keysyms-license
+  xcb-util-keysyms-devel:
+    custom: false
+    license_file: licenses/xcb-util-keysyms-license
+  xcb-util-renderutil:
+    custom: false
+    license_file: licenses/xcb-util-renderutil-license
+  xcb-util-renderutil-devel:
+    custom: false
+    license_file: licenses/xcb-util-renderutil-license
+  xcb-util-wm:
+    custom: false
+    license_file: licenses/xcb-util-wm-license
+  xcb-util-wm-devel:
+    custom: false
+    license_file: licenses/xcb-util-wm-license
+  xorg-x11-proto-devel:
+    custom: false
+    license_file:
+      - licenses/xorg-x11-proto-devel/COPYING-applewmproto
+      - licenses/xorg-x11-proto-devel/COPYING-bigreqsproto
+      - licenses/xorg-x11-proto-devel/COPYING-compositeproto
+      - licenses/xorg-x11-proto-devel/COPYING-damageproto
+      - licenses/xorg-x11-proto-devel/COPYING-dmxproto
+      - licenses/xorg-x11-proto-devel/COPYING-dri2proto
+      - licenses/xorg-x11-proto-devel/COPYING-dri3proto
+      - licenses/xorg-x11-proto-devel/COPYING-evieproto
+      - licenses/xorg-x11-proto-devel/COPYING-fixesproto
+      - licenses/xorg-x11-proto-devel/COPYING-fontcacheproto
+      - licenses/xorg-x11-proto-devel/COPYING-fontsproto
+      - licenses/xorg-x11-proto-devel/COPYING-glproto
+      - licenses/xorg-x11-proto-devel/COPYING-inputproto
+      - licenses/xorg-x11-proto-devel/COPYING-kbproto
+      - licenses/xorg-x11-proto-devel/COPYING-lg3dproto
+      - licenses/xorg-x11-proto-devel/COPYING-panoramixproto
+      - licenses/xorg-x11-proto-devel/COPYING-pmproto
+      - licenses/xorg-x11-proto-devel/COPYING-presentproto
+      - licenses/xorg-x11-proto-devel/COPYING-printproto
+      - licenses/xorg-x11-proto-devel/COPYING-randrproto
+      - licenses/xorg-x11-proto-devel/COPYING-recordproto
+      - licenses/xorg-x11-proto-devel/COPYING-renderproto
+      - licenses/xorg-x11-proto-devel/COPYING-resourceproto
+      - licenses/xorg-x11-proto-devel/COPYING-scrnsaverproto
+      - licenses/xorg-x11-proto-devel/COPYING-trapproto
+      - licenses/xorg-x11-proto-devel/COPYING-videoproto
+      - licenses/xorg-x11-proto-devel/COPYING-windowswmproto
+      - licenses/xorg-x11-proto-devel/COPYING-x11proto
+      - licenses/xorg-x11-proto-devel/COPYING-xcmiscproto
+      - licenses/xorg-x11-proto-devel/COPYING-xextproto
+      - licenses/xorg-x11-proto-devel/COPYING-xf86bigfontproto
+      - licenses/xorg-x11-proto-devel/COPYING-xf86dgaproto
+      - licenses/xorg-x11-proto-devel/COPYING-xf86driproto
+      - licenses/xorg-x11-proto-devel/COPYING-xf86miscproto
+      - licenses/xorg-x11-proto-devel/COPYING-xf86rushproto
+      - licenses/xorg-x11-proto-devel/COPYING-xf86vidmodeproto
+      - licenses/xorg-x11-proto-devel/COPYING-xineramaproto
+  xorg-x11-server-common:
+    custom: false
+    license_file: licenses/x11-license
+  xorg-x11-server-Xvfb:
+    custom: false
+    license_file: licenses/x11-license
+  xorg-x11-util-macros:
+    custom: false
