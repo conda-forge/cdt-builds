@@ -1,0 +1,47 @@
+package:
+  name: mesa-libgbm-devel-conda-x86_64
+  version: 23.1.4
+
+source:
+  - url: https://vault.almalinux.org/8.9/PowerTools/x86_64/os/Packages/mesa-libgbm-devel-23.1.4-1.el8.x86_64.rpm
+    sha256: 0e693ee01d3b91d9ce26127e0c01be293f284d368bc6553535daa0d556acc5ea
+    no_hoist: true
+    folder: binary
+  # - url: https://vault.almalinux.org/8.9/PowerTools/Source/Packages/mesa-23.1.4-1.el8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - mesa-libgbm-conda-x86_64 ==23.1.4 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - mesa-libgbm-conda-x86_64 ==23.1.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.28.*
+  run:
+    - mesa-libgbm-conda-x86_64 ==23.1.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.28.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.mesa3d.org
+  license: MIT
+  license_family: MIT
+  license_file: mesa-license
+  summary: (CDT) Mesa libgbm development package
+  description: |
+    Mesa libgbm development package.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

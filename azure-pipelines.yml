@@ -11,6 +11,12 @@ jobs:
         DISTARCH: 'cos7-aarch64'
       cos7_ppc64le:
         DISTARCH: 'cos7-ppc64le'
+      alma8_x86_64:
+        DISTARCH: 'conda-x86_64'
+      alma8_aarch64:
+        DISTARCH: 'conda-aarch64'
+      alma8_ppc64le:
+        DISTARCH: 'conda-ppc64le'
     maxParallel: 0
 
   steps:

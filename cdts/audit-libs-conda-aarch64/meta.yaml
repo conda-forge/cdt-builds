@@ -1,0 +1,44 @@
+package:
+  name: audit-libs-conda-aarch64
+  version: 3.0.7
+
+source:
+  - url: https://vault.almalinux.org/8.9/BaseOS/aarch64/os/Packages/audit-libs-3.0.7-5.el8.aarch64.rpm
+    sha256: 163a6d96496dee83147cc32386a069e0613188f21061c470673e62018a7d5841
+    no_hoist: true
+    folder: binary
+  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/audit-3.0.7-5.el8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-64 2.28.*
+  run:
+    - sysroot_linux-64 2.28.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://people.redhat.com/sgrubb/audit/
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: audit-libs-copying.lib
+  summary: (CDT) Dynamic library for libaudit
+  description: |
+    The audit-libs package contains the dynamic libraries needed for applications
+    to use the audit framework.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

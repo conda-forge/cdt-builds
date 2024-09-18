@@ -1,0 +1,44 @@
+package:
+  name: kmod-libs-cos7-aarch64
+  version: 20
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/kmod-libs-20-28.el7.aarch64.rpm
+    sha256: 0b101c5500ec346a4e904a5e791e526f7027bd13187af6f6604b4ff6d3178d6b
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/kmod-20-28.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://git.kernel.org/?p=utils/kernel/kmod/kmod.git;a=summary
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: kmod-copying
+  summary: (CDT) Libraries to handle kernel module loading and unloading
+  description: |
+    The kmod-libs package provides runtime libraries for any application that
+    wishes to load or unload Linux kernel modules from the running system.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -64,12 +64,7 @@ except ImportError:
     from yaml import SafeDumper
 import yaml
 
-
-try:
-    from urllib.request import urlopen
-except ImportError:
-    from urllib2 import urlopen
-
+from requests import request
 from six import string_types
 from textwrap import wrap
 from xml.etree import cElementTree as ET
@@ -190,7 +185,6 @@ def _gen_cdts(single_sysroot):
     return dict(
         {
             "centos7": {
-                "dirname": "centos7",
                 "short_name": "cos7",
                 "base_url": "http://vault.centos.org/7.9.2009/os/{base_architecture}/Packages/",  # noqa
                 "sbase_url": "http://vault.centos.org/7.9.2009/os/Source/SPackages/",
@@ -213,7 +207,6 @@ def _gen_cdts(single_sysroot):
                 "glibc_ver": "2.17",
             },
             "centos7-alt": {
-                "dirname": "centos7",
                 "short_name": "cos7",
                 "base_url": "https://vault.centos.org/altarch/7.9.2009/os/{base_architecture}/Packages/",  # noqa
                 "sbase_url": "http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/",
@@ -234,6 +227,21 @@ def _gen_cdts(single_sysroot):
                 "macros": {"pyver": "2.6.6", "gdk_pixbuf_base_version": "2.24.1"},
                 "allow_missing_sources": True,
                 "glibc_ver": "2.17",
+            },
+            "alma8": {
+                "short_name": "conda",
+                "base_url": "https://vault.almalinux.org/8.9/{subfolder}/{base_architecture}/os/Packages/",  # noqa
+                "sbase_url": "https://vault.almalinux.org/8.9/{subfolder}/Source/Packages/",
+                "repomd_url": "https://vault.almalinux.org/8.9/{subfolder}/{base_architecture}/os/repodata/repomd.xml",  # noqa
+                "host_machine": "{architecture}-conda-linux-gnu",
+                "host_subdir": "linux-{bits}",
+                "fname_architecture": "{architecture}",
+                "rpm_filename_platform": "el8.{architecture}",
+                "checksummer": hashlib.sha256,
+                "checksummer_name": "sha256",
+                "macros": {},
+                "allow_missing_sources": True,
+                "glibc_ver": "2.28",
             },
         }
     )
@@ -381,7 +389,7 @@ def dictify_pickled(xml_file, src_cache, dict_massager=None, cdt=None):
 
 
 def get_repo_dict(repomd_url, data_type, dict_massager, cdt, src_cache):
-    xmlstring = urlopen(repomd_url).read()
+    xmlstring = request("get", repomd_url).content
     # Remove the default namespace definition (xmlns="http://some/namespace")
     xmlstring = re.sub(b'\sxmlns="[^"]+"', b"", xmlstring, count=1)  # noqa
     repomd = ET.fromstring(xmlstring)
@@ -844,6 +852,7 @@ def write_conda_recipe(
     distro,
     output_dir,
     architecture,
+    subfolder,
     recursive,
     override_arch,
     dependency_add,
@@ -869,18 +878,19 @@ def write_conda_recipe(
         gnu_architecture = gnu_architectures[architecture]
     except Exception:
         gnu_architecture = architecture
-    architecture_bits = dict(
+    formatting_bits = dict(
         {
             "architecture": architecture,
             "base_architecture": base_architecture,
             "gnu_architecture": gnu_architecture,
             "bits": bits,
+            "subfolder": subfolder,
         }
     )
     cdt = dict()
     for k, v in cdt_info[cdt_name].items():
         if isinstance(v, string_types):
-            cdt[k] = v.format(**architecture_bits)
+            cdt[k] = v.format(**formatting_bits)
         else:
             cdt[k] = v
 
@@ -896,10 +906,14 @@ def write_conda_recipe(
             else:
                 cdt["dependency_add"][as_list[0]] = as_list[1:]
 
-    repomd_url = cdt["repomd_url"]
-    repo_primary = get_repo_dict(
-        repomd_url, "primary", massage_primary, cdt, config.src_cache
-    )
+    repo_primary = {}
+    for channel in ["BaseOS", "AppStream", "PowerTools"]:
+        # don't use `cdt`, where we already formatted the subfolder out of the URL
+        formatting_bits["subfolder"] = channel
+        repomd_url = cdt_info[cdt_name]["repomd_url"].format(**formatting_bits)
+        repo_primary |= get_repo_dict(
+            repomd_url, "primary", massage_primary, cdt, config.src_cache
+        )
     for package in packages:
         write_conda_recipes(
             recursive,
@@ -923,6 +937,7 @@ def write_conda_recipe(
 @click.option("--version", default=None, type=str)
 @click.option("--recursive", default=False, is_flag=True)
 @click.option("--architecture", default=default_architecture, type=str)
+@click.option("--subfolder", default="BaseOS", type=str)
 @click.option("--no-override-arch", default=False, is_flag=True)
 @click.option("--distro", default=default_distro, type=str)
 @click.option("--conda-forge-style", default=False, is_flag=True)
@@ -936,6 +951,7 @@ def skeletonize(
     version,
     recursive,
     architecture,
+    subfolder,
     no_override_arch,
     distro,
     conda_forge_style,
@@ -954,6 +970,7 @@ def skeletonize(
             distro,
             output_dir,
             architecture,
+            subfolder,
             recursive,
             not no_override_arch,
             None,
