@@ -4,6 +4,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import shutil
 import collections
 import glob
+from functools import reduce
 
 import tqdm
 import click
@@ -14,31 +15,6 @@ from cdt_config import (
     CUSTOM_CDT_PATH,
 )
 from render_readme import render_readme
-
-
-# centos7 builds are everything in cdt_slugs.yaml
-DIST_CDT_ALLOWLIST = {
-    "alma8": [
-        "audit-libs",
-        "audit-libs-devel",
-        "cracklib",
-        "cracklib-devel",
-        "cracklib-dicts",
-        "kmod",
-        "kmod-devel",
-        "kmod-libs",
-        "libselinux",
-        "libselinux-devel",
-        "libpwquality",
-        "libpwquality-devel",
-        "libsepol",
-        "libsepol-devel",
-        "mesa-libgbm",
-        "mesa-libgbm-devel",
-        "pam",
-        "pam-devel",
-    ],
-}
 
 
 def _ignore_url_build_changes(base_dir):
@@ -120,11 +96,10 @@ def _gen_dist_arch_str(dist, arch):
     return f"{dist}-{arch}" if dist == "cos7" else f"conda-{arch}"
 
 
-def _make_cdt_recipes(*, extra, cdt_path, dist_arch_tuples, cdts, exec, force):
+def _make_cdt_recipes(*, extra, cdt_path, dist_arch_tuples, cdts, allowlists, exec, force):
     futures = {}
     for dist, arch in dist_arch_tuples:
-        # centos7 CDTs are grandfathered in; rest is subject to allowlist
-        allowlist = cdts.keys() if dist == "centos7" else DIST_CDT_ALLOWLIST[dist]
+        allowlist = allowlists[dist]
 
         for cdt, cfg in cdts.items():
             _extra = extra + ""
@@ -405,7 +380,24 @@ def _main(force, fast, keep_url_changes):
     ]
 
     with open("cdt_slugs.yaml", "r") as fp:
-        cdts = yaml.load(fp)
+        cdt_slugs = yaml.load(fp)
+
+    cdts = cdt_slugs["build_defs"]
+    allowlists = cdt_slugs["allowlists"]
+    # do some basic validation:
+    #   - ensure all packages appearing in an allowlist have a build_def
+    #   - warn on package definitions that don't appear in any allowlist
+    all_allowed = reduce(lambda x, y: set(x) | set(y), allowlists.values())
+    if undefined := all_allowed - set(cdts.keys()):
+        msg = (
+            "The following packages appear under allowlists, but have no"
+            f"corresponding build_def:\n  {', '.join(sorted(list(undefined)))}"
+        )
+        raise RuntimeError(msg)
+    elif superfluous := set(cdts.keys()) - all_allowed:
+        for cdt in superfluous:
+            msg = f"CDT {cdt} does not appear in any allowlist; won't be built!"
+            tqdm.tqdm.write(f"WARNING: {msg}")
 
     os.makedirs(CDT_PATH, exist_ok=True)
     os.makedirs(CUSTOM_CDT_PATH, exist_ok=True)
@@ -427,6 +419,7 @@ def _main(force, fast, keep_url_changes):
                 cdt_path=CDT_PATH,
                 dist_arch_tuples=dist_arch_tuples,
                 cdts=cdts,
+                allowlists=allowlists,
                 exec=exec,
                 force=force)
             )
