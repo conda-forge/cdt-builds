@@ -255,7 +255,7 @@ build_defs:
     custom: false
     license_file: null
     build_append:
-      cos7: |
+      centos7: |
         mkdir -p ${SYSROOT_DIR}/etc/pki/tls/certs
 
         pushd ${SYSROOT_DIR}/etc/pki/java > /dev/null 2>&1
@@ -706,17 +706,17 @@ build_defs:
     custom: false
     license_file: licenses/mesa-license
     build_append:
-      cos7-aarch64: |
+      centos7-aarch64: |
         pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
         rm libGLX_system.so.0
         ln -s libGLX_mesa.so.0 libGLX_system.so.0
         popd > /dev/null 2>&1
-      cos7-ppc64le: |
+      centos7-ppc64le: |
         pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
         rm libGLX_system.so.0
         ln -s libGLX_mesa.so.0 libGLX_system.so.0
         popd > /dev/null 2>&1
-      cos7-x86_64: |
+      centos7-x86_64: |
         pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
         rm libGLX_system.so.0
         ln -s libGLX_mesa.so.0 libGLX_system.so.0
@@ -728,7 +728,7 @@ build_defs:
     custom: true
     license_file: licenses/mesa-license
     build_append:
-      cos7-x86_64: |
+      centos7-x86_64: |
         pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
         rm libGLX_system.so.0
         ln -s libGLX_mesa.so.0 libGLX_system.so.0
@@ -809,19 +809,19 @@ build_defs:
   pango:
     custom: false
     build_append:
-      cos7-aarch64: |
+      centos7-aarch64: |
         pushd ${SYSROOT_DIR}/usr/bin > /dev/null 2>&1
         rm -f pango-querymodules-64
         echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
         chmod u+x pango-querymodules-64
         popd > /dev/null 2>&1
-      cos7-ppc64le: |
+      centos7-ppc64le: |
         pushd ${SYSROOT_DIR}/usr/bin > /dev/null 2>&1
         rm -f pango-querymodules-64
         echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
         chmod u+x pango-querymodules-64
         popd > /dev/null 2>&1
-      cos7-x86_64: |
+      centos7-x86_64: |
         pushd ${SYSROOT_DIR}/usr/bin > /dev/null 2>&1
         rm -f pango-querymodules-64
         echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64

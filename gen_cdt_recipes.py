@@ -91,9 +91,7 @@ def _is_changed_or_not_tracked(pth):
 
 
 def _gen_dist_arch_str(dist, arch):
-    # transform centos7 -> cos7; does not affect alma8
-    dist = dist.replace("ent", "")
-    return f"{dist}-{arch}" if dist == "cos7" else f"conda-{arch}"
+    return f"{dist}-{arch}" if dist == "centos7" else f"conda-{arch}"
 
 
 def _make_cdt_recipes(*, extra, cdt_path, dist_arch_tuples, cdts, allowlists, exec, force):
@@ -307,7 +305,6 @@ def _fix_cdt_deps(*, cdts, dist_arch_tuples, cdt_path):
 def _fix_cdt_builds(*, cdts, dist_arch_tuples, cdt_path):
     print("adjusting CDT builds for path '%s'..." % cdt_path, flush=True)
     for dist, arch in dist_arch_tuples:
-        shortdist = dist.replace("ent", "")
         distarch = _gen_dist_arch_str(dist, arch)
         for cdt, cfg in cdts.items():
             pth = os.path.join(
@@ -320,15 +317,15 @@ def _fix_cdt_builds(*, cdts, dist_arch_tuples, cdt_path):
                 and os.path.exists(pth)
                 and (
                     distarch in cfg["build_append"]
-                    or shortdist in cfg["build_append"]
+                    or dist in cfg["build_append"]
                     or arch in cfg["build_append"]
                     or "all" in cfg["build_append"]
                 )
             ):
                 if distarch in cfg["build_append"]:
                     extra_build = cfg["build_append"][distarch]
-                elif shortdist in cfg["build_append"]:
-                    extra_build = cfg["build_append"][shortdist]
+                elif dist in cfg["build_append"]:
+                    extra_build = cfg["build_append"][dist]
                 elif arch in cfg["build_append"]:
                     extra_build = cfg["build_append"][arch]
                 elif "all" in cfg["build_append"]:
