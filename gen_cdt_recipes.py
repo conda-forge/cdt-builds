@@ -119,8 +119,8 @@ def _make_cdt_recipes(*, extra, cdt_path, dist_arch_tuples, cdts, allowlists, ex
             if "build_number_bump" in cfg:
                 _extra += " --build-number-bump=%d" % cfg["build_number_bump"]
 
-            if "subfolder" in cfg:
-                _extra += f" --subfolder={cfg['subfolder']}"
+            if "subfolder" in cfg and dist != "centos7":
+                _extra += f" --subfolder={cfg['subfolder'][dist]}"
 
             print(
                 "making CDT:",

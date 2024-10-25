@@ -235,6 +235,9 @@ build_defs:
     license_file: licenses/audit-libs-copying.lib
     dep_remove:
       - kernel-headers
+    subfolder:
+      alma8: BaseOS
+      alma9: AppStream
   at-spi:
     custom: false
     license_file: licenses/at-spi-license
@@ -305,7 +308,9 @@ build_defs:
   cracklib-devel:
     custom: false
     license_file: licenses/cracklib-copying.lib
-    subfolder: PowerTools
+    subfolder:
+      alma8: PowerTools
+      alma9: CRB
   cracklib-dicts:
     custom: false
     license_file: licenses/cracklib-copying.lib
@@ -420,7 +425,9 @@ build_defs:
   kmod-devel:
     custom: false
     license_file: licenses/kmod-copying
-    subfolder: PowerTools
+    subfolder:
+      alma8: PowerTools
+      alma9: CRB
   kmod-libs:
     custom: false
     license_file: licenses/kmod-copying
@@ -539,7 +546,9 @@ build_defs:
   libpwquality-devel:
     custom: false
     license_file: licenses/libpwquality-copying
-    subfolder: PowerTools
+    subfolder:
+      alma8: PowerTools
+      alma9: CRB
   librdmacm:
     custom: false
     license_file: licenses/librdmacm-devel-license
@@ -549,12 +558,18 @@ build_defs:
   libselinux-devel:
     custom: false
     license_file: null
+    subfolder:
+      alma8: BaseOS
+      alma9: AppStream
   libsepol:
     custom: false
     license_file: licenses/libsepol-license
   libsepol-devel:
     custom: false
     license_file: licenses/libsepol-license
+    subfolder:
+      alma8: BaseOS
+      alma9: AppStream
   libSM:
     custom: false
   libSM-devel:
@@ -685,11 +700,15 @@ build_defs:
   mesa-libgbm:
     custom: false
     license_file: licenses/mesa-license
-    subfolder: AppStream
+    subfolder:
+      alma8: AppStream
+      alma9: AppStream
   mesa-libgbm-devel:
     custom: false
     license_file: licenses/mesa-license
-    subfolder: PowerTools
+    subfolder:
+      alma8: PowerTools
+      alma9: AppStream
   mesa-dri-drivers:
     custom: false
     license_file: licenses/mesa-license
@@ -806,6 +825,9 @@ build_defs:
       - glibc
   pam-devel:
     custom: false
+    subfolder:
+      alma8: BaseOS
+      alma9: AppStream
   pango:
     custom: false
     build_append:
