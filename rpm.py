@@ -109,6 +109,10 @@ build:
   detect_binary_files_with_prefix: False
   missing_dso_whitelist:
     - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "{distro_name}"]
 
 {depends}
 
@@ -834,6 +838,7 @@ def write_conda_recipes(
             "build_number": build_number_jinja2,
             "license_file": license_file,
             "packagename": package_cdt_name,
+            "distro_name": cdt["full_name"],
             "hostmachine": cdt["host_machine"],
             "hostsubdir": cdt["host_subdir"],
             "depends": dependsstr,
