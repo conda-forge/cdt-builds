@@ -240,6 +240,20 @@ def _gen_cdts(single_sysroot):
                 "allow_missing_sources": True,
                 "glibc_ver": "2.28",
             },
+            "alma9": {
+                "short_name": "conda",
+                "base_url": "https://vault.almalinux.org/9.3/{subfolder}/{base_architecture}/os/Packages/",  # noqa
+                "sbase_url": "https://vault.almalinux.org/9.3/{subfolder}/Source/Packages/",
+                "repomd_url": "https://vault.almalinux.org/9.3/{subfolder}/{base_architecture}/os/repodata/repomd.xml",  # noqa
+                "host_machine": "{architecture}-conda-linux-gnu",
+                "host_subdir": "linux-{bits}",
+                "fname_architecture": "{architecture}",
+                "checksummer": hashlib.sha256,
+                "checksummer_name": "sha256",
+                "macros": {},
+                "allow_missing_sources": True,
+                "glibc_ver": "2.34",
+            },
         }
     )
 
@@ -904,7 +918,8 @@ def write_conda_recipe(
                 cdt["dependency_add"][as_list[0]] = as_list[1:]
 
     repo_primary = {}
-    for channel in ["BaseOS", "AppStream", "PowerTools"]:
+    base_channels = ["BaseOS", "AppStream"]
+    for channel in base_channels + ["PowerTools" if distro == "alma8" else "CRB"]:
         # don't use `cdt`, where we already formatted the subfolder out of the URL
         formatting_bits["subfolder"] = channel
         repomd_url = cdt_info[cdt_name]["repomd_url"].format(**formatting_bits)

@@ -377,6 +377,9 @@ def _main(force, fast, keep_url_changes):
         ("alma8", "aarch64"),
         ("alma8", "ppc64le"),
         ("alma8", "x86_64"),
+        ("alma9", "aarch64"),
+        ("alma9", "ppc64le"),
+        ("alma9", "x86_64"),
     ]
 
     with open("cdt_slugs.yaml", "r") as fp:

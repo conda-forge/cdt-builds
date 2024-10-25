@@ -1,4 +1,23 @@
 allowlists:
+  alma9:
+    - audit-libs
+    - audit-libs-devel
+    - cracklib
+    - cracklib-devel
+    - cracklib-dicts
+    - kmod
+    - kmod-devel
+    - kmod-libs
+    - libpwquality
+    - libpwquality-devel
+    - libselinux
+    - libselinux-devel
+    - libsepol
+    - libsepol-devel
+    - mesa-libgbm
+    - mesa-libgbm-devel
+    - pam
+    - pam-devel
   alma8:
     - audit-libs
     - audit-libs-devel
