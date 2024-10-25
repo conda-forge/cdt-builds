@@ -43,14 +43,26 @@ try:
 except ImportError:
     import pickle as pickle
 
+from contextlib import contextmanager
 import gzip
 import hashlib
 import io
+import logging
 from os import chmod, makedirs
 from os.path import basename, dirname, exists, join, splitext
 import re
+import sys
 import tempfile
 import subprocess
+
+
+@contextmanager
+def disable_traceback():
+    default_value = getattr(sys, "tracebacklimit", 1000)  # 1000 == default
+    sys.tracebacklimit = 0
+    yield
+    sys.tracebacklimit = default_value  # revert changes
+
 
 import click
 from conda_build.source import download_to_cache
@@ -284,7 +296,12 @@ def cache_file(src_cache, url, fn=None, checksummer=hashlib.sha256):
         source = dict({"url": url, "fn": fn})
     else:
         source = dict({"url": url})
-    cached_path, _ = download_to_cache(src_cache, "", source)
+    # avoid getting spammed by failed downloads
+    logging.disable(logging.WARN)
+    with disable_traceback():
+        cached_path, _ = download_to_cache(src_cache, "", source)
+    # restore previous defaults
+    logging.disable(logging.NOTSET)
     csum = checksummer()
     csum.update(open(cached_path, "rb").read())
     csumstr = csum.hexdigest()
