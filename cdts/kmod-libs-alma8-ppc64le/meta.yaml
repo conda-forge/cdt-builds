@@ -18,6 +18,10 @@ build:
   detect_binary_files_with_prefix: false
   missing_dso_whitelist:
     - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "alma8"]
 
 requirements:
   host:
