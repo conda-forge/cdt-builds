@@ -1,0 +1,50 @@
+package:
+  name: libselinux-devel-conda-aarch64
+  version: 3.5
+
+source:
+  - url: https://vault.almalinux.org/9.3/AppStream/aarch64/os/Packages/libselinux-devel-3.5-1.el9.aarch64.rpm
+    sha256: 1fd49d65a383dc3c89f03dd9fe2914cca6364f67ca88aa683ae636372f226fa8
+    no_hoist: true
+    folder: binary
+  # - url: https://vault.almalinux.org/9.3/AppStream/Source/Packages/libselinux-3.5-1.el9.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libselinux-conda-aarch64 ==3.5 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-devel-conda-aarch64 >=3.5 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libselinux-conda-aarch64 ==3.5 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-devel-conda-aarch64 >=3.5 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.34.*
+  run:
+    - libselinux-conda-aarch64 ==3.5 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-devel-conda-aarch64 >=3.5 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.34.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/SELinuxProject/selinux/wiki
+  license: Public-Domain
+  license_family: Public-Domain
+  summary: (CDT) Header files and libraries used to build SELinux
+  description: |
+    The libselinux-devel package contains the libraries and header files needed
+    for developing SELinux applications.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

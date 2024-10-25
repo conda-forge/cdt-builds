@@ -1,0 +1,48 @@
+package:
+  name: libsepol-devel-conda-x86_64
+  version: 3.5
+
+source:
+  - url: https://vault.almalinux.org/9.3/AppStream/x86_64/os/Packages/libsepol-devel-3.5-1.el9.x86_64.rpm
+    sha256: 772733ab239bcaa1313099f5ab4bf1b65bf2414c980e500faa0363b3e30e6445
+    no_hoist: true
+    folder: binary
+  # - url: https://vault.almalinux.org/9.3/AppStream/Source/Packages/libsepol-3.5-1.el9.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libsepol-conda-x86_64 ==3.5 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libsepol-conda-x86_64 ==3.5 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.34.*
+  run:
+    - libsepol-conda-x86_64 ==3.5 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.34.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/SELinuxProject/selinux/wiki
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: libsepol-license
+  summary: (CDT) Header files and libraries used to build policy manipulation tools
+  description: |
+    The libsepol-devel package contains the libraries and header files needed for
+    developing applications that manipulate binary policies.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

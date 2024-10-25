@@ -1,0 +1,60 @@
+package:
+  name: pam-conda-ppc64le
+  version: 1.5.1
+
+source:
+  - url: https://vault.almalinux.org/9.3/BaseOS/ppc64le/os/Packages/pam-1.5.1-15.el9.ppc64le.rpm
+    sha256: c2bd2d2a1c288979ad0944c32d76ede62a3eec6399d58df78596f8dea574da4a
+    no_hoist: true
+    folder: binary
+  # - url: https://vault.almalinux.org/9.3/BaseOS/Source/Packages/pam-1.5.1-15.el9.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - audit-libs-conda-ppc64le >=1.0.8 *_{{ cdt_build_number|int + 1000 }}
+    - libeconf-conda-ppc64le >=0.3.5 *_{{ cdt_build_number|int + 1000 }}
+    - libpwquality-conda-ppc64le >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
+    - libselinux-conda-ppc64le >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
+    - openssl-conda-ppc64le >=3.0.0 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - audit-libs-conda-ppc64le >=1.0.8 *_{{ cdt_build_number|int + 1000 }}
+    - libeconf-conda-ppc64le >=0.3.5 *_{{ cdt_build_number|int + 1000 }}
+    - libpwquality-conda-ppc64le >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
+    - libselinux-conda-ppc64le >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
+    - openssl-conda-ppc64le >=3.0.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.34.*
+  run:
+    - audit-libs-conda-ppc64le >=1.0.8 *_{{ cdt_build_number|int + 1000 }}
+    - libeconf-conda-ppc64le >=0.3.5 *_{{ cdt_build_number|int + 1000 }}
+    - libpwquality-conda-ppc64le >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
+    - libselinux-conda-ppc64le >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
+    - openssl-conda-ppc64le >=3.0.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.34.*
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.linux-pam.org/
+  license: BSD and GPLv2+
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/pam/Copyright
+  summary: (CDT) An extensible library which provides authentication for applications
+  description: |
+    PAM (Pluggable Authentication Modules) is a system security tool that allows
+    system administrators to set authentication policy without having to recompile
+    programs that handle authentication.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

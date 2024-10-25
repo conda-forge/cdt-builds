@@ -1,0 +1,48 @@
+package:
+  name: libpwquality-devel-conda-x86_64
+  version: 1.4.4
+
+source:
+  - url: https://vault.almalinux.org/9.3/CRB/x86_64/os/Packages/libpwquality-devel-1.4.4-8.el9.x86_64.rpm
+    sha256: 72e7255c425fa626f44145ee2bbaae77cc14e21c5429c444918d2a1bff9c136f
+    no_hoist: true
+    folder: binary
+  # - url: https://vault.almalinux.org/9.3/CRB/Source/Packages/libpwquality-1.4.4-8.el9.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - libpwquality-conda-x86_64 ==1.4.4 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libpwquality-conda-x86_64 ==1.4.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.34.*
+  run:
+    - libpwquality-conda-x86_64 ==1.4.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.34.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/libpwquality/libpwquality/
+  license: BSD or GPLv2+
+  license_family: GPL2
+  license_file: libpwquality-copying
+  summary: (CDT) Support for development of applications using the libpwquality library
+  description: |
+    Files needed for development of applications using the libpwquality library.
+    See the pwquality.h header file for the API.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

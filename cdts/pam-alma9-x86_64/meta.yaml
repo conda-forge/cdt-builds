@@ -1,0 +1,60 @@
+package:
+  name: pam-conda-x86_64
+  version: 1.5.1
+
+source:
+  - url: https://vault.almalinux.org/9.3/BaseOS/x86_64/os/Packages/pam-1.5.1-15.el9.x86_64.rpm
+    sha256: 8adc001ae564c5535ab5236dc8eef93e3af6a649c89995e3df137036a1ae76cf
+    no_hoist: true
+    folder: binary
+  # - url: https://vault.almalinux.org/9.3/BaseOS/Source/Packages/pam-1.5.1-15.el9.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+
+requirements:
+  build:
+    - audit-libs-conda-x86_64 >=1.0.8 *_{{ cdt_build_number|int + 1000 }}
+    - libeconf-conda-x86_64 >=0.3.5 *_{{ cdt_build_number|int + 1000 }}
+    - libpwquality-conda-x86_64 >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
+    - libselinux-conda-x86_64 >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
+    - openssl-conda-x86_64 >=3.0.0 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - audit-libs-conda-x86_64 >=1.0.8 *_{{ cdt_build_number|int + 1000 }}
+    - libeconf-conda-x86_64 >=0.3.5 *_{{ cdt_build_number|int + 1000 }}
+    - libpwquality-conda-x86_64 >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
+    - libselinux-conda-x86_64 >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
+    - openssl-conda-x86_64 >=3.0.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.34.*
+  run:
+    - audit-libs-conda-x86_64 >=1.0.8 *_{{ cdt_build_number|int + 1000 }}
+    - libeconf-conda-x86_64 >=0.3.5 *_{{ cdt_build_number|int + 1000 }}
+    - libpwquality-conda-x86_64 >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
+    - libselinux-conda-x86_64 >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
+    - openssl-conda-x86_64 >=3.0.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.34.*
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.linux-pam.org/
+  license: BSD and GPLv2+
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/pam/Copyright
+  summary: (CDT) An extensible library which provides authentication for applications
+  description: |
+    PAM (Pluggable Authentication Modules) is a system security tool that allows
+    system administrators to set authentication policy without having to recompile
+    programs that handle authentication.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
