@@ -185,6 +185,7 @@ def _gen_cdts(single_sysroot):
     return dict(
         {
             "centos7": {
+                "full_name": "centos7",
                 "short_name": "cos7",
                 "base_url": "http://vault.centos.org/7.9.2009/os/{base_architecture}/Packages/",  # noqa
                 "sbase_url": "http://vault.centos.org/7.9.2009/os/Source/SPackages/",
@@ -206,6 +207,7 @@ def _gen_cdts(single_sysroot):
                 "glibc_ver": "2.17",
             },
             "centos7-alt": {
+                "full_name": "centos7",
                 "short_name": "cos7",
                 "base_url": "https://vault.centos.org/altarch/7.9.2009/os/{base_architecture}/Packages/",  # noqa
                 "sbase_url": "http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/",
@@ -227,6 +229,7 @@ def _gen_cdts(single_sysroot):
                 "glibc_ver": "2.17",
             },
             "alma8": {
+                "full_name": "alma8",
                 "short_name": "conda",
                 "base_url": "https://vault.almalinux.org/8.9/{subfolder}/{base_architecture}/os/Packages/",  # noqa
                 "sbase_url": "https://vault.almalinux.org/8.9/{subfolder}/Source/Packages/",
@@ -241,6 +244,7 @@ def _gen_cdts(single_sysroot):
                 "glibc_ver": "2.28",
             },
             "alma9": {
+                "full_name": "alma9",
                 "short_name": "conda",
                 "base_url": "https://vault.almalinux.org/9.3/{subfolder}/{base_architecture}/os/Packages/",  # noqa
                 "sbase_url": "https://vault.almalinux.org/9.3/{subfolder}/Source/Packages/",
@@ -840,7 +844,9 @@ def write_conda_recipes(
             # "SYSROOT_DIR": "{SYSROOT_DIR}"
         }
     )
-    odir = join(output_dir, package_cdt_name)
+    # cannot use package_cdt_name for path, because the shortnames
+    # may coincide, but we need to distinguish recipes per distro
+    odir = join(output_dir, f"{package_l}-{cdt['full_name']}-{arch}")
     try:
         makedirs(odir)
     except Exception:

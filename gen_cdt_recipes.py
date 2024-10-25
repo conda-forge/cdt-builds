@@ -91,7 +91,7 @@ def _is_changed_or_not_tracked(pth):
 
 
 def _gen_dist_arch_str(dist, arch):
-    return f"{dist}-{arch}" if dist == "centos7" else f"conda-{arch}"
+    return f"{dist}-{arch}"
 
 
 def _make_cdt_recipes(*, extra, cdt_path, dist_arch_tuples, cdts, allowlists, exec, force):
