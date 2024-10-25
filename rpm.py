@@ -196,7 +196,6 @@ def _gen_cdts(single_sysroot):
                 ),
                 "host_subdir": "linux-{bits}",
                 "fname_architecture": "{architecture}",
-                "rpm_filename_platform": "el7.{architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
                 # Some macros are defined in /etc/rpm/macros.* but I cannot find where
@@ -218,7 +217,6 @@ def _gen_cdts(single_sysroot):
                 ),
                 "host_subdir": "linux-{base_architecture}",
                 "fname_architecture": "{architecture}",
-                "rpm_filename_platform": "el7.{architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
                 # Some macros are defined in /etc/rpm/macros.* but I cannot find where
@@ -236,7 +234,6 @@ def _gen_cdts(single_sysroot):
                 "host_machine": "{architecture}-conda-linux-gnu",
                 "host_subdir": "linux-{bits}",
                 "fname_architecture": "{architecture}",
-                "rpm_filename_platform": "el8.{architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
                 "macros": {},
