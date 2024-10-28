@@ -29,20 +29,17 @@ requirements:
     - libeconf-conda-ppc64le >=0.3.5 *_{{ cdt_build_number|int + 1000 }}
     - libpwquality-conda-ppc64le >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
     - libselinux-conda-ppc64le >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
-    - openssl-conda-ppc64le >=3.0.0 *_{{ cdt_build_number|int + 1000 }}
   host:
     - audit-libs-conda-ppc64le >=1.0.8 *_{{ cdt_build_number|int + 1000 }}
     - libeconf-conda-ppc64le >=0.3.5 *_{{ cdt_build_number|int + 1000 }}
     - libpwquality-conda-ppc64le >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
     - libselinux-conda-ppc64le >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
-    - openssl-conda-ppc64le >=3.0.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.34.*
   run:
     - audit-libs-conda-ppc64le >=1.0.8 *_{{ cdt_build_number|int + 1000 }}
     - libeconf-conda-ppc64le >=0.3.5 *_{{ cdt_build_number|int + 1000 }}
     - libpwquality-conda-ppc64le >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
     - libselinux-conda-ppc64le >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
-    - openssl-conda-ppc64le >=3.0.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.34.*
 test:
   commands:

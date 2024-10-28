@@ -1,0 +1,52 @@
+package:
+  name: libeconf-devel-conda-x86_64
+  version: 0.4.1
+
+source:
+  - url: https://vault.almalinux.org/9.3/devel/x86_64/os/Packages/libeconf-devel-0.4.1-3.el9_2.x86_64.rpm
+    sha256: 61ea0f353eabb506960a3433cbd572a98cfde5f2029b09cf72ee77f7e0462dd8
+    no_hoist: true
+    folder: binary
+  # - url: https://vault.almalinux.org/9.3/devel/Source/Packages/libeconf-0.4.1-3.el9_2.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "alma9"]
+
+requirements:
+  build:
+    - libeconf-conda-x86_64 ==0.4.1 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libeconf-conda-x86_64 ==0.4.1 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.34.*
+  run:
+    - libeconf-conda-x86_64 ==0.4.1 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.34.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/openSUSE/libeconf
+  license: MIT
+  license_family: MIT
+  license_file: libeconf-devel-license
+  summary: (CDT) Development files for libeconf
+  description: |
+    The libeconf-devel package contains libraries and header files for developing
+    applications that use libeconf.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
