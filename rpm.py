@@ -548,12 +548,6 @@ def massage_primary(repo_primary, src_cache, cdt):
             }
         )
         if name in new_dict:
-            if arch in new_dict[name]:
-                print(
-                    "WARNING: Duplicate packages exist for {} for arch {}".format(
-                        name, arch
-                    )
-                )
             new_dict[name][arch] = new_package
         else:
             new_dict[name] = dict({arch: new_package})
