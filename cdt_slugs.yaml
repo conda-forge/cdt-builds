@@ -8,6 +8,8 @@ allowlists:
     - kmod
     - kmod-devel
     - kmod-libs
+    - libeconf
+    - libeconf-devel
     - libpwquality
     - libpwquality-devel
     - libselinux
@@ -452,6 +454,13 @@ build_defs:
   libdrm-devel:
     custom: false
     license_file: null
+  libeconf:
+    custom: false
+  libeconf-devel:
+    custom: false
+    license_file: licenses/libeconf-devel-license
+    subfolder:
+      alma9: devel
   libglvnd:
     custom: false
     license_file: licenses/libglvnd-license
@@ -823,6 +832,7 @@ build_defs:
     custom: false
     dep_remove:
       - glibc
+      - openssl
   pam-devel:
     custom: false
     subfolder:

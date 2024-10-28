@@ -941,7 +941,8 @@ def write_conda_recipe(
 
     repo_primary = {}
     base_channels = ["BaseOS", "AppStream"]
-    for channel in base_channels + ["PowerTools" if distro == "alma8" else "CRB"]:
+    extra_channels = ["PowerTools"] if distro == "alma8" else ["CRB", "devel"]
+    for channel in base_channels + extra_channels:
         # don't use `cdt`, where we already formatted the subfolder out of the URL
         formatting_bits["subfolder"] = channel
         repomd_url = cdt_info[cdt_name]["repomd_url"].format(**formatting_bits)
