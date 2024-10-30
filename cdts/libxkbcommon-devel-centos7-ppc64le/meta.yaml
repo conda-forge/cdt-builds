@@ -1,5 +1,5 @@
 package:
-  name: libxkbcommon-devel-cos7-ppc64le
+  name: libxkbcommon-devel-conda-ppc64le
   version: 0.7.1
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libxkbcommon-cos7-ppc64le ==0.7.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxkbcommon-conda-ppc64le ==0.7.1 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libxkbcommon-cos7-ppc64le ==0.7.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxkbcommon-conda-ppc64le ==0.7.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - libxkbcommon-cos7-ppc64le ==0.7.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxkbcommon-conda-ppc64le ==0.7.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

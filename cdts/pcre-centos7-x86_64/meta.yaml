@@ -1,5 +1,5 @@
 package:
-  name: pcre-cos7-x86_64
+  name: pcre-conda-x86_64
   version: 8.32
 
 source:

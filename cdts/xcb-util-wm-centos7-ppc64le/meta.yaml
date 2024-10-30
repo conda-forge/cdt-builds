@@ -1,5 +1,5 @@
 package:
-  name: xcb-util-wm-cos7-ppc64le
+  name: xcb-util-wm-conda-ppc64le
   version: 0.4.1
 
 source:

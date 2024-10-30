@@ -1,5 +1,5 @@
 package:
-  name: libxrender-cos7-aarch64
+  name: libxrender-conda-aarch64
   version: 0.9.10
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libx11-cos7-aarch64 >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
+    - libx11-conda-aarch64 >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libx11-cos7-aarch64 >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
+    - libx11-conda-aarch64 >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - libx11-cos7-aarch64 >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
+    - libx11-conda-aarch64 >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

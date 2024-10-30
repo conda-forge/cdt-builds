@@ -1,5 +1,5 @@
 package:
-  name: python-javapackages-cos7-ppc64le
+  name: python-javapackages-conda-ppc64le
   version: 3.4.1
 
 source:

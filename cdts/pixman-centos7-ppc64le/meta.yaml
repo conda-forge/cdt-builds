@@ -1,5 +1,5 @@
 package:
-  name: pixman-cos7-ppc64le
+  name: pixman-conda-ppc64le
   version: 0.34.0
 
 source:

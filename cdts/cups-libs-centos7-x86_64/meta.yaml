@@ -1,5 +1,5 @@
 package:
-  name: cups-libs-cos7-x86_64
+  name: cups-libs-conda-x86_64
   version: 1.6.3
 
 source:

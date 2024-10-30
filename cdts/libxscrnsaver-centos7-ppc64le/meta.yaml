@@ -1,5 +1,5 @@
 package:
-  name: libxscrnsaver-cos7-ppc64le
+  name: libxscrnsaver-conda-ppc64le
   version: 1.2.2
 
 source:

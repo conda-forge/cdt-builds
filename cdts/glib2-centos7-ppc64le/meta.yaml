@@ -1,5 +1,5 @@
 package:
-  name: glib2-cos7-ppc64le
+  name: glib2-conda-ppc64le
   version: 2.56.1
 
 source:

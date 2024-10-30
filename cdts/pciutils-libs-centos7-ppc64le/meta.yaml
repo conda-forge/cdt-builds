@@ -1,5 +1,5 @@
 package:
-  name: pciutils-libs-cos7-ppc64le
+  name: pciutils-libs-conda-ppc64le
   version: 3.5.1
 
 source:

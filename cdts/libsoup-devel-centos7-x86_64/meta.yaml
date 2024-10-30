@@ -1,5 +1,5 @@
 package:
-  name: libsoup-devel-cos7-x86_64
+  name: libsoup-devel-conda-x86_64
   version: 2.62.2
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libsoup-cos7-x86_64 ==2.62.2 *_{{ cdt_build_number|int + 1000 }}
+    - libsoup-conda-x86_64 ==2.62.2 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libsoup-cos7-x86_64 ==2.62.2 *_{{ cdt_build_number|int + 1000 }}
+    - libsoup-conda-x86_64 ==2.62.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - libsoup-cos7-x86_64 ==2.62.2 *_{{ cdt_build_number|int + 1000 }}
+    - libsoup-conda-x86_64 ==2.62.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

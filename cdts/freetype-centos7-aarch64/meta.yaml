@@ -1,5 +1,5 @@
 package:
-  name: freetype-cos7-aarch64
+  name: freetype-conda-aarch64
   version: 2.8
 
 source:

@@ -1,5 +1,5 @@
 package:
-  name: kmod-cos7-x86_64
+  name: kmod-conda-x86_64
   version: 20
 
 source:

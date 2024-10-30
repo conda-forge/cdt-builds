@@ -1,5 +1,5 @@
 package:
-  name: xcb-util-image-cos7-aarch64
+  name: xcb-util-image-conda-aarch64
   version: 0.4.0
 
 source:

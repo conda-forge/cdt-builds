@@ -1,5 +1,5 @@
 package:
-  name: mesa-dri-drivers-cos7-ppc64le
+  name: mesa-dri-drivers-conda-ppc64le
   version: 18.3.4
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libdrm-cos7-ppc64le >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
+    - libdrm-conda-ppc64le >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libdrm-cos7-ppc64le >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
+    - libdrm-conda-ppc64le >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - libdrm-cos7-ppc64le >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
+    - libdrm-conda-ppc64le >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

@@ -1,5 +1,5 @@
 package:
-  name: fontconfig-devel-cos7-ppc64le
+  name: fontconfig-devel-conda-ppc64le
   version: 2.13.0
 
 source:
@@ -25,15 +25,15 @@ build:
 
 requirements:
   build:
-    - fontconfig-cos7-ppc64le ==2.13.0 *_{{ cdt_build_number|int + 1000 }}
-    - freetype-devel-cos7-ppc64le >=2.8 *_{{ cdt_build_number|int + 1000 }}
+    - fontconfig-conda-ppc64le ==2.13.0 *_{{ cdt_build_number|int + 1000 }}
+    - freetype-devel-conda-ppc64le >=2.8 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - fontconfig-cos7-ppc64le ==2.13.0 *_{{ cdt_build_number|int + 1000 }}
-    - freetype-devel-cos7-ppc64le >=2.8 *_{{ cdt_build_number|int + 1000 }}
+    - fontconfig-conda-ppc64le ==2.13.0 *_{{ cdt_build_number|int + 1000 }}
+    - freetype-devel-conda-ppc64le >=2.8 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - fontconfig-cos7-ppc64le ==2.13.0 *_{{ cdt_build_number|int + 1000 }}
-    - freetype-devel-cos7-ppc64le >=2.8 *_{{ cdt_build_number|int + 1000 }}
+    - fontconfig-conda-ppc64le ==2.13.0 *_{{ cdt_build_number|int + 1000 }}
+    - freetype-devel-conda-ppc64le >=2.8 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

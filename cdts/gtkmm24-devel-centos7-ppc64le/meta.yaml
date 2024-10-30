@@ -1,5 +1,5 @@
 package:
-  name: gtkmm24-devel-cos7-ppc64le
+  name: gtkmm24-devel-conda-ppc64le
   version: 2.24.5
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - gtkmm24-cos7-ppc64le ==2.24.5 *_{{ cdt_build_number|int + 1000 }}
+    - gtkmm24-conda-ppc64le ==2.24.5 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - gtkmm24-cos7-ppc64le ==2.24.5 *_{{ cdt_build_number|int + 1000 }}
+    - gtkmm24-conda-ppc64le ==2.24.5 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - gtkmm24-cos7-ppc64le ==2.24.5 *_{{ cdt_build_number|int + 1000 }}
+    - gtkmm24-conda-ppc64le ==2.24.5 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

@@ -1,5 +1,5 @@
 package:
-  name: glib2-cos7-x86_64
+  name: glib2-conda-x86_64
   version: 2.56.1
 
 source:

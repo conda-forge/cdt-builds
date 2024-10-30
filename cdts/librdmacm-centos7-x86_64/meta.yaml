@@ -1,5 +1,5 @@
 package:
-  name: librdmacm-cos7-x86_64
+  name: librdmacm-conda-x86_64
   version: 22.4
 
 source:
@@ -25,15 +25,15 @@ build:
 
 requirements:
   build:
-    - libibverbs-cos7-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
-    - rdma-core-cos7-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-conda-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-conda-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libibverbs-cos7-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
-    - rdma-core-cos7-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-conda-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-conda-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - libibverbs-cos7-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
-    - rdma-core-cos7-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-conda-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-conda-x86_64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

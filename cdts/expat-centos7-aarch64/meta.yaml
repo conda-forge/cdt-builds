@@ -1,5 +1,5 @@
 package:
-  name: expat-cos7-aarch64
+  name: expat-conda-aarch64
   version: 2.1.0
 
 source:

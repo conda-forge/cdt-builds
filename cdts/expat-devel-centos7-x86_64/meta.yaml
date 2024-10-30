@@ -1,5 +1,5 @@
 package:
-  name: expat-devel-cos7-x86_64
+  name: expat-devel-conda-x86_64
   version: 2.1.0
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - expat-cos7-x86_64 ==2.1.0 *_{{ cdt_build_number|int + 1000 }}
+    - expat-conda-x86_64 ==2.1.0 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - expat-cos7-x86_64 ==2.1.0 *_{{ cdt_build_number|int + 1000 }}
+    - expat-conda-x86_64 ==2.1.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - expat-cos7-x86_64 ==2.1.0 *_{{ cdt_build_number|int + 1000 }}
+    - expat-conda-x86_64 ==2.1.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

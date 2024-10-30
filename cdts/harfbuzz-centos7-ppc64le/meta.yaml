@@ -1,5 +1,5 @@
 package:
-  name: harfbuzz-cos7-ppc64le
+  name: harfbuzz-conda-ppc64le
   version: 1.7.5
 
 source:

@@ -1,5 +1,5 @@
 package:
-  name: pcre-cos7-ppc64le
+  name: pcre-conda-ppc64le
   version: 8.32
 
 source:

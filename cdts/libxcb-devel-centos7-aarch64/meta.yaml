@@ -1,5 +1,5 @@
 package:
-  name: libxcb-devel-cos7-aarch64
+  name: libxcb-devel-conda-aarch64
   version: 1.13
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libxcb-cos7-aarch64 ==1.13 *_{{ cdt_build_number|int + 1000 }}
+    - libxcb-conda-aarch64 ==1.13 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libxcb-cos7-aarch64 ==1.13 *_{{ cdt_build_number|int + 1000 }}
+    - libxcb-conda-aarch64 ==1.13 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - libxcb-cos7-aarch64 ==1.13 *_{{ cdt_build_number|int + 1000 }}
+    - libxcb-conda-aarch64 ==1.13 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

@@ -1,5 +1,5 @@
 package:
-  name: libpng-cos7-x86_64
+  name: libpng-conda-x86_64
   version: 1.5.13
 
 source:

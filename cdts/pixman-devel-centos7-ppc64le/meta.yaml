@@ -1,5 +1,5 @@
 package:
-  name: pixman-devel-cos7-ppc64le
+  name: pixman-devel-conda-ppc64le
   version: 0.34.0
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - pixman-cos7-ppc64le ==0.34.0 *_{{ cdt_build_number|int + 1000 }}
+    - pixman-conda-ppc64le ==0.34.0 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - pixman-cos7-ppc64le ==0.34.0 *_{{ cdt_build_number|int + 1000 }}
+    - pixman-conda-ppc64le ==0.34.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - pixman-cos7-ppc64le ==0.34.0 *_{{ cdt_build_number|int + 1000 }}
+    - pixman-conda-ppc64le ==0.34.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

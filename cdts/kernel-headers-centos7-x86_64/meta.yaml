@@ -1,5 +1,5 @@
 package:
-  name: kernel-headers-cos7-x86_64
+  name: kernel-headers-conda-x86_64
   version: 3.10.0
 
 source:

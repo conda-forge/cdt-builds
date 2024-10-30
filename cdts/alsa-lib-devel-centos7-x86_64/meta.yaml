@@ -1,5 +1,5 @@
 package:
-  name: alsa-lib-devel-cos7-x86_64
+  name: alsa-lib-devel-conda-x86_64
   version: 1.1.8
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - alsa-lib-cos7-x86_64 ==1.1.8 *_{{ cdt_build_number|int + 1000 }}
+    - alsa-lib-conda-x86_64 ==1.1.8 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - alsa-lib-cos7-x86_64 ==1.1.8 *_{{ cdt_build_number|int + 1000 }}
+    - alsa-lib-conda-x86_64 ==1.1.8 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - alsa-lib-cos7-x86_64 ==1.1.8 *_{{ cdt_build_number|int + 1000 }}
+    - alsa-lib-conda-x86_64 ==1.1.8 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

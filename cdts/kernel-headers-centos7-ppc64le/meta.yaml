@@ -1,5 +1,5 @@
 package:
-  name: kernel-headers-cos7-ppc64le
+  name: kernel-headers-conda-ppc64le
   version: 3.10.0
 
 source:

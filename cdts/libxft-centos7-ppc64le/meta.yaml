@@ -1,5 +1,5 @@
 package:
-  name: libxft-cos7-ppc64le
+  name: libxft-conda-ppc64le
   version: 2.3.2
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - fontconfig-cos7-ppc64le >=2.2 *_{{ cdt_build_number|int + 1000 }}
+    - fontconfig-conda-ppc64le >=2.2 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - fontconfig-cos7-ppc64le >=2.2 *_{{ cdt_build_number|int + 1000 }}
+    - fontconfig-conda-ppc64le >=2.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - fontconfig-cos7-ppc64le >=2.2 *_{{ cdt_build_number|int + 1000 }}
+    - fontconfig-conda-ppc64le >=2.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

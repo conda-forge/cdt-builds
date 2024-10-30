@@ -1,5 +1,5 @@
 package:
-  name: libsepol-cos7-ppc64le
+  name: libsepol-conda-ppc64le
   version: 2.5
 
 source:

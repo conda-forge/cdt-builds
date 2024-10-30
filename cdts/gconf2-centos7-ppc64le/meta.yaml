@@ -1,5 +1,5 @@
 package:
-  name: gconf2-cos7-ppc64le
+  name: gconf2-conda-ppc64le
   version: 3.2.6
 
 source:

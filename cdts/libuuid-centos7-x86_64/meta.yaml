@@ -1,5 +1,5 @@
 package:
-  name: libuuid-cos7-x86_64
+  name: libuuid-conda-x86_64
   version: 2.23.2
 
 source:

@@ -1,5 +1,5 @@
 package:
-  name: nspr-cos7-aarch64
+  name: nspr-conda-aarch64
   version: 4.21.0
 
 source:

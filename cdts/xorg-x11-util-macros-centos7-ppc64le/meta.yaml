@@ -1,5 +1,5 @@
 package:
-  name: xorg-x11-util-macros-cos7-ppc64le
+  name: xorg-x11-util-macros-conda-ppc64le
   version: 1.19.0
 
 source:

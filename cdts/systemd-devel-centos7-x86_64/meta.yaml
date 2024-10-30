@@ -1,5 +1,5 @@
 package:
-  name: systemd-devel-cos7-x86_64
+  name: systemd-devel-conda-x86_64
   version: 219
 
 source:
@@ -25,15 +25,15 @@ build:
 
 requirements:
   build:
-    - systemd-cos7-x86_64 ==219 *_{{ cdt_build_number|int + 1000 }}
-    - systemd-libs-cos7-x86_64 ==219 *_{{ cdt_build_number|int + 1000 }}
+    - systemd-conda-x86_64 ==219 *_{{ cdt_build_number|int + 1000 }}
+    - systemd-libs-conda-x86_64 ==219 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - systemd-cos7-x86_64 ==219 *_{{ cdt_build_number|int + 1000 }}
-    - systemd-libs-cos7-x86_64 ==219 *_{{ cdt_build_number|int + 1000 }}
+    - systemd-conda-x86_64 ==219 *_{{ cdt_build_number|int + 1000 }}
+    - systemd-libs-conda-x86_64 ==219 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - systemd-cos7-x86_64 ==219 *_{{ cdt_build_number|int + 1000 }}
-    - systemd-libs-cos7-x86_64 ==219 *_{{ cdt_build_number|int + 1000 }}
+    - systemd-conda-x86_64 ==219 *_{{ cdt_build_number|int + 1000 }}
+    - systemd-libs-conda-x86_64 ==219 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

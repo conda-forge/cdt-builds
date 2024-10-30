@@ -1,5 +1,5 @@
 package:
-  name: nss-softokn-cos7-aarch64
+  name: nss-softokn-conda-aarch64
   version: 3.44.0
 
 source:
@@ -25,18 +25,18 @@ build:
 
 requirements:
   build:
-    - nspr-cos7-aarch64 >=4.21.0 *_{{ cdt_build_number|int + 1000 }}
-    - nss-softokn-freebl-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
-    - nss-util-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nspr-conda-aarch64 >=4.21.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-softokn-freebl-conda-aarch64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-util-conda-aarch64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - nspr-cos7-aarch64 >=4.21.0 *_{{ cdt_build_number|int + 1000 }}
-    - nss-softokn-freebl-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
-    - nss-util-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nspr-conda-aarch64 >=4.21.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-softokn-freebl-conda-aarch64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-util-conda-aarch64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - nspr-cos7-aarch64 >=4.21.0 *_{{ cdt_build_number|int + 1000 }}
-    - nss-softokn-freebl-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
-    - nss-util-cos7-aarch64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nspr-conda-aarch64 >=4.21.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-softokn-freebl-conda-aarch64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-util-conda-aarch64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

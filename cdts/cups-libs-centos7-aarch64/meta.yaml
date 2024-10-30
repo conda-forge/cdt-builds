@@ -1,5 +1,5 @@
 package:
-  name: cups-libs-cos7-aarch64
+  name: cups-libs-conda-aarch64
   version: 1.6.3
 
 source:

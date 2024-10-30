@@ -1,5 +1,5 @@
 package:
-  name: libx11-common-cos7-x86_64
+  name: libx11-common-conda-x86_64
   version: 1.6.7
 
 source:

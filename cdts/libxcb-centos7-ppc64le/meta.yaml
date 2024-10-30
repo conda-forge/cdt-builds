@@ -1,5 +1,5 @@
 package:
-  name: libxcb-cos7-ppc64le
+  name: libxcb-conda-ppc64le
   version: 1.13
 
 source:

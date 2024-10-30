@@ -1,5 +1,5 @@
 package:
-  name: p11-kit-cos7-aarch64
+  name: p11-kit-conda-aarch64
   version: 0.23.5
 
 source:

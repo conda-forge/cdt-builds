@@ -1,5 +1,5 @@
 package:
-  name: centos-release-cos7-ppc64le
+  name: centos-release-conda-ppc64le
   version: 7
 
 source:
@@ -34,7 +34,7 @@ test:
     - echo "it installs!"
 
 about:
-  home: centos-release-cos7-ppc64le
+  home: centos-release-conda-ppc64le
   license: GPL-2.0-only
   license_family: GPL2
   license_file: centos-release-license

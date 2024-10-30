@@ -1,5 +1,5 @@
 package:
-  name: libpng-cos7-aarch64
+  name: libpng-conda-aarch64
   version: 1.5.13
 
 source:

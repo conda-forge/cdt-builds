@@ -1,5 +1,5 @@
 package:
-  name: glib2-cos7-aarch64
+  name: glib2-conda-aarch64
   version: 2.56.1
 
 source:

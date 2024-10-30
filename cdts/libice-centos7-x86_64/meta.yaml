@@ -1,5 +1,5 @@
 package:
-  name: libice-cos7-x86_64
+  name: libice-conda-x86_64
   version: 1.0.9
 
 source:

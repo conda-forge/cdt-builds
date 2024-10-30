@@ -1,5 +1,5 @@
 package:
-  name: libnl3-cli-cos7-ppc64le
+  name: libnl3-cli-conda-ppc64le
   version: 3.2.28
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libnl3-cos7-ppc64le ==3.2.28 *_{{ cdt_build_number|int + 1000 }}
+    - libnl3-conda-ppc64le ==3.2.28 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libnl3-cos7-ppc64le ==3.2.28 *_{{ cdt_build_number|int + 1000 }}
+    - libnl3-conda-ppc64le ==3.2.28 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - libnl3-cos7-ppc64le ==3.2.28 *_{{ cdt_build_number|int + 1000 }}
+    - libnl3-conda-ppc64le ==3.2.28 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

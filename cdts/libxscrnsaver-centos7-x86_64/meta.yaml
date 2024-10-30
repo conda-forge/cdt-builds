@@ -1,5 +1,5 @@
 package:
-  name: libxscrnsaver-cos7-x86_64
+  name: libxscrnsaver-conda-x86_64
   version: 1.2.2
 
 source:

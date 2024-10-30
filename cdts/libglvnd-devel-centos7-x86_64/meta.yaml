@@ -1,5 +1,5 @@
 package:
-  name: libglvnd-devel-cos7-x86_64
+  name: libglvnd-devel-conda-x86_64
   version: 1.0.1
 
 source:
@@ -25,27 +25,27 @@ build:
 
 requirements:
   build:
-    - libglvnd-cos7-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
-    - libglvnd-core-devel-cos7-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
-    - libglvnd-egl-cos7-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
-    - libglvnd-gles-cos7-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
-    - libglvnd-glx-cos7-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
-    - libglvnd-opengl-cos7-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-core-devel-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-egl-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-gles-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-glx-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-opengl-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libglvnd-cos7-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
-    - libglvnd-core-devel-cos7-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
-    - libglvnd-egl-cos7-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
-    - libglvnd-gles-cos7-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
-    - libglvnd-glx-cos7-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
-    - libglvnd-opengl-cos7-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-core-devel-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-egl-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-gles-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-glx-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-opengl-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - libglvnd-cos7-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
-    - libglvnd-core-devel-cos7-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
-    - libglvnd-egl-cos7-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
-    - libglvnd-gles-cos7-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
-    - libglvnd-glx-cos7-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
-    - libglvnd-opengl-cos7-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-core-devel-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-egl-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-gles-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-glx-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-opengl-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 test:
   commands:

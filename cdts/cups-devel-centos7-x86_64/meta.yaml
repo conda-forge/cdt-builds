@@ -1,5 +1,5 @@
 package:
-  name: cups-devel-cos7-x86_64
+  name: cups-devel-conda-x86_64
   version: 1.6.3
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - cups-libs-cos7-x86_64 ==1.6.3 *_{{ cdt_build_number|int + 1000 }}
+    - cups-libs-conda-x86_64 ==1.6.3 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - cups-libs-cos7-x86_64 ==1.6.3 *_{{ cdt_build_number|int + 1000 }}
+    - cups-libs-conda-x86_64 ==1.6.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - cups-libs-cos7-x86_64 ==1.6.3 *_{{ cdt_build_number|int + 1000 }}
+    - cups-libs-conda-x86_64 ==1.6.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

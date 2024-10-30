@@ -1,5 +1,5 @@
 package:
-  name: xcb-util-image-cos7-ppc64le
+  name: xcb-util-image-conda-ppc64le
   version: 0.4.0
 
 source:

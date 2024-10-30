@@ -1,5 +1,5 @@
 package:
-  name: ca-certificates-cos7-aarch64
+  name: ca-certificates-conda-aarch64
   version: 2020.2.41
 
 source:
@@ -25,15 +25,15 @@ build:
 
 requirements:
   build:
-    - p11-kit-cos7-aarch64 >=0.23.5 *_{{ cdt_build_number|int + 1000 }}
-    - p11-kit-trust-cos7-aarch64 >=0.23.5 *_{{ cdt_build_number|int + 1000 }}
+    - p11-kit-conda-aarch64 >=0.23.5 *_{{ cdt_build_number|int + 1000 }}
+    - p11-kit-trust-conda-aarch64 >=0.23.5 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - p11-kit-cos7-aarch64 >=0.23.5 *_{{ cdt_build_number|int + 1000 }}
-    - p11-kit-trust-cos7-aarch64 >=0.23.5 *_{{ cdt_build_number|int + 1000 }}
+    - p11-kit-conda-aarch64 >=0.23.5 *_{{ cdt_build_number|int + 1000 }}
+    - p11-kit-trust-conda-aarch64 >=0.23.5 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - p11-kit-cos7-aarch64 >=0.23.5 *_{{ cdt_build_number|int + 1000 }}
-    - p11-kit-trust-cos7-aarch64 >=0.23.5 *_{{ cdt_build_number|int + 1000 }}
+    - p11-kit-conda-aarch64 >=0.23.5 *_{{ cdt_build_number|int + 1000 }}
+    - p11-kit-trust-conda-aarch64 >=0.23.5 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

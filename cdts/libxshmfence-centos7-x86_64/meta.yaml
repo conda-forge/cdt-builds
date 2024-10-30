@@ -1,5 +1,5 @@
 package:
-  name: libxshmfence-cos7-x86_64
+  name: libxshmfence-conda-x86_64
   version: 1.2
 
 source:

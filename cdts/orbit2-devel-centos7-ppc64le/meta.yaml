@@ -1,5 +1,5 @@
 package:
-  name: orbit2-devel-cos7-ppc64le
+  name: orbit2-devel-conda-ppc64le
   version: 2.14.19
 
 source:
@@ -25,18 +25,18 @@ build:
 
 requirements:
   build:
-    - orbit2-cos7-ppc64le ==2.14.19 *_{{ cdt_build_number|int + 1000 }}
-    - glib2-devel-cos7-ppc64le >=2.2.0 *_{{ cdt_build_number|int + 1000 }}
-    - libidl-devel-cos7-ppc64le >=0.8.2 *_{{ cdt_build_number|int + 1000 }}
+    - orbit2-conda-ppc64le ==2.14.19 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-devel-conda-ppc64le >=2.2.0 *_{{ cdt_build_number|int + 1000 }}
+    - libidl-devel-conda-ppc64le >=0.8.2 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - orbit2-cos7-ppc64le ==2.14.19 *_{{ cdt_build_number|int + 1000 }}
-    - glib2-devel-cos7-ppc64le >=2.2.0 *_{{ cdt_build_number|int + 1000 }}
-    - libidl-devel-cos7-ppc64le >=0.8.2 *_{{ cdt_build_number|int + 1000 }}
+    - orbit2-conda-ppc64le ==2.14.19 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-devel-conda-ppc64le >=2.2.0 *_{{ cdt_build_number|int + 1000 }}
+    - libidl-devel-conda-ppc64le >=0.8.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - orbit2-cos7-ppc64le ==2.14.19 *_{{ cdt_build_number|int + 1000 }}
-    - glib2-devel-cos7-ppc64le >=2.2.0 *_{{ cdt_build_number|int + 1000 }}
-    - libidl-devel-cos7-ppc64le >=0.8.2 *_{{ cdt_build_number|int + 1000 }}
+    - orbit2-conda-ppc64le ==2.14.19 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-devel-conda-ppc64le >=2.2.0 *_{{ cdt_build_number|int + 1000 }}
+    - libidl-devel-conda-ppc64le >=0.8.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

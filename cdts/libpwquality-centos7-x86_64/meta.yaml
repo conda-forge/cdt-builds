@@ -1,5 +1,5 @@
 package:
-  name: libpwquality-cos7-x86_64
+  name: libpwquality-conda-x86_64
   version: 1.2.3
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - cracklib-dicts-cos7-x86_64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
+    - cracklib-dicts-conda-x86_64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - cracklib-dicts-cos7-x86_64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
+    - cracklib-dicts-conda-x86_64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - cracklib-dicts-cos7-x86_64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
+    - cracklib-dicts-conda-x86_64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

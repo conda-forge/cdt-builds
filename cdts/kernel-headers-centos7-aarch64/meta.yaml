@@ -1,5 +1,5 @@
 package:
-  name: kernel-headers-cos7-aarch64
+  name: kernel-headers-conda-aarch64
   version: 4.18.0
 
 source:

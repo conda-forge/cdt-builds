@@ -1,5 +1,5 @@
 package:
-  name: libxml2-devel-cos7-x86_64
+  name: libxml2-devel-conda-x86_64
   version: 2.9.1
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libxml2-cos7-x86_64 ==2.9.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxml2-conda-x86_64 ==2.9.1 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libxml2-cos7-x86_64 ==2.9.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxml2-conda-x86_64 ==2.9.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - libxml2-cos7-x86_64 ==2.9.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxml2-conda-x86_64 ==2.9.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

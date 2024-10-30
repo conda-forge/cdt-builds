@@ -1,5 +1,5 @@
 package:
-  name: librdmacm-cos7-ppc64le
+  name: librdmacm-conda-ppc64le
   version: 22.4
 
 source:
@@ -25,15 +25,15 @@ build:
 
 requirements:
   build:
-    - libibverbs-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
-    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-conda-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-conda-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libibverbs-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
-    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-conda-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-conda-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - libibverbs-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
-    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-conda-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-conda-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

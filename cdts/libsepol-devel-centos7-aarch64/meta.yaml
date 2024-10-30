@@ -1,5 +1,5 @@
 package:
-  name: libsepol-devel-cos7-aarch64
+  name: libsepol-devel-conda-aarch64
   version: 2.5
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libsepol-cos7-aarch64 ==2.5 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-conda-aarch64 ==2.5 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libsepol-cos7-aarch64 ==2.5 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-conda-aarch64 ==2.5 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - libsepol-cos7-aarch64 ==2.5 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-conda-aarch64 ==2.5 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

@@ -1,5 +1,5 @@
 package:
-  name: libxcursor-cos7-ppc64le
+  name: libxcursor-conda-ppc64le
   version: 1.1.15
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libx11-cos7-ppc64le >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
+    - libx11-conda-ppc64le >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libx11-cos7-ppc64le >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
+    - libx11-conda-ppc64le >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - libx11-cos7-ppc64le >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
+    - libx11-conda-ppc64le >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

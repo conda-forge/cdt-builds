@@ -1,5 +1,5 @@
 package:
-  name: javapackages-tools-cos7-x86_64
+  name: javapackages-tools-conda-x86_64
   version: 3.4.1
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - python-javapackages-cos7-x86_64 ==3.4.1 *_{{ cdt_build_number|int + 1000 }}
+    - python-javapackages-conda-x86_64 ==3.4.1 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - python-javapackages-cos7-x86_64 ==3.4.1 *_{{ cdt_build_number|int + 1000 }}
+    - python-javapackages-conda-x86_64 ==3.4.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - python-javapackages-cos7-x86_64 ==3.4.1 *_{{ cdt_build_number|int + 1000 }}
+    - python-javapackages-conda-x86_64 ==3.4.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

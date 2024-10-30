@@ -1,5 +1,5 @@
 package:
-  name: expat-cos7-ppc64le
+  name: expat-conda-ppc64le
   version: 2.1.0
 
 source:

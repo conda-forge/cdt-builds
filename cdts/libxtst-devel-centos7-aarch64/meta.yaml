@@ -1,5 +1,5 @@
 package:
-  name: libxtst-devel-cos7-aarch64
+  name: libxtst-devel-conda-aarch64
   version: 1.2.3
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libxtst-cos7-aarch64 ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
+    - libxtst-conda-aarch64 ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libxtst-cos7-aarch64 ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
+    - libxtst-conda-aarch64 ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - libxtst-cos7-aarch64 ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
+    - libxtst-conda-aarch64 ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

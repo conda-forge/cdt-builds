@@ -1,5 +1,5 @@
 package:
-  name: libxt-devel-cos7-ppc64le
+  name: libxt-devel-conda-ppc64le
   version: 1.1.5
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libxt-cos7-ppc64le ==1.1.5 *_{{ cdt_build_number|int + 1000 }}
+    - libxt-conda-ppc64le ==1.1.5 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libxt-cos7-ppc64le ==1.1.5 *_{{ cdt_build_number|int + 1000 }}
+    - libxt-conda-ppc64le ==1.1.5 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - libxt-cos7-ppc64le ==1.1.5 *_{{ cdt_build_number|int + 1000 }}
+    - libxt-conda-ppc64le ==1.1.5 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

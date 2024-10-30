@@ -1,5 +1,5 @@
 package:
-  name: pango-devel-cos7-ppc64le
+  name: pango-devel-conda-ppc64le
   version: 1.42.4
 
 source:
@@ -25,24 +25,24 @@ build:
 
 requirements:
   build:
-    - cairo-devel-cos7-ppc64le >=1.12.10 *_{{ cdt_build_number|int + 1000 }}
-    - fontconfig-devel-cos7-ppc64le >=2.11.91 *_{{ cdt_build_number|int + 1000 }}
-    - freetype-devel-cos7-ppc64le >=2.1.5 *_{{ cdt_build_number|int + 1000 }}
-    - glib2-devel-cos7-ppc64le >=2.56.1 *_{{ cdt_build_number|int + 1000 }}
-    - pango-cos7-ppc64le ==1.42.4 *_{{ cdt_build_number|int + 1000 }}
+    - cairo-devel-conda-ppc64le >=1.12.10 *_{{ cdt_build_number|int + 1000 }}
+    - fontconfig-devel-conda-ppc64le >=2.11.91 *_{{ cdt_build_number|int + 1000 }}
+    - freetype-devel-conda-ppc64le >=2.1.5 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-devel-conda-ppc64le >=2.56.1 *_{{ cdt_build_number|int + 1000 }}
+    - pango-conda-ppc64le ==1.42.4 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - cairo-devel-cos7-ppc64le >=1.12.10 *_{{ cdt_build_number|int + 1000 }}
-    - fontconfig-devel-cos7-ppc64le >=2.11.91 *_{{ cdt_build_number|int + 1000 }}
-    - freetype-devel-cos7-ppc64le >=2.1.5 *_{{ cdt_build_number|int + 1000 }}
-    - glib2-devel-cos7-ppc64le >=2.56.1 *_{{ cdt_build_number|int + 1000 }}
-    - pango-cos7-ppc64le ==1.42.4 *_{{ cdt_build_number|int + 1000 }}
+    - cairo-devel-conda-ppc64le >=1.12.10 *_{{ cdt_build_number|int + 1000 }}
+    - fontconfig-devel-conda-ppc64le >=2.11.91 *_{{ cdt_build_number|int + 1000 }}
+    - freetype-devel-conda-ppc64le >=2.1.5 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-devel-conda-ppc64le >=2.56.1 *_{{ cdt_build_number|int + 1000 }}
+    - pango-conda-ppc64le ==1.42.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - cairo-devel-cos7-ppc64le >=1.12.10 *_{{ cdt_build_number|int + 1000 }}
-    - fontconfig-devel-cos7-ppc64le >=2.11.91 *_{{ cdt_build_number|int + 1000 }}
-    - freetype-devel-cos7-ppc64le >=2.1.5 *_{{ cdt_build_number|int + 1000 }}
-    - glib2-devel-cos7-ppc64le >=2.56.1 *_{{ cdt_build_number|int + 1000 }}
-    - pango-cos7-ppc64le ==1.42.4 *_{{ cdt_build_number|int + 1000 }}
+    - cairo-devel-conda-ppc64le >=1.12.10 *_{{ cdt_build_number|int + 1000 }}
+    - fontconfig-devel-conda-ppc64le >=2.11.91 *_{{ cdt_build_number|int + 1000 }}
+    - freetype-devel-conda-ppc64le >=2.1.5 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-devel-conda-ppc64le >=2.56.1 *_{{ cdt_build_number|int + 1000 }}
+    - pango-conda-ppc64le ==1.42.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

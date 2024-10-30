@@ -1,5 +1,5 @@
 package:
-  name: pciutils-libs-cos7-aarch64
+  name: pciutils-libs-conda-aarch64
   version: 3.5.1
 
 source:

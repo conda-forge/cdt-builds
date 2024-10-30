@@ -1,5 +1,5 @@
 package:
-  name: libx11-common-cos7-aarch64
+  name: libx11-common-conda-aarch64
   version: 1.6.7
 
 source:

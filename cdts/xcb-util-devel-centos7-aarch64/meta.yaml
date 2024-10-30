@@ -1,5 +1,5 @@
 package:
-  name: xcb-util-devel-cos7-aarch64
+  name: xcb-util-devel-conda-aarch64
   version: 0.4.0
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - xcb-util-cos7-aarch64 ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - xcb-util-conda-aarch64 ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - xcb-util-cos7-aarch64 ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - xcb-util-conda-aarch64 ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - xcb-util-cos7-aarch64 ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - xcb-util-conda-aarch64 ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

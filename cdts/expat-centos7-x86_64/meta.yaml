@@ -1,5 +1,5 @@
 package:
-  name: expat-cos7-x86_64
+  name: expat-conda-x86_64
   version: 2.1.0
 
 source:

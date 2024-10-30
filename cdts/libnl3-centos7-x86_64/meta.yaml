@@ -1,5 +1,5 @@
 package:
-  name: libnl3-cos7-x86_64
+  name: libnl3-conda-x86_64
   version: 3.2.28
 
 source:

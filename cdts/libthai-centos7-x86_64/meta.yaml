@@ -1,5 +1,5 @@
 package:
-  name: libthai-cos7-x86_64
+  name: libthai-conda-x86_64
   version: 0.1.14
 
 source:

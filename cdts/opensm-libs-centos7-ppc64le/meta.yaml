@@ -1,5 +1,5 @@
 package:
-  name: opensm-libs-cos7-ppc64le
+  name: opensm-libs-conda-ppc64le
   version: 3.3.21
 
 source:

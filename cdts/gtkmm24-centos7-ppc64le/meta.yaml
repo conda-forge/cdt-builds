@@ -1,5 +1,5 @@
 package:
-  name: gtkmm24-cos7-ppc64le
+  name: gtkmm24-conda-ppc64le
   version: 2.24.5
 
 source:

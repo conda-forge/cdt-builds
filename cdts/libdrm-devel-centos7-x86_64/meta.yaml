@@ -1,5 +1,5 @@
 package:
-  name: libdrm-devel-cos7-x86_64
+  name: libdrm-devel-conda-x86_64
   version: 2.4.97
 
 source:
@@ -25,15 +25,15 @@ build:
 
 requirements:
   build:
-    - kernel-headers-cos7-x86_64 >=2.6.27 *_{{ cdt_build_number|int + 1000 }}
-    - libdrm-cos7-x86_64 ==2.4.97 *_{{ cdt_build_number|int + 1000 }}
+    - kernel-headers-conda-x86_64 >=2.6.27 *_{{ cdt_build_number|int + 1000 }}
+    - libdrm-conda-x86_64 ==2.4.97 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - kernel-headers-cos7-x86_64 >=2.6.27 *_{{ cdt_build_number|int + 1000 }}
-    - libdrm-cos7-x86_64 ==2.4.97 *_{{ cdt_build_number|int + 1000 }}
+    - kernel-headers-conda-x86_64 >=2.6.27 *_{{ cdt_build_number|int + 1000 }}
+    - libdrm-conda-x86_64 ==2.4.97 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - kernel-headers-cos7-x86_64 >=2.6.27 *_{{ cdt_build_number|int + 1000 }}
-    - libdrm-cos7-x86_64 ==2.4.97 *_{{ cdt_build_number|int + 1000 }}
+    - kernel-headers-conda-x86_64 >=2.6.27 *_{{ cdt_build_number|int + 1000 }}
+    - libdrm-conda-x86_64 ==2.4.97 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

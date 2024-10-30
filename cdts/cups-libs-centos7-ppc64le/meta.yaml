@@ -1,5 +1,5 @@
 package:
-  name: cups-libs-cos7-ppc64le
+  name: cups-libs-conda-ppc64le
   version: 1.6.3
 
 source:

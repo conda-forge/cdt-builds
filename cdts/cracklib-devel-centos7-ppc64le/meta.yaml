@@ -1,5 +1,5 @@
 package:
-  name: cracklib-devel-cos7-ppc64le
+  name: cracklib-devel-conda-ppc64le
   version: 2.9.0
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - cracklib-cos7-ppc64le ==2.9.0 *_{{ cdt_build_number|int + 1000 }}
+    - cracklib-conda-ppc64le ==2.9.0 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - cracklib-cos7-ppc64le ==2.9.0 *_{{ cdt_build_number|int + 1000 }}
+    - cracklib-conda-ppc64le ==2.9.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - cracklib-cos7-ppc64le ==2.9.0 *_{{ cdt_build_number|int + 1000 }}
+    - cracklib-conda-ppc64le ==2.9.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

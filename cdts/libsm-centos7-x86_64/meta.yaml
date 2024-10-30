@@ -1,5 +1,5 @@
 package:
-  name: libsm-cos7-x86_64
+  name: libsm-conda-x86_64
   version: 1.2.2
 
 source:

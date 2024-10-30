@@ -1,5 +1,5 @@
 package:
-  name: pciutils-devel-cos7-ppc64le
+  name: pciutils-devel-conda-ppc64le
   version: 3.5.1
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - pciutils-cos7-ppc64le ==3.5.1 *_{{ cdt_build_number|int + 1000 }}
+    - pciutils-conda-ppc64le ==3.5.1 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - pciutils-cos7-ppc64le ==3.5.1 *_{{ cdt_build_number|int + 1000 }}
+    - pciutils-conda-ppc64le ==3.5.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - pciutils-cos7-ppc64le ==3.5.1 *_{{ cdt_build_number|int + 1000 }}
+    - pciutils-conda-ppc64le ==3.5.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

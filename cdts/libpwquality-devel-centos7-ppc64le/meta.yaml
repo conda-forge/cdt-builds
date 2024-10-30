@@ -1,5 +1,5 @@
 package:
-  name: libpwquality-devel-cos7-ppc64le
+  name: libpwquality-devel-conda-ppc64le
   version: 1.2.3
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libpwquality-cos7-ppc64le ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
+    - libpwquality-conda-ppc64le ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libpwquality-cos7-ppc64le ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
+    - libpwquality-conda-ppc64le ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - libpwquality-cos7-ppc64le ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
+    - libpwquality-conda-ppc64le ==1.2.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

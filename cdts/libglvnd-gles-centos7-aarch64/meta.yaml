@@ -1,5 +1,5 @@
 package:
-  name: libglvnd-gles-cos7-aarch64
+  name: libglvnd-gles-conda-aarch64
   version: 1.0.1
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libglvnd-cos7-aarch64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-conda-aarch64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libglvnd-cos7-aarch64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-conda-aarch64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - libglvnd-cos7-aarch64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-conda-aarch64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 test:
   commands:

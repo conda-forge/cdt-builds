@@ -1,5 +1,5 @@
 package:
-  name: libxcb-cos7-aarch64
+  name: libxcb-conda-aarch64
   version: 1.13
 
 source:

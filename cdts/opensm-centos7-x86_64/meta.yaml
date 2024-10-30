@@ -1,5 +1,5 @@
 package:
-  name: opensm-cos7-x86_64
+  name: opensm-conda-x86_64
   version: 3.3.21
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - opensm-libs-cos7-x86_64 ==3.3.21 *_{{ cdt_build_number|int + 1000 }}
+    - opensm-libs-conda-x86_64 ==3.3.21 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - opensm-libs-cos7-x86_64 ==3.3.21 *_{{ cdt_build_number|int + 1000 }}
+    - opensm-libs-conda-x86_64 ==3.3.21 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - opensm-libs-cos7-x86_64 ==3.3.21 *_{{ cdt_build_number|int + 1000 }}
+    - opensm-libs-conda-x86_64 ==3.3.21 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

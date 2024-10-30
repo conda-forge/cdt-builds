@@ -1,5 +1,5 @@
 package:
-  name: centos-release-cos7-x86_64
+  name: centos-release-conda-x86_64
   version: 7
 
 source:
@@ -34,7 +34,7 @@ test:
     - echo "it installs!"
 
 about:
-  home: centos-release-cos7-x86_64
+  home: centos-release-conda-x86_64
   license: GPL-2.0-only
   license_family: GPL2
   license_file: centos-release-license

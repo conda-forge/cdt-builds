@@ -1,5 +1,5 @@
 package:
-  name: kmod-devel-cos7-ppc64le
+  name: kmod-devel-conda-ppc64le
   version: 20
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - kmod-libs-cos7-ppc64le ==20 *_{{ cdt_build_number|int + 1000 }}
+    - kmod-libs-conda-ppc64le ==20 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - kmod-libs-cos7-ppc64le ==20 *_{{ cdt_build_number|int + 1000 }}
+    - kmod-libs-conda-ppc64le ==20 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - kmod-libs-cos7-ppc64le ==20 *_{{ cdt_build_number|int + 1000 }}
+    - kmod-libs-conda-ppc64le ==20 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

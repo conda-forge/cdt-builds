@@ -1,5 +1,5 @@
 package:
-  name: libxau-devel-cos7-x86_64
+  name: libxau-devel-conda-x86_64
   version: 1.0.8
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libxau-cos7-x86_64 ==1.0.8 *_{{ cdt_build_number|int + 1000 }}
+    - libxau-conda-x86_64 ==1.0.8 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libxau-cos7-x86_64 ==1.0.8 *_{{ cdt_build_number|int + 1000 }}
+    - libxau-conda-x86_64 ==1.0.8 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - libxau-cos7-x86_64 ==1.0.8 *_{{ cdt_build_number|int + 1000 }}
+    - libxau-conda-x86_64 ==1.0.8 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

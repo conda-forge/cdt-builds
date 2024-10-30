@@ -1,5 +1,5 @@
 package:
-  name: p11-kit-cos7-x86_64
+  name: p11-kit-conda-x86_64
   version: 0.23.5
 
 source:

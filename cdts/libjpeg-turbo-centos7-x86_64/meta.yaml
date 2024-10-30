@@ -1,5 +1,5 @@
 package:
-  name: libjpeg-turbo-cos7-x86_64
+  name: libjpeg-turbo-conda-x86_64
   version: 1.2.90
 
 source:

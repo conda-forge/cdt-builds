@@ -1,5 +1,5 @@
 package:
-  name: audit-libs-cos7-x86_64
+  name: audit-libs-conda-x86_64
   version: 2.8.5
 
 source:

@@ -1,5 +1,5 @@
 package:
-  name: libxml2-devel-cos7-ppc64le
+  name: libxml2-devel-conda-ppc64le
   version: 2.9.1
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libxml2-cos7-ppc64le ==2.9.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxml2-conda-ppc64le ==2.9.1 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libxml2-cos7-ppc64le ==2.9.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxml2-conda-ppc64le ==2.9.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - libxml2-cos7-ppc64le ==2.9.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxml2-conda-ppc64le ==2.9.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

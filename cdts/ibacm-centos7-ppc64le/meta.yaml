@@ -1,5 +1,5 @@
 package:
-  name: ibacm-cos7-ppc64le
+  name: ibacm-conda-ppc64le
   version: 22.4
 
 source:
@@ -25,18 +25,18 @@ build:
 
 requirements:
   build:
-    - libibumad-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
-    - libibverbs-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
-    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibumad-conda-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-conda-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-conda-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libibumad-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
-    - libibverbs-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
-    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibumad-conda-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-conda-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-conda-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - libibumad-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
-    - libibverbs-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
-    - rdma-core-cos7-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibumad-conda-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-conda-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-conda-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

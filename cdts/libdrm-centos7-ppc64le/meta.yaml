@@ -1,5 +1,5 @@
 package:
-  name: libdrm-cos7-ppc64le
+  name: libdrm-conda-ppc64le
   version: 2.4.97
 
 source:

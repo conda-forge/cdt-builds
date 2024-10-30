@@ -1,5 +1,5 @@
 package:
-  name: libxcomposite-cos7-x86_64
+  name: libxcomposite-conda-x86_64
   version: 0.4.4
 
 source:

@@ -1,5 +1,5 @@
 package:
-  name: at-spi-devel-cos7-x86_64
+  name: at-spi-devel-conda-x86_64
   version: 1.32.0
 
 source:
@@ -25,24 +25,24 @@ build:
 
 requirements:
   build:
-    - orbit2-devel-cos7-x86_64 >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
-    - at-spi-cos7-x86_64 ==1.32.0 *_{{ cdt_build_number|int + 1000 }}
-    - atk-devel-cos7-x86_64 >=1.29.2 *_{{ cdt_build_number|int + 1000 }}
-    - gtk2-devel-cos7-x86_64 >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
-    - libbonobo-devel-cos7-x86_64 >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - orbit2-devel-conda-x86_64 >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
+    - at-spi-conda-x86_64 ==1.32.0 *_{{ cdt_build_number|int + 1000 }}
+    - atk-devel-conda-x86_64 >=1.29.2 *_{{ cdt_build_number|int + 1000 }}
+    - gtk2-devel-conda-x86_64 >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
+    - libbonobo-devel-conda-x86_64 >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - orbit2-devel-cos7-x86_64 >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
-    - at-spi-cos7-x86_64 ==1.32.0 *_{{ cdt_build_number|int + 1000 }}
-    - atk-devel-cos7-x86_64 >=1.29.2 *_{{ cdt_build_number|int + 1000 }}
-    - gtk2-devel-cos7-x86_64 >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
-    - libbonobo-devel-cos7-x86_64 >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - orbit2-devel-conda-x86_64 >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
+    - at-spi-conda-x86_64 ==1.32.0 *_{{ cdt_build_number|int + 1000 }}
+    - atk-devel-conda-x86_64 >=1.29.2 *_{{ cdt_build_number|int + 1000 }}
+    - gtk2-devel-conda-x86_64 >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
+    - libbonobo-devel-conda-x86_64 >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - orbit2-devel-cos7-x86_64 >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
-    - at-spi-cos7-x86_64 ==1.32.0 *_{{ cdt_build_number|int + 1000 }}
-    - atk-devel-cos7-x86_64 >=1.29.2 *_{{ cdt_build_number|int + 1000 }}
-    - gtk2-devel-cos7-x86_64 >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
-    - libbonobo-devel-cos7-x86_64 >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - orbit2-devel-conda-x86_64 >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
+    - at-spi-conda-x86_64 ==1.32.0 *_{{ cdt_build_number|int + 1000 }}
+    - atk-devel-conda-x86_64 >=1.29.2 *_{{ cdt_build_number|int + 1000 }}
+    - gtk2-devel-conda-x86_64 >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
+    - libbonobo-devel-conda-x86_64 >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 test:
   commands:

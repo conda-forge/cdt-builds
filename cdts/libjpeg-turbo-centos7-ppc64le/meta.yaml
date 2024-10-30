@@ -1,5 +1,5 @@
 package:
-  name: libjpeg-turbo-cos7-ppc64le
+  name: libjpeg-turbo-conda-ppc64le
   version: 1.2.90
 
 source:

@@ -1,5 +1,5 @@
 package:
-  name: xorg-x11-util-macros-cos7-aarch64
+  name: xorg-x11-util-macros-conda-aarch64
   version: 1.19.0
 
 source:

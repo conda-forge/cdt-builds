@@ -1,5 +1,5 @@
 package:
-  name: chkconfig-cos7-ppc64le
+  name: chkconfig-conda-ppc64le
   version: 1.7.6
 
 source:

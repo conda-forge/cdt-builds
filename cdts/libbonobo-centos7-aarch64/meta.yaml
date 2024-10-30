@@ -1,5 +1,5 @@
 package:
-  name: libbonobo-cos7-aarch64
+  name: libbonobo-conda-aarch64
   version: 2.32.1
 
 source:

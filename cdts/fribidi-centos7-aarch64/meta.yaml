@@ -1,5 +1,5 @@
 package:
-  name: fribidi-cos7-aarch64
+  name: fribidi-conda-aarch64
   version: 1.0.2
 
 source:

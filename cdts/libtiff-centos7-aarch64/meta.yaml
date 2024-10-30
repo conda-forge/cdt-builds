@@ -1,5 +1,5 @@
 package:
-  name: libtiff-cos7-aarch64
+  name: libtiff-conda-aarch64
   version: 4.0.3
 
 source:

@@ -1,5 +1,5 @@
 package:
-  name: systemd-cos7-ppc64le
+  name: systemd-conda-ppc64le
   version: 219
 
 source:
@@ -25,18 +25,18 @@ build:
 
 requirements:
   build:
-    - kmod-cos7-ppc64le >=18 *_{{ cdt_build_number|int + 1000 }}
-    - centos-release-cos7-ppc64le >=7 *_{{ cdt_build_number|int + 1000 }}
-    - systemd-libs-cos7-ppc64le ==219 *_{{ cdt_build_number|int + 1000 }}
+    - kmod-conda-ppc64le >=18 *_{{ cdt_build_number|int + 1000 }}
+    - centos-release-conda-ppc64le >=7 *_{{ cdt_build_number|int + 1000 }}
+    - systemd-libs-conda-ppc64le ==219 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - kmod-cos7-ppc64le >=18 *_{{ cdt_build_number|int + 1000 }}
-    - centos-release-cos7-ppc64le >=7 *_{{ cdt_build_number|int + 1000 }}
-    - systemd-libs-cos7-ppc64le ==219 *_{{ cdt_build_number|int + 1000 }}
+    - kmod-conda-ppc64le >=18 *_{{ cdt_build_number|int + 1000 }}
+    - centos-release-conda-ppc64le >=7 *_{{ cdt_build_number|int + 1000 }}
+    - systemd-libs-conda-ppc64le ==219 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - kmod-cos7-ppc64le >=18 *_{{ cdt_build_number|int + 1000 }}
-    - centos-release-cos7-ppc64le >=7 *_{{ cdt_build_number|int + 1000 }}
-    - systemd-libs-cos7-ppc64le ==219 *_{{ cdt_build_number|int + 1000 }}
+    - kmod-conda-ppc64le >=18 *_{{ cdt_build_number|int + 1000 }}
+    - centos-release-conda-ppc64le >=7 *_{{ cdt_build_number|int + 1000 }}
+    - systemd-libs-conda-ppc64le ==219 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 test:
   commands:

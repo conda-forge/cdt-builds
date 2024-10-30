@@ -1,5 +1,5 @@
 package:
-  name: nspr-cos7-x86_64
+  name: nspr-conda-x86_64
   version: 4.21.0
 
 source:

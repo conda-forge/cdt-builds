@@ -1,5 +1,5 @@
 package:
-  name: libsepol-cos7-aarch64
+  name: libsepol-conda-aarch64
   version: 2.5
 
 source:

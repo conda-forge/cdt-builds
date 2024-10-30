@@ -1,5 +1,5 @@
 package:
-  name: libsm-cos7-aarch64
+  name: libsm-conda-aarch64
   version: 1.2.2
 
 source:

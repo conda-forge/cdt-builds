@@ -1,5 +1,5 @@
 package:
-  name: libxkbcommon-cos7-ppc64le
+  name: libxkbcommon-conda-ppc64le
   version: 0.7.1
 
 source:

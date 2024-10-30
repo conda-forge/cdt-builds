@@ -1,5 +1,5 @@
 package:
-  name: cairo-cos7-aarch64
+  name: cairo-conda-aarch64
   version: 1.15.12
 
 source:

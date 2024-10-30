@@ -1,5 +1,5 @@
 package:
-  name: libice-devel-cos7-ppc64le
+  name: libice-devel-conda-ppc64le
   version: 1.0.9
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libice-cos7-ppc64le ==1.0.9 *_{{ cdt_build_number|int + 1000 }}
+    - libice-conda-ppc64le ==1.0.9 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libice-cos7-ppc64le ==1.0.9 *_{{ cdt_build_number|int + 1000 }}
+    - libice-conda-ppc64le ==1.0.9 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - libice-cos7-ppc64le ==1.0.9 *_{{ cdt_build_number|int + 1000 }}
+    - libice-conda-ppc64le ==1.0.9 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

@@ -1,5 +1,5 @@
 package:
-  name: libxrender-devel-cos7-x86_64
+  name: libxrender-devel-conda-x86_64
   version: 0.9.10
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libxrender-cos7-x86_64 ==0.9.10 *_{{ cdt_build_number|int + 1000 }}
+    - libxrender-conda-x86_64 ==0.9.10 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libxrender-cos7-x86_64 ==0.9.10 *_{{ cdt_build_number|int + 1000 }}
+    - libxrender-conda-x86_64 ==0.9.10 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - libxrender-cos7-x86_64 ==0.9.10 *_{{ cdt_build_number|int + 1000 }}
+    - libxrender-conda-x86_64 ==0.9.10 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

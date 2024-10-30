@@ -1,5 +1,5 @@
 package:
-  name: copy-jdk-configs-cos7-x86_64
+  name: copy-jdk-configs-conda-x86_64
   version: 3.3
 
 source:

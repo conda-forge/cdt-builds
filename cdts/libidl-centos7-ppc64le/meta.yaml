@@ -1,5 +1,5 @@
 package:
-  name: libidl-cos7-ppc64le
+  name: libidl-conda-ppc64le
   version: 0.8.14
 
 source:

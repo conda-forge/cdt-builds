@@ -1,5 +1,5 @@
 package:
-  name: systemd-libs-cos7-ppc64le
+  name: systemd-libs-conda-ppc64le
   version: 219
 
 source:

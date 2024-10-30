@@ -1,5 +1,5 @@
 package:
-  name: xorg-x11-server-xvfb-cos7-aarch64
+  name: xorg-x11-server-xvfb-conda-aarch64
   version: 1.20.4
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - xorg-x11-server-common-cos7-aarch64 >=1.20.4 *_{{ cdt_build_number|int + 1000 }}
+    - xorg-x11-server-common-conda-aarch64 >=1.20.4 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - xorg-x11-server-common-cos7-aarch64 >=1.20.4 *_{{ cdt_build_number|int + 1000 }}
+    - xorg-x11-server-common-conda-aarch64 >=1.20.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - xorg-x11-server-common-cos7-aarch64 >=1.20.4 *_{{ cdt_build_number|int + 1000 }}
+    - xorg-x11-server-common-conda-aarch64 >=1.20.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

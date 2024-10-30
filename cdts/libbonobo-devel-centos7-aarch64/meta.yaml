@@ -1,5 +1,5 @@
 package:
-  name: libbonobo-devel-cos7-aarch64
+  name: libbonobo-devel-conda-aarch64
   version: 2.32.1
 
 source:
@@ -25,18 +25,18 @@ build:
 
 requirements:
   build:
-    - orbit2-devel-cos7-aarch64 >=2.7.5 *_{{ cdt_build_number|int + 1000 }}
-    - libbonobo-cos7-aarch64 ==2.32.1 *_{{ cdt_build_number|int + 1000 }}
-    - libxml2-devel-cos7-aarch64 >=2.4.21 *_{{ cdt_build_number|int + 1000 }}
+    - orbit2-devel-conda-aarch64 >=2.7.5 *_{{ cdt_build_number|int + 1000 }}
+    - libbonobo-conda-aarch64 ==2.32.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxml2-devel-conda-aarch64 >=2.4.21 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - orbit2-devel-cos7-aarch64 >=2.7.5 *_{{ cdt_build_number|int + 1000 }}
-    - libbonobo-cos7-aarch64 ==2.32.1 *_{{ cdt_build_number|int + 1000 }}
-    - libxml2-devel-cos7-aarch64 >=2.4.21 *_{{ cdt_build_number|int + 1000 }}
+    - orbit2-devel-conda-aarch64 >=2.7.5 *_{{ cdt_build_number|int + 1000 }}
+    - libbonobo-conda-aarch64 ==2.32.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxml2-devel-conda-aarch64 >=2.4.21 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - orbit2-devel-cos7-aarch64 >=2.7.5 *_{{ cdt_build_number|int + 1000 }}
-    - libbonobo-cos7-aarch64 ==2.32.1 *_{{ cdt_build_number|int + 1000 }}
-    - libxml2-devel-cos7-aarch64 >=2.4.21 *_{{ cdt_build_number|int + 1000 }}
+    - orbit2-devel-conda-aarch64 >=2.7.5 *_{{ cdt_build_number|int + 1000 }}
+    - libbonobo-conda-aarch64 ==2.32.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxml2-devel-conda-aarch64 >=2.4.21 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

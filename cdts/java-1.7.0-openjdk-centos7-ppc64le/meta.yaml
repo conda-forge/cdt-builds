@@ -1,5 +1,5 @@
 package:
-  name: java-1.7.0-openjdk-cos7-ppc64le
+  name: java-1.7.0-openjdk-conda-ppc64le
   version: 1.7.0.261
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - java-1.7.0-openjdk-headless-cos7-ppc64le ==1.7.0.261 *_{{ cdt_build_number|int + 1000 }}
+    - java-1.7.0-openjdk-headless-conda-ppc64le ==1.7.0.261 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - java-1.7.0-openjdk-headless-cos7-ppc64le ==1.7.0.261 *_{{ cdt_build_number|int + 1000 }}
+    - java-1.7.0-openjdk-headless-conda-ppc64le ==1.7.0.261 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - java-1.7.0-openjdk-headless-cos7-ppc64le ==1.7.0.261 *_{{ cdt_build_number|int + 1000 }}
+    - java-1.7.0-openjdk-headless-conda-ppc64le ==1.7.0.261 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

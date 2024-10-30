@@ -1,5 +1,5 @@
 package:
-  name: libdrm-cos7-x86_64
+  name: libdrm-conda-x86_64
   version: 2.4.97
 
 source:

@@ -1,5 +1,5 @@
 package:
-  name: libxfixes-devel-cos7-aarch64
+  name: libxfixes-devel-conda-aarch64
   version: 5.0.3
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libxfixes-cos7-aarch64 ==5.0.3 *_{{ cdt_build_number|int + 1000 }}
+    - libxfixes-conda-aarch64 ==5.0.3 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libxfixes-cos7-aarch64 ==5.0.3 *_{{ cdt_build_number|int + 1000 }}
+    - libxfixes-conda-aarch64 ==5.0.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - libxfixes-cos7-aarch64 ==5.0.3 *_{{ cdt_build_number|int + 1000 }}
+    - libxfixes-conda-aarch64 ==5.0.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

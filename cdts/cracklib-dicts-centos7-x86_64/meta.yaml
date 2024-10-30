@@ -1,5 +1,5 @@
 package:
-  name: cracklib-dicts-cos7-x86_64
+  name: cracklib-dicts-conda-x86_64
   version: 2.9.0
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - cracklib-cos7-x86_64 ==2.9.0 *_{{ cdt_build_number|int + 1000 }}
+    - cracklib-conda-x86_64 ==2.9.0 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - cracklib-cos7-x86_64 ==2.9.0 *_{{ cdt_build_number|int + 1000 }}
+    - cracklib-conda-x86_64 ==2.9.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - cracklib-cos7-x86_64 ==2.9.0 *_{{ cdt_build_number|int + 1000 }}
+    - cracklib-conda-x86_64 ==2.9.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

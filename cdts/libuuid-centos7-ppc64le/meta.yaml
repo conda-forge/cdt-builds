@@ -1,5 +1,5 @@
 package:
-  name: libuuid-cos7-ppc64le
+  name: libuuid-conda-ppc64le
   version: 2.23.2
 
 source:

@@ -1,5 +1,5 @@
 package:
-  name: cups-devel-cos7-ppc64le
+  name: cups-devel-conda-ppc64le
   version: 1.6.3
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - cups-libs-cos7-ppc64le ==1.6.3 *_{{ cdt_build_number|int + 1000 }}
+    - cups-libs-conda-ppc64le ==1.6.3 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - cups-libs-cos7-ppc64le ==1.6.3 *_{{ cdt_build_number|int + 1000 }}
+    - cups-libs-conda-ppc64le ==1.6.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - cups-libs-cos7-ppc64le ==1.6.3 *_{{ cdt_build_number|int + 1000 }}
+    - cups-libs-conda-ppc64le ==1.6.3 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

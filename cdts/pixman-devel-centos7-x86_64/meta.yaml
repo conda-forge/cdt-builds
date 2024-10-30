@@ -1,5 +1,5 @@
 package:
-  name: pixman-devel-cos7-x86_64
+  name: pixman-devel-conda-x86_64
   version: 0.34.0
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - pixman-cos7-x86_64 ==0.34.0 *_{{ cdt_build_number|int + 1000 }}
+    - pixman-conda-x86_64 ==0.34.0 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - pixman-cos7-x86_64 ==0.34.0 *_{{ cdt_build_number|int + 1000 }}
+    - pixman-conda-x86_64 ==0.34.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - pixman-cos7-x86_64 ==0.34.0 *_{{ cdt_build_number|int + 1000 }}
+    - pixman-conda-x86_64 ==0.34.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

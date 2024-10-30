@@ -1,5 +1,5 @@
 package:
-  name: libidl-cos7-x86_64
+  name: libidl-conda-x86_64
   version: 0.8.14
 
 source:

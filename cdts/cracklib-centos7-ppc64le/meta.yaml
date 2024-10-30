@@ -1,5 +1,5 @@
 package:
-  name: cracklib-cos7-ppc64le
+  name: cracklib-conda-ppc64le
   version: 2.9.0
 
 source:

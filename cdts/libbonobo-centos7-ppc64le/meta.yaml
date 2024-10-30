@@ -1,5 +1,5 @@
 package:
-  name: libbonobo-cos7-ppc64le
+  name: libbonobo-conda-ppc64le
   version: 2.32.1
 
 source:

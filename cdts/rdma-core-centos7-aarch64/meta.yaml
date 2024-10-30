@@ -1,5 +1,5 @@
 package:
-  name: rdma-core-cos7-aarch64
+  name: rdma-core-conda-aarch64
   version: 22.4
 
 source:

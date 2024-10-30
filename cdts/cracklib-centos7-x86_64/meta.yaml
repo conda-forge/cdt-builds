@@ -1,5 +1,5 @@
 package:
-  name: cracklib-cos7-x86_64
+  name: cracklib-conda-x86_64
   version: 2.9.0
 
 source:

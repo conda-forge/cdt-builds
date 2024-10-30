@@ -1,5 +1,5 @@
 package:
-  name: atk-cos7-aarch64
+  name: atk-conda-aarch64
   version: 2.28.1
 
 source:

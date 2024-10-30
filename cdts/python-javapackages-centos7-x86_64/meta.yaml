@@ -1,5 +1,5 @@
 package:
-  name: python-javapackages-cos7-x86_64
+  name: python-javapackages-conda-x86_64
   version: 3.4.1
 
 source:

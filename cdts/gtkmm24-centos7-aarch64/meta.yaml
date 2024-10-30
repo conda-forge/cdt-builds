@@ -1,5 +1,5 @@
 package:
-  name: gtkmm24-cos7-aarch64
+  name: gtkmm24-conda-aarch64
   version: 2.24.5
 
 source:

@@ -1,5 +1,5 @@
 package:
-  name: libselinux-devel-cos7-ppc64le
+  name: libselinux-devel-conda-ppc64le
   version: 2.5
 
 source:
@@ -25,15 +25,15 @@ build:
 
 requirements:
   build:
-    - libselinux-cos7-ppc64le ==2.5 *_{{ cdt_build_number|int + 1000 }}
-    - libsepol-devel-cos7-ppc64le >=2.5 *_{{ cdt_build_number|int + 1000 }}
+    - libselinux-conda-ppc64le ==2.5 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-devel-conda-ppc64le >=2.5 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libselinux-cos7-ppc64le ==2.5 *_{{ cdt_build_number|int + 1000 }}
-    - libsepol-devel-cos7-ppc64le >=2.5 *_{{ cdt_build_number|int + 1000 }}
+    - libselinux-conda-ppc64le ==2.5 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-devel-conda-ppc64le >=2.5 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - libselinux-cos7-ppc64le ==2.5 *_{{ cdt_build_number|int + 1000 }}
-    - libsepol-devel-cos7-ppc64le >=2.5 *_{{ cdt_build_number|int + 1000 }}
+    - libselinux-conda-ppc64le ==2.5 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-devel-conda-ppc64le >=2.5 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

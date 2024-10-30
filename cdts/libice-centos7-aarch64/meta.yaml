@@ -1,5 +1,5 @@
 package:
-  name: libice-cos7-aarch64
+  name: libice-conda-aarch64
   version: 1.0.9
 
 source:

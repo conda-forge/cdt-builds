@@ -1,5 +1,5 @@
 package:
-  name: libsoup-cos7-x86_64
+  name: libsoup-conda-x86_64
   version: 2.62.2
 
 source:
@@ -25,15 +25,15 @@ build:
 
 requirements:
   build:
-    - glib-networking-cos7-x86_64 >=2.38.0 *_{{ cdt_build_number|int + 1000 }}
-    - glib2-cos7-x86_64 >=2.38.0 *_{{ cdt_build_number|int + 1000 }}
+    - glib-networking-conda-x86_64 >=2.38.0 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-conda-x86_64 >=2.38.0 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - glib-networking-cos7-x86_64 >=2.38.0 *_{{ cdt_build_number|int + 1000 }}
-    - glib2-cos7-x86_64 >=2.38.0 *_{{ cdt_build_number|int + 1000 }}
+    - glib-networking-conda-x86_64 >=2.38.0 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-conda-x86_64 >=2.38.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - glib-networking-cos7-x86_64 >=2.38.0 *_{{ cdt_build_number|int + 1000 }}
-    - glib2-cos7-x86_64 >=2.38.0 *_{{ cdt_build_number|int + 1000 }}
+    - glib-networking-conda-x86_64 >=2.38.0 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-conda-x86_64 >=2.38.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

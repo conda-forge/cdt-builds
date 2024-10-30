@@ -1,5 +1,5 @@
 package:
-  name: mesa-libglapi-cos7-aarch64
+  name: mesa-libglapi-conda-aarch64
   version: 18.3.4
 
 source:

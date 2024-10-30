@@ -1,5 +1,5 @@
 package:
-  name: libdrm-cos7-aarch64
+  name: libdrm-conda-aarch64
   version: 2.4.97
 
 source:

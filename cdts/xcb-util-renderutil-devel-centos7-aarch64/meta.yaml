@@ -1,5 +1,5 @@
 package:
-  name: xcb-util-renderutil-devel-cos7-aarch64
+  name: xcb-util-renderutil-devel-conda-aarch64
   version: 0.3.9
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - xcb-util-renderutil-cos7-aarch64 ==0.3.9 *_{{ cdt_build_number|int + 1000 }}
+    - xcb-util-renderutil-conda-aarch64 ==0.3.9 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - xcb-util-renderutil-cos7-aarch64 ==0.3.9 *_{{ cdt_build_number|int + 1000 }}
+    - xcb-util-renderutil-conda-aarch64 ==0.3.9 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - xcb-util-renderutil-cos7-aarch64 ==0.3.9 *_{{ cdt_build_number|int + 1000 }}
+    - xcb-util-renderutil-conda-aarch64 ==0.3.9 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

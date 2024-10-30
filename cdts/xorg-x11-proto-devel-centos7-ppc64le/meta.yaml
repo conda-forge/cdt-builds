@@ -1,5 +1,5 @@
 package:
-  name: xorg-x11-proto-devel-cos7-ppc64le
+  name: xorg-x11-proto-devel-conda-ppc64le
   version: 2018.4
 
 source:

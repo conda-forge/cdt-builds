@@ -1,5 +1,5 @@
 package:
-  name: libice-cos7-ppc64le
+  name: libice-conda-ppc64le
   version: 1.0.9
 
 source:

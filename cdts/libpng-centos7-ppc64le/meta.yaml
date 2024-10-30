@@ -1,5 +1,5 @@
 package:
-  name: libpng-cos7-ppc64le
+  name: libpng-conda-ppc64le
   version: 1.5.13
 
 source:

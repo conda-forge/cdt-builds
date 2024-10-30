@@ -1,5 +1,5 @@
 package:
-  name: xorg-x11-proto-devel-cos7-x86_64
+  name: xorg-x11-proto-devel-conda-x86_64
   version: 2018.4
 
 source:

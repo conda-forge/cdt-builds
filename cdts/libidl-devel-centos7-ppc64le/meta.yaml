@@ -1,5 +1,5 @@
 package:
-  name: libidl-devel-cos7-ppc64le
+  name: libidl-devel-conda-ppc64le
   version: 0.8.14
 
 source:
@@ -25,18 +25,18 @@ build:
 
 requirements:
   build:
-    - glib2-devel-cos7-ppc64le >=2.0 *_{{ cdt_build_number|int + 1000 }}
-    - libidl-cos7-ppc64le ==0.8.14 *_{{ cdt_build_number|int + 1000 }}
-    - pkgconfig-cos7-ppc64le >=0.8 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-devel-conda-ppc64le >=2.0 *_{{ cdt_build_number|int + 1000 }}
+    - libidl-conda-ppc64le ==0.8.14 *_{{ cdt_build_number|int + 1000 }}
+    - pkgconfig-conda-ppc64le >=0.8 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - glib2-devel-cos7-ppc64le >=2.0 *_{{ cdt_build_number|int + 1000 }}
-    - libidl-cos7-ppc64le ==0.8.14 *_{{ cdt_build_number|int + 1000 }}
-    - pkgconfig-cos7-ppc64le >=0.8 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-devel-conda-ppc64le >=2.0 *_{{ cdt_build_number|int + 1000 }}
+    - libidl-conda-ppc64le ==0.8.14 *_{{ cdt_build_number|int + 1000 }}
+    - pkgconfig-conda-ppc64le >=0.8 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - glib2-devel-cos7-ppc64le >=2.0 *_{{ cdt_build_number|int + 1000 }}
-    - libidl-cos7-ppc64le ==0.8.14 *_{{ cdt_build_number|int + 1000 }}
-    - pkgconfig-cos7-ppc64le >=0.8 *_{{ cdt_build_number|int + 1000 }}
+    - glib2-devel-conda-ppc64le >=2.0 *_{{ cdt_build_number|int + 1000 }}
+    - libidl-conda-ppc64le ==0.8.14 *_{{ cdt_build_number|int + 1000 }}
+    - pkgconfig-conda-ppc64le >=0.8 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

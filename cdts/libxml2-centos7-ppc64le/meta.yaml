@@ -1,5 +1,5 @@
 package:
-  name: libxml2-cos7-ppc64le
+  name: libxml2-conda-ppc64le
   version: 2.9.1
 
 source:

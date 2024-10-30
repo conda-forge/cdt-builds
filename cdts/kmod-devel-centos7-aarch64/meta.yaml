@@ -1,5 +1,5 @@
 package:
-  name: kmod-devel-cos7-aarch64
+  name: kmod-devel-conda-aarch64
   version: 20
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - kmod-libs-cos7-aarch64 ==20 *_{{ cdt_build_number|int + 1000 }}
+    - kmod-libs-conda-aarch64 ==20 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - kmod-libs-cos7-aarch64 ==20 *_{{ cdt_build_number|int + 1000 }}
+    - kmod-libs-conda-aarch64 ==20 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - kmod-libs-cos7-aarch64 ==20 *_{{ cdt_build_number|int + 1000 }}
+    - kmod-libs-conda-aarch64 ==20 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

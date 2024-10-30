@@ -1,5 +1,5 @@
 package:
-  name: libxcomposite-devel-cos7-ppc64le
+  name: libxcomposite-devel-conda-ppc64le
   version: 0.4.4
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libxcomposite-cos7-ppc64le ==0.4.4 *_{{ cdt_build_number|int + 1000 }}
+    - libxcomposite-conda-ppc64le ==0.4.4 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libxcomposite-cos7-ppc64le ==0.4.4 *_{{ cdt_build_number|int + 1000 }}
+    - libxcomposite-conda-ppc64le ==0.4.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - libxcomposite-cos7-ppc64le ==0.4.4 *_{{ cdt_build_number|int + 1000 }}
+    - libxcomposite-conda-ppc64le ==0.4.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

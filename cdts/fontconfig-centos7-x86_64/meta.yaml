@@ -1,5 +1,5 @@
 package:
-  name: fontconfig-cos7-x86_64
+  name: fontconfig-conda-x86_64
   version: 2.13.0
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - freetype-cos7-x86_64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
+    - freetype-conda-x86_64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - freetype-cos7-x86_64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
+    - freetype-conda-x86_64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - freetype-cos7-x86_64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
+    - freetype-conda-x86_64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

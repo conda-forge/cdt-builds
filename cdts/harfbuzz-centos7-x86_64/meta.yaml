@@ -1,5 +1,5 @@
 package:
-  name: harfbuzz-cos7-x86_64
+  name: harfbuzz-conda-x86_64
   version: 1.7.5
 
 source:

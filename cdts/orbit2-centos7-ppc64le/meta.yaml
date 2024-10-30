@@ -1,5 +1,5 @@
 package:
-  name: orbit2-cos7-ppc64le
+  name: orbit2-conda-ppc64le
   version: 2.14.19
 
 source:

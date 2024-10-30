@@ -1,5 +1,5 @@
 package:
-  name: libxml2-cos7-aarch64
+  name: libxml2-conda-aarch64
   version: 2.9.1
 
 source:

@@ -1,5 +1,5 @@
 package:
-  name: cairo-devel-cos7-aarch64
+  name: cairo-devel-conda-aarch64
   version: 1.15.12
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - cairo-cos7-aarch64 ==1.15.12 *_{{ cdt_build_number|int + 1000 }}
+    - cairo-conda-aarch64 ==1.15.12 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - cairo-cos7-aarch64 ==1.15.12 *_{{ cdt_build_number|int + 1000 }}
+    - cairo-conda-aarch64 ==1.15.12 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - cairo-cos7-aarch64 ==1.15.12 *_{{ cdt_build_number|int + 1000 }}
+    - cairo-conda-aarch64 ==1.15.12 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

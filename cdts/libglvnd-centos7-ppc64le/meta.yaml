@@ -1,5 +1,5 @@
 package:
-  name: libglvnd-cos7-ppc64le
+  name: libglvnd-conda-ppc64le
   version: 1.0.1
 
 source:

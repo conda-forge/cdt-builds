@@ -1,5 +1,5 @@
 package:
-  name: java-1.7.0-openjdk-cos7-aarch64
+  name: java-1.7.0-openjdk-conda-aarch64
   version: 1.7.0.261
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - java-1.7.0-openjdk-headless-cos7-aarch64 ==1.7.0.261 *_{{ cdt_build_number|int + 1000 }}
+    - java-1.7.0-openjdk-headless-conda-aarch64 ==1.7.0.261 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - java-1.7.0-openjdk-headless-cos7-aarch64 ==1.7.0.261 *_{{ cdt_build_number|int + 1000 }}
+    - java-1.7.0-openjdk-headless-conda-aarch64 ==1.7.0.261 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - java-1.7.0-openjdk-headless-cos7-aarch64 ==1.7.0.261 *_{{ cdt_build_number|int + 1000 }}
+    - java-1.7.0-openjdk-headless-conda-aarch64 ==1.7.0.261 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

@@ -1,5 +1,5 @@
 package:
-  name: javapackages-tools-cos7-aarch64
+  name: javapackages-tools-conda-aarch64
   version: 3.4.1
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - python-javapackages-cos7-aarch64 ==3.4.1 *_{{ cdt_build_number|int + 1000 }}
+    - python-javapackages-conda-aarch64 ==3.4.1 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - python-javapackages-cos7-aarch64 ==3.4.1 *_{{ cdt_build_number|int + 1000 }}
+    - python-javapackages-conda-aarch64 ==3.4.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - python-javapackages-cos7-aarch64 ==3.4.1 *_{{ cdt_build_number|int + 1000 }}
+    - python-javapackages-conda-aarch64 ==3.4.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

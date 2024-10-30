@@ -1,5 +1,5 @@
 package:
-  name: libthai-cos7-ppc64le
+  name: libthai-conda-ppc64le
   version: 0.1.14
 
 source:

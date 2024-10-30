@@ -1,5 +1,5 @@
 package:
-  name: libxi-devel-cos7-x86_64
+  name: libxi-devel-conda-x86_64
   version: 1.7.9
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libxi-cos7-x86_64 ==1.7.9 *_{{ cdt_build_number|int + 1000 }}
+    - libxi-conda-x86_64 ==1.7.9 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libxi-cos7-x86_64 ==1.7.9 *_{{ cdt_build_number|int + 1000 }}
+    - libxi-conda-x86_64 ==1.7.9 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - libxi-cos7-x86_64 ==1.7.9 *_{{ cdt_build_number|int + 1000 }}
+    - libxi-conda-x86_64 ==1.7.9 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

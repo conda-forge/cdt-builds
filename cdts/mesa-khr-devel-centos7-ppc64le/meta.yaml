@@ -1,5 +1,5 @@
 package:
-  name: mesa-khr-devel-cos7-ppc64le
+  name: mesa-khr-devel-conda-ppc64le
   version: 18.3.4
 
 source:

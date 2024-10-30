@@ -1,5 +1,5 @@
 package:
-  name: libpng-devel-cos7-x86_64
+  name: libpng-devel-conda-x86_64
   version: 1.5.13
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libpng-cos7-x86_64 ==1.5.13 *_{{ cdt_build_number|int + 1000 }}
+    - libpng-conda-x86_64 ==1.5.13 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libpng-cos7-x86_64 ==1.5.13 *_{{ cdt_build_number|int + 1000 }}
+    - libpng-conda-x86_64 ==1.5.13 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - libpng-cos7-x86_64 ==1.5.13 *_{{ cdt_build_number|int + 1000 }}
+    - libpng-conda-x86_64 ==1.5.13 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

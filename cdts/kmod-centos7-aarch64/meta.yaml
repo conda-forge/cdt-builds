@@ -1,5 +1,5 @@
 package:
-  name: kmod-cos7-aarch64
+  name: kmod-conda-aarch64
   version: 20
 
 source:

@@ -1,5 +1,5 @@
 package:
-  name: pkgconfig-cos7-aarch64
+  name: pkgconfig-conda-aarch64
   version: 0.27.1
 
 source:

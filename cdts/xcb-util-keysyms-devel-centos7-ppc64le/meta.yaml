@@ -1,5 +1,5 @@
 package:
-  name: xcb-util-keysyms-devel-cos7-ppc64le
+  name: xcb-util-keysyms-devel-conda-ppc64le
   version: 0.4.0
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - xcb-util-keysyms-cos7-ppc64le ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - xcb-util-keysyms-conda-ppc64le ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - xcb-util-keysyms-cos7-ppc64le ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - xcb-util-keysyms-conda-ppc64le ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - xcb-util-keysyms-cos7-ppc64le ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - xcb-util-keysyms-conda-ppc64le ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

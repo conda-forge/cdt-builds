@@ -1,5 +1,5 @@
 package:
-  name: audit-libs-devel-cos7-ppc64le
+  name: audit-libs-devel-conda-ppc64le
   version: 2.8.5
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - audit-libs-cos7-ppc64le ==2.8.5 *_{{ cdt_build_number|int + 1000 }}
+    - audit-libs-conda-ppc64le ==2.8.5 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - audit-libs-cos7-ppc64le ==2.8.5 *_{{ cdt_build_number|int + 1000 }}
+    - audit-libs-conda-ppc64le ==2.8.5 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - audit-libs-cos7-ppc64le ==2.8.5 *_{{ cdt_build_number|int + 1000 }}
+    - audit-libs-conda-ppc64le ==2.8.5 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 test:
   commands:

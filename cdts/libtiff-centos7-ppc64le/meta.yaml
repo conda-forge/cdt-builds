@@ -1,5 +1,5 @@
 package:
-  name: libtiff-cos7-ppc64le
+  name: libtiff-conda-ppc64le
   version: 4.0.3
 
 source:

@@ -1,5 +1,5 @@
 package:
-  name: nss-softokn-cos7-x86_64
+  name: nss-softokn-conda-x86_64
   version: 3.44.0
 
 source:
@@ -25,18 +25,18 @@ build:
 
 requirements:
   build:
-    - nspr-cos7-x86_64 >=4.21.0 *_{{ cdt_build_number|int + 1000 }}
-    - nss-softokn-freebl-cos7-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
-    - nss-util-cos7-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nspr-conda-x86_64 >=4.21.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-softokn-freebl-conda-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-util-conda-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - nspr-cos7-x86_64 >=4.21.0 *_{{ cdt_build_number|int + 1000 }}
-    - nss-softokn-freebl-cos7-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
-    - nss-util-cos7-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nspr-conda-x86_64 >=4.21.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-softokn-freebl-conda-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-util-conda-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - nspr-cos7-x86_64 >=4.21.0 *_{{ cdt_build_number|int + 1000 }}
-    - nss-softokn-freebl-cos7-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
-    - nss-util-cos7-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nspr-conda-x86_64 >=4.21.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-softokn-freebl-conda-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-util-conda-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

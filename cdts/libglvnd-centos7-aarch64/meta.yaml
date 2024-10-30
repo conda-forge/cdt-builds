@@ -1,5 +1,5 @@
 package:
-  name: libglvnd-cos7-aarch64
+  name: libglvnd-conda-aarch64
   version: 1.0.1
 
 source:

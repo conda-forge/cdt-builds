@@ -1,5 +1,5 @@
 package:
-  name: libxdamage-cos7-aarch64
+  name: libxdamage-conda-aarch64
   version: 1.1.4
 
 source:

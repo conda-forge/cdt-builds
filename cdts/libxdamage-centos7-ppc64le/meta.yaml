@@ -1,5 +1,5 @@
 package:
-  name: libxdamage-cos7-ppc64le
+  name: libxdamage-conda-ppc64le
   version: 1.1.4
 
 source:

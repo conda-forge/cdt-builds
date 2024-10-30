@@ -1,5 +1,5 @@
 package:
-  name: libx11-common-cos7-ppc64le
+  name: libx11-common-conda-ppc64le
   version: 1.6.7
 
 source:

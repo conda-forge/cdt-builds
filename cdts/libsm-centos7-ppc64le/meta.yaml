@@ -1,5 +1,5 @@
 package:
-  name: libsm-cos7-ppc64le
+  name: libsm-conda-ppc64le
   version: 1.2.2
 
 source:

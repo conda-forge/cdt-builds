@@ -1,5 +1,5 @@
 package:
-  name: pkgconfig-cos7-x86_64
+  name: pkgconfig-conda-x86_64
   version: 0.27.1
 
 source:

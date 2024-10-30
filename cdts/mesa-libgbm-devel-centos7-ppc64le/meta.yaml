@@ -1,5 +1,5 @@
 package:
-  name: mesa-libgbm-devel-cos7-ppc64le
+  name: mesa-libgbm-devel-conda-ppc64le
   version: 18.3.4
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - mesa-libgbm-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libgbm-conda-ppc64le ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - mesa-libgbm-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libgbm-conda-ppc64le ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - mesa-libgbm-cos7-ppc64le ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libgbm-conda-ppc64le ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 
 test:

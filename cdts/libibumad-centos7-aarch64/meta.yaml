@@ -1,5 +1,5 @@
 package:
-  name: libibumad-cos7-aarch64
+  name: libibumad-conda-aarch64
   version: 22.4
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - rdma-core-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-conda-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - rdma-core-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-conda-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - rdma-core-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-conda-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

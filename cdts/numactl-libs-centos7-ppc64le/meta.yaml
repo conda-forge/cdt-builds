@@ -1,5 +1,5 @@
 package:
-  name: numactl-libs-cos7-ppc64le
+  name: numactl-libs-conda-ppc64le
   version: 2.0.12
 
 source:

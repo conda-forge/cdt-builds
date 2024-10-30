@@ -1,5 +1,5 @@
 package:
-  name: kmod-cos7-ppc64le
+  name: kmod-conda-ppc64le
   version: 20
 
 source:

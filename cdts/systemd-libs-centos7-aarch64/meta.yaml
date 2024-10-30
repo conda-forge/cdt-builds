@@ -1,5 +1,5 @@
 package:
-  name: systemd-libs-cos7-aarch64
+  name: systemd-libs-conda-aarch64
   version: 219
 
 source:

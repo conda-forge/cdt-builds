@@ -1,5 +1,5 @@
 package:
-  name: atk-cos7-ppc64le
+  name: atk-conda-ppc64le
   version: 2.28.1
 
 source:

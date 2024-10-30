@@ -1,5 +1,5 @@
 package:
-  name: libxau-cos7-aarch64
+  name: libxau-conda-aarch64
   version: 1.0.8
 
 source:

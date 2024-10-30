@@ -1,5 +1,5 @@
 package:
-  name: gconf2-cos7-aarch64
+  name: gconf2-conda-aarch64
   version: 3.2.6
 
 source:

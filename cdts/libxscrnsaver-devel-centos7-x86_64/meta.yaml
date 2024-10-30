@@ -1,5 +1,5 @@
 package:
-  name: libxscrnsaver-devel-cos7-x86_64
+  name: libxscrnsaver-devel-conda-x86_64
   version: 1.2.2
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libxscrnsaver-cos7-x86_64 ==1.2.2 *_{{ cdt_build_number|int + 1000 }}
+    - libxscrnsaver-conda-x86_64 ==1.2.2 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libxscrnsaver-cos7-x86_64 ==1.2.2 *_{{ cdt_build_number|int + 1000 }}
+    - libxscrnsaver-conda-x86_64 ==1.2.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - libxscrnsaver-cos7-x86_64 ==1.2.2 *_{{ cdt_build_number|int + 1000 }}
+    - libxscrnsaver-conda-x86_64 ==1.2.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

@@ -1,5 +1,5 @@
 package:
-  name: fribidi-cos7-x86_64
+  name: fribidi-conda-x86_64
   version: 1.0.2
 
 source:

@@ -1,5 +1,5 @@
 package:
-  name: libtiff-cos7-x86_64
+  name: libtiff-conda-x86_64
   version: 4.0.3
 
 source:

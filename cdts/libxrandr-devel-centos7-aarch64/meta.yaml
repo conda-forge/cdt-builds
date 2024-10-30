@@ -1,5 +1,5 @@
 package:
-  name: libxrandr-devel-cos7-aarch64
+  name: libxrandr-devel-conda-aarch64
   version: 1.5.1
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libxrandr-cos7-aarch64 ==1.5.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxrandr-conda-aarch64 ==1.5.1 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libxrandr-cos7-aarch64 ==1.5.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxrandr-conda-aarch64 ==1.5.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - libxrandr-cos7-aarch64 ==1.5.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxrandr-conda-aarch64 ==1.5.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

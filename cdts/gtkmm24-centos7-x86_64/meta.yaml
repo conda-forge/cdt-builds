@@ -1,5 +1,5 @@
 package:
-  name: gtkmm24-cos7-x86_64
+  name: gtkmm24-conda-x86_64
   version: 2.24.5
 
 source:

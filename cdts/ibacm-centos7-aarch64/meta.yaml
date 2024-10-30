@@ -1,5 +1,5 @@
 package:
-  name: ibacm-cos7-aarch64
+  name: ibacm-conda-aarch64
   version: 22.4
 
 source:
@@ -25,18 +25,18 @@ build:
 
 requirements:
   build:
-    - libibumad-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
-    - libibverbs-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
-    - rdma-core-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibumad-conda-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-conda-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-conda-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libibumad-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
-    - libibverbs-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
-    - rdma-core-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibumad-conda-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-conda-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-conda-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
   run:
-    - libibumad-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
-    - libibverbs-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
-    - rdma-core-cos7-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibumad-conda-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - libibverbs-conda-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-conda-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.17.*
 
 test:

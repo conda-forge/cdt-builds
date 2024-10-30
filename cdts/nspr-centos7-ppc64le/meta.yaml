@@ -1,5 +1,5 @@
 package:
-  name: nspr-cos7-ppc64le
+  name: nspr-conda-ppc64le
   version: 4.21.0
 
 source:

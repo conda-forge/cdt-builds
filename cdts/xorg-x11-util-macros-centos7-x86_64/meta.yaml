@@ -1,5 +1,5 @@
 package:
-  name: xorg-x11-util-macros-cos7-x86_64
+  name: xorg-x11-util-macros-conda-x86_64
   version: 1.19.0
 
 source:

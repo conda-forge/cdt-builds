@@ -1,5 +1,5 @@
 package:
-  name: libglvnd-core-devel-cos7-aarch64
+  name: libglvnd-core-devel-conda-aarch64
   version: 1.0.1
 
 source:

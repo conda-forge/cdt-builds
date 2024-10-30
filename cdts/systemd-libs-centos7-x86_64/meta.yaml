@@ -1,5 +1,5 @@
 package:
-  name: systemd-libs-cos7-x86_64
+  name: systemd-libs-conda-x86_64
   version: 219
 
 source:

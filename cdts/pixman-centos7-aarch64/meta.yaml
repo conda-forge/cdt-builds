@@ -1,5 +1,5 @@
 package:
-  name: pixman-cos7-aarch64
+  name: pixman-conda-aarch64
   version: 0.34.0
 
 source:

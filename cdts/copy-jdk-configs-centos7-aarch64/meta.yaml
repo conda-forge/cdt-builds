@@ -1,5 +1,5 @@
 package:
-  name: copy-jdk-configs-cos7-aarch64
+  name: copy-jdk-configs-conda-aarch64
   version: 3.3
 
 source:

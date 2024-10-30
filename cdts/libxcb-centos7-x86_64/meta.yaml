@@ -1,5 +1,5 @@
 package:
-  name: libxcb-cos7-x86_64
+  name: libxcb-conda-x86_64
   version: 1.13
 
 source:

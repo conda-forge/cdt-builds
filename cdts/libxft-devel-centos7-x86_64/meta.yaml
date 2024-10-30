@@ -1,5 +1,5 @@
 package:
-  name: libxft-devel-cos7-x86_64
+  name: libxft-devel-conda-x86_64
   version: 2.3.2
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libxft-cos7-x86_64 ==2.3.2 *_{{ cdt_build_number|int + 1000 }}
+    - libxft-conda-x86_64 ==2.3.2 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libxft-cos7-x86_64 ==2.3.2 *_{{ cdt_build_number|int + 1000 }}
+    - libxft-conda-x86_64 ==2.3.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - libxft-cos7-x86_64 ==2.3.2 *_{{ cdt_build_number|int + 1000 }}
+    - libxft-conda-x86_64 ==2.3.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

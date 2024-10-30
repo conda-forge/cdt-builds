@@ -1,5 +1,5 @@
 package:
-  name: mesa-dri-drivers-cos7-x86_64
+  name: mesa-dri-drivers-conda-x86_64
   version: 18.3.4
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libdrm-cos7-x86_64 >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
+    - libdrm-conda-x86_64 >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libdrm-cos7-x86_64 >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
+    - libdrm-conda-x86_64 >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - libdrm-cos7-x86_64 >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
+    - libdrm-conda-x86_64 >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

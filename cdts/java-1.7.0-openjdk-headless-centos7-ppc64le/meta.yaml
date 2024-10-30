@@ -1,5 +1,5 @@
 package:
-  name: java-1.7.0-openjdk-headless-cos7-ppc64le
+  name: java-1.7.0-openjdk-headless-conda-ppc64le
   version: 1.7.0.261
 
 source:
@@ -25,27 +25,27 @@ build:
 
 requirements:
   build:
-    - chkconfig-cos7-ppc64le >=1.7 *_{{ cdt_build_number|int + 1000 }}
-    - chkconfig-cos7-ppc64le >=1.7 *_{{ cdt_build_number|int + 1000 }}
-    - copy-jdk-configs-cos7-ppc64le >=3.3 *_{{ cdt_build_number|int + 1000 }}
-    - javapackages-tools-cos7-ppc64le >=3.4.1 *_{{ cdt_build_number|int + 1000 }}
-    - nss-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
-    - nss-softokn-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - chkconfig-conda-ppc64le >=1.7 *_{{ cdt_build_number|int + 1000 }}
+    - chkconfig-conda-ppc64le >=1.7 *_{{ cdt_build_number|int + 1000 }}
+    - copy-jdk-configs-conda-ppc64le >=3.3 *_{{ cdt_build_number|int + 1000 }}
+    - javapackages-tools-conda-ppc64le >=3.4.1 *_{{ cdt_build_number|int + 1000 }}
+    - nss-conda-ppc64le >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-softokn-conda-ppc64le >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - chkconfig-cos7-ppc64le >=1.7 *_{{ cdt_build_number|int + 1000 }}
-    - chkconfig-cos7-ppc64le >=1.7 *_{{ cdt_build_number|int + 1000 }}
-    - copy-jdk-configs-cos7-ppc64le >=3.3 *_{{ cdt_build_number|int + 1000 }}
-    - javapackages-tools-cos7-ppc64le >=3.4.1 *_{{ cdt_build_number|int + 1000 }}
-    - nss-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
-    - nss-softokn-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - chkconfig-conda-ppc64le >=1.7 *_{{ cdt_build_number|int + 1000 }}
+    - chkconfig-conda-ppc64le >=1.7 *_{{ cdt_build_number|int + 1000 }}
+    - copy-jdk-configs-conda-ppc64le >=3.3 *_{{ cdt_build_number|int + 1000 }}
+    - javapackages-tools-conda-ppc64le >=3.4.1 *_{{ cdt_build_number|int + 1000 }}
+    - nss-conda-ppc64le >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-softokn-conda-ppc64le >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
   run:
-    - chkconfig-cos7-ppc64le >=1.7 *_{{ cdt_build_number|int + 1000 }}
-    - chkconfig-cos7-ppc64le >=1.7 *_{{ cdt_build_number|int + 1000 }}
-    - copy-jdk-configs-cos7-ppc64le >=3.3 *_{{ cdt_build_number|int + 1000 }}
-    - javapackages-tools-cos7-ppc64le >=3.4.1 *_{{ cdt_build_number|int + 1000 }}
-    - nss-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
-    - nss-softokn-cos7-ppc64le >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - chkconfig-conda-ppc64le >=1.7 *_{{ cdt_build_number|int + 1000 }}
+    - chkconfig-conda-ppc64le >=1.7 *_{{ cdt_build_number|int + 1000 }}
+    - copy-jdk-configs-conda-ppc64le >=3.3 *_{{ cdt_build_number|int + 1000 }}
+    - javapackages-tools-conda-ppc64le >=3.4.1 *_{{ cdt_build_number|int + 1000 }}
+    - nss-conda-ppc64le >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-softokn-conda-ppc64le >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.17.*
 test:
   commands:

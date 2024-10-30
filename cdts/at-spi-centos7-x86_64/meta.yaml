@@ -1,5 +1,5 @@
 package:
-  name: at-spi-cos7-x86_64
+  name: at-spi-conda-x86_64
   version: 1.32.0
 
 source:
@@ -25,21 +25,21 @@ build:
 
 requirements:
   build:
-    - orbit2-cos7-x86_64 >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
-    - atk-cos7-x86_64 >=1.29.2 *_{{ cdt_build_number|int + 1000 }}
-    - gtk2-cos7-x86_64 >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
-    - libbonobo-cos7-x86_64 >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - orbit2-conda-x86_64 >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
+    - atk-conda-x86_64 >=1.29.2 *_{{ cdt_build_number|int + 1000 }}
+    - gtk2-conda-x86_64 >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
+    - libbonobo-conda-x86_64 >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - orbit2-cos7-x86_64 >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
-    - atk-cos7-x86_64 >=1.29.2 *_{{ cdt_build_number|int + 1000 }}
-    - gtk2-cos7-x86_64 >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
-    - libbonobo-cos7-x86_64 >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - orbit2-conda-x86_64 >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
+    - atk-conda-x86_64 >=1.29.2 *_{{ cdt_build_number|int + 1000 }}
+    - gtk2-conda-x86_64 >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
+    - libbonobo-conda-x86_64 >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - orbit2-cos7-x86_64 >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
-    - atk-cos7-x86_64 >=1.29.2 *_{{ cdt_build_number|int + 1000 }}
-    - gtk2-cos7-x86_64 >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
-    - libbonobo-cos7-x86_64 >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - orbit2-conda-x86_64 >=2.6.0 *_{{ cdt_build_number|int + 1000 }}
+    - atk-conda-x86_64 >=1.29.2 *_{{ cdt_build_number|int + 1000 }}
+    - gtk2-conda-x86_64 >=2.10.0 *_{{ cdt_build_number|int + 1000 }}
+    - libbonobo-conda-x86_64 >=2.4.0 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 test:
   commands:

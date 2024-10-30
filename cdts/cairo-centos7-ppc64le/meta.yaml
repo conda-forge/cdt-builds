@@ -1,5 +1,5 @@
 package:
-  name: cairo-cos7-ppc64le
+  name: cairo-conda-ppc64le
   version: 1.15.12
 
 source:

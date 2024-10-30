@@ -1,5 +1,5 @@
 package:
-  name: pciutils-cos7-x86_64
+  name: pciutils-conda-x86_64
   version: 3.5.1
 
 source:
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - pciutils-libs-cos7-x86_64 ==3.5.1 *_{{ cdt_build_number|int + 1000 }}
+    - pciutils-libs-conda-x86_64 ==3.5.1 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - pciutils-libs-cos7-x86_64 ==3.5.1 *_{{ cdt_build_number|int + 1000 }}
+    - pciutils-libs-conda-x86_64 ==3.5.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
   run:
-    - pciutils-libs-cos7-x86_64 ==3.5.1 *_{{ cdt_build_number|int + 1000 }}
+    - pciutils-libs-conda-x86_64 ==3.5.1 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.17.*
 
 test:

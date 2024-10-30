@@ -1,5 +1,5 @@
 package:
-  name: copy-jdk-configs-cos7-ppc64le
+  name: copy-jdk-configs-conda-ppc64le
   version: 3.3
 
 source:
