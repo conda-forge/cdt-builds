@@ -395,7 +395,7 @@ def _main(force, fast, keep_url_changes):
         )
         raise RuntimeError(msg)
     elif superfluous := set(cdts.keys()) - all_allowed:
-        for cdt in superfluous:
+        for cdt in sorted(list(superfluous)):
             msg = f"CDT {cdt} does not appear in any allowlist; won't be built!"
             tqdm.tqdm.write(f"WARNING: {msg}")
 
