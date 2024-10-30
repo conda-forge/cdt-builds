@@ -396,7 +396,7 @@ build_defs:
   java-1.7.0-openjdk-headless:
     custom: false
     dep_replace:
-      jpackage-utils-cos7: javapackages-tools-cos7
+      jpackage-utils-conda: javapackages-tools-conda
     build_append:
       all: |
         jvm_slug=$(compgen -G "${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-*")
@@ -904,7 +904,7 @@ build_defs:
       - licenses/systemd-licenses/LICENSE.LGPL2.1
       - licenses/systemd-licenses/LICENSE.MIT
     dep_replace:
-      redhat-release-cos7: centos-release-cos7
+      redhat-release-conda: centos-release-conda
   systemd-devel:
     custom: false
     license_file:

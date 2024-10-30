@@ -202,7 +202,7 @@ def _gen_cdts(single_sysroot):
         {
             "centos7": {
                 "full_name": "centos7",
-                "short_name": "cos7",
+                "short_name": "conda",
                 "base_url": "http://vault.centos.org/7.9.2009/os/{base_architecture}/Packages/",  # noqa
                 "sbase_url": "http://vault.centos.org/7.9.2009/os/Source/SPackages/",
                 "repomd_url": "http://vault.centos.org/7.9.2009/os/{base_architecture}/repodata/repomd.xml",  # noqa
@@ -224,7 +224,7 @@ def _gen_cdts(single_sysroot):
             },
             "centos7-alt": {
                 "full_name": "centos7",
-                "short_name": "cos7",
+                "short_name": "conda",
                 "base_url": "https://vault.centos.org/altarch/7.9.2009/os/{base_architecture}/Packages/",  # noqa
                 "sbase_url": "http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/",
                 "repomd_url": "https://vault.centos.org/altarch/7.9.2009/os/{base_architecture}/repodata/repomd.xml",  # noqa
