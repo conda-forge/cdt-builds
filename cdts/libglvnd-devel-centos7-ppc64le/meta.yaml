@@ -1,0 +1,66 @@
+package:
+  name: libglvnd-devel-conda-ppc64le
+  version: 1.0.1
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libglvnd-devel-1.0.1-0.8.git5baa1e5.el7.ppc64le.rpm
+    sha256: 0461e5cead63c3abf1e4c5261fe4de127d6400a95fe5709e09749ba76c406333
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libglvnd-1.0.1-0.8.git5baa1e5.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - libglvnd-conda-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-core-devel-conda-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-egl-conda-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-gles-conda-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-glx-conda-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-opengl-conda-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libglvnd-conda-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-core-devel-conda-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-egl-conda-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-gles-conda-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-glx-conda-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-opengl-conda-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - libglvnd-conda-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-core-devel-conda-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-egl-conda-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-gles-conda-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-glx-conda-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - libglvnd-opengl-conda-ppc64le ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/NVIDIA/libglvnd
+  license: MIT
+  license_family: MIT
+  license_file: libglvnd-license
+  summary: (CDT) Development files for libglvnd
+  description: |
+    The libglvnd-devel package contains libraries and header files for developing
+    applications that use libglvnd.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

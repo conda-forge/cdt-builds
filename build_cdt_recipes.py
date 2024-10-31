@@ -17,6 +17,7 @@ from conda.core.index import get_index
 from cdt_config import (
     CDT_PATH,
     CUSTOM_CDT_PATH,
+    folder_to_package,
 )
 
 LINE_SEP = """\
@@ -59,8 +60,8 @@ def _cdt_exists(cdt_meta_node, channel_index):
     return on_channel
 
 
-def _get_recipe_attrs(recipe, channel_index):
-    node = os.path.basename(recipe)
+def _get_node_attrs(recipe, channel_index):
+    node = folder_to_package(os.path.basename(recipe))
     attrs = {}
     attrs["recipe_path"] = recipe
 
@@ -107,7 +108,7 @@ def _build_cdt_meta(recipes, dist_arch_slug):
     for recipe in tqdm.tqdm(recipes, desc='building CDT metadata', ncols=80):
         if dist_arch_slug not in os.path.basename(recipe):
             continue
-        node, attrs = _get_recipe_attrs(recipe, channel_index)
+        node, attrs = _get_node_attrs(recipe, channel_index)
         cdt_meta[node] = attrs
     return cdt_meta
 
@@ -290,8 +291,8 @@ def _main(
     dist_arch_slug,
 ):
     """
-    Build all CDT recipes for a given DIST_ARCH_SLUG (e.g. conda-x86_64
-    for post-CentOS CDTs, or cos6-x86_64, cos7-aarch64, etc. historically)
+    Build all CDT recipes for a given DIST_ARCH_SLUG, i.e. `f"{distro}-{arch}"`,
+    where we use the full distro name, and not the shortform
     """
 
     _build_all_cdts(CDT_PATH, CUSTOM_CDT_PATH, dist_arch_slug)

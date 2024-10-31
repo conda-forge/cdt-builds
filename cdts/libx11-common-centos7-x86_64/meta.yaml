@@ -1,0 +1,47 @@
+package:
+  name: libx11-common-conda-x86_64
+  version: 1.6.7
+
+source:
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libX11-common-1.6.7-2.el7.noarch.rpm
+    sha256: dc2895887d4354cff78b1992896dd6b925602a13134321b0be45551c022bc420
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libX11-1.6.7-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-64 2.17.*
+  run:
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libX11-common-1.6.7/COPYING
+  summary: "(CDT) Common data for libX11"
+  description: |
+        libX11 common data
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

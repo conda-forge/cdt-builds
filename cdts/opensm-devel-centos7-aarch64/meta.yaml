@@ -1,0 +1,52 @@
+package:
+  name: opensm-devel-conda-aarch64
+  version: 3.3.21
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/opensm-devel-3.3.21-3.el7_8.aarch64.rpm
+    sha256: 5e87ade6a7fb9b87d228dcb1a4c81558c0775b5cebc5667422dc347e7db0c186
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/opensm-3.3.21-3.el7_8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - opensm-libs-conda-aarch64 ==3.3.21 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - opensm-libs-conda-aarch64 ==3.3.21 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - opensm-libs-conda-aarch64 ==3.3.21 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/linux-rdma/opensm
+  license: GPLv2 or BSD
+  license_family: GPL2
+  license_file:
+    - opensm-license
+  summary: (CDT) Development files for the opensm-libs libraries
+  description: |
+    Development environment for the opensm libraries
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

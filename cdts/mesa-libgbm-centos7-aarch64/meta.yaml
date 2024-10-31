@@ -1,0 +1,54 @@
+package:
+  name: mesa-libgbm-conda-aarch64
+  version: 18.3.4
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/mesa-libgbm-18.3.4-10.el7.aarch64.rpm
+    sha256: df214382734fd4b2a0dc0800c57dd4f0b8023df55218e979553d6cc6bb7ee1aa
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/mesa-18.3.4-10.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - libdrm-conda-aarch64 >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libglapi-conda-aarch64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libdrm-conda-aarch64 >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libglapi-conda-aarch64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - libdrm-conda-aarch64 >=2.4.83 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libglapi-conda-aarch64 ==18.3.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.mesa3d.org
+  license: MIT
+  license_family: MIT
+  license_file: mesa-license
+  summary: (CDT) Mesa gbm library
+  description: |
+    Mesa gbm runtime library.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,55 @@
+package:
+  name: orbit2-conda-aarch64
+  version: 2.14.19
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/ORBit2-2.14.19-13.el7.aarch64.rpm
+    sha256: 376ecf27cfc93e6d1d3bb1344a5e1dd82e493828213122c5bbc6c48f48803127
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/ORBit2-2.14.19-13.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.gnome.org/projects/ORBit2
+  license: LGPLv2+ and GPLv2+
+  license_family: GPL2
+  license_file:
+    - orbit2-copying
+    - orbit2-copying.lib
+  summary: (CDT) A high-performance CORBA Object Request Broker
+  description: |
+    ORBit is a high-performance CORBA (Common Object Request Broker Architecture)
+    ORB (object request broker). It allows programs to send requests and receive
+    replies from other programs, regardless of the locations of the two programs.
+    CORBA is an architecture that enables communication between program objects,
+    regardless of the programming language they're written in or the operating
+    system they run on.  You will need to install this package and ORBit-devel if
+    you want to write programs that use CORBA technology.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

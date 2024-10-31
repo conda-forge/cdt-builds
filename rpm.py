@@ -43,14 +43,26 @@ try:
 except ImportError:
     import pickle as pickle
 
+from contextlib import contextmanager
 import gzip
 import hashlib
 import io
+import logging
 from os import chmod, makedirs
 from os.path import basename, dirname, exists, join, splitext
 import re
+import sys
 import tempfile
 import subprocess
+
+
+@contextmanager
+def disable_traceback():
+    default_value = getattr(sys, "tracebacklimit", 1000)  # 1000 == default
+    sys.tracebacklimit = 0
+    yield
+    sys.tracebacklimit = default_value  # revert changes
+
 
 import click
 from conda_build.source import download_to_cache
@@ -97,6 +109,10 @@ build:
   detect_binary_files_with_prefix: False
   missing_dso_whitelist:
     - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "{distro_name}"]
 
 {depends}
 
@@ -185,10 +201,13 @@ def _gen_cdts(single_sysroot):
     return dict(
         {
             "centos7": {
-                "short_name": "cos7",
+                "full_name": "centos7",
+                "short_name": "conda",
                 "base_url": "http://vault.centos.org/7.9.2009/os/{base_architecture}/Packages/",  # noqa
                 "sbase_url": "http://vault.centos.org/7.9.2009/os/Source/SPackages/",
                 "repomd_url": "http://vault.centos.org/7.9.2009/os/{base_architecture}/repodata/repomd.xml",  # noqa
+                # not relevant for centos7
+                "extra_subfolders": [],
                 "host_machine": (
                     "{architecture}-conda-linux-gnu"
                     if single_sysroot else
@@ -196,7 +215,6 @@ def _gen_cdts(single_sysroot):
                 ),
                 "host_subdir": "linux-{bits}",
                 "fname_architecture": "{architecture}",
-                "rpm_filename_platform": "el7.{architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
                 # Some macros are defined in /etc/rpm/macros.* but I cannot find where
@@ -207,10 +225,13 @@ def _gen_cdts(single_sysroot):
                 "glibc_ver": "2.17",
             },
             "centos7-alt": {
-                "short_name": "cos7",
+                "full_name": "centos7",
+                "short_name": "conda",
                 "base_url": "https://vault.centos.org/altarch/7.9.2009/os/{base_architecture}/Packages/",  # noqa
                 "sbase_url": "http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/",
                 "repomd_url": "https://vault.centos.org/altarch/7.9.2009/os/{base_architecture}/repodata/repomd.xml",  # noqa
+                # not relevant for centos7
+                "extra_subfolders": [],
                 "host_machine": (
                     "{gnu_architecture}-conda-linux-gnu"
                     if single_sysroot else
@@ -218,7 +239,6 @@ def _gen_cdts(single_sysroot):
                 ),
                 "host_subdir": "linux-{base_architecture}",
                 "fname_architecture": "{architecture}",
-                "rpm_filename_platform": "el7.{architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
                 # Some macros are defined in /etc/rpm/macros.* but I cannot find where
@@ -229,19 +249,36 @@ def _gen_cdts(single_sysroot):
                 "glibc_ver": "2.17",
             },
             "alma8": {
+                "full_name": "alma8",
                 "short_name": "conda",
                 "base_url": "https://vault.almalinux.org/8.9/{subfolder}/{base_architecture}/os/Packages/",  # noqa
                 "sbase_url": "https://vault.almalinux.org/8.9/{subfolder}/Source/Packages/",
                 "repomd_url": "https://vault.almalinux.org/8.9/{subfolder}/{base_architecture}/os/repodata/repomd.xml",  # noqa
+                "extra_subfolders": ["PowerTools"],
                 "host_machine": "{architecture}-conda-linux-gnu",
                 "host_subdir": "linux-{bits}",
                 "fname_architecture": "{architecture}",
-                "rpm_filename_platform": "el8.{architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
                 "macros": {},
                 "allow_missing_sources": True,
                 "glibc_ver": "2.28",
+            },
+            "alma9": {
+                "full_name": "alma9",
+                "short_name": "conda",
+                "base_url": "https://vault.almalinux.org/9.3/{subfolder}/{base_architecture}/os/Packages/",  # noqa
+                "sbase_url": "https://vault.almalinux.org/9.3/{subfolder}/Source/Packages/",
+                "repomd_url": "https://vault.almalinux.org/9.3/{subfolder}/{base_architecture}/os/repodata/repomd.xml",  # noqa
+                "extra_subfolders": ["CRB", "devel"],
+                "host_machine": "{architecture}-conda-linux-gnu",
+                "host_subdir": "linux-{bits}",
+                "fname_architecture": "{architecture}",
+                "checksummer": hashlib.sha256,
+                "checksummer_name": "sha256",
+                "macros": {},
+                "allow_missing_sources": True,
+                "glibc_ver": "2.34",
             },
         }
     )
@@ -269,7 +306,12 @@ def cache_file(src_cache, url, fn=None, checksummer=hashlib.sha256):
         source = dict({"url": url, "fn": fn})
     else:
         source = dict({"url": url})
-    cached_path, _ = download_to_cache(src_cache, "", source)
+    # avoid getting spammed by failed downloads
+    logging.disable(logging.WARN)
+    with disable_traceback():
+        cached_path, _ = download_to_cache(src_cache, "", source)
+    # restore previous defaults
+    logging.disable(logging.NOTSET)
     csum = checksummer()
     csum.update(open(cached_path, "rb").read())
     csumstr = csum.hexdigest()
@@ -391,7 +433,7 @@ def dictify_pickled(xml_file, src_cache, dict_massager=None, cdt=None):
 def get_repo_dict(repomd_url, data_type, dict_massager, cdt, src_cache):
     xmlstring = request("get", repomd_url).content
     # Remove the default namespace definition (xmlns="http://some/namespace")
-    xmlstring = re.sub(b'\sxmlns="[^"]+"', b"", xmlstring, count=1)  # noqa
+    xmlstring = re.sub(br'\sxmlns="[^"]+"', b"", xmlstring, count=1)  # noqa
     repomd = ET.fromstring(xmlstring)
     for child in repomd.findall("*[@type='{}']".format(data_type)):
         open_csum = child.findall("open-checksum")[0].text
@@ -512,12 +554,6 @@ def massage_primary(repo_primary, src_cache, cdt):
             }
         )
         if name in new_dict:
-            if arch in new_dict[name]:
-                print(
-                    "WARNING: Duplicate packages exist for {} for arch {}".format(
-                        name, arch
-                    )
-                )
             new_dict[name][arch] = new_package
         else:
             new_dict[name] = dict({arch: new_package})
@@ -802,6 +838,7 @@ def write_conda_recipes(
             "build_number": build_number_jinja2,
             "license_file": license_file,
             "packagename": package_cdt_name,
+            "distro_name": cdt["full_name"],
             "hostmachine": cdt["host_machine"],
             "hostsubdir": cdt["host_subdir"],
             "depends": dependsstr,
@@ -829,7 +866,9 @@ def write_conda_recipes(
             # "SYSROOT_DIR": "{SYSROOT_DIR}"
         }
     )
-    odir = join(output_dir, package_cdt_name)
+    # cannot use package_cdt_name for path, because the shortnames
+    # may coincide, but we need to distinguish recipes per distro
+    odir = join(output_dir, f"{package_l}-{cdt['full_name']}-{arch}")
     try:
         makedirs(odir)
     except Exception:
@@ -863,7 +902,6 @@ def write_conda_recipe(
     cdt_info,
     build_number_bump,
 ):
-    cdt_name = distro
     bits = "32" if architecture in ("armv6", "armv7a", "i686", "i386") else "64"
     base_architectures = dict({"i686": "i386"})
     # gnu_architectures are those recognized by the canonical config.sub / config.guess
@@ -888,7 +926,7 @@ def write_conda_recipe(
         }
     )
     cdt = dict()
-    for k, v in cdt_info[cdt_name].items():
+    for k, v in cdt_info[distro].items():
         if isinstance(v, string_types):
             cdt[k] = v.format(**formatting_bits)
         else:
@@ -907,10 +945,12 @@ def write_conda_recipe(
                 cdt["dependency_add"][as_list[0]] = as_list[1:]
 
     repo_primary = {}
-    for channel in ["BaseOS", "AppStream", "PowerTools"]:
+    base_subfolders = ["BaseOS", "AppStream"]
+    extra_subfolders = cdt_info[distro]["extra_subfolders"]
+    for subfolder in base_subfolders + extra_subfolders:
         # don't use `cdt`, where we already formatted the subfolder out of the URL
-        formatting_bits["subfolder"] = channel
-        repomd_url = cdt_info[cdt_name]["repomd_url"].format(**formatting_bits)
+        formatting_bits["subfolder"] = subfolder
+        repomd_url = cdt_info[distro]["repomd_url"].format(**formatting_bits)
         repo_primary |= get_repo_dict(
             repomd_url, "primary", massage_primary, cdt, config.src_cache
         )

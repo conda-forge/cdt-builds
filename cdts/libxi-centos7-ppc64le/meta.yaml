@@ -1,0 +1,51 @@
+package:
+  name: libxi-conda-ppc64le
+  version: 1.7.9
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libXi-1.7.9-1.el7.ppc64le.rpm
+    sha256: afbfd61620739d3b4eece1a4bb0ff018912f485a4d9f2588c92ff4bdcc5d1639
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXi-1.7.9-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - libx11-conda-ppc64le >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libx11-conda-ppc64le >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - libx11-conda-ppc64le >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libXi-1.7.9/COPYING
+  summary: "(CDT) X.Org X11 libXi runtime library"
+  description: |
+        X.Org X11 libXi runtime library
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

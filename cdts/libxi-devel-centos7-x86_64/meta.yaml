@@ -1,0 +1,51 @@
+package:
+  name: libxi-devel-conda-x86_64
+  version: 1.7.9
+
+source:
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libXi-devel-1.7.9-1.el7.x86_64.rpm
+    sha256: 9c5c5db23f3a2ec7c41d3e055f85c5fa0a5af8dbea9e419c538f3ec0f003c5d1
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libXi-1.7.9-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - libxi-conda-x86_64 ==1.7.9 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libxi-conda-x86_64 ==1.7.9 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - libxi-conda-x86_64 ==1.7.9 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: libxi-license
+  summary: (CDT) X.Org X11 libXi development package
+  description: |
+    X.Org X11 libXi development package
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

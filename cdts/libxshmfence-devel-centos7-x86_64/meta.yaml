@@ -1,0 +1,52 @@
+package:
+  name: libxshmfence-devel-conda-x86_64
+  version: 1.2
+
+source:
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libxshmfence-devel-1.2-1.el7.x86_64.rpm
+    sha256: f9fdbdfb5d61d5b280e8ec3f0240bda05bcbcb681207799e883df3b904dcb73d
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libxshmfence-1.2-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - libxshmfence-conda-x86_64 ==1.2 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libxshmfence-conda-x86_64 ==1.2 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - libxshmfence-conda-x86_64 ==1.2 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org/
+  license: MIT
+  license_family: MIT
+  license_file: libxshmfence-license
+  summary: (CDT) Development files for libxshmfence
+  description: |
+    The libxshmfence-devel package contains libraries and header files for
+    developing applications that use libxshmfence.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,51 @@
+package:
+  name: nss-util-conda-ppc64le
+  version: 3.44.0
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/nss-util-3.44.0-4.el7_7.ppc64le.rpm
+    sha256: b0eec4f2390d3a39a19afe60f914cc58f6de4b1749efef3991e5cdc991ded025
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/nss-util-3.44.0-4.el7_7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - nspr-conda-ppc64le >=4.21.0 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - nspr-conda-ppc64le >=4.21.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - nspr-conda-ppc64le >=4.21.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.mozilla.org/projects/security/pki/nss/
+  license: MPL-2.0
+  license_family: Other
+  license_file: nss-license
+  summary: (CDT) Network Security Services Utilities Library
+  description: |
+    Utilities for Network Security Services and the Softoken module
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

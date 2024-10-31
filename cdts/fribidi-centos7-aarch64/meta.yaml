@@ -1,0 +1,49 @@
+package:
+  name: fribidi-conda-aarch64
+  version: 1.0.2
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/fribidi-1.0.2-1.el7_7.1.aarch64.rpm
+    sha256: f4914b2c4fde823c5a8ad9bfcaf569a0eee037361f3925411ce1384972c6f252
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/fribidi-1.0.2-1.el7_7.1.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/fribidi/fribidi/
+  license: LGPLv2+ and UCD
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/fribidi-1.0.2/COPYING
+  summary: "(CDT) Library implementing the Unicode Bidirectional Algorithm"
+  description: |
+        A library to handle bidirectional scripts (for example Hebrew, Arabic), so
+        that the display is done in the proper way; while the text data itself is
+        always written in logical order.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

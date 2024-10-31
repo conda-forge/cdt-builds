@@ -1,0 +1,51 @@
+package:
+  name: libnl-devel-conda-x86_64
+  version: 1.1.4
+
+source:
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libnl-devel-1.1.4-3.el7.x86_64.rpm
+    sha256: c1e11ae7b94dd3c97023e4e08ff7eca20a15cfca0cd9523b8c0d05c174940a0d
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libnl-1.1.4-3.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - libnl-conda-x86_64 ==1.1.4 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libnl-conda-x86_64 ==1.1.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - libnl-conda-x86_64 ==1.1.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.infradead.org/~tgr/libnl/
+  license: LGPLv2
+  license_family: LGPL
+  license_file: libnl-devel-license
+  summary: (CDT) Libraries and headers for using libnl
+  description: |
+    This package contains various headers for using libnl
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

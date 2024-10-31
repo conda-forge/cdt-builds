@@ -1,0 +1,50 @@
+package:
+  name: chkconfig-conda-x86_64
+  version: 1.7.6
+
+source:
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/chkconfig-1.7.6-1.el7.x86_64.rpm
+    sha256: 646df8aeff8fdbd206070c2cd91bdb50003035c9925d0605c52a80cc081c38dc
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/chkconfig-1.7.6-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-64 2.17.*
+  run:
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/fedora-sysv/chkconfig
+  license: GPL-2.0-only
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/chkconfig-1.7.6/COPYING
+  summary: "(CDT) A system tool for maintaining the /etc/rc*.d hierarchy"
+  description: |
+        Chkconfig is a basic system utility.  It updates and queries runlevel
+        information for system services.  Chkconfig manipulates the numerous symbolic
+        links in /etc/rc.d, to relieve system administrators of some of the drudgery
+        of manually editing the symbolic links.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,51 @@
+package:
+  name: numactl-libs-conda-x86_64
+  version: 2.0.12
+
+source:
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/numactl-libs-2.0.12-5.el7.x86_64.rpm
+    sha256: cadd7d4125ce7b69bb020dc419c87600d4bd6d3ada1eed65c1472fb535b6b770
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/numactl-2.0.12-5.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-64 2.17.*
+  run:
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/numactl/numactl
+  license: LGPLv2 and GPLv2
+  license_family: GPL2
+  license_file:
+    - numactl-copyright.txt
+    - numactl-gpl2.txt
+    - numactl-lgpl2.txt
+  summary: (CDT) libnuma libraries
+  description: |
+    numactl-libs provides libnuma, a library to do allocations with NUMA policy in
+    applications.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

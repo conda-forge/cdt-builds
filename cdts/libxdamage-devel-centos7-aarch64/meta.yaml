@@ -1,0 +1,51 @@
+package:
+  name: libxdamage-devel-conda-aarch64
+  version: 1.1.4
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libXdamage-devel-1.1.4-4.1.el7.aarch64.rpm
+    sha256: c70eeac31841ba08349db03ee50c92a61ddc48f7f927a603d11e118fc16f7327
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXdamage-1.1.4-4.1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - libxdamage-conda-aarch64 ==1.1.4 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libxdamage-conda-aarch64 ==1.1.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - libxdamage-conda-aarch64 ==1.1.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: libxdamage-license
+  summary: (CDT) Development files for libXdamage
+  description: |
+    X.Org X11 libXdamage development package.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,48 @@
+package:
+  name: xcb-util-renderutil-conda-ppc64le
+  version: 0.3.9
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/xcb-util-renderutil-0.3.9-3.el7.ppc64le.rpm
+    sha256: 10dadc592a16472290207ec44781c6e652f8db4f4da3772792fbf6976b46216e
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/xcb-util-renderutil-0.3.9-3.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://xcb.freedesktop.org
+  license: MIT
+  license_family: MIT
+  license_file: xcb-util-renderutil-license
+  summary: (CDT) Convenience functions for the Render extension
+  description: |
+    XCB util-renderutil module provides the following library:    - renderutil:
+    Convenience functions for the Render extension.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

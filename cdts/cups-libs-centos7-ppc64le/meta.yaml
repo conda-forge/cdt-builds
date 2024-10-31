@@ -1,0 +1,52 @@
+package:
+  name: cups-libs-conda-ppc64le
+  version: 1.6.3
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/cups-libs-1.6.3-51.el7.ppc64le.rpm
+    sha256: 001c42a45b103738b467ff9653c0e38bf590d5721f660189dca4eb503b6a5a43
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/cups-1.6.3-51.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.cups.org/
+  license: LGPLv2 and zlib
+  license_family: LGPL
+  license_file: cups-license
+  summary: (CDT) CUPS printing system - libraries
+  description: |
+    CUPS printing system provides a portable printing layer for UNIX® operating
+    systems. It has been developed by Apple Inc. to promote a standard printing
+    solution for all UNIX vendors and users. CUPS provides the System V and
+    Berkeley command-line interfaces. The cups-libs package provides libraries
+    used by applications to use CUPS natively, without needing the lp/lpr
+    commands.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

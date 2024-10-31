@@ -1,0 +1,52 @@
+package:
+  name: gtkmm24-conda-ppc64le
+  version: 2.24.5
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/gtkmm24-2.24.5-1.el7.ppc64le.rpm
+    sha256: 10b4384789ea34ce708c5dbd72144538018aa11ca324cf845eb18c7efde9237f
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/gtkmm24-2.24.5-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.gtkmm.org/
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file:
+    - gtkmm-license
+    - gtkmm-tools-license
+  summary: (CDT) C++ interface for GTK2 (a GUI library for X)
+  description: |
+    gtkmm provides a C++ interface to the GTK+ GUI library. gtkmm2 wraps GTK+ 2.
+    Highlights include typesafe callbacks, widgets extensible via inheritance and
+    a comprehensive set of widget classes that can be freely combined to quickly
+    create complex user interfaces.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

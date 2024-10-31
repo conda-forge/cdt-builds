@@ -1,0 +1,51 @@
+package:
+  name: libxcursor-devel-conda-x86_64
+  version: 1.1.15
+
+source:
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libXcursor-devel-1.1.15-1.el7.x86_64.rpm
+    sha256: a9e9a0625e06ccc075cd84c7f6cb5d45233d709ceea21f706235bf9190146c12
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libXcursor-1.1.15-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - libxcursor-conda-x86_64 ==1.1.15 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libxcursor-conda-x86_64 ==1.1.15 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - libxcursor-conda-x86_64 ==1.1.15 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: libxcursor-license
+  summary: (CDT) Development files for libXcursor
+  description: |
+    libXcursor development package.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

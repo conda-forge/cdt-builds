@@ -1,0 +1,46 @@
+package:
+  name: libdrm-conda-aarch64
+  version: 2.4.97
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libdrm-2.4.97-2.el7.aarch64.rpm
+    sha256: 33983c207aba2f148da9e68ccd0ee9f1006fd254acfba05401a4109a514be678
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libdrm-2.4.97-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://dri.sourceforge.net
+  license: MIT
+  license_family: MIT
+  summary: (CDT) Direct Rendering Manager runtime library
+  description: |
+    Direct Rendering Manager runtime library
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

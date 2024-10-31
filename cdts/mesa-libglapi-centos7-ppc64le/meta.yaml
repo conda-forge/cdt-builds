@@ -1,0 +1,47 @@
+package:
+  name: mesa-libglapi-conda-ppc64le
+  version: 18.3.4
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/mesa-libglapi-18.3.4-10.el7.ppc64le.rpm
+    sha256: 5a5c24400ece48401ed7d2ba3992e6a3e76fbe92167cc8e5c838e2203763aaa1
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/mesa-18.3.4-10.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.mesa3d.org
+  license: MIT
+  license_family: MIT
+  license_file: mesa-license
+  summary: (CDT) Mesa shared glapi
+  description: |
+    Mesa shared glapi
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

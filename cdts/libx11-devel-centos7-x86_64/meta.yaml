@@ -1,0 +1,51 @@
+package:
+  name: libx11-devel-conda-x86_64
+  version: 1.6.7
+
+source:
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libX11-devel-1.6.7-2.el7.x86_64.rpm
+    sha256: e67b2f81a7cd57c22148e932a859954d97e784504adbca4b4723c21db9478d53
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libX11-1.6.7-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - libx11-conda-x86_64 ==1.6.7 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libx11-conda-x86_64 ==1.6.7 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - libx11-conda-x86_64 ==1.6.7 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: x11-license
+  summary: (CDT) Development files for libX11
+  description: |
+    X.Org X11 libX11 development package
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

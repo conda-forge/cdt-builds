@@ -1,0 +1,51 @@
+package:
+  name: libxft-conda-aarch64
+  version: 2.3.2
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libXft-2.3.2-2.el7.aarch64.rpm
+    sha256: 9cb1b9c20cf56a15f83e2242d8c46a66095d97e88480be4c2c0cd623b90ab731
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXft-2.3.2-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - fontconfig-conda-aarch64 >=2.2 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - fontconfig-conda-aarch64 >=2.2 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - fontconfig-conda-aarch64 >=2.2 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: libXft-license
+  summary: (CDT) X.Org X11 libXft runtime library
+  description: |
+    X.Org X11 libXft runtime library
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

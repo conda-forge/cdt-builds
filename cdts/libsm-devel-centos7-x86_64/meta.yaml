@@ -1,0 +1,51 @@
+package:
+  name: libsm-devel-conda-x86_64
+  version: 1.2.2
+
+source:
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libSM-devel-1.2.2-2.el7.x86_64.rpm
+    sha256: a68a66992b788372ea747aa5c2375c3b9c867027384dff6a3cf8de47b2f21468
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libSM-1.2.2-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - libsm-conda-x86_64 ==1.2.2 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libsm-conda-x86_64 ==1.2.2 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - libsm-conda-x86_64 ==1.2.2 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: libsm-license
+  summary: (CDT) X.Org X11 SM development package
+  description: |
+    The X.Org X11 SM (Session Management) development package.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

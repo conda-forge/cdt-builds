@@ -1,0 +1,52 @@
+package:
+  name: libsepol-devel-conda-ppc64le
+  version: 2.5
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libsepol-devel-2.5-10.el7.ppc64le.rpm
+    sha256: f93d653d716719b2bb5952b55ab5f9295d8ec046867ffcb0ec30ebe5870d1b08
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libsepol-2.5-10.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - libsepol-conda-ppc64le ==2.5 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libsepol-conda-ppc64le ==2.5 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - libsepol-conda-ppc64le ==2.5 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/SELinuxProject/selinux/wiki
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: libsepol-license
+  summary: (CDT) Header files and libraries used to build policy manipulation tools
+  description: |
+    The libsepol-devel package contains the libraries and header files needed for
+    developing applications that manipulate binary policies.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

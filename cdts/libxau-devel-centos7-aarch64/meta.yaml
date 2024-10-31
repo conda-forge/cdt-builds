@@ -1,0 +1,51 @@
+package:
+  name: libxau-devel-conda-aarch64
+  version: 1.0.8
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libXau-devel-1.0.8-2.1.el7.aarch64.rpm
+    sha256: 0003ff9339ca18cbab3dd6c0899d7d8ec8ea703351da9c9ccd16dfdd211fc57b
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXau-1.0.8-2.1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - libxau-conda-aarch64 ==1.0.8 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libxau-conda-aarch64 ==1.0.8 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - libxau-conda-aarch64 ==1.0.8 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: libxau-license
+  summary: (CDT) Development files for libXau
+  description: |
+    X.Org X11 libXau development package
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

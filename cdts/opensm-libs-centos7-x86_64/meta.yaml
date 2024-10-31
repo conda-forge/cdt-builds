@@ -1,0 +1,48 @@
+package:
+  name: opensm-libs-conda-x86_64
+  version: 3.3.21
+
+source:
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/opensm-libs-3.3.21-3.el7_8.x86_64.rpm
+    sha256: 531f9e027550a689338d1029f09ef94bc9d5234c581a72d81ce42fdfa88a02ad
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/opensm-3.3.21-3.el7_8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-64 2.17.*
+  run:
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/linux-rdma/opensm
+  license: GPLv2 or BSD
+  license_family: GPL2
+  license_file:
+    - opensm-license
+  summary: (CDT) Libraries used by opensm and included utilities
+  description: |
+    Shared libraries for Infiniband user space access
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

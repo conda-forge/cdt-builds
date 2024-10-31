@@ -1,0 +1,50 @@
+package:
+  name: libthai-conda-ppc64le
+  version: 0.1.14
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libthai-0.1.14-9.el7.ppc64le.rpm
+    sha256: 5506f087b5fb256175ac377187341d08f712c55cc8e0bf68a989d78d05b4f4f4
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libthai-0.1.14-9.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://linux.thai.net
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libthai-0.1.14/COPYING
+  summary: "(CDT) Thai language support routines"
+  description: |
+        LibThai is a set of Thai language support routines aimed to ease developers'
+        tasks to incorporate Thai language support in their applications. It includes
+        important Thai-specific functions e.g. word breaking, input and output methods
+        as well as basic character and string supports.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

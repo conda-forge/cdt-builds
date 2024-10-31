@@ -1,0 +1,57 @@
+package:
+  name: opensm-conda-ppc64le
+  version: 3.3.21
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/opensm-3.3.21-3.el7_8.ppc64le.rpm
+    sha256: 1ad0cf7c4bcd859bf58bd7a4d4af5e80696b4c5e474865f3e90ffadee707d91f
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/opensm-3.3.21-3.el7_8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - opensm-libs-conda-ppc64le ==3.3.21 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - opensm-libs-conda-ppc64le ==3.3.21 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - opensm-libs-conda-ppc64le ==3.3.21 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/linux-rdma/opensm
+  license: GPLv2 or BSD
+  license_family: GPL2
+  license_file:
+    - opensm-license
+  summary: (CDT) OpenIB InfiniBand Subnet Manager and management utilities
+  description: |
+    OpenSM is the OpenIB project's Subnet Manager for Infiniband networks. The
+    subnet manager is run as a system daemon on one of the machines in the
+    infiniband fabric to manage the fabric's routing state.  This package also
+    contains various tools for diagnosing and testing Infiniband networks that can
+    be used from any machine and do not need to be run on a machine running the
+    opensm daemon.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

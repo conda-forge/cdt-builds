@@ -1,0 +1,51 @@
+package:
+  name: libxrender-conda-aarch64
+  version: 0.9.10
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libXrender-0.9.10-1.el7.aarch64.rpm
+    sha256: 9fe491041a1bbcd7bae323a953b6526164eedd37fa707f1d15e95151f067c7eb
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXrender-0.9.10-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - libx11-conda-aarch64 >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libx11-conda-aarch64 >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - libx11-conda-aarch64 >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libXrender-0.9.10/COPYING
+  summary: "(CDT) X.Org X11 libXrender runtime library"
+  description: |
+        X.Org X11 libXrender runtime library
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

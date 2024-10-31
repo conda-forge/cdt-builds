@@ -1,0 +1,54 @@
+package:
+  name: cairo-conda-ppc64le
+  version: 1.15.12
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/cairo-1.15.12-4.el7.ppc64le.rpm
+    sha256: 51a9c48460f4dcd1e57a2554f40982a4deaa8e5ab9afec24044e355d0ad6df6a
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/cairo-1.15.12-4.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://cairographics.org
+  license: LGPLv2 or MPLv1.1
+  license_family: LGPL
+  license_file:
+    - cairo-copying
+    - cairo-copying-lgpl-2.1
+    - cairo-copying-mpl-1.1
+  summary: (CDT) A 2D graphics library
+  description: |
+    Cairo is a 2D graphics library designed to provide high-quality display and
+    print output. Currently supported output targets include the X Window System,
+    in-memory image buffers, and image files (PDF, PostScript, and SVG).  Cairo is
+    designed to produce consistent output on all output media while taking
+    advantage of display hardware acceleration when available.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,52 @@
+package:
+  name: kmod-devel-conda-aarch64
+  version: 28
+
+source:
+  - url: https://vault.almalinux.org/9.3/CRB/aarch64/os/Packages/kmod-devel-28-9.el9.aarch64.rpm
+    sha256: d9e43fe987b03b863d937a7f27bea41b5b2d21599940ec95916be248261b95f2
+    no_hoist: true
+    folder: binary
+  # - url: https://vault.almalinux.org/9.3/CRB/Source/Packages/kmod-28-9.el9.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "alma9"]
+
+requirements:
+  build:
+    - kmod-libs-conda-aarch64 ==28 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - kmod-libs-conda-aarch64 ==28 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.34.*
+  run:
+    - kmod-libs-conda-aarch64 ==28 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.34.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git
+  license: GPL-2.0-or-later
+  license_family: GPL2
+  license_file: kmod-copying
+  summary: (CDT) Header files for kmod development
+  description: |
+    The kmod-devel package provides header files used for development of
+    applications that wish to load or unload Linux kernel modules.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,52 @@
+package:
+  name: pcre-conda-x86_64
+  version: 8.32
+
+source:
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/pcre-8.32-17.el7.x86_64.rpm
+    sha256: cf2b84402e9a9fcf92c8a8a965c4e8d217e82e80c0945de2ce8d46c17131ad28
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/pcre-8.32-17.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-64 2.17.*
+  run:
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.pcre.org/
+  license: BSD
+  license_family: BSD
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/pcre-8.32/LICENCE
+  summary: "(CDT) Perl-compatible regular expression library"
+  description: |
+        Perl-compatible regular expression library. PCRE has its own native API, but a
+        set of "wrapper" functions that are based on the POSIX API are also supplied
+        in the library libpcreposix. Note that this just provides a POSIX calling
+        interface to PCRE: the regular expressions themselves still follow Perl syntax
+        and semantics. The header file for the POSIX-style functions is called
+        pcreposix.h.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

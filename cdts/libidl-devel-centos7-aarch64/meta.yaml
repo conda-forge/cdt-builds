@@ -1,0 +1,59 @@
+package:
+  name: libidl-devel-conda-aarch64
+  version: 0.8.14
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libIDL-devel-0.8.14-8.el7.aarch64.rpm
+    sha256: 2cbca0ba39ad4d6df63e68c9298a63e288206ec28c2c82eeeddf12d5800f9c2d
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libIDL-0.8.14-8.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - glib2-devel-conda-aarch64 >=2.0 *_{{ cdt_build_number|int + 1000 }}
+    - libidl-conda-aarch64 ==0.8.14 *_{{ cdt_build_number|int + 1000 }}
+    - pkgconfig-conda-aarch64 >=0.8 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - glib2-devel-conda-aarch64 >=2.0 *_{{ cdt_build_number|int + 1000 }}
+    - libidl-conda-aarch64 ==0.8.14 *_{{ cdt_build_number|int + 1000 }}
+    - pkgconfig-conda-aarch64 >=0.8 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - glib2-devel-conda-aarch64 >=2.0 *_{{ cdt_build_number|int + 1000 }}
+    - libidl-conda-aarch64 ==0.8.14 *_{{ cdt_build_number|int + 1000 }}
+    - pkgconfig-conda-aarch64 >=0.8 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://ftp.gnome.org/pub/gnome/sources/libIDL/0.8/
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: libidl-copying
+  summary: (CDT) Development libraries and header files for libIDL
+  description: |
+    libIDL is a library for parsing IDL (Interface Definition Language). It can be
+    used for both COM-style and CORBA-style IDL.  This package contains the header
+    files and libraries needed to write or compile programs that use libIDL.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

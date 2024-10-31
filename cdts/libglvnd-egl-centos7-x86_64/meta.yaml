@@ -1,0 +1,54 @@
+package:
+  name: libglvnd-egl-conda-x86_64
+  version: 1.0.1
+
+source:
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libglvnd-egl-1.0.1-0.8.git5baa1e5.el7.x86_64.rpm
+    sha256: 976faf0363fcd4ba5c9195331d01c90b3bf572e6802ea45cdeea7cfaad5cf9e6
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libglvnd-1.0.1-0.8.git5baa1e5.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - libglvnd-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libegl-conda-x86_64 >=13.0.4 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libglvnd-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libegl-conda-x86_64 >=13.0.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - libglvnd-conda-x86_64 ==1.0.1 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libegl-conda-x86_64 >=13.0.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/NVIDIA/libglvnd
+  license: MIT
+  license_family: MIT
+  license_file: libglvnd-license
+  summary: (CDT) EGL support for libglvnd
+  description: |
+    libEGL are the common dispatch interface for the EGL API.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

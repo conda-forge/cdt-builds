@@ -1,0 +1,57 @@
+package:
+  name: libuuid-devel-conda-x86_64
+  version: 2.23.2
+
+source:
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libuuid-devel-2.23.2-65.el7.x86_64.rpm
+    sha256: 6e6c6641ef64cacfd094700187252fa650e13daf4dede9f5252550e5f5dc4a81
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/util-linux-2.23.2-65.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - libuuid-conda-x86_64 ==2.23.2 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libuuid-conda-x86_64 ==2.23.2 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - libuuid-conda-x86_64 ==2.23.2 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://en.wikipedia.org/wiki/Util-linux
+  license: BSD
+  license_family: BSD
+  license_file: libuuid-license
+  summary: (CDT) Universally unique ID library
+  description: |
+    This is the universally unique ID development library and headers, part of
+    util-linux.  The libuuid library generates and parses 128-bit universally
+    unique id's (UUID's).  A UUID is an identifier that is unique across both
+    space and time, with respect to the space of all UUIDs.  A UUID can be used
+    for multiple purposes, from tagging objects with an extremely short lifetime,
+    to reliably identifying very persistent objects across a network.  See also
+    the "uuid-devel" package, which is a separate implementation.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

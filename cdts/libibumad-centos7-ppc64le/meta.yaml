@@ -1,0 +1,57 @@
+package:
+  name: libibumad-conda-ppc64le
+  version: 22.4
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libibumad-22.4-5.el7.ppc64le.rpm
+    sha256: 6b488504997d0997b726698c0149a8010593e55f209101c9ee7df7c86de71d9a
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/rdma-core-22.4-5.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - rdma-core-conda-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - rdma-core-conda-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - rdma-core-conda-ppc64le ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/linux-rdma/rdma-core
+  license: GPLv2 or BSD
+  license_family: GPL2
+  license_file:
+    - COPYING.BSD_FB
+    - COPYING.BSD_MIT
+    - COPYING.GPL2
+    - COPYING.md
+  summary: (CDT) OpenFabrics Alliance InfiniBand umad (userspace management datagram) library
+  description: |
+    libibumad provides the userspace management datagram (umad) library functions,
+    which sit on top of the umad modules in the kernel. These are used by the IB
+    diagnostic and management tools, including OpenSM.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,52 @@
+package:
+  name: cracklib-devel-conda-aarch64
+  version: 2.9.6
+
+source:
+  - url: https://vault.almalinux.org/8.9/PowerTools/aarch64/os/Packages/cracklib-devel-2.9.6-15.el8.aarch64.rpm
+    sha256: 4c99def23773c7bd29501052e7e9c3168c2d2cf475020158d03f3c2cd1a8b370
+    no_hoist: true
+    folder: binary
+  # - url: https://vault.almalinux.org/8.9/PowerTools/Source/Packages/cracklib-2.9.6-15.el8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "alma8"]
+
+requirements:
+  build:
+    - cracklib-conda-aarch64 ==2.9.6 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - cracklib-conda-aarch64 ==2.9.6 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.28.*
+  run:
+    - cracklib-conda-aarch64 ==2.9.6 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.28.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://sourceforge.net/projects/cracklib/
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: cracklib-copying.lib
+  summary: (CDT) Development files needed for building applications which use cracklib
+  description: |
+    The cracklib-devel package contains the header files and libraries needed for
+    compiling applications which use cracklib.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

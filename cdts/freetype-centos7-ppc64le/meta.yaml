@@ -1,0 +1,51 @@
+package:
+  name: freetype-conda-ppc64le
+  version: 2.8
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/freetype-2.8-14.el7.ppc64le.rpm
+    sha256: c234adbe7a67137f334a487006e310102dd680985f581cc5769a88c0ef2be7ed
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/freetype-2.8-14.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.freetype.org
+  license: (FTL or GPLv2+) and BSD and MIT and Public Domain and zlib with acknowledgement
+  license_family: GPL2
+  license_file: freetype-license.txt
+  summary: (CDT) A free and portable font rendering engine
+  description: |
+    The FreeType engine is a free and portable font rendering engine, developed to
+    provide advanced font support for a variety of platforms and environments.
+    FreeType is a library which can open and manages font files as well as
+    efficiently load, hint and render individual glyphs. FreeType is not a font
+    server or a complete text-rendering library.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

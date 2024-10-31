@@ -1,0 +1,51 @@
+package:
+  name: audit-libs-devel-conda-aarch64
+  version: 3.0.7
+
+source:
+  - url: https://vault.almalinux.org/9.3/AppStream/aarch64/os/Packages/audit-libs-devel-3.0.7-104.el9.aarch64.rpm
+    sha256: 8afb3d87a8b9cfd3193a7aead89fb6e210427fded75df4483e49b4ffd0676095
+    no_hoist: true
+    folder: binary
+  # - url: https://vault.almalinux.org/9.3/AppStream/Source/Packages/audit-3.0.7-104.el9.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "alma9"]
+
+requirements:
+  build:
+    - audit-libs-conda-aarch64 ==3.0.7 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - audit-libs-conda-aarch64 ==3.0.7 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.34.*
+  run:
+    - audit-libs-conda-aarch64 ==3.0.7 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.34.*
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://people.redhat.com/sgrubb/audit/
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: audit-libs-copying.lib
+  summary: (CDT) Header files for libaudit
+  description: |
+    The audit-libs-devel package contains the header files needed for developing
+    applications that need to use the audit framework libraries.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

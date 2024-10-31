@@ -1,0 +1,47 @@
+package:
+  name: libxdamage-conda-x86_64
+  version: 1.1.4
+
+source:
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libXdamage-1.1.4-4.1.el7.x86_64.rpm
+    sha256: 790df35e712320c967e7934e417687e17457b7cf989e54045115dd8f4c560949
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libXdamage-1.1.4-4.1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-64 2.17.*
+  run:
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libXdamage-1.1.4/COPYING
+  summary: "(CDT) X Damage extension library"
+  description: |
+        X.Org X11 libXdamage runtime library.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,53 @@
+package:
+  name: libpwquality-conda-aarch64
+  version: 1.4.4
+
+source:
+  - url: https://vault.almalinux.org/8.9/BaseOS/aarch64/os/Packages/libpwquality-1.4.4-6.el8.aarch64.rpm
+    sha256: a9103aa12129a759bc6c965796b65c00a61bcde9ed4e8d7b2b1d2eeee4f7f433
+    no_hoist: true
+    folder: binary
+  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/libpwquality-1.4.4-6.el8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "alma8"]
+
+requirements:
+  build:
+    - cracklib-dicts-conda-aarch64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - cracklib-dicts-conda-aarch64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.28.*
+  run:
+    - cracklib-dicts-conda-aarch64 >=2.8 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.28.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/libpwquality/libpwquality/
+  license: BSD or GPLv2+
+  license_family: GPL2
+  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/libpwquality/COPYING
+  summary: "(CDT) A library for password generation and password quality checking"
+  description: |
+        This is a library for password quality checks and generation of random
+        passwords that pass the checks. This library uses the cracklib and cracklib
+        dictionaries to perform some of the checks.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

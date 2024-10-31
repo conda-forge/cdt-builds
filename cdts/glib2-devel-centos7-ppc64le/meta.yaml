@@ -1,0 +1,51 @@
+package:
+  name: glib2-devel-conda-ppc64le
+  version: 2.56.1
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/glib2-devel-2.56.1-7.el7.ppc64le.rpm
+    sha256: 6c878a7a58579b09fa446c538f4190782d71e068e9957f45c5c40548a256ad9d
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/glib2-2.56.1-7.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - glib2-conda-ppc64le ==2.56.1 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - glib2-conda-ppc64le ==2.56.1 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - glib2-conda-ppc64le ==2.56.1 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.gtk.org
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: glib2-copying
+  summary: (CDT) A library of handy utility functions
+  description: |
+    The glib2-devel package includes the header files for the GLib library.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,48 @@
+package:
+  name: libidl-conda-x86_64
+  version: 0.8.14
+
+source:
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libIDL-0.8.14-8.el7.x86_64.rpm
+    sha256: 5f1e6d9709ea2b8b0c0d5588206c188f78ea6e6eb55277af3823dec37d786532
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libIDL-0.8.14-8.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-64 2.17.*
+  run:
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://ftp.gnome.org/pub/gnome/sources/libIDL/0.8/
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: libidl-copying
+  summary: (CDT) Library for parsing IDL (Interface Definition Language)
+  description: |
+    libIDL is a library for parsing IDL (Interface Definition Language). It can be
+    used for both COM-style and CORBA-style IDL.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

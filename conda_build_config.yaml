@@ -1,2 +1,8 @@
 cdt_build_number:
-  - "106"
+  - "107"
+
+# this variant is here to help distinguish package hashes
+distro:
+  - alma9
+  - alma8
+  - centos7

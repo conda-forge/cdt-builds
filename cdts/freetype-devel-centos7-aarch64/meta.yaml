@@ -1,0 +1,53 @@
+package:
+  name: freetype-devel-conda-aarch64
+  version: 2.8
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/freetype-devel-2.8-14.el7.aarch64.rpm
+    sha256: 3d92a7257f32f71dda1ff521b80cb50ae42ae0cdf5a39bc2ed5f9d4ca1ee80aa
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/freetype-2.8-14.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - freetype-conda-aarch64 ==2.8 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - freetype-conda-aarch64 ==2.8 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - freetype-conda-aarch64 ==2.8 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.freetype.org
+  license: (FTL or GPLv2+) and BSD and MIT and Public Domain and zlib with acknowledgement
+  license_family: GPL2
+  license_file: freetype-license.txt
+  summary: (CDT) FreeType development libraries and header files
+  description: |
+    The freetype-devel package includes the static libraries and header files for
+    the FreeType font rendering engine.  Install freetype-devel if you want to
+    develop programs which will use FreeType.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

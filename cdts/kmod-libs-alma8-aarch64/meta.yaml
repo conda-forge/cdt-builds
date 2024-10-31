@@ -1,0 +1,48 @@
+package:
+  name: kmod-libs-conda-aarch64
+  version: 25
+
+source:
+  - url: https://vault.almalinux.org/8.9/BaseOS/aarch64/os/Packages/kmod-libs-25-19.el8.aarch64.rpm
+    sha256: 7a322b3593618af9a97eff4fec857fa8cd9e6fd739f62eecd1a111d031caab4a
+    no_hoist: true
+    folder: binary
+  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/kmod-25-19.el8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "alma8"]
+
+requirements:
+  host:
+    - sysroot_linux-64 2.28.*
+  run:
+    - sysroot_linux-64 2.28.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://git.kernel.org/?p=utils/kernel/kmod/kmod.git;a=summary
+  license: LGPL-2.0-or-later
+  license_family: LGPL
+  license_file: kmod-copying
+  summary: (CDT) Libraries to handle kernel module loading and unloading
+  description: |
+    The kmod-libs package provides runtime libraries for any application that
+    wishes to load or unload Linux kernel modules from the running system.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

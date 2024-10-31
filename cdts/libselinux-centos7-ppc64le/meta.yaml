@@ -1,0 +1,60 @@
+package:
+  name: libselinux-conda-ppc64le
+  version: 2.5
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libselinux-2.5-15.el7.ppc64le.rpm
+    sha256: 611bb6b8402c0cacbf5539c306fc12253d19d8f1e48487a78393e98e2d0ede27
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libselinux-2.5-15.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - libsepol-conda-ppc64le >=2.5 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libsepol-conda-ppc64le >=2.5 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - libsepol-conda-ppc64le >=2.5 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/SELinuxProject/selinux/wiki
+  license: Public-Domain
+  license_family: Public-Domain
+  summary: (CDT) SELinux library and simple utilities
+  description: |
+    Security-enhanced Linux is a feature of the Linux® kernel and a number of
+    utilities with enhanced security functionality designed to add mandatory
+    access controls to Linux.  The Security-enhanced Linux kernel contains new
+    architectural components originally developed to improve the security of the
+    Flask operating system. These architectural components provide general support
+    for the enforcement of many kinds of mandatory access control policies,
+    including those based on the concepts of Type Enforcement®, Role-based Access
+    Control, and Multi-level Security.  libselinux provides an API for SELinux
+    applications to get and set process and file security contexts and to obtain
+    security policy decisions.  Required for any applications that use the SELinux
+    API.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

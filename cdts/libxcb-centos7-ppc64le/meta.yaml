@@ -1,0 +1,49 @@
+package:
+  name: libxcb-conda-ppc64le
+  version: 1.13
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libxcb-1.13-1.el7.ppc64le.rpm
+    sha256: 52af7fb2a025fcd24013bb007db047c54cba76a082d4735a576ac23a093cd7f1
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libxcb-1.13-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://xcb.freedesktop.org/
+  license: MIT
+  license_family: MIT
+  license_file: libxcb-license
+  summary: (CDT) A C binding to the X11 protocol
+  description: |
+    The X protocol C-language Binding (XCB) is a replacement for Xlib featuring a
+    small footprint, latency hiding, direct access to the protocol, improved
+    threading support, and extensibility.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

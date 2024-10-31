@@ -1,0 +1,54 @@
+package:
+  name: libxcursor-conda-ppc64le
+  version: 1.1.15
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libXcursor-1.1.15-1.el7.ppc64le.rpm
+    sha256: a24bb5952fdcf990dabba7bf8debd7b7120aaaae0be4188c9b50420ad232ca5f
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXcursor-1.1.15-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: False
+  detect_binary_files_with_prefix: False
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - libx11-conda-ppc64le >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libx11-conda-ppc64le >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - libx11-conda-ppc64le >=1.5.99.902 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libXcursor-1.1.15/COPYING
+  summary: "(CDT) Cursor management library"
+  description: |
+        This is  a simple library designed to help locate and load cursors. Cursors
+        can be loaded from files or memory. A library of common cursors exists which
+        map to the standard X cursor names.Cursors can exist in several sizes and the
+        library automatically picks the best size.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

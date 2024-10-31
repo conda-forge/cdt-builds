@@ -1,0 +1,53 @@
+package:
+  name: libdrm-devel-conda-x86_64
+  version: 2.4.97
+
+source:
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libdrm-devel-2.4.97-2.el7.x86_64.rpm
+    sha256: 4c7f759bcb222a738b8aeb92f2d54913070208806a2879b1a58beb40d77c2dd4
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libdrm-2.4.97-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - kernel-headers-conda-x86_64 >=2.6.27 *_{{ cdt_build_number|int + 1000 }}
+    - libdrm-conda-x86_64 ==2.4.97 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - kernel-headers-conda-x86_64 >=2.6.27 *_{{ cdt_build_number|int + 1000 }}
+    - libdrm-conda-x86_64 ==2.4.97 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - kernel-headers-conda-x86_64 >=2.6.27 *_{{ cdt_build_number|int + 1000 }}
+    - libdrm-conda-x86_64 ==2.4.97 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://dri.sourceforge.net
+  license: MIT
+  license_family: MIT
+  summary: (CDT) Direct Rendering Manager development package
+  description: |
+    Direct Rendering Manager development package
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

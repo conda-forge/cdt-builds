@@ -1,4 +1,25 @@
 allowlists:
+  alma9:
+    - audit-libs
+    - audit-libs-devel
+    - cracklib
+    - cracklib-devel
+    - cracklib-dicts
+    - kmod
+    - kmod-devel
+    - kmod-libs
+    - libeconf
+    - libeconf-devel
+    - libpwquality
+    - libpwquality-devel
+    - libselinux
+    - libselinux-devel
+    - libsepol
+    - libsepol-devel
+    - mesa-libgbm
+    - mesa-libgbm-devel
+    - pam
+    - pam-devel
   alma8:
     - audit-libs
     - audit-libs-devel
@@ -216,6 +237,9 @@ build_defs:
     license_file: licenses/audit-libs-copying.lib
     dep_remove:
       - kernel-headers
+    subfolder:
+      alma8: BaseOS
+      alma9: AppStream
   at-spi:
     custom: false
     license_file: licenses/at-spi-license
@@ -236,7 +260,7 @@ build_defs:
     custom: false
     license_file: null
     build_append:
-      cos7: |
+      centos7: |
         mkdir -p ${SYSROOT_DIR}/etc/pki/tls/certs
 
         pushd ${SYSROOT_DIR}/etc/pki/java > /dev/null 2>&1
@@ -286,7 +310,9 @@ build_defs:
   cracklib-devel:
     custom: false
     license_file: licenses/cracklib-copying.lib
-    subfolder: PowerTools
+    subfolder:
+      alma8: PowerTools
+      alma9: CRB
   cracklib-dicts:
     custom: false
     license_file: licenses/cracklib-copying.lib
@@ -370,7 +396,7 @@ build_defs:
   java-1.7.0-openjdk-headless:
     custom: false
     dep_replace:
-      jpackage-utils-cos7: javapackages-tools-cos7
+      jpackage-utils-conda: javapackages-tools-conda
     build_append:
       all: |
         jvm_slug=$(compgen -G "${SYSROOT_DIR}/usr/lib/jvm/java-1.7.0-openjdk-*")
@@ -401,7 +427,9 @@ build_defs:
   kmod-devel:
     custom: false
     license_file: licenses/kmod-copying
-    subfolder: PowerTools
+    subfolder:
+      alma8: PowerTools
+      alma9: CRB
   kmod-libs:
     custom: false
     license_file: licenses/kmod-copying
@@ -426,6 +454,13 @@ build_defs:
   libdrm-devel:
     custom: false
     license_file: null
+  libeconf:
+    custom: false
+  libeconf-devel:
+    custom: false
+    license_file: licenses/libeconf-devel-license
+    subfolder:
+      alma9: devel
   libglvnd:
     custom: false
     license_file: licenses/libglvnd-license
@@ -520,7 +555,9 @@ build_defs:
   libpwquality-devel:
     custom: false
     license_file: licenses/libpwquality-copying
-    subfolder: PowerTools
+    subfolder:
+      alma8: PowerTools
+      alma9: CRB
   librdmacm:
     custom: false
     license_file: licenses/librdmacm-devel-license
@@ -530,12 +567,18 @@ build_defs:
   libselinux-devel:
     custom: false
     license_file: null
+    subfolder:
+      alma8: BaseOS
+      alma9: AppStream
   libsepol:
     custom: false
     license_file: licenses/libsepol-license
   libsepol-devel:
     custom: false
     license_file: licenses/libsepol-license
+    subfolder:
+      alma8: BaseOS
+      alma9: AppStream
   libSM:
     custom: false
   libSM-devel:
@@ -666,11 +709,15 @@ build_defs:
   mesa-libgbm:
     custom: false
     license_file: licenses/mesa-license
-    subfolder: AppStream
+    subfolder:
+      alma8: AppStream
+      alma9: AppStream
   mesa-libgbm-devel:
     custom: false
     license_file: licenses/mesa-license
-    subfolder: PowerTools
+    subfolder:
+      alma8: PowerTools
+      alma9: AppStream
   mesa-dri-drivers:
     custom: false
     license_file: licenses/mesa-license
@@ -687,17 +734,17 @@ build_defs:
     custom: false
     license_file: licenses/mesa-license
     build_append:
-      cos7-aarch64: |
+      centos7-aarch64: |
         pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
         rm libGLX_system.so.0
         ln -s libGLX_mesa.so.0 libGLX_system.so.0
         popd > /dev/null 2>&1
-      cos7-ppc64le: |
+      centos7-ppc64le: |
         pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
         rm libGLX_system.so.0
         ln -s libGLX_mesa.so.0 libGLX_system.so.0
         popd > /dev/null 2>&1
-      cos7-x86_64: |
+      centos7-x86_64: |
         pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
         rm libGLX_system.so.0
         ln -s libGLX_mesa.so.0 libGLX_system.so.0
@@ -709,7 +756,7 @@ build_defs:
     custom: true
     license_file: licenses/mesa-license
     build_append:
-      cos7-x86_64: |
+      centos7-x86_64: |
         pushd ${SYSROOT_DIR}/usr/lib64 > /dev/null 2>&1
         rm libGLX_system.so.0
         ln -s libGLX_mesa.so.0 libGLX_system.so.0
@@ -785,24 +832,28 @@ build_defs:
     custom: false
     dep_remove:
       - glibc
+      - openssl
   pam-devel:
     custom: false
+    subfolder:
+      alma8: BaseOS
+      alma9: AppStream
   pango:
     custom: false
     build_append:
-      cos7-aarch64: |
+      centos7-aarch64: |
         pushd ${SYSROOT_DIR}/usr/bin > /dev/null 2>&1
         rm -f pango-querymodules-64
         echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
         chmod u+x pango-querymodules-64
         popd > /dev/null 2>&1
-      cos7-ppc64le: |
+      centos7-ppc64le: |
         pushd ${SYSROOT_DIR}/usr/bin > /dev/null 2>&1
         rm -f pango-querymodules-64
         echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
         chmod u+x pango-querymodules-64
         popd > /dev/null 2>&1
-      cos7-x86_64: |
+      centos7-x86_64: |
         pushd ${SYSROOT_DIR}/usr/bin > /dev/null 2>&1
         rm -f pango-querymodules-64
         echo -e '#!/usr/bin/env bash\n exit 0' > pango-querymodules-64
@@ -853,7 +904,7 @@ build_defs:
       - licenses/systemd-licenses/LICENSE.LGPL2.1
       - licenses/systemd-licenses/LICENSE.MIT
     dep_replace:
-      redhat-release-cos7: centos-release-cos7
+      redhat-release-conda: centos-release-conda
   systemd-devel:
     custom: false
     license_file:

@@ -1,0 +1,48 @@
+package:
+  name: libxkbcommon-conda-ppc64le
+  version: 0.7.1
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libxkbcommon-0.7.1-3.el7.ppc64le.rpm
+    sha256: 8a12c418e21ae58e623a2ef98cbd93d52748025c65519e1811c5144fe7d3d8bb
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libxkbcommon-0.7.1-3.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.x.org
+  license: MIT
+  license_family: MIT
+  license_file: libxkbcommon-license
+  summary: (CDT) X.Org X11 XKB parsing library
+  description: |
+    libxkbcommon is the X.Org library for compiling XKB maps into formats usable
+    by the X Server or other display servers.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

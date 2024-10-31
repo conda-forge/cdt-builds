@@ -1,0 +1,51 @@
+package:
+  name: xcb-util-keysyms-devel-conda-x86_64
+  version: 0.4.0
+
+source:
+  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/xcb-util-keysyms-devel-0.4.0-1.el7.x86_64.rpm
+    sha256: 0dce5185ef41cc25a379e5964b88a091c24773aadd9c0bcc236bd6b8b42502d5
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/xcb-util-keysyms-0.4.0-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - xcb-util-keysyms-conda-x86_64 ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - xcb-util-keysyms-conda-x86_64 ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - xcb-util-keysyms-conda-x86_64 ==0.4.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://xcb.freedesktop.org
+  license: MIT
+  license_family: MIT
+  license_file: xcb-util-keysyms-license
+  summary: (CDT) Development and header files for xcb-util-keysyms
+  description: |
+    Development files for xcb-util-keysyms.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

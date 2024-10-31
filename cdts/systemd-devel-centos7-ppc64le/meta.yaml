@@ -1,0 +1,58 @@
+package:
+  name: systemd-devel-conda-ppc64le
+  version: 219
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/systemd-devel-219-78.el7.ppc64le.rpm
+    sha256: 8d00a0b7182f1010ef09a0f37231bcbd1ecb35bdc07d59422fadc1e129a4cf96
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/systemd-219-78.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - systemd-conda-ppc64le ==219 *_{{ cdt_build_number|int + 1000 }}
+    - systemd-libs-conda-ppc64le ==219 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - systemd-conda-ppc64le ==219 *_{{ cdt_build_number|int + 1000 }}
+    - systemd-libs-conda-ppc64le ==219 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - systemd-conda-ppc64le ==219 *_{{ cdt_build_number|int + 1000 }}
+    - systemd-libs-conda-ppc64le ==219 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://www.freedesktop.org/wiki/Software/systemd
+  license: LGPLv2+ and MIT
+  license_family: LGPL
+  license_file:
+    - LICENSE.GPL2
+    - LICENSE.LGPL2.1
+    - LICENSE.MIT
+  summary: (CDT) Development headers for systemd
+  description: |
+    Development headers and auxiliary files for developing applications for
+    systemd.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

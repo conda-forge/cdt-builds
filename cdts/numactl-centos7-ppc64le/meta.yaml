@@ -1,0 +1,51 @@
+package:
+  name: numactl-conda-ppc64le
+  version: 2.0.12
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/numactl-2.0.12-5.el7.ppc64le.rpm
+    sha256: 188d558d22ab46eacd64b29fad9d115012a39481d2a7c60198d33442c4766386
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/numactl-2.0.12-5.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: https://github.com/numactl/numactl
+  license: GPL-2.0-only
+  license_family: GPL2
+  license_file:
+    - numactl-copyright.txt
+    - numactl-gpl2.txt
+    - numactl-lgpl2.txt
+  summary: (CDT) Library for tuning for Non Uniform Memory Access machines
+  description: |
+    Simple NUMA policy support. It consists of a numactl program to run other
+    programs with a specific NUMA policy.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

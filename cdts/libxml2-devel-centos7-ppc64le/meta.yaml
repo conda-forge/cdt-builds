@@ -1,0 +1,59 @@
+package:
+  name: libxml2-devel-conda-ppc64le
+  version: 2.9.1
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libxml2-devel-2.9.1-6.el7.5.ppc64le.rpm
+    sha256: 651f42efcff7516b5573857d83d2f7ac8dc53cfbf98302a89d52abce686caca6
+    no_hoist: true
+    folder: binary
+  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libxml2-2.9.1-6.el7.5.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  number: {{ cdt_build_number|int + 1000 }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+  missing_dso_whitelist:
+    - '*'
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  skip: true  # [distro != "centos7"]
+
+requirements:
+  build:
+    - libxml2-conda-ppc64le ==2.9.1 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libxml2-conda-ppc64le ==2.9.1 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - libxml2-conda-ppc64le ==2.9.1 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+test:
+  commands:
+    - echo "it installs!"
+
+about:
+  home: http://xmlsoft.org/
+  license: MIT
+  license_family: MIT
+  license_file: libxml2-license
+  summary: (CDT) Libraries, includes, etc. to develop XML and HTML applications
+  description: |
+    Libraries, include files, etc you can use to develop XML applications. This
+    library allows to manipulate XML files. It includes support to read, modify
+    and write XML and HTML files. There is DTDs support this includes parsing and
+    validation even with complex DtDs, either at parse time or later once the
+    document has been modified. The output can be a simple SAX stream or and in-
+    memory DOM like representations. In this case one can use the built-in XPath
+    and XPointer implementation to select sub nodes or ranges. A flexible
+    Input/Output mechanism is available, with existing HTTP and FTP modules and
+    combined to an URI library.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
