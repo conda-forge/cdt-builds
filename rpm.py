@@ -206,6 +206,8 @@ def _gen_cdts(single_sysroot):
                 "base_url": "http://vault.centos.org/7.9.2009/os/{base_architecture}/Packages/",  # noqa
                 "sbase_url": "http://vault.centos.org/7.9.2009/os/Source/SPackages/",
                 "repomd_url": "http://vault.centos.org/7.9.2009/os/{base_architecture}/repodata/repomd.xml",  # noqa
+                # not relevant for centos7
+                "extra_subfolders": [],
                 "host_machine": (
                     "{architecture}-conda-linux-gnu"
                     if single_sysroot else
@@ -228,6 +230,8 @@ def _gen_cdts(single_sysroot):
                 "base_url": "https://vault.centos.org/altarch/7.9.2009/os/{base_architecture}/Packages/",  # noqa
                 "sbase_url": "http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/",
                 "repomd_url": "https://vault.centos.org/altarch/7.9.2009/os/{base_architecture}/repodata/repomd.xml",  # noqa
+                # not relevant for centos7
+                "extra_subfolders": [],
                 "host_machine": (
                     "{gnu_architecture}-conda-linux-gnu"
                     if single_sysroot else
@@ -250,6 +254,7 @@ def _gen_cdts(single_sysroot):
                 "base_url": "https://vault.almalinux.org/8.9/{subfolder}/{base_architecture}/os/Packages/",  # noqa
                 "sbase_url": "https://vault.almalinux.org/8.9/{subfolder}/Source/Packages/",
                 "repomd_url": "https://vault.almalinux.org/8.9/{subfolder}/{base_architecture}/os/repodata/repomd.xml",  # noqa
+                "extra_subfolders": ["PowerTools"],
                 "host_machine": "{architecture}-conda-linux-gnu",
                 "host_subdir": "linux-{bits}",
                 "fname_architecture": "{architecture}",
@@ -265,6 +270,7 @@ def _gen_cdts(single_sysroot):
                 "base_url": "https://vault.almalinux.org/9.3/{subfolder}/{base_architecture}/os/Packages/",  # noqa
                 "sbase_url": "https://vault.almalinux.org/9.3/{subfolder}/Source/Packages/",
                 "repomd_url": "https://vault.almalinux.org/9.3/{subfolder}/{base_architecture}/os/repodata/repomd.xml",  # noqa
+                "extra_subfolders": ["CRB", "devel"],
                 "host_machine": "{architecture}-conda-linux-gnu",
                 "host_subdir": "linux-{bits}",
                 "fname_architecture": "{architecture}",
@@ -939,11 +945,11 @@ def write_conda_recipe(
                 cdt["dependency_add"][as_list[0]] = as_list[1:]
 
     repo_primary = {}
-    base_channels = ["BaseOS", "AppStream"]
-    extra_channels = ["PowerTools"] if distro == "alma8" else ["CRB", "devel"]
-    for channel in base_channels + extra_channels:
+    base_subfolders = ["BaseOS", "AppStream"]
+    extra_subfolders = cdt_info[distro]["extra_subfolders"]
+    for subfolder in base_subfolders + extra_subfolders:
         # don't use `cdt`, where we already formatted the subfolder out of the URL
-        formatting_bits["subfolder"] = channel
+        formatting_bits["subfolder"] = subfolder
         repomd_url = cdt_info[distro]["repomd_url"].format(**formatting_bits)
         repo_primary |= get_repo_dict(
             repomd_url, "primary", massage_primary, cdt, config.src_cache
