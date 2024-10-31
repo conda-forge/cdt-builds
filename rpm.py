@@ -896,7 +896,6 @@ def write_conda_recipe(
     cdt_info,
     build_number_bump,
 ):
-    cdt_name = distro
     bits = "32" if architecture in ("armv6", "armv7a", "i686", "i386") else "64"
     base_architectures = dict({"i686": "i386"})
     # gnu_architectures are those recognized by the canonical config.sub / config.guess
@@ -921,7 +920,7 @@ def write_conda_recipe(
         }
     )
     cdt = dict()
-    for k, v in cdt_info[cdt_name].items():
+    for k, v in cdt_info[distro].items():
         if isinstance(v, string_types):
             cdt[k] = v.format(**formatting_bits)
         else:
@@ -945,7 +944,7 @@ def write_conda_recipe(
     for channel in base_channels + extra_channels:
         # don't use `cdt`, where we already formatted the subfolder out of the URL
         formatting_bits["subfolder"] = channel
-        repomd_url = cdt_info[cdt_name]["repomd_url"].format(**formatting_bits)
+        repomd_url = cdt_info[distro]["repomd_url"].format(**formatting_bits)
         repo_primary |= get_repo_dict(
             repomd_url, "primary", massage_primary, cdt, config.src_cache
         )
