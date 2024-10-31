@@ -197,26 +197,25 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
         + glob.glob(custom_cdt_path + "/*")
     )
     cdt_meta = _build_cdt_meta(recipes, dist_arch_slug)
+
+    skipped = set(k for k, v in cdt_meta.items() if v["skip"])
+    for node in sorted(skipped):
+        print(
+            f"WARNING: skipping CDT {node} since it has already been built!",
+            flush=True,
+        )
+
     print("\ncdts to build:", flush=True)
-    for cdt in sorted(cdt_meta):
-        if not cdt_meta[cdt]['skip']:
-            print("    %s" % cdt, flush=True)
+    for cdt in sorted(set(cdt_meta.keys()) - skipped):
+        print(f"    {cdt}", flush=True)
 
     num_workers = 4
-
     build_logs = ""
+
     with ThreadPoolExecutor(max_workers=num_workers) as exec:
 
-        skipped = set()
         for node in cdt_meta:
-            if cdt_meta[node]['skip']:
-                print(
-                    "WARNING: skipping CDT %s since it has "
-                    "already been built!" % node,
-                    flush=True,
-                )
-                skipped.add(node)
-            elif not _has_all_cdt_deps(node, cdt_meta):
+            if not _has_all_cdt_deps(node, cdt_meta):
                 raise RuntimeError(
                     "CDT %s cannot be built "
                     "since not all deps are available!" % node
