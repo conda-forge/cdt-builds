@@ -168,9 +168,10 @@ def _build_cdt(cdt_meta_node, no_temp=False):
         and os.environ.get("BUILD_SOURCEBRANCHNAME", None) == "main"
         and c.returncode == 0
     ):
-        cdt_slug = os.path.basename(cdt_meta_node["recipe_path"])
+        recipe = os.path.basename(cdt_meta_node["recipe_path"])
+        pkg = folder_to_package(recipe)
         cdt_file = glob.glob(
-            os.path.expandvars("${HOME}/miniforge3/conda-bld/*/%s-*.tar.bz2" % cdt_slug)
+            os.path.expandvars("${HOME}/miniforge3/conda-bld/*/%s-*.tar.bz2" % pkg)
         )
         assert len(cdt_file) == 1
         for _ in range(5):
