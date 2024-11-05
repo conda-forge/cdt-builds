@@ -171,7 +171,7 @@ def _build_cdt(cdt_meta_node, no_temp=False):
         recipe = os.path.basename(cdt_meta_node["recipe_path"])
         pkg = folder_to_package(recipe)
         cdt_file = glob.glob(
-            os.path.expandvars("${HOME}/miniforge3/conda-bld/*/%s-*.tar.bz2" % pkg)
+            os.path.expandvars("${HOME}/miniforge3/conda-bld/*/%s-*.conda" % pkg)
         )
         assert len(cdt_file) == 1
         for _ in range(5):
