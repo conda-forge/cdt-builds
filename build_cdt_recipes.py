@@ -303,10 +303,11 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug, part=1, num_parts
 @click.option(
     "--part-to-process",
     default="1:1",
+    type=str,
     help=(
         "the part of the list of CDTs to process, denoted as "
         "'<part starting at 1>:<total_parts>' (e.g. '1:4', '2:4'"
-        ", etc. for four parts)",
+        ", etc. for four parts)"
     ),
 )
 def _main(
