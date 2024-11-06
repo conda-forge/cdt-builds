@@ -65,7 +65,7 @@ jobs:
 
   - checkout: self
     clean: true
-    condition: or(and(eq(variables['SYSTEM.PULLREQUEST.ISFORK'], 'true'), eq(variables['Build.Reason'], 'PullRequest')), and(ne(variables['SYSTEM.PULLREQUEST.ISFORK'], 'true'), eq(variables['Build.SourceBranchName'], 'main')))
+    condition: or(and(ne(variables['SYSTEM.PULLREQUEST.ISFORK'], 'true'), eq(variables['Build.Reason'], 'PullRequest')), and(eq(variables['SYSTEM.PULLREQUEST.ISFORK'], 'true'), eq(variables['Build.SourceBranchName'], 'main')))
 
   - script: |
          sudo mkdir -p /opt/empty_dir || true
