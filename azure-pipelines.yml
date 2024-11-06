@@ -65,7 +65,7 @@ jobs:
 
   - checkout: self
     clean: true
-    condition: or(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.SourceBranchName'], 'main'))
+    condition: or(and(eq(variables['SYSTEM.PULLREQUEST.ISFORK'], 'true'), eq(variables['Build.Reason'], 'PullRequest')), and(ne(variables['SYSTEM.PULLREQUEST.ISFORK'], 'true'), eq(variables['Build.SourceBranchName'], 'main')))
 
   - script: |
          sudo mkdir -p /opt/empty_dir || true
@@ -88,7 +88,7 @@ jobs:
          sudo apt-get autoclean -y >& /dev/null
          df -h
     displayName: Manage disk space
-    condition: or(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.SourceBranchName'], 'main'))
+    condition: 'false'
 
   - script: |
          sudo fallocate -l 15GiB /swapfile || true
@@ -104,11 +104,11 @@ jobs:
         sed -h
         echo `uname -s`
     displayName: removing system compilers
-    condition: or(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.SourceBranchName'], 'main'))
+    condition: 'false'
 
   - bash: .ci_scripts/install_miniconda.sh
     displayName: install miniconda
-    condition: or(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.SourceBranchName'], 'main'))
+    condition: 'false'
 
   - bash: |
         set -e
@@ -125,8 +125,8 @@ jobs:
     env:
       ANACONDA_TOKEN: $(anaconda.token)
       IS_FORK: $(System.PullRequest.IsFork)
-    condition: or(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.SourceBranchName'], 'main'))
+    condition: 'false'
 
   - publish: build_logs/
     artifact: build-logs-$(DISTARCH)-azurejob$(system.JobId)
-    condition: or(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.SourceBranchName'], 'main'))
+    condition: 'false'
