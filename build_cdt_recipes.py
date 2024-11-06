@@ -192,6 +192,45 @@ def _build_cdt(cdt_meta_node, no_temp=False):
     return c, c_up
 
 
+def _build_cdt_groups(cdt_meta):
+    all_cdts = set(cdt_meta.keys())
+    groups = {}
+    cdt_to_group = {}
+    for name, info in cdt_meta.items():
+        cdt_reqs = set(info["all_requirements"]) & all_cdts
+        cdt_reqs.add(name)
+        curr_groups = set()
+        for group_name, group_members in groups.items():
+            if cdt_reqs & group_members:
+                curr_groups.add(group_name)
+
+        if not curr_groups:
+            groups[name] = cdt_reqs
+            for cdt in cdt_reqs:
+                cdt_to_group[cdt] = name
+        else:
+            new_group = set()
+            for group_name in curr_groups:
+                new_group |= groups.pop(group_name)
+            new_group |= cdt_reqs
+            groups[name] = new_group
+            for cdt in new_group:
+                cdt_to_group[cdt] = name
+
+    # this bit of code double checks that all reqs are in the
+    # same group
+    for name, info in cdt_meta.items():
+        cdt_reqs = set(info["all_requirements"]) & all_cdts
+        cdt_reqs.add(name)
+        curr_groups = set(
+            cdt_to_group[nm] for nm in cdt_reqs
+        )
+        assert len(curr_groups) == 1
+    assert len(set(cdt_to_group.values())) <= len(cdt_to_group)
+
+    return cdt_to_group
+
+
 def _cdt_name_to_part(name, num_parts):
     sha = hashlib.sha1(name.encode("utf-8"))
     part_zero = int(sha.hexdigest(), 16) % num_parts
@@ -204,10 +243,12 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug, part=1, num_parts
         + glob.glob(custom_cdt_path + "/*")
     )
     cdt_meta = _build_cdt_meta(recipes, dist_arch_slug)
+    cdt_to_group = _build_cdt_groups(cdt_meta)
 
     # skip CDTs that we are not building in this job
     for node in cdt_meta:
-        if _cdt_name_to_part(node, num_parts) != part:
+        group_name = cdt_to_group[node]
+        if _cdt_name_to_part(group_name, num_parts) != part:
             cdt_meta[node]["skip"] = True
 
     skipped = set(k for k, v in cdt_meta.items() if v["skip"])
