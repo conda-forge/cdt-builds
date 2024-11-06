@@ -63,9 +63,15 @@ jobs:
 
   steps:
 
+  - script: |
+      echo ${{ varriables['Build.Reason'] }}
+      echo ${{ varriables['Build.SourceBranchName'] }}
+      echo ${{ varriables['System.PullRequest.IsFork'] }}
+    displayName: what are these anyways?
+
   - checkout: self
     clean: true
-    condition: or(and(eq(variables['SYSTEM.PULLREQUEST.ISFORK'], 'true'), eq(variables['Build.Reason'], 'PullRequest')), and(ne(variables['SYSTEM.PULLREQUEST.ISFORK'], 'true'), eq(variables['Build.SourceBranchName'], 'main')))
+    condition: or(and(eq(variables['System.PullRequest.IsFork'], 'True'), eq(variables['Build.Reason'], 'PullRequest')), and(ne(variables['SYSTEM.PULLREQUEST.ISFORK'], 'true'), eq(variables['Build.SourceBranchName'], 'main')))
 
   - script: |
          sudo mkdir -p /opt/empty_dir || true
