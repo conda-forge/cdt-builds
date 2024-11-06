@@ -3,6 +3,7 @@ jobs:
   pool:
     vmImage: 'ubuntu-latest'
   timeoutInMinutes: 360
+  condition: or(and(eq(variables['System.PullRequest.IsFork'], 'True'), eq(variables['Build.Reason'], 'PullRequest')), and(ne(variables['SYSTEM.PULLREQUEST.ISFORK'], 'True'), ne(variables['Build.Reason'], 'PullRequest')))
   strategy:
     matrix:
       cos7_x86_64:
