@@ -67,6 +67,7 @@ jobs:
       echo ${{ variables['Build.Reason'] }}
       echo ${{ variables['Build.SourceBranchName'] }}
       echo ${{ variables['System.PullRequest.IsFork'] }}
+      echo ${{ variables['Build.Repository.Name'] }}
     displayName: what are these anyways?
 
   - checkout: self
