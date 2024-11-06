@@ -102,7 +102,6 @@ jobs:
         sed -h
         echo `uname -s`
     displayName: removing system compilers
-    condition: 'false'
 
   - bash: .ci_scripts/install_miniconda.sh
     displayName: install miniconda
