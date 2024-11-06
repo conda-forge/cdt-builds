@@ -2,3 +2,6 @@ channels:
   - conda-forge
 show_channel_urls: True
 channel_priority: strict
+conda-build:
+  pkg_format: '2'
+  zstd_compression_level: 19

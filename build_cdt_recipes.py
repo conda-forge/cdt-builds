@@ -1,3 +1,4 @@
+import hashlib
 import os
 import subprocess
 import glob
@@ -171,7 +172,7 @@ def _build_cdt(cdt_meta_node, no_temp=False):
         recipe = os.path.basename(cdt_meta_node["recipe_path"])
         pkg = folder_to_package(recipe)
         cdt_file = glob.glob(
-            os.path.expandvars("${HOME}/miniforge3/conda-bld/*/%s-*.tar.bz2" % pkg)
+            os.path.expandvars("${HOME}/miniforge3/conda-bld/*/%s-*.conda" % pkg)
         )
         assert len(cdt_file) == 1
         for _ in range(5):
@@ -191,17 +192,70 @@ def _build_cdt(cdt_meta_node, no_temp=False):
     return c, c_up
 
 
-def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
+def _build_cdt_groups(cdt_meta):
+    all_cdts = set(cdt_meta.keys())
+    groups = {}
+    cdt_to_group = {}
+    for name, info in cdt_meta.items():
+        cdt_reqs = set(info["all_requirements"]) & all_cdts
+        cdt_reqs.add(name)
+        curr_groups = set()
+        for group_name, group_members in groups.items():
+            if cdt_reqs & group_members:
+                curr_groups.add(group_name)
+
+        if not curr_groups:
+            groups[name] = cdt_reqs
+            for cdt in cdt_reqs:
+                cdt_to_group[cdt] = name
+        else:
+            new_group = set()
+            for group_name in curr_groups:
+                new_group |= groups.pop(group_name)
+            new_group |= cdt_reqs
+            groups[name] = new_group
+            for cdt in new_group:
+                cdt_to_group[cdt] = name
+
+    # this bit of code double checks that all reqs are in the
+    # same group
+    for name, info in cdt_meta.items():
+        cdt_reqs = set(info["all_requirements"]) & all_cdts
+        cdt_reqs.add(name)
+        curr_groups = set(
+            cdt_to_group[nm] for nm in cdt_reqs
+        )
+        assert len(curr_groups) == 1
+    assert len(set(cdt_to_group.values())) <= len(cdt_to_group)
+
+    return cdt_to_group
+
+
+def _cdt_name_to_part(name, num_parts):
+    sha = hashlib.sha1(name.encode("utf-8"))
+    part_zero = int(sha.hexdigest(), 16) % num_parts
+    return part_zero + 1
+
+
+def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug, part=1, num_parts=1):
     recipes = (
         glob.glob(cdt_path + "/*")
         + glob.glob(custom_cdt_path + "/*")
     )
     cdt_meta = _build_cdt_meta(recipes, dist_arch_slug)
+    cdt_to_group = _build_cdt_groups(cdt_meta)
+
+    # skip CDTs that we are not building in this job
+    for node in cdt_meta:
+        group_name = cdt_to_group[node]
+        if _cdt_name_to_part(group_name, num_parts) != part:
+            cdt_meta[node]["skip"] = True
 
     skipped = set(k for k, v in cdt_meta.items() if v["skip"])
     for node in sorted(skipped):
         print(
-            f"WARNING: skipping CDT {node} since it has already been built!",
+            f"WARNING: skipping CDT {node} since it has "
+            "already been built or is not part of this job!",
             flush=True,
         )
 
@@ -209,7 +263,7 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
     for cdt in sorted(set(cdt_meta.keys()) - skipped):
         print(f"    {cdt}", flush=True)
 
-    num_workers = 4
+    num_workers = 2
     build_logs = ""
 
     with ThreadPoolExecutor(max_workers=num_workers) as exec:
@@ -287,15 +341,28 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
 
 @click.command()
 @click.argument("dist_arch_slug", required=True)
+@click.option(
+    "--part-to-process",
+    default="1:1",
+    type=str,
+    help=(
+        "the part of the list of CDTs to process, denoted as "
+        "'<part starting at 1>:<total_parts>' (e.g. '1:4', '2:4'"
+        ", etc. for four parts)"
+    ),
+)
 def _main(
     dist_arch_slug,
+    part_to_process,
 ):
     """
     Build all CDT recipes for a given DIST_ARCH_SLUG, i.e. `f"{distro}-{arch}"`,
     where we use the full distro name, and not the shortform
     """
-
-    _build_all_cdts(CDT_PATH, CUSTOM_CDT_PATH, dist_arch_slug)
+    part, num_parts = part_to_process.split(":")
+    part = int(part)
+    num_parts = int(num_parts)
+    _build_all_cdts(CDT_PATH, CUSTOM_CDT_PATH, dist_arch_slug, part=part, num_parts=num_parts)
 
 
 if __name__ == "__main__":
