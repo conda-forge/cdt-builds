@@ -3,6 +3,7 @@ jobs:
   pool:
     vmImage: 'ubuntu-latest'
   timeoutInMinutes: 360
+  condition: or(and(eq(variables['System.PullRequest.IsFork'], 'True'), eq(variables['Build.Reason'], 'PullRequest')), and(ne(variables['SYSTEM.PULLREQUEST.ISFORK'], 'True'), ne(variables['Build.Reason'], 'PullRequest')))
   strategy:
     matrix:
       cos7_x86_64_1:
@@ -72,7 +73,6 @@ jobs:
 
   - checkout: self
     clean: true
-    condition: or(and(eq(variables['System.PullRequest.IsFork'], 'True'), eq(variables['Build.Reason'], 'PullRequest')), and(ne(variables['SYSTEM.PULLREQUEST.ISFORK'], 'true'), eq(variables['Build.SourceBranchName'], 'main')))
 
   - script: |
          sudo mkdir -p /opt/empty_dir || true
@@ -95,7 +95,6 @@ jobs:
          sudo apt-get autoclean -y >& /dev/null
          df -h
     displayName: Manage disk space
-    condition: 'false'
 
   - script: |
          sudo fallocate -l 15GiB /swapfile || true
@@ -103,7 +102,6 @@ jobs:
          sudo mkswap /swapfile || true
          sudo swapon /swapfile || true
     displayName: Create swap file
-    condition: or(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.SourceBranchName'], 'main'))
 
   - bash: |
         sudo apt-get remove -y --auto-remove gcc
@@ -115,7 +113,6 @@ jobs:
 
   - bash: .ci_scripts/install_miniconda.sh
     displayName: install miniconda
-    condition: 'false'
 
   - bash: |
         set -e
@@ -132,8 +129,6 @@ jobs:
     env:
       ANACONDA_TOKEN: $(anaconda.token)
       IS_FORK: $(System.PullRequest.IsFork)
-    condition: 'false'
 
   - publish: build_logs/
     artifact: build-logs-$(DISTARCH)-azurejob$(system.JobId)
-    condition: 'false'
