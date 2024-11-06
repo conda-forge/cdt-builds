@@ -263,7 +263,7 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug, part=1, num_parts
     for cdt in sorted(set(cdt_meta.keys()) - skipped):
         print(f"    {cdt}", flush=True)
 
-    num_workers = 4
+    num_workers = 2
     build_logs = ""
 
     with ThreadPoolExecutor(max_workers=num_workers) as exec:
