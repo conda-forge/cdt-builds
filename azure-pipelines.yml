@@ -27,6 +27,15 @@ jobs:
 
   steps:
 
+  - script: |
+      echo ${{ variables['Build.Reason'] }}
+      echo ${{ variables['Build.SourceBranchName'] }}
+      echo ${{ variables['System.PullRequest.IsFork'] }}
+      echo ${{ variables['Build.Repository.Name'] }}
+
+      exit 1
+    displayName: what are these anyways?
+
   - checkout: self
     clean: true
 
