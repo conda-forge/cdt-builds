@@ -65,6 +65,7 @@ jobs:
 
   - checkout: self
     clean: true
+    condition: or(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.SourceBranchName'], 'main'))
 
   - script: |
          sudo mkdir -p /opt/empty_dir || true
@@ -87,6 +88,7 @@ jobs:
          sudo apt-get autoclean -y >& /dev/null
          df -h
     displayName: Manage disk space
+    condition: or(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.SourceBranchName'], 'main'))
 
   - script: |
          sudo fallocate -l 15GiB /swapfile || true
@@ -94,6 +96,7 @@ jobs:
          sudo mkswap /swapfile || true
          sudo swapon /swapfile || true
     displayName: Create swap file
+    condition: or(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.SourceBranchName'], 'main'))
 
   - bash: |
         sudo apt-get remove -y --auto-remove gcc
@@ -101,9 +104,11 @@ jobs:
         sed -h
         echo `uname -s`
     displayName: removing system compilers
+    condition: or(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.SourceBranchName'], 'main'))
 
   - bash: .ci_scripts/install_miniconda.sh
     displayName: install miniconda
+    condition: or(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.SourceBranchName'], 'main'))
 
   - bash: |
         set -e
