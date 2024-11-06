@@ -64,9 +64,9 @@ jobs:
   steps:
 
   - script: |
-      echo ${{ varriables['Build.Reason'] }}
-      echo ${{ varriables['Build.SourceBranchName'] }}
-      echo ${{ varriables['System.PullRequest.IsFork'] }}
+      echo ${{ variables['Build.Reason'] }}
+      echo ${{ variables['Build.SourceBranchName'] }}
+      echo ${{ variables['System.PullRequest.IsFork'] }}
     displayName: what are these anyways?
 
   - checkout: self
