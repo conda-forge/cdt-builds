@@ -1,3 +1,4 @@
+import hashlib
 import os
 import subprocess
 import glob
@@ -191,17 +192,29 @@ def _build_cdt(cdt_meta_node, no_temp=False):
     return c, c_up
 
 
-def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
+def _cdt_name_to_part(name, num_parts):
+    sha = hashlib.sha1(name.encode("utf-8"))
+    part_zero = int(sha.hexdigest(), 16) % num_parts
+    return part_zero + 1
+
+
+def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug, part=1, num_parts=1):
     recipes = (
         glob.glob(cdt_path + "/*")
         + glob.glob(custom_cdt_path + "/*")
     )
     cdt_meta = _build_cdt_meta(recipes, dist_arch_slug)
 
+    # skip CDTs that we are not building in this job
+    for node in cdt_meta:
+        if _cdt_name_to_part(node, num_parts) != part:
+            cdt_meta[node]["skip"] = True
+
     skipped = set(k for k, v in cdt_meta.items() if v["skip"])
     for node in sorted(skipped):
         print(
-            f"WARNING: skipping CDT {node} since it has already been built!",
+            f"WARNING: skipping CDT {node} since it has "
+            "already been built or is not part of this job!",
             flush=True,
         )
 
@@ -287,15 +300,27 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug):
 
 @click.command()
 @click.argument("dist_arch_slug", required=True)
+@click.option(
+    "--part-to-process",
+    default="1:1",
+    help=(
+        "the part of the list of CDTs to process, denoted as "
+        "'<part starting at 1>:<total_parts>' (e.g. '1:4', '2:4'"
+        ", etc. for four parts)",
+    ),
+)
 def _main(
     dist_arch_slug,
+    part_to_process,
 ):
     """
     Build all CDT recipes for a given DIST_ARCH_SLUG, i.e. `f"{distro}-{arch}"`,
     where we use the full distro name, and not the shortform
     """
-
-    _build_all_cdts(CDT_PATH, CUSTOM_CDT_PATH, dist_arch_slug)
+    part, num_parts = part_to_process.split(":")
+    part = int(part)
+    num_parts = int(num_parts)
+    _build_all_cdts(CDT_PATH, CUSTOM_CDT_PATH, dist_arch_slug, part=part, num_parts=num_parts)
 
 
 if __name__ == "__main__":
