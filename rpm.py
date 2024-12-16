@@ -197,7 +197,7 @@ exit ${{error_code}}
 """  # noqa
 
 
-def _gen_cdts(single_sysroot):
+def _gen_cdts():
     return dict(
         {
             "centos7": {
@@ -208,11 +208,7 @@ def _gen_cdts(single_sysroot):
                 "repomd_url": "http://vault.centos.org/7.9.2009/os/{architecture}/repodata/repomd.xml",  # noqa
                 # not relevant for centos7
                 "extra_subfolders": [],
-                "host_machine": (
-                    "{architecture}-conda-linux-gnu"
-                    if single_sysroot else
-                    "{architecture}-conda_cos7-linux-gnu"
-                ),
+                "host_machine": "{architecture}-conda-linux-gnu",
                 "host_subdir": "linux-64",
                 "fname_architecture": "{architecture}",
                 "checksummer": hashlib.sha256,
@@ -232,11 +228,7 @@ def _gen_cdts(single_sysroot):
                 "repomd_url": "https://vault.centos.org/altarch/7.9.2009/os/{architecture}/repodata/repomd.xml",  # noqa
                 # not relevant for centos7
                 "extra_subfolders": [],
-                "host_machine": (
-                    "{gnu_architecture}-conda-linux-gnu"
-                    if single_sysroot else
-                    "{gnu_architecture}-conda_cos7-linux-gnu"
-                ),
+                "host_machine": "{gnu_architecture}-conda-linux-gnu",
                 "host_subdir": "linux-{architecture}",
                 "fname_architecture": "{architecture}",
                 "checksummer": hashlib.sha256,
@@ -662,7 +654,6 @@ def write_conda_recipes(
     src_cache,
     build_number,
     conda_forge_style,
-    single_sysroot,
     build_number_bump,
 ):
 
@@ -671,12 +662,9 @@ def write_conda_recipes(
     else:
         _extra_build_num_str = " + %s" % build_number_bump
 
-    if single_sysroot:
-        build_number_jinja2 = (
-            "{{ cdt_build_number|int + 1000%s }}" % _extra_build_num_str
-        )
-    else:
-        build_number_jinja2 = "{{ cdt_build_number|int%s }}" % _extra_build_num_str
+    build_number_jinja2 = (
+        "{{ cdt_build_number|int + 1000%s }}" % _extra_build_num_str
+    )
 
     entry, entry_name, arch = find_repo_entry_and_arch(
         repo_primary, architectures, dict({"name": package})
@@ -769,7 +757,6 @@ def write_conda_recipes(
                 src_cache,
                 build_number,
                 conda_forge_style,
-                single_sysroot,
                 build_number_bump,
             )
 
@@ -804,26 +791,20 @@ def write_conda_recipes(
             if len(dependsstr_run) > 0:
                 dependsstr_run += "\n"
 
-            if single_sysroot:
-                if len(dependsstr_run) == 0:
-                    dependsstr_run = "  run:\n"
-                dependsstr_run += (
-                    "    - "
-                    "sysroot_%s %s.*" % (
-                        cdt["host_subdir"], cdt["glibc_ver"]))
-            else:
-                dependsstr_run += (
-                    "  run_constrained:\n    - "
-                    "sysroot_%s ==99999999999" % cdt["host_subdir"])
+            if len(dependsstr_run) == 0:
+                dependsstr_run = "  run:\n"
+            dependsstr_run += (
+                "    - "
+                "sysroot_%s %s.*" % (
+                    cdt["host_subdir"], cdt["glibc_ver"]))
 
             # put sysroot in host
-            if single_sysroot:
-                if len(dependsstr_host) == 0:
-                    dependsstr_host = "  host:\n"
-                dependsstr_host += (
-                    "    - "
-                    "sysroot_%s %s.*\n" % (
-                        cdt["host_subdir"], cdt["glibc_ver"]))
+            if len(dependsstr_host) == 0:
+                dependsstr_host = "  host:\n"
+            dependsstr_host += (
+                "    - "
+                "sysroot_%s %s.*\n" % (
+                    cdt["host_subdir"], cdt["glibc_ver"]))
 
         dependsstr = (
             "requirements:\n" + dependsstr_build + dependsstr_host + dependsstr_run
@@ -898,7 +879,6 @@ def write_conda_recipe(
     config,
     build_number,
     conda_forge_style,
-    single_sysroot,
     cdt_info,
     build_number_bump,
 ):
@@ -958,7 +938,6 @@ def write_conda_recipe(
             config.src_cache,
             build_number,
             conda_forge_style,
-            single_sysroot,
             build_number_bump,
         )
 
@@ -973,7 +952,6 @@ def write_conda_recipe(
 @click.option("--no-override-arch", default=False, is_flag=True)
 @click.option("--distro", default=default_distro, type=str)
 @click.option("--conda-forge-style", default=False, is_flag=True)
-@click.option("--single-sysroot", default=False, is_flag=True)
 @click.option("--build-number", default="2", type=str)
 @click.option("--build-number-bump", default=None, type=str)
 @click.option("--use-global-cache", default=False, is_flag=True)
@@ -987,12 +965,11 @@ def skeletonize(
     no_override_arch,
     distro,
     conda_forge_style,
-    single_sysroot,
     build_number,
     build_number_bump,
     use_global_cache,
 ):
-    cdt_info = _gen_cdts(single_sysroot)
+    cdt_info = _gen_cdts()
     if architecture in ["aarch64", "ppc64le"]:
         cdt_info["centos7"] = cdt_info["centos7-alt"]
 
@@ -1009,7 +986,6 @@ def skeletonize(
             cfg,
             build_number,
             conda_forge_style,
-            single_sysroot,
             cdt_info,
             build_number_bump,
         )

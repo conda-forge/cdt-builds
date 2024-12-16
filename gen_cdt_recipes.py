@@ -409,7 +409,7 @@ def _main(force, fast, keep_url_changes):
         # if force:
         #     _clear_gen_cdts(CDT_PATH)
 
-        extra = "--conda-forge-style --single-sysroot"
+        extra = "--conda-forge-style"
         if fast:
             extra += " --use-global-cache"
 
