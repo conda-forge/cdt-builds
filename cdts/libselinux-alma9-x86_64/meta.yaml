@@ -1,13 +1,13 @@
 package:
   name: libselinux-conda-x86_64
-  version: 3.5
+  version: 3.6
 
 source:
-  - url: https://vault.almalinux.org/9.3/BaseOS/x86_64/os/Packages/libselinux-3.5-1.el9.x86_64.rpm
-    sha256: 061602b6e2738a2fdc5b4e99f3d6d1a04c6c80c9bf80c109cde31c69f5530379
+  - url: https://vault.almalinux.org/9.4/BaseOS/x86_64/os/Packages/libselinux-3.6-1.el9.x86_64.rpm
+    sha256: b8cf502d7bf3bcb99a1dbfb65b4d2f6df66bf702f5e8c34e5b5d473c37a7c1ad
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/BaseOS/Source/Packages/libselinux-3.5-1.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/BaseOS/Source/Packages/libselinux-3.6-1.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libsepol-conda-x86_64 >=3.5 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-conda-x86_64 >=3.6 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libsepol-conda-x86_64 >=3.5 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-conda-x86_64 >=3.6 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.34.*
   run:
-    - libsepol-conda-x86_64 >=3.5 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-conda-x86_64 >=3.6 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.34.*
 
 test:

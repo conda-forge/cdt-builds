@@ -1,13 +1,13 @@
 package:
   name: audit-libs-devel-conda-aarch64
-  version: 3.0.7
+  version: 3.1.2
 
 source:
-  - url: https://vault.almalinux.org/9.3/AppStream/aarch64/os/Packages/audit-libs-devel-3.0.7-104.el9.aarch64.rpm
-    sha256: 8afb3d87a8b9cfd3193a7aead89fb6e210427fded75df4483e49b4ffd0676095
+  - url: https://vault.almalinux.org/9.4/AppStream/aarch64/os/Packages/audit-libs-devel-3.1.2-2.el9.aarch64.rpm
+    sha256: 2507d393edafa4698f9e2467bddc2198312dcd4d306bd438b32df0de782cdf46
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/AppStream/Source/Packages/audit-3.0.7-104.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/AppStream/Source/Packages/audit-3.1.2-2.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - audit-libs-conda-aarch64 ==3.0.7 *_{{ cdt_build_number|int + 1000 }}
+    - audit-libs-conda-aarch64 ==3.1.2 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - audit-libs-conda-aarch64 ==3.0.7 *_{{ cdt_build_number|int + 1000 }}
+    - audit-libs-conda-aarch64 ==3.1.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.34.*
   run:
-    - audit-libs-conda-aarch64 ==3.0.7 *_{{ cdt_build_number|int + 1000 }}
+    - audit-libs-conda-aarch64 ==3.1.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-aarch64 2.34.*
 test:
   commands:

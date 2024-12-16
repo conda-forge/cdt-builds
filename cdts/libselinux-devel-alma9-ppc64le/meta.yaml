@@ -1,13 +1,13 @@
 package:
   name: libselinux-devel-conda-ppc64le
-  version: 3.5
+  version: 3.6
 
 source:
-  - url: https://vault.almalinux.org/9.3/AppStream/ppc64le/os/Packages/libselinux-devel-3.5-1.el9.ppc64le.rpm
-    sha256: 1008879df47655f5b5fadaf4e675088a7d4386dcc82f94d61901bdfbea1955aa
+  - url: https://vault.almalinux.org/9.4/AppStream/ppc64le/os/Packages/libselinux-devel-3.6-1.el9.ppc64le.rpm
+    sha256: 7a350cd6b268129f0899e6c937e94895162f11431feb895bca90af842f282a3c
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/AppStream/Source/Packages/libselinux-3.5-1.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/AppStream/Source/Packages/libselinux-3.6-1.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -25,15 +25,15 @@ build:
 
 requirements:
   build:
-    - libselinux-conda-ppc64le ==3.5 *_{{ cdt_build_number|int + 1000 }}
-    - libsepol-devel-conda-ppc64le >=3.5 *_{{ cdt_build_number|int + 1000 }}
+    - libselinux-conda-ppc64le ==3.6 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-devel-conda-ppc64le >=3.6 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libselinux-conda-ppc64le ==3.5 *_{{ cdt_build_number|int + 1000 }}
-    - libsepol-devel-conda-ppc64le >=3.5 *_{{ cdt_build_number|int + 1000 }}
+    - libselinux-conda-ppc64le ==3.6 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-devel-conda-ppc64le >=3.6 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.34.*
   run:
-    - libselinux-conda-ppc64le ==3.5 *_{{ cdt_build_number|int + 1000 }}
-    - libsepol-devel-conda-ppc64le >=3.5 *_{{ cdt_build_number|int + 1000 }}
+    - libselinux-conda-ppc64le ==3.6 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-devel-conda-ppc64le >=3.6 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.34.*
 
 test:

@@ -1,13 +1,13 @@
 package:
   name: audit-libs-devel-conda-ppc64le
-  version: 3.0.7
+  version: 3.1.2
 
 source:
-  - url: https://vault.almalinux.org/9.3/AppStream/ppc64le/os/Packages/audit-libs-devel-3.0.7-104.el9.ppc64le.rpm
-    sha256: bf107dfb469356fc01e6ae8812d448930cd09d8bfb4e0bdc1ff31d9fa8306e93
+  - url: https://vault.almalinux.org/9.4/AppStream/ppc64le/os/Packages/audit-libs-devel-3.1.2-2.el9.ppc64le.rpm
+    sha256: c155373fa17d9605bda2802eb8eade8d01dcc721aed18d69920a83b4a7338e8f
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/AppStream/Source/Packages/audit-3.0.7-104.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/AppStream/Source/Packages/audit-3.1.2-2.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - audit-libs-conda-ppc64le ==3.0.7 *_{{ cdt_build_number|int + 1000 }}
+    - audit-libs-conda-ppc64le ==3.1.2 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - audit-libs-conda-ppc64le ==3.0.7 *_{{ cdt_build_number|int + 1000 }}
+    - audit-libs-conda-ppc64le ==3.1.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.34.*
   run:
-    - audit-libs-conda-ppc64le ==3.0.7 *_{{ cdt_build_number|int + 1000 }}
+    - audit-libs-conda-ppc64le ==3.1.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.34.*
 test:
   commands:

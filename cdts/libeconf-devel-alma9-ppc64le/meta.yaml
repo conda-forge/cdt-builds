@@ -3,11 +3,11 @@ package:
   version: 0.4.1
 
 source:
-  - url: https://vault.almalinux.org/9.3/devel/ppc64le/os/Packages/libeconf-devel-0.4.1-3.el9_2.ppc64le.rpm
+  - url: https://vault.almalinux.org/9.4/devel/ppc64le/os/Packages/libeconf-devel-0.4.1-3.el9_2.ppc64le.rpm
     sha256: 70b049ce630f367324ead236440df834c6ea7272cc6a466d8ca08fa7d10b63fd
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/devel/Source/Packages/libeconf-0.4.1-3.el9_2.src.rpm
+  # - url: https://vault.almalinux.org/9.4/devel/Source/Packages/libeconf-0.4.1-3.el9_2.src.rpm
   #   no_hoist: true
   #   folder: source
 

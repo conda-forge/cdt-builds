@@ -1,13 +1,13 @@
 package:
   name: libsepol-devel-conda-x86_64
-  version: 3.5
+  version: 3.6
 
 source:
-  - url: https://vault.almalinux.org/9.3/AppStream/x86_64/os/Packages/libsepol-devel-3.5-1.el9.x86_64.rpm
-    sha256: 772733ab239bcaa1313099f5ab4bf1b65bf2414c980e500faa0363b3e30e6445
+  - url: https://vault.almalinux.org/9.4/AppStream/x86_64/os/Packages/libsepol-devel-3.6-1.el9.x86_64.rpm
+    sha256: 8a7510140a18ca877c68ff80ada5c012fa7b1a8697cfbc2bd2a875fb54e2d862
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/AppStream/Source/Packages/libsepol-3.5-1.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/AppStream/Source/Packages/libsepol-3.6-1.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - libsepol-conda-x86_64 ==3.5 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-conda-x86_64 ==3.6 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libsepol-conda-x86_64 ==3.5 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-conda-x86_64 ==3.6 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.34.*
   run:
-    - libsepol-conda-x86_64 ==3.5 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-conda-x86_64 ==3.6 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.34.*
 
 test:

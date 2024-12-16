@@ -1,13 +1,13 @@
 package:
   name: libsepol-conda-aarch64
-  version: 3.5
+  version: 3.6
 
 source:
-  - url: https://vault.almalinux.org/9.3/BaseOS/aarch64/os/Packages/libsepol-3.5-1.el9.aarch64.rpm
-    sha256: e325eb0f8d0c95c7b3e260c5fe2f8941f1ebd5f7164643ef20dd71d353bba053
+  - url: https://vault.almalinux.org/9.4/BaseOS/aarch64/os/Packages/libsepol-3.6-1.el9.aarch64.rpm
+    sha256: 914a8b7b91426c370cc9e4e97fa2cf963d0688f2781ba498e22c78a330f7e316
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/BaseOS/Source/Packages/libsepol-3.5-1.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/BaseOS/Source/Packages/libsepol-3.6-1.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 

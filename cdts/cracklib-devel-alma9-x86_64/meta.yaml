@@ -3,11 +3,11 @@ package:
   version: 2.9.6
 
 source:
-  - url: https://vault.almalinux.org/9.3/CRB/x86_64/os/Packages/cracklib-devel-2.9.6-27.el9.x86_64.rpm
+  - url: https://vault.almalinux.org/9.4/CRB/x86_64/os/Packages/cracklib-devel-2.9.6-27.el9.x86_64.rpm
     sha256: 942b8904ac97fcd1b58378ce1d7d244eda57e47202768b56b0c7114cb58e3a61
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/CRB/Source/Packages/cracklib-2.9.6-27.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/CRB/Source/Packages/cracklib-2.9.6-27.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -3,11 +3,11 @@ package:
   version: 1.5.1
 
 source:
-  - url: https://vault.almalinux.org/9.3/AppStream/aarch64/os/Packages/pam-devel-1.5.1-15.el9.aarch64.rpm
-    sha256: 11a275e2cd0894c83066d10d772673a4a87655ee1367c10a94f5a920f45539dc
+  - url: https://vault.almalinux.org/9.4/AppStream/aarch64/os/Packages/pam-devel-1.5.1-19.el9.aarch64.rpm
+    sha256: f2ba66aa9ff6e32715c9ade275816055267e566658dbdc04d9dc5878621ce9d2
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/AppStream/Source/Packages/pam-1.5.1-15.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/AppStream/Source/Packages/pam-1.5.1-19.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 
