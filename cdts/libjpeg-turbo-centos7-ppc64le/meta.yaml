@@ -7,7 +7,7 @@ source:
     sha256: 17ffe084dbdb0af7a1399f460fbd8260caa691ddfdb125fc0f68886e05b1ae02
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libjpeg-turbo-1.2.90-8.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libjpeg-turbo-1.2.90-8.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

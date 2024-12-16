@@ -3,11 +3,11 @@ package:
   version: 1.2.3
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libpwquality-devel-1.2.3-5.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/libpwquality-devel-1.2.3-5.el7.x86_64.rpm
     sha256: 57de7989ceb40c64761ca8ffb4d627aeda894b1c722123abaa4a709b13e52eaa
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libpwquality-1.2.3-5.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/libpwquality-1.2.3-5.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

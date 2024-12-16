@@ -7,7 +7,7 @@ source:
     sha256: ae38a339a176939b0bd8f48078728aa91ad997a0262b362a4a3b72ddf6549400
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libsoup-2.62.2-2.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libsoup-2.62.2-2.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

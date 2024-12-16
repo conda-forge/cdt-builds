@@ -7,7 +7,7 @@ source:
     sha256: 6e623317f8ca06df5724db8d1cc7f18a95f695cdd9a5d12e4861e002e8411ee6
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libICE-1.0.9-9.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libICE-1.0.9-9.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

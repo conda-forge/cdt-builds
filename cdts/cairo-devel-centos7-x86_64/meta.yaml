@@ -3,11 +3,11 @@ package:
   version: 1.15.12
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/cairo-devel-1.15.12-4.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/cairo-devel-1.15.12-4.el7.x86_64.rpm
     sha256: 05f95f4864c7e85fd801638c1183a292dd0054a07e38cee077288431a7c82d62
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/cairo-1.15.12-4.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/cairo-1.15.12-4.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

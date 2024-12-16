@@ -7,7 +7,7 @@ source:
     sha256: 36c17b0be3a5d20da7a48dd8992de7ad894a16c55d5be3f37269bff2c3047c32
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/systemd-219-78.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/systemd-219-78.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

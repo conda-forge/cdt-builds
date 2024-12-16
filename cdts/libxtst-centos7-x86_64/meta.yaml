@@ -3,11 +3,11 @@ package:
   version: 1.2.3
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libXtst-1.2.3-1.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/libXtst-1.2.3-1.el7.x86_64.rpm
     sha256: fb26618b371e304889912c79aa009388aaa17f3b08fdce9512d70f3957fe18e2
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libXtst-1.2.3-1.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/libXtst-1.2.3-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -7,7 +7,7 @@ source:
     sha256: eb818da9347fa683079771a80a725cdd73f29373000868f602d2d8c591040eb7
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/expat-2.1.0-12.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/expat-2.1.0-12.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -7,7 +7,7 @@ source:
     sha256: 9c378db289e157bd775ac6cf2f9c9dd2fbfc1376806d89d6ccd0f9d3c75e272d
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/alsa-lib-1.1.8-1.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/alsa-lib-1.1.8-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

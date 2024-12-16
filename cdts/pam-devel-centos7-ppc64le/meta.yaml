@@ -7,7 +7,7 @@ source:
     sha256: 6b2bc3cc2e1fc3d590a9f8b1acc78cd6ad9704516ff81b15f2e1b57a51d94eb1
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/pam-1.1.8-23.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/pam-1.1.8-23.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

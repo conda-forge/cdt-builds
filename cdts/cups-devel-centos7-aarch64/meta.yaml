@@ -7,7 +7,7 @@ source:
     sha256: aa2cd8a49f93163ae139dc37d0be4509dd74ff3098ac6dae0821e1dcdfce16e0
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/cups-1.6.3-51.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/cups-1.6.3-51.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

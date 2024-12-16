@@ -7,7 +7,7 @@ source:
     sha256: e632beaafcaa0d3e3d35647fd30311ce84177f5d2714b91b2321014e102a0b55
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/opensm-3.3.21-3.el7_8.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/opensm-3.3.21-3.el7_8.src.rpm
   #   no_hoist: true
   #   folder: source
 

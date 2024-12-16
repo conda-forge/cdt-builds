@@ -7,7 +7,7 @@ source:
     sha256: 8f049ee8775d2ddfca7838f7c576d125ec3b214b50f0a652c0540cd5bfef63bc
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/glib-networking-2.56.1-1.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/glib-networking-2.56.1-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

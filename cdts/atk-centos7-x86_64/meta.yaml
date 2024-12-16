@@ -3,11 +3,11 @@ package:
   version: 2.28.1
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/atk-2.28.1-2.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/atk-2.28.1-2.el7.x86_64.rpm
     sha256: 942fc4bc5390444c1758043bc5dd4c01c84e3e7c008c1c8ad4a6aefffb5e458d
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/atk-2.28.1-2.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/atk-2.28.1-2.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -7,7 +7,7 @@ source:
     sha256: 0003ff9339ca18cbab3dd6c0899d7d8ec8ea703351da9c9ccd16dfdd211fc57b
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXau-1.0.8-2.1.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXau-1.0.8-2.1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

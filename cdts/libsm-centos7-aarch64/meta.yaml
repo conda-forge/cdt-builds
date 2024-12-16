@@ -7,7 +7,7 @@ source:
     sha256: 014a93eae57ce500b058e0bc3257a35f33acf0bd2a3d997b63283c74af7a4db4
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libSM-1.2.2-2.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libSM-1.2.2-2.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

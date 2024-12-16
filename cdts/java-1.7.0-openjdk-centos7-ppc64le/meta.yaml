@@ -7,7 +7,7 @@ source:
     sha256: 025812f6ee9c05e5f8f06367eea904cff689a7c2ca5b451bff46fe70f5812b33
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/java-1.7.0-openjdk-1.7.0.261-2.6.22.2.el7_8.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/java-1.7.0-openjdk-1.7.0.261-2.6.22.2.el7_8.src.rpm
   #   no_hoist: true
   #   folder: source
 

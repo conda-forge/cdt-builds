@@ -7,7 +7,7 @@ source:
     sha256: d4af669f68a9eaf522b67b2ea1b651831c2d9d7d45c9594051b3b93d8b0cbdf8
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXcursor-1.1.15-1.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXcursor-1.1.15-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

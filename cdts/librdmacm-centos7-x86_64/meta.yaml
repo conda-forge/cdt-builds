@@ -3,11 +3,11 @@ package:
   version: 22.4
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/librdmacm-22.4-5.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/librdmacm-22.4-5.el7.x86_64.rpm
     sha256: 18b0bb258d4bc5812c8fb624b0e38babfcf04af9955ab01c4d947ce0cca422b2
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/rdma-core-22.4-5.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/rdma-core-22.4-5.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

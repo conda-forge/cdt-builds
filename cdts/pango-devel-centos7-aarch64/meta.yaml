@@ -7,7 +7,7 @@ source:
     sha256: 7d9536f190e050dc240450d765f66150c60e3d46fe8f330eacf20ca65fd30e3f
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/pango-1.42.4-4.el7_7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/pango-1.42.4-4.el7_7.src.rpm
   #   no_hoist: true
   #   folder: source
 

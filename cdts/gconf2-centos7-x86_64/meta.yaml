@@ -3,11 +3,11 @@ package:
   version: 3.2.6
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/GConf2-3.2.6-8.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/GConf2-3.2.6-8.el7.x86_64.rpm
     sha256: 3d4f93baccf4e3bf657e013b91d5695cb92ff661810cddb26e560f224531b5fd
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/GConf2-3.2.6-8.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/GConf2-3.2.6-8.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

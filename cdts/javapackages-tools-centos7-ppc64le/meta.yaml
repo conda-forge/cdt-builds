@@ -7,7 +7,7 @@ source:
     sha256: cb9d2fd9d743bf4cb28b4afec7e8d1891fcca6f63f00ba7a60aadfe337527e1c
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/javapackages-tools-3.4.1-11.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/javapackages-tools-3.4.1-11.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

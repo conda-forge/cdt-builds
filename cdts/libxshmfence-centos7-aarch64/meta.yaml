@@ -7,7 +7,7 @@ source:
     sha256: 4b0b6292d05526a2d44bb3f5bb58607fc8dbb9024eb59f129ee3ed1181fff49e
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libxshmfence-1.2-1.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libxshmfence-1.2-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -7,7 +7,7 @@ source:
     sha256: df214382734fd4b2a0dc0800c57dd4f0b8023df55218e979553d6cc6bb7ee1aa
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/mesa-18.3.4-10.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/mesa-18.3.4-10.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

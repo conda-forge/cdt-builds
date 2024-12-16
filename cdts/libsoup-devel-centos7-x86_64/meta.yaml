@@ -3,11 +3,11 @@ package:
   version: 2.62.2
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libsoup-devel-2.62.2-2.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/libsoup-devel-2.62.2-2.el7.x86_64.rpm
     sha256: ae6de1905339dba571f4c00ff2f94e093902f8aed13db749b71d4e6c6df6b1c7
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libsoup-2.62.2-2.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/libsoup-2.62.2-2.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

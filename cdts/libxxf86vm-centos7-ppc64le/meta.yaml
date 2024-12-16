@@ -7,7 +7,7 @@ source:
     sha256: 39a2ca6b68766e837892dcf536764b542ec219f56ebc2754408dcae46b8553b6
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXxf86vm-1.1.4-1.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXxf86vm-1.1.4-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

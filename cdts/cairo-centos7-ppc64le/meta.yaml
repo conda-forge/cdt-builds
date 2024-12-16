@@ -7,7 +7,7 @@ source:
     sha256: 51a9c48460f4dcd1e57a2554f40982a4deaa8e5ab9afec24044e355d0ad6df6a
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/cairo-1.15.12-4.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/cairo-1.15.12-4.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

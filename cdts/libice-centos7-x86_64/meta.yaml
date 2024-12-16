@@ -3,11 +3,11 @@ package:
   version: 1.0.9
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libICE-1.0.9-9.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/libICE-1.0.9-9.el7.x86_64.rpm
     sha256: d910a86326cc0434f6d3536311012f83ee3d2dbf98a350c2ca8a5329750b17ac
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libICE-1.0.9-9.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/libICE-1.0.9-9.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

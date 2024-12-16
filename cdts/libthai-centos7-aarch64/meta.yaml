@@ -7,7 +7,7 @@ source:
     sha256: 2f780065d78d69a68ee250c26287d5e9de025afbe34175b7dea8a2792bcf45c6
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libthai-0.1.14-9.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libthai-0.1.14-9.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

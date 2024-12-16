@@ -3,11 +3,11 @@ package:
   version: 0.4.0
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/xcb-util-keysyms-devel-0.4.0-1.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/xcb-util-keysyms-devel-0.4.0-1.el7.x86_64.rpm
     sha256: 0dce5185ef41cc25a379e5964b88a091c24773aadd9c0bcc236bd6b8b42502d5
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/xcb-util-keysyms-0.4.0-1.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/xcb-util-keysyms-0.4.0-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -7,7 +7,7 @@ source:
     sha256: 5ad7a0f6001ff173313f0cf683f03f274add850bf7dc60d5a444fcd7d819c455
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXinerama-1.1.3-2.1.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXinerama-1.1.3-2.1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -3,11 +3,11 @@ package:
   version: 0.8.14
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libIDL-0.8.14-8.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/libIDL-0.8.14-8.el7.x86_64.rpm
     sha256: 5f1e6d9709ea2b8b0c0d5588206c188f78ea6e6eb55277af3823dec37d786532
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libIDL-0.8.14-8.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/libIDL-0.8.14-8.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -7,7 +7,7 @@ source:
     sha256: 6ecbc530230cf838e4b8a2899837a66df77287427d64fcc18456b05d50b881f4
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libxml2-2.9.1-6.el7.5.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libxml2-2.9.1-6.el7.5.src.rpm
   #   no_hoist: true
   #   folder: source
 

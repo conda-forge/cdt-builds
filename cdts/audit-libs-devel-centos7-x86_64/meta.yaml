@@ -3,11 +3,11 @@ package:
   version: 2.8.5
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/audit-libs-devel-2.8.5-4.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/audit-libs-devel-2.8.5-4.el7.x86_64.rpm
     sha256: 4fed94ce3ec001f32b89c84b65b3f22b5a5aa69ff6e02dd26493997202db879f
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/audit-2.8.5-4.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/audit-2.8.5-4.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

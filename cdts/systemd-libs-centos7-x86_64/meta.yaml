@@ -3,11 +3,11 @@ package:
   version: 219
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/systemd-libs-219-78.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/systemd-libs-219-78.el7.x86_64.rpm
     sha256: 14a555e00c219e1be8eea0d3bb683579059cba07ccfb9c559d6ee1a991d73e66
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/systemd-219-78.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/systemd-219-78.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

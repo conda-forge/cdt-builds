@@ -7,7 +7,7 @@ source:
     sha256: b6af1f30e2cf9bafc9f1776c2f4750f76c8ea42ea1972b9e56df168f0e3f7763
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXfixes-5.0.3-1.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXfixes-5.0.3-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

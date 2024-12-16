@@ -3,11 +3,11 @@ package:
   version: 18.3.4
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/mesa-libgbm-devel-18.3.4-10.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/mesa-libgbm-devel-18.3.4-10.el7.x86_64.rpm
     sha256: fafbfab978fdada94b6a10478774d782a60b89007942a40ae7b79b20ecb143c0
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/mesa-18.3.4-10.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/mesa-18.3.4-10.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

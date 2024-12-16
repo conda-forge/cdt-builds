@@ -7,7 +7,7 @@ source:
     sha256: 1440b7d8503c8080f95b17e6aaa3d180133e9ab08ad45c6683490e1fb045731c
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXScrnSaver-1.2.2-6.1.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXScrnSaver-1.2.2-6.1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

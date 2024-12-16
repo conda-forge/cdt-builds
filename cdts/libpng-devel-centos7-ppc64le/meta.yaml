@@ -7,7 +7,7 @@ source:
     sha256: 182598680db4f70865daad0bd79fe0ea76458d0f3674b7d8441a386aa5ead218
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libpng-1.5.13-8.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libpng-1.5.13-8.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

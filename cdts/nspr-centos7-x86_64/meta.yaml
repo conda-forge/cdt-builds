@@ -3,11 +3,11 @@ package:
   version: 4.21.0
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/nspr-4.21.0-1.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/nspr-4.21.0-1.el7.x86_64.rpm
     sha256: 87b51e45cfb1fb7e13f3c9ee00ca4326812c3daa69820634c8eff3c60890c928
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/nspr-4.21.0-1.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/nspr-4.21.0-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

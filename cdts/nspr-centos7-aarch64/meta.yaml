@@ -7,7 +7,7 @@ source:
     sha256: 358f430d3b2ac45d78089ee70f9be181fa1dc67d3b30d8f323041fa9b933e6c2
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/nspr-4.21.0-1.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/nspr-4.21.0-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
