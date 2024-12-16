@@ -210,7 +210,6 @@ def _gen_cdts():
                 "extra_subfolders": [],
                 "host_machine": "{gnu_architecture}-conda-linux-gnu",
                 "host_subdir": "linux-64",
-                "fname_architecture": "{architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
                 # Some macros are defined in /etc/rpm/macros.* but I cannot find where
@@ -230,7 +229,6 @@ def _gen_cdts():
                 "extra_subfolders": [],
                 "host_machine": "{gnu_architecture}-conda-linux-gnu",
                 "host_subdir": "linux-{architecture}",
-                "fname_architecture": "{architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
                 # Some macros are defined in /etc/rpm/macros.* but I cannot find where
@@ -249,7 +247,6 @@ def _gen_cdts():
                 "extra_subfolders": ["PowerTools"],
                 "host_machine": "{gnu_architecture}-conda-linux-gnu",
                 "host_subdir": "linux-64",
-                "fname_architecture": "{architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
                 "macros": {},
@@ -265,7 +262,6 @@ def _gen_cdts():
                 "extra_subfolders": ["CRB", "devel"],
                 "host_machine": "{gnu_architecture}-conda-linux-gnu",
                 "host_subdir": "linux-64",
-                "fname_architecture": "{architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
                 "macros": {},
@@ -650,7 +646,6 @@ def write_conda_recipes(
     architectures,
     cdt,
     output_dir,
-    override_arch,
     src_cache,
     build_number,
     conda_forge_style,
@@ -671,10 +666,8 @@ def write_conda_recipes(
     )
     if not entry:
         return
-    if override_arch:
-        arch = architectures[0]
-    else:
-        arch = cdt["fname_architecture"]
+
+    arch = architectures[0] if arch == "noarch" else arch
     package = entry_name
     package_l = package.lower().replace("+", "x")
     sn = cdt["short_name"] + "-" + arch
@@ -734,8 +727,8 @@ def write_conda_recipes(
         dep_entry, dep_name, dep_arch = find_repo_entry_and_arch(
             repo_primary, architectures, depend
         )
-        if override_arch:
-            dep_arch = architectures[0]
+        dep_arch = architectures[0] if dep_arch == "noarch" else dep_arch
+
         depend["arch"] = dep_arch
         # Because something else may provide a substitute for the wanted package
         # we need to also overwrite the versions with those of the provider, e.g.
@@ -753,7 +746,6 @@ def write_conda_recipes(
                 architectures,
                 cdt,
                 output_dir,
-                override_arch,
                 src_cache,
                 build_number,
                 conda_forge_style,
@@ -874,7 +866,6 @@ def write_conda_recipe(
     architecture,
     subfolder,
     recursive,
-    override_arch,
     dependency_add,
     config,
     build_number,
@@ -932,7 +923,6 @@ def write_conda_recipe(
             [architecture, "noarch"],
             cdt,
             output_dir,
-            override_arch,
             config.src_cache,
             build_number,
             conda_forge_style,
@@ -947,7 +937,6 @@ def write_conda_recipe(
 @click.option("--recursive", default=False, is_flag=True)
 @click.option("--architecture", default=default_architecture, type=str)
 @click.option("--subfolder", default="BaseOS", type=str)
-@click.option("--no-override-arch", default=False, is_flag=True)
 @click.option("--distro", default=default_distro, type=str)
 @click.option("--conda-forge-style", default=False, is_flag=True)
 @click.option("--build-number", default="2", type=str)
@@ -960,7 +949,6 @@ def skeletonize(
     recursive,
     architecture,
     subfolder,
-    no_override_arch,
     distro,
     conda_forge_style,
     build_number,
@@ -979,7 +967,6 @@ def skeletonize(
             architecture,
             subfolder,
             recursive,
-            not no_override_arch,
             None,
             cfg,
             build_number,
