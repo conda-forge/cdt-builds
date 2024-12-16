@@ -28,10 +28,10 @@ requirements:
     - audit-libs-conda-ppc64le ==3.0.7 *_{{ cdt_build_number|int + 1000 }}
   host:
     - audit-libs-conda-ppc64le ==3.0.7 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-ppc64le 2.34.*
   run:
     - audit-libs-conda-ppc64le ==3.0.7 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-ppc64le 2.34.*
 test:
   commands:
     - echo "it installs!"

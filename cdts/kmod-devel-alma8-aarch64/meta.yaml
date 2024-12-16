@@ -28,10 +28,10 @@ requirements:
     - kmod-libs-conda-aarch64 ==25 *_{{ cdt_build_number|int + 1000 }}
   host:
     - kmod-libs-conda-aarch64 ==25 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.28.*
+    - sysroot_linux-aarch64 2.28.*
   run:
     - kmod-libs-conda-aarch64 ==25 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.28.*
+    - sysroot_linux-aarch64 2.28.*
 
 test:
   commands:

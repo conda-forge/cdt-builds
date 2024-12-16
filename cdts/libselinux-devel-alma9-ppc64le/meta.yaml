@@ -30,11 +30,11 @@ requirements:
   host:
     - libselinux-conda-ppc64le ==3.5 *_{{ cdt_build_number|int + 1000 }}
     - libsepol-devel-conda-ppc64le >=3.5 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-ppc64le 2.34.*
   run:
     - libselinux-conda-ppc64le ==3.5 *_{{ cdt_build_number|int + 1000 }}
     - libsepol-devel-conda-ppc64le >=3.5 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-ppc64le 2.34.*
 
 test:
   commands:

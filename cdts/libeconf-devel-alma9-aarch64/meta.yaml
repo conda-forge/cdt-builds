@@ -28,10 +28,10 @@ requirements:
     - libeconf-conda-aarch64 ==0.4.1 *_{{ cdt_build_number|int + 1000 }}
   host:
     - libeconf-conda-aarch64 ==0.4.1 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-aarch64 2.34.*
   run:
     - libeconf-conda-aarch64 ==0.4.1 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-aarch64 2.34.*
 
 test:
   commands:

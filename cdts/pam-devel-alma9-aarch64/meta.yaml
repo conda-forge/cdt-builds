@@ -28,10 +28,10 @@ requirements:
     - pam-conda-aarch64 ==1.5.1 *_{{ cdt_build_number|int + 1000 }}
   host:
     - pam-conda-aarch64 ==1.5.1 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-aarch64 2.34.*
   run:
     - pam-conda-aarch64 ==1.5.1 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-aarch64 2.34.*
 
 test:
   commands:
