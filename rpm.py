@@ -139,7 +139,7 @@ BUILDSH = """\
 
 set -o errexit -o pipefail
 
-SYSROOT_DIR="${{PREFIX}}"/{hostmachine}/sysroot
+SYSROOT_DIR="${{PREFIX}}"/{host_machine}/sysroot
 
 mkdir -p "${{SYSROOT_DIR}}"
 if [[ -d usr/lib ]]; then
@@ -208,7 +208,7 @@ def _gen_cdts():
                 "repomd_url": "http://vault.centos.org/7.9.2009/os/{architecture}/repodata/repomd.xml",  # noqa
                 # not relevant for centos7
                 "extra_subfolders": [],
-                "host_machine": "{architecture}-conda-linux-gnu",
+                "host_machine": "{gnu_architecture}-conda-linux-gnu",
                 "host_subdir": "linux-64",
                 "fname_architecture": "{architecture}",
                 "checksummer": hashlib.sha256,
@@ -247,7 +247,7 @@ def _gen_cdts():
                 "sbase_url": "https://vault.almalinux.org/8.9/{subfolder}/Source/Packages/",
                 "repomd_url": "https://vault.almalinux.org/8.9/{subfolder}/{architecture}/os/repodata/repomd.xml",  # noqa
                 "extra_subfolders": ["PowerTools"],
-                "host_machine": "{architecture}-conda-linux-gnu",
+                "host_machine": "{gnu_architecture}-conda-linux-gnu",
                 "host_subdir": "linux-64",
                 "fname_architecture": "{architecture}",
                 "checksummer": hashlib.sha256,
@@ -263,7 +263,7 @@ def _gen_cdts():
                 "sbase_url": "https://vault.almalinux.org/9.3/{subfolder}/Source/Packages/",
                 "repomd_url": "https://vault.almalinux.org/9.3/{subfolder}/{architecture}/os/repodata/repomd.xml",  # noqa
                 "extra_subfolders": ["CRB", "devel"],
-                "host_machine": "{architecture}-conda-linux-gnu",
+                "host_machine": "{gnu_architecture}-conda-linux-gnu",
                 "host_subdir": "linux-64",
                 "fname_architecture": "{architecture}",
                 "checksummer": hashlib.sha256,
@@ -820,7 +820,7 @@ def write_conda_recipes(
             "license_file": license_file,
             "packagename": package_cdt_name,
             "distro_name": cdt["full_name"],
-            "hostmachine": cdt["host_machine"],
+            "host_machine": cdt["host_machine"],
             "hostsubdir": cdt["host_subdir"],
             "depends": dependsstr,
             "rpmurl": rpm_url,
@@ -886,10 +886,8 @@ def write_conda_recipe(
     # and crosstool-ng. They are returned from ${CC} -dumpmachine and are a part of the
     # sysroot.
     gnu_architectures = dict({"ppc64le": "powerpc64le"})
-    try:
-        gnu_architecture = gnu_architectures[architecture]
-    except Exception:
-        gnu_architecture = architecture
+    gnu_architecture = gnu_architectures.get(architecture, architecture)
+
     formatting_bits = dict(
         {
             "architecture": architecture,
