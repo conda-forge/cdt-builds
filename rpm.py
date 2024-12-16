@@ -209,7 +209,7 @@ def _gen_cdts():
                 # not relevant for centos7
                 "extra_subfolders": [],
                 "host_machine": "{gnu_architecture}-conda-linux-gnu",
-                "host_subdir": "linux-64",
+                "host_subdir": "linux-{conda_architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
                 # Some macros are defined in /etc/rpm/macros.* but I cannot find where
@@ -228,7 +228,7 @@ def _gen_cdts():
                 # not relevant for centos7
                 "extra_subfolders": [],
                 "host_machine": "{gnu_architecture}-conda-linux-gnu",
-                "host_subdir": "linux-{architecture}",
+                "host_subdir": "linux-{conda_architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
                 # Some macros are defined in /etc/rpm/macros.* but I cannot find where
@@ -246,7 +246,7 @@ def _gen_cdts():
                 "repomd_url": "https://vault.almalinux.org/8.9/{subfolder}/{architecture}/os/repodata/repomd.xml",  # noqa
                 "extra_subfolders": ["PowerTools"],
                 "host_machine": "{gnu_architecture}-conda-linux-gnu",
-                "host_subdir": "linux-64",
+                "host_subdir": "linux-{conda_architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
                 "macros": {},
@@ -261,7 +261,7 @@ def _gen_cdts():
                 "repomd_url": "https://vault.almalinux.org/9.3/{subfolder}/{architecture}/os/repodata/repomd.xml",  # noqa
                 "extra_subfolders": ["CRB", "devel"],
                 "host_machine": "{gnu_architecture}-conda-linux-gnu",
-                "host_subdir": "linux-64",
+                "host_subdir": "linux-{conda_architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
                 "macros": {},
@@ -813,7 +813,6 @@ def write_conda_recipes(
             "packagename": package_cdt_name,
             "distro_name": cdt["full_name"],
             "host_machine": cdt["host_machine"],
-            "hostsubdir": cdt["host_subdir"],
             "depends": dependsstr,
             "rpmurl": rpm_url,
             "srcrpmurl": srpm_url,
@@ -873,6 +872,9 @@ def write_conda_recipe(
     cdt_info,
     build_number_bump,
 ):
+    # conda architectures are `linux-{64,aarch64,ppc64le}`
+    conda_architectures = dict({"x86_64": "64"})
+    conda_architecture = conda_architectures.get(architecture, architecture)
     # gnu_architectures are those recognized by the canonical config.sub / config.guess
     # and crosstool-ng. They are returned from ${CC} -dumpmachine and are a part of the
     # sysroot.
@@ -882,6 +884,7 @@ def write_conda_recipe(
     formatting_bits = dict(
         {
             "architecture": architecture,
+            "conda_architecture": conda_architecture,
             "gnu_architecture": gnu_architecture,
             "subfolder": subfolder,
         }
