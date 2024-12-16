@@ -203,9 +203,9 @@ def _gen_cdts(single_sysroot):
             "centos7": {
                 "full_name": "centos7",
                 "short_name": "conda",
-                "base_url": "http://vault.centos.org/7.9.2009/os/{base_architecture}/Packages/",  # noqa
+                "base_url": "http://vault.centos.org/7.9.2009/os/{architecture}/Packages/",  # noqa
                 "sbase_url": "http://vault.centos.org/7.9.2009/os/Source/SPackages/",
-                "repomd_url": "http://vault.centos.org/7.9.2009/os/{base_architecture}/repodata/repomd.xml",  # noqa
+                "repomd_url": "http://vault.centos.org/7.9.2009/os/{architecture}/repodata/repomd.xml",  # noqa
                 # not relevant for centos7
                 "extra_subfolders": [],
                 "host_machine": (
@@ -213,7 +213,7 @@ def _gen_cdts(single_sysroot):
                     if single_sysroot else
                     "{architecture}-conda_cos7-linux-gnu"
                 ),
-                "host_subdir": "linux-{bits}",
+                "host_subdir": "linux-64",
                 "fname_architecture": "{architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
@@ -227,9 +227,9 @@ def _gen_cdts(single_sysroot):
             "centos7-alt": {
                 "full_name": "centos7",
                 "short_name": "conda",
-                "base_url": "https://vault.centos.org/altarch/7.9.2009/os/{base_architecture}/Packages/",  # noqa
+                "base_url": "https://vault.centos.org/altarch/7.9.2009/os/{architecture}/Packages/",  # noqa
                 "sbase_url": "http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/",
-                "repomd_url": "https://vault.centos.org/altarch/7.9.2009/os/{base_architecture}/repodata/repomd.xml",  # noqa
+                "repomd_url": "https://vault.centos.org/altarch/7.9.2009/os/{architecture}/repodata/repomd.xml",  # noqa
                 # not relevant for centos7
                 "extra_subfolders": [],
                 "host_machine": (
@@ -237,7 +237,7 @@ def _gen_cdts(single_sysroot):
                     if single_sysroot else
                     "{gnu_architecture}-conda_cos7-linux-gnu"
                 ),
-                "host_subdir": "linux-{base_architecture}",
+                "host_subdir": "linux-{architecture}",
                 "fname_architecture": "{architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
@@ -251,12 +251,12 @@ def _gen_cdts(single_sysroot):
             "alma8": {
                 "full_name": "alma8",
                 "short_name": "conda",
-                "base_url": "https://vault.almalinux.org/8.9/{subfolder}/{base_architecture}/os/Packages/",  # noqa
+                "base_url": "https://vault.almalinux.org/8.9/{subfolder}/{architecture}/os/Packages/",  # noqa
                 "sbase_url": "https://vault.almalinux.org/8.9/{subfolder}/Source/Packages/",
-                "repomd_url": "https://vault.almalinux.org/8.9/{subfolder}/{base_architecture}/os/repodata/repomd.xml",  # noqa
+                "repomd_url": "https://vault.almalinux.org/8.9/{subfolder}/{architecture}/os/repodata/repomd.xml",  # noqa
                 "extra_subfolders": ["PowerTools"],
                 "host_machine": "{architecture}-conda-linux-gnu",
-                "host_subdir": "linux-{bits}",
+                "host_subdir": "linux-64",
                 "fname_architecture": "{architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
@@ -267,12 +267,12 @@ def _gen_cdts(single_sysroot):
             "alma9": {
                 "full_name": "alma9",
                 "short_name": "conda",
-                "base_url": "https://vault.almalinux.org/9.3/{subfolder}/{base_architecture}/os/Packages/",  # noqa
+                "base_url": "https://vault.almalinux.org/9.3/{subfolder}/{architecture}/os/Packages/",  # noqa
                 "sbase_url": "https://vault.almalinux.org/9.3/{subfolder}/Source/Packages/",
-                "repomd_url": "https://vault.almalinux.org/9.3/{subfolder}/{base_architecture}/os/repodata/repomd.xml",  # noqa
+                "repomd_url": "https://vault.almalinux.org/9.3/{subfolder}/{architecture}/os/repodata/repomd.xml",  # noqa
                 "extra_subfolders": ["CRB", "devel"],
                 "host_machine": "{architecture}-conda-linux-gnu",
-                "host_subdir": "linux-{bits}",
+                "host_subdir": "linux-64",
                 "fname_architecture": "{architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
@@ -902,16 +902,10 @@ def write_conda_recipe(
     cdt_info,
     build_number_bump,
 ):
-    bits = "32" if architecture in ("armv6", "armv7a", "i686", "i386") else "64"
-    base_architectures = dict({"i686": "i386"})
     # gnu_architectures are those recognized by the canonical config.sub / config.guess
     # and crosstool-ng. They are returned from ${CC} -dumpmachine and are a part of the
     # sysroot.
     gnu_architectures = dict({"ppc64le": "powerpc64le"})
-    try:
-        base_architecture = base_architectures[architecture]
-    except Exception:
-        base_architecture = architecture
     try:
         gnu_architecture = gnu_architectures[architecture]
     except Exception:
@@ -919,9 +913,7 @@ def write_conda_recipe(
     formatting_bits = dict(
         {
             "architecture": architecture,
-            "base_architecture": base_architecture,
             "gnu_architecture": gnu_architecture,
-            "bits": bits,
             "subfolder": subfolder,
         }
     )
