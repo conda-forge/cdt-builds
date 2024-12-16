@@ -203,28 +203,9 @@ def _gen_cdts():
             "centos7": {
                 "full_name": "centos7",
                 "short_name": "conda",
-                "base_url": "http://vault.centos.org/7.9.2009/os/{architecture}/Packages/",  # noqa
-                "sbase_url": "http://vault.centos.org/7.9.2009/os/Source/SPackages/",
-                "repomd_url": "http://vault.centos.org/7.9.2009/os/{architecture}/repodata/repomd.xml",  # noqa
-                # not relevant for centos7
-                "extra_subfolders": [],
-                "host_machine": "{gnu_architecture}-conda-linux-gnu",
-                "host_subdir": "linux-{conda_architecture}",
-                "checksummer": hashlib.sha256,
-                "checksummer_name": "sha256",
-                # Some macros are defined in /etc/rpm/macros.* but I cannot find where
-                # these ones are defined. Also, rpm --eval "%{gdk_pixbuf_base_version}"
-                # gives nothing nor does rpm --showrc | grep gdk
-                "macros": {"pyver": "2.6.6", "gdk_pixbuf_base_version": "2.24.1"},
-                "allow_missing_sources": True,
-                "glibc_ver": "2.17",
-            },
-            "centos7-alt": {
-                "full_name": "centos7",
-                "short_name": "conda",
-                "base_url": "https://vault.centos.org/altarch/7.9.2009/os/{architecture}/Packages/",  # noqa
-                "sbase_url": "http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/",
-                "repomd_url": "https://vault.centos.org/altarch/7.9.2009/os/{architecture}/repodata/repomd.xml",  # noqa
+                "base_url": "https://vault.centos.org/{extra_url_chunk}7.9.2009/os/{architecture}/Packages/",  # noqa
+                "sbase_url": "https://vault.centos.org/{extra_url_chunk}7.9.2009/os/Source/SPackages/",
+                "repomd_url": "https://vault.centos.org/{extra_url_chunk}7.9.2009/os/{architecture}/repodata/repomd.xml",  # noqa
                 # not relevant for centos7
                 "extra_subfolders": [],
                 "host_machine": "{gnu_architecture}-conda-linux-gnu",
@@ -880,12 +861,15 @@ def write_conda_recipe(
     # sysroot.
     gnu_architectures = dict({"ppc64le": "powerpc64le"})
     gnu_architecture = gnu_architectures.get(architecture, architecture)
+    # centos7 has an extra url-portion for non-x64
+    extra_url_chunk = "" if architecture == "x86_64" else "altarch/"
 
     formatting_bits = dict(
         {
             "architecture": architecture,
             "conda_architecture": conda_architecture,
             "gnu_architecture": gnu_architecture,
+            "extra_url_chunk": extra_url_chunk,
             "subfolder": subfolder,
         }
     )
@@ -959,8 +943,6 @@ def skeletonize(
     use_global_cache,
 ):
     cdt_info = _gen_cdts()
-    if architecture in ["aarch64", "ppc64le"]:
-        cdt_info["centos7"] = cdt_info["centos7-alt"]
 
     def _call(cfg):
         write_conda_recipe(
