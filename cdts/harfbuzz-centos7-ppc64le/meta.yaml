@@ -7,7 +7,7 @@ source:
     sha256: c8adb94957c9310a524ec93c6ee04cd42630cfcb3b961d25095b87838dcbfd68
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/harfbuzz-1.7.5-2.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/harfbuzz-1.7.5-2.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

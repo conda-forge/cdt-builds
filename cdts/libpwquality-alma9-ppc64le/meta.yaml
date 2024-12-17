@@ -3,11 +3,11 @@ package:
   version: 1.4.4
 
 source:
-  - url: https://vault.almalinux.org/9.3/BaseOS/ppc64le/os/Packages/libpwquality-1.4.4-8.el9.ppc64le.rpm
+  - url: https://vault.almalinux.org/9.4/BaseOS/ppc64le/os/Packages/libpwquality-1.4.4-8.el9.ppc64le.rpm
     sha256: 594c77840587f8d81a201e3dea3c1dbc09fa4d7861e539738165ad664fc3caa3
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/BaseOS/Source/Packages/libpwquality-1.4.4-8.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/BaseOS/Source/Packages/libpwquality-1.4.4-8.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -28,10 +28,10 @@ requirements:
     - cracklib-dicts-conda-ppc64le >=2.8 *_{{ cdt_build_number|int + 1000 }}
   host:
     - cracklib-dicts-conda-ppc64le >=2.8 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-ppc64le 2.34.*
   run:
     - cracklib-dicts-conda-ppc64le >=2.8 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-ppc64le 2.34.*
 
 test:
   commands:

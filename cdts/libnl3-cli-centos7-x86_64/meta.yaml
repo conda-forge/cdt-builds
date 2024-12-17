@@ -3,11 +3,11 @@ package:
   version: 3.2.28
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libnl3-cli-3.2.28-4.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/libnl3-cli-3.2.28-4.el7.x86_64.rpm
     sha256: 5b34fe927a1e7910594702be8d3def96dabbac6416f0ad42a2a2f4fcdbc9b22a
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libnl3-3.2.28-4.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/libnl3-3.2.28-4.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

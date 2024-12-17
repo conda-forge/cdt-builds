@@ -3,11 +3,11 @@ package:
   version: 1.5.1
 
 source:
-  - url: https://vault.almalinux.org/9.3/BaseOS/aarch64/os/Packages/pam-1.5.1-15.el9.aarch64.rpm
-    sha256: d5affaefde5268518fdf24154d95d6ba8a3a57ecae24f9353afc0f5f3becb471
+  - url: https://vault.almalinux.org/9.4/BaseOS/aarch64/os/Packages/pam-1.5.1-19.el9.aarch64.rpm
+    sha256: e563af3669ca10803f787c84725be012365c7f681f23928f8514dd33fc92db41
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/BaseOS/Source/Packages/pam-1.5.1-15.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/BaseOS/Source/Packages/pam-1.5.1-19.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -34,13 +34,13 @@ requirements:
     - libeconf-conda-aarch64 >=0.3.5 *_{{ cdt_build_number|int + 1000 }}
     - libpwquality-conda-aarch64 >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
     - libselinux-conda-aarch64 >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-aarch64 2.34.*
   run:
     - audit-libs-conda-aarch64 >=1.0.8 *_{{ cdt_build_number|int + 1000 }}
     - libeconf-conda-aarch64 >=0.3.5 *_{{ cdt_build_number|int + 1000 }}
     - libpwquality-conda-aarch64 >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
     - libselinux-conda-aarch64 >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-aarch64 2.34.*
 test:
   commands:
     - echo "it installs!"

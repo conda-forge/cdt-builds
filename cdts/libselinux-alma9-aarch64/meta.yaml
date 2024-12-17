@@ -1,13 +1,13 @@
 package:
   name: libselinux-conda-aarch64
-  version: 3.5
+  version: 3.6
 
 source:
-  - url: https://vault.almalinux.org/9.3/BaseOS/aarch64/os/Packages/libselinux-3.5-1.el9.aarch64.rpm
-    sha256: fc6fe09dc1c3a6be65d372f900d6b489c542f0d9002f08096775d1dfa60f6f6e
+  - url: https://vault.almalinux.org/9.4/BaseOS/aarch64/os/Packages/libselinux-3.6-1.el9.aarch64.rpm
+    sha256: 022c0760827d3761b004f530b79ff909751ac4e06d93699d33905c24fd63562b
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/BaseOS/Source/Packages/libselinux-3.5-1.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/BaseOS/Source/Packages/libselinux-3.6-1.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -25,13 +25,13 @@ build:
 
 requirements:
   build:
-    - libsepol-conda-aarch64 >=3.5 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-conda-aarch64 >=3.6 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - libsepol-conda-aarch64 >=3.5 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - libsepol-conda-aarch64 >=3.6 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.34.*
   run:
-    - libsepol-conda-aarch64 >=3.5 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - libsepol-conda-aarch64 >=3.6 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.34.*
 
 test:
   commands:

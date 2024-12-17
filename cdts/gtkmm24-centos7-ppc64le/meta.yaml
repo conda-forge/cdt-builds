@@ -7,7 +7,7 @@ source:
     sha256: 10b4384789ea34ce708c5dbd72144538018aa11ca324cf845eb18c7efde9237f
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/gtkmm24-2.24.5-1.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/gtkmm24-2.24.5-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

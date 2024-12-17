@@ -30,11 +30,11 @@ requirements:
   host:
     - libselinux-conda-aarch64 ==2.9 *_{{ cdt_build_number|int + 1000 }}
     - libsepol-devel-conda-aarch64 >=2.9 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.28.*
+    - sysroot_linux-aarch64 2.28.*
   run:
     - libselinux-conda-aarch64 ==2.9 *_{{ cdt_build_number|int + 1000 }}
     - libsepol-devel-conda-aarch64 >=2.9 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.28.*
+    - sysroot_linux-aarch64 2.28.*
 
 test:
   commands:

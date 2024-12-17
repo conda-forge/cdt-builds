@@ -7,7 +7,7 @@ source:
     sha256: ca11a544d84de32226f9b534bcd7b7d3ea442ade23743ded22dee5db4d6b5875
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXrender-0.9.10-1.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXrender-0.9.10-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

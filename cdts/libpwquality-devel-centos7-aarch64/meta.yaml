@@ -7,7 +7,7 @@ source:
     sha256: 4fc1637f3e58ad3ce257654337396a89afd67a469ef1c759b0f75cb87a7adfcd
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libpwquality-1.2.3-5.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libpwquality-1.2.3-5.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

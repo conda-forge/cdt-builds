@@ -7,7 +7,7 @@ source:
     sha256: 76282f803fdeb92c22cc78add7a79247fb3243f7399bd1a596b373af28cb3889
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/ORBit2-2.14.19-13.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/ORBit2-2.14.19-13.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

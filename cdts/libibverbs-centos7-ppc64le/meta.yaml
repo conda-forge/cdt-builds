@@ -7,7 +7,7 @@ source:
     sha256: 2b08eb0365fa9fcf412d1e531bcb1e7cec74a2fbac0f3f5d30edeb3c087b3e97
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/rdma-core-22.4-5.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/rdma-core-22.4-5.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

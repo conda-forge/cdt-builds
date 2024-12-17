@@ -3,11 +3,11 @@ package:
   version: 20
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/kmod-libs-20-28.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/kmod-libs-20-28.el7.x86_64.rpm
     sha256: e7fd34c97b67902f6a81f9a6e9e38a9e0a1bc60253bac2fd315801b3e2365289
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/kmod-20-28.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/kmod-20-28.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

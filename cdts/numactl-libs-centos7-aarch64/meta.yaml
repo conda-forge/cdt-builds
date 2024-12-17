@@ -7,7 +7,7 @@ source:
     sha256: c4ba0c78449b077223c0a8a22ab28ac7d9f29328dea459f92ff7b33b1abd62db
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/numactl-2.0.12-5.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/numactl-2.0.12-5.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

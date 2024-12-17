@@ -1,13 +1,13 @@
 package:
   name: mesa-libgbm-conda-ppc64le
-  version: 23.1.4
+  version: 23.3.3
 
 source:
-  - url: https://vault.almalinux.org/9.3/AppStream/ppc64le/os/Packages/mesa-libgbm-23.1.4-1.el9.ppc64le.rpm
-    sha256: 080f373e1b54fe62d1731823407ad3d6b30b0543fa13b85f8d7c54d2dc705359
+  - url: https://vault.almalinux.org/9.4/AppStream/ppc64le/os/Packages/mesa-libgbm-23.3.3-1.el9.ppc64le.rpm
+    sha256: f7b63c203ca898b4f79d5029a878b5dde37fe8889ea3e8ff68d9337133ee05e2
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/AppStream/Source/Packages/mesa-23.1.4-1.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/AppStream/Source/Packages/mesa-23.3.3-1.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -25,9 +25,9 @@ build:
 
 requirements:
   host:
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-ppc64le 2.34.*
   run:
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-ppc64le 2.34.*
 
 test:
   commands:

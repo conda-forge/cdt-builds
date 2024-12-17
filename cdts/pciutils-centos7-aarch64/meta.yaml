@@ -7,7 +7,7 @@ source:
     sha256: 5aad8d99cc6631fee1af101829567f73a52acd51fde2219f3a97b8905c9833c7
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/pciutils-3.5.1-3.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/pciutils-3.5.1-3.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

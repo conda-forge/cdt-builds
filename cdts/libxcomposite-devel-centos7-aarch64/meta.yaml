@@ -7,7 +7,7 @@ source:
     sha256: 007c636bcba89f18e35e0e729d0468ba9a774bda6ae376b6914894620e24e46c
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXcomposite-0.4.4-4.1.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXcomposite-0.4.4-4.1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -7,7 +7,7 @@ source:
     sha256: 047d03fcd080fca188774f64b4bd13c3caba2f51e1895234c57f84a1dce77690
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/kmod-20-28.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/kmod-20-28.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

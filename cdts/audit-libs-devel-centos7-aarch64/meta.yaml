@@ -7,7 +7,7 @@ source:
     sha256: 790c548f15ed4064d189cf5694277095a2b112e8c9a065894926b03f7bb0ef6f
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/audit-2.8.5-4.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/audit-2.8.5-4.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

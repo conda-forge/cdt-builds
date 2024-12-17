@@ -3,11 +3,11 @@ package:
   version: 1.1.5
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libXt-devel-1.1.5-3.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/libXt-devel-1.1.5-3.el7.x86_64.rpm
     sha256: 1372cb3e743f55ddaa3dfa4c8e5dfbad6e84bd4b3740b1ccdbb130076371c704
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libXt-1.1.5-3.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/libXt-1.1.5-3.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

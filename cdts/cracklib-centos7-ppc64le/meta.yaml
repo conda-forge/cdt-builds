@@ -7,7 +7,7 @@ source:
     sha256: 4d10872c9b9cb81b495349256791192eb843fc49feb9be66cb5a6c6c76b88428
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/cracklib-2.9.0-11.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/cracklib-2.9.0-11.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

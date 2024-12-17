@@ -7,7 +7,7 @@ source:
     sha256: 8a12c418e21ae58e623a2ef98cbd93d52748025c65519e1811c5144fe7d3d8bb
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libxkbcommon-0.7.1-3.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libxkbcommon-0.7.1-3.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

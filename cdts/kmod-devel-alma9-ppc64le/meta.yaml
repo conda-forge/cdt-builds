@@ -3,11 +3,11 @@ package:
   version: 28
 
 source:
-  - url: https://vault.almalinux.org/9.3/CRB/ppc64le/os/Packages/kmod-devel-28-9.el9.ppc64le.rpm
+  - url: https://vault.almalinux.org/9.4/CRB/ppc64le/os/Packages/kmod-devel-28-9.el9.ppc64le.rpm
     sha256: 1b5f5d2d99f0f19b491914e1124c8ad92c8438d51d3d8cba52bf5f3fda160c81
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/CRB/Source/Packages/kmod-28-9.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/CRB/Source/Packages/kmod-28-9.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -28,10 +28,10 @@ requirements:
     - kmod-libs-conda-ppc64le ==28 *_{{ cdt_build_number|int + 1000 }}
   host:
     - kmod-libs-conda-ppc64le ==28 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-ppc64le 2.34.*
   run:
     - kmod-libs-conda-ppc64le ==28 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-ppc64le 2.34.*
 
 test:
   commands:

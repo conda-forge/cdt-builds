@@ -3,11 +3,11 @@ package:
   version: 1.5.1
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libXrandr-1.5.1-2.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/libXrandr-1.5.1-2.el7.x86_64.rpm
     sha256: 68e7000c212cd6943a71daa3633317f1637533be0df13e929f0202fc22726b83
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libXrandr-1.5.1-2.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/libXrandr-1.5.1-2.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

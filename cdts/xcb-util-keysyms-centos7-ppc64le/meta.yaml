@@ -7,7 +7,7 @@ source:
     sha256: 158fcae673223bedeb409d697cdc11298fcd05bc842d1dc4a394bc239c837790
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/xcb-util-keysyms-0.4.0-1.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/xcb-util-keysyms-0.4.0-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

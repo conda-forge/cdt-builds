@@ -7,7 +7,7 @@ source:
     sha256: 2936bfd4ed1c58bd682976cc45e66ca81c3a69a4886b495214b972730695eb64
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/glib2-2.56.1-7.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/glib2-2.56.1-7.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

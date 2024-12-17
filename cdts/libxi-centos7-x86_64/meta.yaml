@@ -3,11 +3,11 @@ package:
   version: 1.7.9
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libXi-1.7.9-1.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/libXi-1.7.9-1.el7.x86_64.rpm
     sha256: 7ef78114fabd31ab69aaf5635b3845e10598b3c172759dc65b135f7cef624342
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libXi-1.7.9-1.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/libXi-1.7.9-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

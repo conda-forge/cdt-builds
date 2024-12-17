@@ -7,7 +7,7 @@ source:
     sha256: e9e101bb578e09199f15af33f2767f7706281ec7383598e31a2caaa1c9fef746
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/nss-softokn-3.44.0-8.el7_7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/nss-softokn-3.44.0-8.el7_7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -7,7 +7,7 @@ source:
     sha256: 8515689dbe19802a79ccd2ecab3dde862c2f87b63faf98b881c413e3100b3bf1
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/xcb-util-renderutil-0.3.9-3.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/xcb-util-renderutil-0.3.9-3.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

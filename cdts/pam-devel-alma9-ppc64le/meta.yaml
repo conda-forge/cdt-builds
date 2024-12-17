@@ -3,11 +3,11 @@ package:
   version: 1.5.1
 
 source:
-  - url: https://vault.almalinux.org/9.3/AppStream/ppc64le/os/Packages/pam-devel-1.5.1-15.el9.ppc64le.rpm
-    sha256: cffabf2fd3272c15ec8038aaaed6346ab04a2ad4ef77a401e776c65804f286a9
+  - url: https://vault.almalinux.org/9.4/AppStream/ppc64le/os/Packages/pam-devel-1.5.1-19.el9.ppc64le.rpm
+    sha256: c2a853f61f6f68f423956c5cec6067c6bc5766096f0bf00b2fca6451c31d7d03
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/AppStream/Source/Packages/pam-1.5.1-15.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/AppStream/Source/Packages/pam-1.5.1-19.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -28,10 +28,10 @@ requirements:
     - pam-conda-ppc64le ==1.5.1 *_{{ cdt_build_number|int + 1000 }}
   host:
     - pam-conda-ppc64le ==1.5.1 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-ppc64le 2.34.*
   run:
     - pam-conda-ppc64le ==1.5.1 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-ppc64le 2.34.*
 
 test:
   commands:

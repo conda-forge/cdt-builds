@@ -7,7 +7,7 @@ source:
     sha256: 593f06c36c5a8caf87d9755be4123ecbc9014bb144544fb5d27396ffe9d72d52
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libglvnd-1.0.1-0.8.git5baa1e5.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libglvnd-1.0.1-0.8.git5baa1e5.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

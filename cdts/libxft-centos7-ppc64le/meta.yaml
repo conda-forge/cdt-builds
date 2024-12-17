@@ -7,7 +7,7 @@ source:
     sha256: 42f4076ae5fbb2ed7a962f23c7a595e0083fe9a3ee337f7a1741e05276b5c69a
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXft-2.3.2-2.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXft-2.3.2-2.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

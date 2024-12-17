@@ -3,11 +3,11 @@ package:
   version: 1.1.15
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libXcursor-devel-1.1.15-1.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/libXcursor-devel-1.1.15-1.el7.x86_64.rpm
     sha256: a9e9a0625e06ccc075cd84c7f6cb5d45233d709ceea21f706235bf9190146c12
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libXcursor-1.1.15-1.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/libXcursor-1.1.15-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

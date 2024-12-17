@@ -7,7 +7,7 @@ source:
     sha256: b80ba77f84122dffd8544cba6436f301a73ed43c1748b6bdb178e524624c3297
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libnl3-3.2.28-4.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libnl3-3.2.28-4.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

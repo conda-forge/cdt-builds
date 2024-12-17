@@ -3,11 +3,11 @@ package:
   version: 28
 
 source:
-  - url: https://vault.almalinux.org/9.3/CRB/aarch64/os/Packages/kmod-devel-28-9.el9.aarch64.rpm
+  - url: https://vault.almalinux.org/9.4/CRB/aarch64/os/Packages/kmod-devel-28-9.el9.aarch64.rpm
     sha256: d9e43fe987b03b863d937a7f27bea41b5b2d21599940ec95916be248261b95f2
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/CRB/Source/Packages/kmod-28-9.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/CRB/Source/Packages/kmod-28-9.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -28,10 +28,10 @@ requirements:
     - kmod-libs-conda-aarch64 ==28 *_{{ cdt_build_number|int + 1000 }}
   host:
     - kmod-libs-conda-aarch64 ==28 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-aarch64 2.34.*
   run:
     - kmod-libs-conda-aarch64 ==28 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-aarch64 2.34.*
 
 test:
   commands:

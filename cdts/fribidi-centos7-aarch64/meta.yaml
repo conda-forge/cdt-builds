@@ -7,7 +7,7 @@ source:
     sha256: f4914b2c4fde823c5a8ad9bfcaf569a0eee037361f3925411ce1384972c6f252
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/fribidi-1.0.2-1.el7_7.1.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/fribidi-1.0.2-1.el7_7.1.src.rpm
   #   no_hoist: true
   #   folder: source
 

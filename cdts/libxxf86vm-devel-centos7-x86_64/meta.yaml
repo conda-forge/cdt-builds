@@ -3,11 +3,11 @@ package:
   version: 1.1.4
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/libXxf86vm-devel-1.1.4-1.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/libXxf86vm-devel-1.1.4-1.el7.x86_64.rpm
     sha256: 691bf47ba421d0d8782789cc5efc5fb0762c9e1193901dfe698ea7e5b1ed41e9
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/libXxf86vm-1.1.4-1.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/libXxf86vm-1.1.4-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

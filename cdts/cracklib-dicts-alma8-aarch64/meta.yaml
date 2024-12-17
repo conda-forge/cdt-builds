@@ -28,10 +28,10 @@ requirements:
     - cracklib-conda-aarch64 ==2.9.6 *_{{ cdt_build_number|int + 1000 }}
   host:
     - cracklib-conda-aarch64 ==2.9.6 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.28.*
+    - sysroot_linux-aarch64 2.28.*
   run:
     - cracklib-conda-aarch64 ==2.9.6 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.28.*
+    - sysroot_linux-aarch64 2.28.*
 
 test:
   commands:

@@ -7,7 +7,7 @@ source:
     sha256: c234adbe7a67137f334a487006e310102dd680985f581cc5769a88c0ef2be7ed
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/freetype-2.8-14.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/freetype-2.8-14.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

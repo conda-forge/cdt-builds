@@ -7,7 +7,7 @@ source:
     sha256: 653badf31f2366a796d3b1e7aeadc782246a5ed1a7fcea23afe8052cffb68c21
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/chkconfig-1.7.6-1.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/chkconfig-1.7.6-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -1,13 +1,13 @@
 package:
   name: mesa-libgbm-conda-x86_64
-  version: 23.1.4
+  version: 23.3.3
 
 source:
-  - url: https://vault.almalinux.org/9.3/AppStream/x86_64/os/Packages/mesa-libgbm-23.1.4-1.el9.x86_64.rpm
-    sha256: 4c31e216fcb47921730ca3e2165b82dda434912c2a78ef849210cdc766f14802
+  - url: https://vault.almalinux.org/9.4/AppStream/x86_64/os/Packages/mesa-libgbm-23.3.3-1.el9.x86_64.rpm
+    sha256: 642b0fd288e069ff85831e12dc924b9cf9a64acebaa7fad2abb26b38fa0e8e00
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/AppStream/Source/Packages/mesa-23.1.4-1.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/AppStream/Source/Packages/mesa-23.3.3-1.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 

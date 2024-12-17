@@ -7,7 +7,7 @@ source:
     sha256: 5cb1196dc091c47734e1c12e5e9c44e5a78ec7329d762e3cc3dbf6d2b5c7f9cb
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libtiff-4.0.3-35.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libtiff-4.0.3-35.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

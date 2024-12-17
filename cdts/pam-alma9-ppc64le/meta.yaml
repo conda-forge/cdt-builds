@@ -3,11 +3,11 @@ package:
   version: 1.5.1
 
 source:
-  - url: https://vault.almalinux.org/9.3/BaseOS/ppc64le/os/Packages/pam-1.5.1-15.el9.ppc64le.rpm
-    sha256: c2bd2d2a1c288979ad0944c32d76ede62a3eec6399d58df78596f8dea574da4a
+  - url: https://vault.almalinux.org/9.4/BaseOS/ppc64le/os/Packages/pam-1.5.1-19.el9.ppc64le.rpm
+    sha256: cf297fcb836027f3a9fbcebe049248ac11542819396b1a80589ce935c3a0da7e
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/BaseOS/Source/Packages/pam-1.5.1-15.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/BaseOS/Source/Packages/pam-1.5.1-19.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -34,13 +34,13 @@ requirements:
     - libeconf-conda-ppc64le >=0.3.5 *_{{ cdt_build_number|int + 1000 }}
     - libpwquality-conda-ppc64le >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
     - libselinux-conda-ppc64le >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-ppc64le 2.34.*
   run:
     - audit-libs-conda-ppc64le >=1.0.8 *_{{ cdt_build_number|int + 1000 }}
     - libeconf-conda-ppc64le >=0.3.5 *_{{ cdt_build_number|int + 1000 }}
     - libpwquality-conda-ppc64le >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
     - libselinux-conda-ppc64le >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-ppc64le 2.34.*
 test:
   commands:
     - echo "it installs!"

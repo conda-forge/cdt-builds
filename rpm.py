@@ -139,7 +139,7 @@ BUILDSH = """\
 
 set -o errexit -o pipefail
 
-SYSROOT_DIR="${{PREFIX}}"/{hostmachine}/sysroot
+SYSROOT_DIR="${{PREFIX}}"/{host_machine}/sysroot
 
 mkdir -p "${{SYSROOT_DIR}}"
 if [[ -d usr/lib ]]; then
@@ -197,48 +197,19 @@ exit ${{error_code}}
 """  # noqa
 
 
-def _gen_cdts(single_sysroot):
+def _gen_cdts():
     return dict(
         {
             "centos7": {
                 "full_name": "centos7",
                 "short_name": "conda",
-                "base_url": "http://vault.centos.org/7.9.2009/os/{base_architecture}/Packages/",  # noqa
-                "sbase_url": "http://vault.centos.org/7.9.2009/os/Source/SPackages/",
-                "repomd_url": "http://vault.centos.org/7.9.2009/os/{base_architecture}/repodata/repomd.xml",  # noqa
+                "base_url": "https://vault.centos.org/{extra_url_chunk}7.9.2009/os/{architecture}/Packages/",  # noqa
+                "sbase_url": "https://vault.centos.org/{extra_url_chunk}7.9.2009/os/Source/SPackages/",
+                "repomd_url": "https://vault.centos.org/{extra_url_chunk}7.9.2009/os/{architecture}/repodata/repomd.xml",  # noqa
                 # not relevant for centos7
                 "extra_subfolders": [],
-                "host_machine": (
-                    "{architecture}-conda-linux-gnu"
-                    if single_sysroot else
-                    "{architecture}-conda_cos7-linux-gnu"
-                ),
-                "host_subdir": "linux-{bits}",
-                "fname_architecture": "{architecture}",
-                "checksummer": hashlib.sha256,
-                "checksummer_name": "sha256",
-                # Some macros are defined in /etc/rpm/macros.* but I cannot find where
-                # these ones are defined. Also, rpm --eval "%{gdk_pixbuf_base_version}"
-                # gives nothing nor does rpm --showrc | grep gdk
-                "macros": {"pyver": "2.6.6", "gdk_pixbuf_base_version": "2.24.1"},
-                "allow_missing_sources": True,
-                "glibc_ver": "2.17",
-            },
-            "centos7-alt": {
-                "full_name": "centos7",
-                "short_name": "conda",
-                "base_url": "https://vault.centos.org/altarch/7.9.2009/os/{base_architecture}/Packages/",  # noqa
-                "sbase_url": "http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/",
-                "repomd_url": "https://vault.centos.org/altarch/7.9.2009/os/{base_architecture}/repodata/repomd.xml",  # noqa
-                # not relevant for centos7
-                "extra_subfolders": [],
-                "host_machine": (
-                    "{gnu_architecture}-conda-linux-gnu"
-                    if single_sysroot else
-                    "{gnu_architecture}-conda_cos7-linux-gnu"
-                ),
-                "host_subdir": "linux-{base_architecture}",
-                "fname_architecture": "{architecture}",
+                "host_machine": "{gnu_architecture}-conda-linux-gnu",
+                "host_subdir": "linux-{conda_architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
                 # Some macros are defined in /etc/rpm/macros.* but I cannot find where
@@ -251,13 +222,12 @@ def _gen_cdts(single_sysroot):
             "alma8": {
                 "full_name": "alma8",
                 "short_name": "conda",
-                "base_url": "https://vault.almalinux.org/8.9/{subfolder}/{base_architecture}/os/Packages/",  # noqa
+                "base_url": "https://vault.almalinux.org/8.9/{subfolder}/{architecture}/os/Packages/",  # noqa
                 "sbase_url": "https://vault.almalinux.org/8.9/{subfolder}/Source/Packages/",
-                "repomd_url": "https://vault.almalinux.org/8.9/{subfolder}/{base_architecture}/os/repodata/repomd.xml",  # noqa
+                "repomd_url": "https://vault.almalinux.org/8.9/{subfolder}/{architecture}/os/repodata/repomd.xml",  # noqa
                 "extra_subfolders": ["PowerTools"],
-                "host_machine": "{architecture}-conda-linux-gnu",
-                "host_subdir": "linux-{bits}",
-                "fname_architecture": "{architecture}",
+                "host_machine": "{gnu_architecture}-conda-linux-gnu",
+                "host_subdir": "linux-{conda_architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
                 "macros": {},
@@ -267,13 +237,12 @@ def _gen_cdts(single_sysroot):
             "alma9": {
                 "full_name": "alma9",
                 "short_name": "conda",
-                "base_url": "https://vault.almalinux.org/9.3/{subfolder}/{base_architecture}/os/Packages/",  # noqa
-                "sbase_url": "https://vault.almalinux.org/9.3/{subfolder}/Source/Packages/",
-                "repomd_url": "https://vault.almalinux.org/9.3/{subfolder}/{base_architecture}/os/repodata/repomd.xml",  # noqa
+                "base_url": "https://vault.almalinux.org/9.4/{subfolder}/{architecture}/os/Packages/",  # noqa
+                "sbase_url": "https://vault.almalinux.org/9.4/{subfolder}/Source/Packages/",
+                "repomd_url": "https://vault.almalinux.org/9.4/{subfolder}/{architecture}/os/repodata/repomd.xml",  # noqa
                 "extra_subfolders": ["CRB", "devel"],
-                "host_machine": "{architecture}-conda-linux-gnu",
-                "host_subdir": "linux-{bits}",
-                "fname_architecture": "{architecture}",
+                "host_machine": "{gnu_architecture}-conda-linux-gnu",
+                "host_subdir": "linux-{conda_architecture}",
                 "checksummer": hashlib.sha256,
                 "checksummer_name": "sha256",
                 "macros": {},
@@ -658,11 +627,9 @@ def write_conda_recipes(
     architectures,
     cdt,
     output_dir,
-    override_arch,
     src_cache,
     build_number,
     conda_forge_style,
-    single_sysroot,
     build_number_bump,
 ):
 
@@ -671,22 +638,17 @@ def write_conda_recipes(
     else:
         _extra_build_num_str = " + %s" % build_number_bump
 
-    if single_sysroot:
-        build_number_jinja2 = (
-            "{{ cdt_build_number|int + 1000%s }}" % _extra_build_num_str
-        )
-    else:
-        build_number_jinja2 = "{{ cdt_build_number|int%s }}" % _extra_build_num_str
+    build_number_jinja2 = (
+        "{{ cdt_build_number|int + 1000%s }}" % _extra_build_num_str
+    )
 
     entry, entry_name, arch = find_repo_entry_and_arch(
         repo_primary, architectures, dict({"name": package})
     )
     if not entry:
         return
-    if override_arch:
-        arch = architectures[0]
-    else:
-        arch = cdt["fname_architecture"]
+
+    arch = architectures[0] if arch == "noarch" else arch
     package = entry_name
     package_l = package.lower().replace("+", "x")
     sn = cdt["short_name"] + "-" + arch
@@ -746,8 +708,8 @@ def write_conda_recipes(
         dep_entry, dep_name, dep_arch = find_repo_entry_and_arch(
             repo_primary, architectures, depend
         )
-        if override_arch:
-            dep_arch = architectures[0]
+        dep_arch = architectures[0] if dep_arch == "noarch" else dep_arch
+
         depend["arch"] = dep_arch
         # Because something else may provide a substitute for the wanted package
         # we need to also overwrite the versions with those of the provider, e.g.
@@ -765,11 +727,9 @@ def write_conda_recipes(
                 architectures,
                 cdt,
                 output_dir,
-                override_arch,
                 src_cache,
                 build_number,
                 conda_forge_style,
-                single_sysroot,
                 build_number_bump,
             )
 
@@ -804,26 +764,20 @@ def write_conda_recipes(
             if len(dependsstr_run) > 0:
                 dependsstr_run += "\n"
 
-            if single_sysroot:
-                if len(dependsstr_run) == 0:
-                    dependsstr_run = "  run:\n"
-                dependsstr_run += (
-                    "    - "
-                    "sysroot_%s %s.*" % (
-                        cdt["host_subdir"], cdt["glibc_ver"]))
-            else:
-                dependsstr_run += (
-                    "  run_constrained:\n    - "
-                    "sysroot_%s ==99999999999" % cdt["host_subdir"])
+            if len(dependsstr_run) == 0:
+                dependsstr_run = "  run:\n"
+            dependsstr_run += (
+                "    - "
+                "sysroot_%s %s.*" % (
+                    cdt["host_subdir"], cdt["glibc_ver"]))
 
             # put sysroot in host
-            if single_sysroot:
-                if len(dependsstr_host) == 0:
-                    dependsstr_host = "  host:\n"
-                dependsstr_host += (
-                    "    - "
-                    "sysroot_%s %s.*\n" % (
-                        cdt["host_subdir"], cdt["glibc_ver"]))
+            if len(dependsstr_host) == 0:
+                dependsstr_host = "  host:\n"
+            dependsstr_host += (
+                "    - "
+                "sysroot_%s %s.*\n" % (
+                    cdt["host_subdir"], cdt["glibc_ver"]))
 
         dependsstr = (
             "requirements:\n" + dependsstr_build + dependsstr_host + dependsstr_run
@@ -839,8 +793,7 @@ def write_conda_recipes(
             "license_file": license_file,
             "packagename": package_cdt_name,
             "distro_name": cdt["full_name"],
-            "hostmachine": cdt["host_machine"],
-            "hostsubdir": cdt["host_subdir"],
+            "host_machine": cdt["host_machine"],
             "depends": dependsstr,
             "rpmurl": rpm_url,
             "srcrpmurl": srpm_url,
@@ -893,35 +846,30 @@ def write_conda_recipe(
     architecture,
     subfolder,
     recursive,
-    override_arch,
     dependency_add,
     config,
     build_number,
     conda_forge_style,
-    single_sysroot,
     cdt_info,
     build_number_bump,
 ):
-    bits = "32" if architecture in ("armv6", "armv7a", "i686", "i386") else "64"
-    base_architectures = dict({"i686": "i386"})
+    # conda architectures are `linux-{64,aarch64,ppc64le}`
+    conda_architectures = dict({"x86_64": "64"})
+    conda_architecture = conda_architectures.get(architecture, architecture)
     # gnu_architectures are those recognized by the canonical config.sub / config.guess
     # and crosstool-ng. They are returned from ${CC} -dumpmachine and are a part of the
     # sysroot.
     gnu_architectures = dict({"ppc64le": "powerpc64le"})
-    try:
-        base_architecture = base_architectures[architecture]
-    except Exception:
-        base_architecture = architecture
-    try:
-        gnu_architecture = gnu_architectures[architecture]
-    except Exception:
-        gnu_architecture = architecture
+    gnu_architecture = gnu_architectures.get(architecture, architecture)
+    # centos7 has an extra url-portion for non-x64
+    extra_url_chunk = "" if architecture == "x86_64" else "altarch/"
+
     formatting_bits = dict(
         {
             "architecture": architecture,
-            "base_architecture": base_architecture,
+            "conda_architecture": conda_architecture,
             "gnu_architecture": gnu_architecture,
-            "bits": bits,
+            "extra_url_chunk": extra_url_chunk,
             "subfolder": subfolder,
         }
     )
@@ -962,11 +910,9 @@ def write_conda_recipe(
             [architecture, "noarch"],
             cdt,
             output_dir,
-            override_arch,
             config.src_cache,
             build_number,
             conda_forge_style,
-            single_sysroot,
             build_number_bump,
         )
 
@@ -978,10 +924,8 @@ def write_conda_recipe(
 @click.option("--recursive", default=False, is_flag=True)
 @click.option("--architecture", default=default_architecture, type=str)
 @click.option("--subfolder", default="BaseOS", type=str)
-@click.option("--no-override-arch", default=False, is_flag=True)
 @click.option("--distro", default=default_distro, type=str)
 @click.option("--conda-forge-style", default=False, is_flag=True)
-@click.option("--single-sysroot", default=False, is_flag=True)
 @click.option("--build-number", default="2", type=str)
 @click.option("--build-number-bump", default=None, type=str)
 @click.option("--use-global-cache", default=False, is_flag=True)
@@ -992,17 +936,13 @@ def skeletonize(
     recursive,
     architecture,
     subfolder,
-    no_override_arch,
     distro,
     conda_forge_style,
-    single_sysroot,
     build_number,
     build_number_bump,
     use_global_cache,
 ):
-    cdt_info = _gen_cdts(single_sysroot)
-    if architecture in ["aarch64", "ppc64le"]:
-        cdt_info["centos7"] = cdt_info["centos7-alt"]
+    cdt_info = _gen_cdts()
 
     def _call(cfg):
         write_conda_recipe(
@@ -1012,12 +952,10 @@ def skeletonize(
             architecture,
             subfolder,
             recursive,
-            not no_override_arch,
             None,
             cfg,
             build_number,
             conda_forge_style,
-            single_sysroot,
             cdt_info,
             build_number_bump,
         )

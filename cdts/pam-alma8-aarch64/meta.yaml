@@ -32,12 +32,12 @@ requirements:
     - audit-libs-conda-aarch64 >=1.0.8 *_{{ cdt_build_number|int + 1000 }}
     - libpwquality-conda-aarch64 >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
     - libselinux-conda-aarch64 >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.28.*
+    - sysroot_linux-aarch64 2.28.*
   run:
     - audit-libs-conda-aarch64 >=1.0.8 *_{{ cdt_build_number|int + 1000 }}
     - libpwquality-conda-aarch64 >=0.9.9 *_{{ cdt_build_number|int + 1000 }}
     - libselinux-conda-aarch64 >=1.33.2 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.28.*
+    - sysroot_linux-aarch64 2.28.*
 test:
   commands:
     - echo "it installs!"

@@ -7,7 +7,7 @@ source:
     sha256: 5d6e1c77e9f73cf2dc302ca87af5340c60be2361f722fa6168c21a8bd45dd59a
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/xcb-util-image-0.4.0-2.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/xcb-util-image-0.4.0-2.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

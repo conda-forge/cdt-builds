@@ -7,7 +7,7 @@ source:
     sha256: 3a42192bdae42a83d7afdc6734932099f4d459482c0da6d57dce3ec4d8b74dab
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXdamage-1.1.4-4.1.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXdamage-1.1.4-4.1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

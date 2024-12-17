@@ -7,7 +7,7 @@ source:
     sha256: ec45fc8ae470c0a025b7c38621ce529e41d188379f3985a6eacab356fb9e5122
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXrandr-1.5.1-2.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXrandr-1.5.1-2.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

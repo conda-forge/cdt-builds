@@ -7,7 +7,7 @@ source:
     sha256: 2270e54db1c1cd17657eaca24c05c016bb923b6651ae06958775d7834dbd20a7
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/pixman-0.34.0-1.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/pixman-0.34.0-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

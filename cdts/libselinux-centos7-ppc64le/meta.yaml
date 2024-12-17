@@ -7,7 +7,7 @@ source:
     sha256: 611bb6b8402c0cacbf5539c306fc12253d19d8f1e48487a78393e98e2d0ede27
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libselinux-2.5-15.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libselinux-2.5-15.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -3,11 +3,11 @@ package:
   version: 2.9.6
 
 source:
-  - url: https://vault.almalinux.org/9.3/CRB/ppc64le/os/Packages/cracklib-devel-2.9.6-27.el9.ppc64le.rpm
+  - url: https://vault.almalinux.org/9.4/CRB/ppc64le/os/Packages/cracklib-devel-2.9.6-27.el9.ppc64le.rpm
     sha256: fcbecb5d98d69f223e83e21b539def13947fce9ad0ad50c0bb848e7a5a55ae29
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/CRB/Source/Packages/cracklib-2.9.6-27.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/CRB/Source/Packages/cracklib-2.9.6-27.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -28,10 +28,10 @@ requirements:
     - cracklib-conda-ppc64le ==2.9.6 *_{{ cdt_build_number|int + 1000 }}
   host:
     - cracklib-conda-ppc64le ==2.9.6 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-ppc64le 2.34.*
   run:
     - cracklib-conda-ppc64le ==2.9.6 *_{{ cdt_build_number|int + 1000 }}
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-ppc64le 2.34.*
 
 test:
   commands:

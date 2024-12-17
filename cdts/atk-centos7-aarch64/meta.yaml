@@ -7,7 +7,7 @@ source:
     sha256: 5bef4d38a43a87a3dd820a729cd2f9634bba83b972cc2d3808e3341aaf3d930c
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/atk-2.28.1-2.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/atk-2.28.1-2.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

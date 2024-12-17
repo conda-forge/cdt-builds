@@ -3,11 +3,11 @@ package:
   version: 2.1.0
 
 source:
-  - url: http://vault.centos.org/7.9.2009/os/x86_64/Packages/expat-2.1.0-12.el7.x86_64.rpm
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/expat-2.1.0-12.el7.x86_64.rpm
     sha256: c73d74dee6c977bda30983111a290f054a8301797f32a20b550b4242679f057e
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/7.9.2009/os/Source/SPackages/expat-2.1.0-12.el7.src.rpm
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/expat-2.1.0-12.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

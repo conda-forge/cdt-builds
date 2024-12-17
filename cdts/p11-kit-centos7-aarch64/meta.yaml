@@ -7,7 +7,7 @@ source:
     sha256: eb5bd186fe148b1d86a6cabe462fa0abe70d2856dcb21e25b74ff8597420a585
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/p11-kit-0.23.5-3.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/p11-kit-0.23.5-3.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

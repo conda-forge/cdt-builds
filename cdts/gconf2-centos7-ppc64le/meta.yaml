@@ -7,7 +7,7 @@ source:
     sha256: f1635560f4e0dc31a04cee8d745287cdfbef90d79881d89f262ef843b7961630
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/GConf2-3.2.6-8.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/GConf2-3.2.6-8.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

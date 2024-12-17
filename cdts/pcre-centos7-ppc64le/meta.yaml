@@ -7,7 +7,7 @@ source:
     sha256: 0955ba280e76a9f59fa7d47764c8c2645fd7caa89c48b7d292e706ef7a35b545
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/pcre-8.32-17.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/pcre-8.32-17.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -7,7 +7,7 @@ source:
     sha256: b33e1376c0936a3c8a1c98cb44a363912db162ba89ebce1767ac4095cb42a7e6
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/gtk2-2.24.31-1.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/gtk2-2.24.31-1.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 

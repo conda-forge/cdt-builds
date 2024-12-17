@@ -1,13 +1,13 @@
 package:
   name: libsepol-conda-ppc64le
-  version: 3.5
+  version: 3.6
 
 source:
-  - url: https://vault.almalinux.org/9.3/BaseOS/ppc64le/os/Packages/libsepol-3.5-1.el9.ppc64le.rpm
-    sha256: 999c51a19615a5dd1043a197d4421f153738f96a79b902114d081b45a21040d0
+  - url: https://vault.almalinux.org/9.4/BaseOS/ppc64le/os/Packages/libsepol-3.6-1.el9.ppc64le.rpm
+    sha256: aaa88b371b24e1c0da54505f81f967e76d2c1b58d2e2674203a2fbf888e372a6
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/BaseOS/Source/Packages/libsepol-3.5-1.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/BaseOS/Source/Packages/libsepol-3.6-1.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -25,9 +25,9 @@ build:
 
 requirements:
   host:
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-ppc64le 2.34.*
   run:
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-ppc64le 2.34.*
 
 test:
   commands:

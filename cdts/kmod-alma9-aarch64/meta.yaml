@@ -3,11 +3,11 @@ package:
   version: 28
 
 source:
-  - url: https://vault.almalinux.org/9.3/BaseOS/aarch64/os/Packages/kmod-28-9.el9.aarch64.rpm
+  - url: https://vault.almalinux.org/9.4/BaseOS/aarch64/os/Packages/kmod-28-9.el9.aarch64.rpm
     sha256: 96c579c1eb0627e4434f98d447834adc7a50bcf4ccfdf351ccfa09c321e0ef25
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.3/BaseOS/Source/Packages/kmod-28-9.el9.src.rpm
+  # - url: https://vault.almalinux.org/9.4/BaseOS/Source/Packages/kmod-28-9.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -25,9 +25,9 @@ build:
 
 requirements:
   host:
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-aarch64 2.34.*
   run:
-    - sysroot_linux-64 2.34.*
+    - sysroot_linux-aarch64 2.34.*
 
 test:
   commands:

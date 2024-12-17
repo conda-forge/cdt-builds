@@ -7,7 +7,7 @@ source:
     sha256: 2bb247a2caae03319d69365e2afc979fbbb584c977ca10d9a67d8a4289cc68a0
     no_hoist: true
     folder: binary
-  # - url: http://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libsepol-2.5-10.el7.src.rpm
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libsepol-2.5-10.el7.src.rpm
   #   no_hoist: true
   #   folder: source
 
