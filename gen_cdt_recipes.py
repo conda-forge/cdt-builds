@@ -215,8 +215,8 @@ def _fix_cdt_licenses(*, cdts, dist_arch_tuples, cdt_path):
                     yaml.width = 320
                     with open(os.path.join(pth, "meta.yaml"), "r") as fp:
                         meta = yaml.load(fp)
-                except Exception:
-                    print("ERROR: could not adjust license for %s" % pth)
+                except Exception as e:
+                    print(f"ERROR: could not adjust license for {pth} due to {e!r}")
                     continue
                 if cfg["license_file"] is None:
                     if "license_file" in meta["about"]:
@@ -250,8 +250,8 @@ def _fix_cdt_deps(*, cdts, dist_arch_tuples, cdt_path):
                     yaml.width = 320
                     with open(os.path.join(pth, "meta.yaml"), "r") as fp:
                         meta = yaml.load(fp)
-                except Exception:
-                    print("ERROR: could not adjust deps for %s" % pth)
+                except Exception as e:
+                    print(f"ERROR: could not adjust deps for {pth} due to {e!r}")
                     continue
 
                 if "requirements" in meta:
@@ -277,8 +277,8 @@ def _fix_cdt_deps(*, cdts, dist_arch_tuples, cdt_path):
                     yaml.width = 320
                     with open(os.path.join(pth, "meta.yaml"), "r") as fp:
                         meta = yaml.load(fp)
-                except Exception:
-                    print("ERROR: could not adjust deps for %s" % pth)
+                except Exception as e:
+                    print(f"ERROR: could not adjust deps for {pth} due to {e!r}")
                     continue
 
                 if "requirements" in meta:
