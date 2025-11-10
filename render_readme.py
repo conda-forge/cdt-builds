@@ -28,7 +28,7 @@ def render_readme():
         fp.write(tmpl.render(cdts=pkgs))
     
     with open("current_cdts.json", "w") as fp:
-        json.dump(pkgs, fp, separators=(",", ":"))
+        json.dump(pkgs, fp, indent=2)
 
 
 if __name__ == '__main__':
