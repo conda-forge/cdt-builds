@@ -13,7 +13,7 @@ import tqdm
 import click
 from ruamel.yaml import YAML
 
-from conda.core.index import get_index
+from conda.core.index import Index
 
 from cdt_config import (
     CDT_PATH,
@@ -97,7 +97,7 @@ def _build_cdt_meta(recipes, dist_arch_slug):
     channel_url = '/'.join(['conda-forge', 'label', 'main'])
     channel_index = {
         prec.fn: prec
-        for prec in get_index(
+        for prec in Index(
             [channel_url],
             prepend=False,
             use_cache=False,
