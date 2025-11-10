@@ -222,9 +222,9 @@ def _gen_cdts():
             "alma8": {
                 "full_name": "alma8",
                 "short_name": "conda",
-                "base_url": "https://vault.almalinux.org/8.9/{subfolder}/{architecture}/os/Packages/",  # noqa
-                "sbase_url": "https://vault.almalinux.org/8.9/{subfolder}/Source/Packages/",
-                "repomd_url": "https://vault.almalinux.org/8.9/{subfolder}/{architecture}/os/repodata/repomd.xml",  # noqa
+                "base_url": "https://repo.almalinux.org/almalinux/8.10/{subfolder}/{architecture}/os/Packages/",  # noqa
+                "sbase_url": "https://repo.almalinux.org/almalinux/8.10/{subfolder}/Source/Packages/",
+                "repomd_url": "https://repo.almalinux.org/almalinux/8.10/{subfolder}/{architecture}/os/repodata/repomd.xml",  # noqa
                 "extra_subfolders": ["PowerTools"],
                 "host_machine": "{gnu_architecture}-conda-linux-gnu",
                 "host_subdir": "linux-{conda_architecture}",
@@ -237,9 +237,9 @@ def _gen_cdts():
             "alma9": {
                 "full_name": "alma9",
                 "short_name": "conda",
-                "base_url": "https://vault.almalinux.org/9.6/{subfolder}/{architecture}/os/Packages/",  # noqa
-                "sbase_url": "https://vault.almalinux.org/9.6/{subfolder}/Source/Packages/",
-                "repomd_url": "https://vault.almalinux.org/9.6/{subfolder}/{architecture}/os/repodata/repomd.xml",  # noqa
+                "base_url": "https://repo.almalinux.org/almalinux/9.6/{subfolder}/{architecture}/os/Packages/",  # noqa
+                "sbase_url": "https://repo.almalinux.org/almalinux/9.6/{subfolder}/Source/Packages/",
+                "repomd_url": "https://repo.almalinux.org/almalinux/9.6/{subfolder}/{architecture}/os/repodata/repomd.xml",  # noqa
                 "extra_subfolders": ["CRB", "devel"],
                 "host_machine": "{gnu_architecture}-conda-linux-gnu",
                 "host_subdir": "linux-{conda_architecture}",
