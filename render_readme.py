@@ -1,5 +1,6 @@
 import os
 import glob
+import json
 
 from jinja2 import Template
 
@@ -25,6 +26,9 @@ def render_readme():
 
     with open("README.md", "w") as fp:
         fp.write(tmpl.render(cdts=pkgs))
+
+    with open("current_cdts.json", "w") as fp:
+        json.dump(pkgs, fp, indent=2)
 
 
 if __name__ == '__main__':
