@@ -1,13 +1,13 @@
 package:
   name: mesa-libgbm-conda-x86_64
-  version: 23.3.3
+  version: 24.2.8
 
 source:
-  - url: https://vault.almalinux.org/9.4/AppStream/x86_64/os/Packages/mesa-libgbm-23.3.3-1.el9.x86_64.rpm
-    sha256: 642b0fd288e069ff85831e12dc924b9cf9a64acebaa7fad2abb26b38fa0e8e00
+  - url: https://repo.almalinux.org/almalinux/9.6/AppStream/x86_64/os/Packages/mesa-libgbm-24.2.8-3.el9_6.alma.1.x86_64.rpm
+    sha256: d154533148363a0517b51fbec02f138e0d6fe03b6c9c1b53d4f95f9e9d0d7da1
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.4/AppStream/Source/Packages/mesa-23.3.3-1.el9.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/9.6/AppStream/Source/Packages/mesa-24.2.8-3.el9_6.alma.1.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -35,8 +35,8 @@ test:
 
 about:
   home: http://www.mesa3d.org
-  license: MIT
-  license_family: MIT
+  license: MIT AND BSD-3-Clause AND SGI-B-2.0
+  license_family: BSD
   license_file: mesa-license
   summary: (CDT) Mesa gbm runtime library
   description: |

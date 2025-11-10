@@ -3,11 +3,11 @@ package:
   version: 2.9.6
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/aarch64/os/Packages/cracklib-2.9.6-15.el8.aarch64.rpm
+  - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/aarch64/os/Packages/cracklib-2.9.6-15.el8.aarch64.rpm
     sha256: 60504b2e43e02db403a70e0b8b41671ca213dfc0757acfc3e4e673205bbe55e8
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/cracklib-2.9.6-15.el8.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/Source/Packages/cracklib-2.9.6-15.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 

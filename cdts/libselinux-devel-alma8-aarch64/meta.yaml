@@ -3,11 +3,11 @@ package:
   version: 2.9
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/aarch64/os/Packages/libselinux-devel-2.9-8.el8.aarch64.rpm
-    sha256: 104f1e47454aa166e1ad21dc2a05a557eb960d6c043429950ef7168fbd2eef05
+  - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/aarch64/os/Packages/libselinux-devel-2.9-9.el8_10.aarch64.rpm
+    sha256: cff5bb88848c4e31a65fc70dcfcf5b8d2faf394a3d0b1e84add5c3f1d7dd2907
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/libselinux-2.9-8.el8.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/Source/Packages/libselinux-2.9-9.el8_10.src.rpm
   #   no_hoist: true
   #   folder: source
 

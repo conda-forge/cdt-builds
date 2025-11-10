@@ -3,11 +3,11 @@ package:
   version: 3.6
 
 source:
-  - url: https://vault.almalinux.org/9.4/AppStream/aarch64/os/Packages/libselinux-devel-3.6-1.el9.aarch64.rpm
-    sha256: 5030bb543a50f4e5caa1076136bc8413cd38d59e2e65ff42da09e6c19cec1e32
+  - url: https://repo.almalinux.org/almalinux/9.6/AppStream/aarch64/os/Packages/libselinux-devel-3.6-3.el9.aarch64.rpm
+    sha256: 0bc1a70a68203118753a0859ab4c9a85e6598cc843b94c6348856f9834899c21
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.4/AppStream/Source/Packages/libselinux-3.6-1.el9.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/9.6/AppStream/Source/Packages/libselinux-3.6-3.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 

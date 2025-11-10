@@ -3,11 +3,11 @@ package:
   version: 2.9.6
 
 source:
-  - url: https://vault.almalinux.org/8.9/PowerTools/aarch64/os/Packages/cracklib-devel-2.9.6-15.el8.aarch64.rpm
+  - url: https://repo.almalinux.org/almalinux/8.10/PowerTools/aarch64/os/Packages/cracklib-devel-2.9.6-15.el8.aarch64.rpm
     sha256: 4c99def23773c7bd29501052e7e9c3168c2d2cf475020158d03f3c2cd1a8b370
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/PowerTools/Source/Packages/cracklib-2.9.6-15.el8.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/8.10/PowerTools/Source/Packages/cracklib-2.9.6-15.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 

@@ -1,13 +1,13 @@
 package:
   name: audit-libs-conda-x86_64
-  version: 3.0.7
+  version: 3.1.2
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/x86_64/os/Packages/audit-libs-3.0.7-5.el8.x86_64.rpm
-    sha256: 552ae323cd8de99295c0addc8f5dd0a2737f10d1f46c9f62f1bc7ce072c41841
+  - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/x86_64/os/Packages/audit-libs-3.1.2-1.el8_10.1.x86_64.rpm
+    sha256: 9b4c830690bed3bc9f27439617a9b806e55617f2a3e2ab7cf6f28118adeffd41
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/audit-3.0.7-5.el8.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/Source/Packages/audit-3.1.2-1.el8_10.1.src.rpm
   #   no_hoist: true
   #   folder: source
 

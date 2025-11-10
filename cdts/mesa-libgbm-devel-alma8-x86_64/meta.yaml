@@ -3,11 +3,11 @@ package:
   version: 23.1.4
 
 source:
-  - url: https://vault.almalinux.org/8.9/PowerTools/x86_64/os/Packages/mesa-libgbm-devel-23.1.4-1.el8.x86_64.rpm
-    sha256: 0e693ee01d3b91d9ce26127e0c01be293f284d368bc6553535daa0d556acc5ea
+  - url: https://repo.almalinux.org/almalinux/8.10/PowerTools/x86_64/os/Packages/mesa-libgbm-devel-23.1.4-4.el8_10.alma.1.x86_64.rpm
+    sha256: ad2cada9d87de59390c107c9e0f8c1ce0def956dc77f0604ae3f12d17087fcd5
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/PowerTools/Source/Packages/mesa-23.1.4-1.el8.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/8.10/PowerTools/Source/Packages/mesa-23.1.4-4.el8_10.alma.1.src.rpm
   #   no_hoist: true
   #   folder: source
 

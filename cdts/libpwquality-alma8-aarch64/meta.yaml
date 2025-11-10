@@ -3,11 +3,11 @@ package:
   version: 1.4.4
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/aarch64/os/Packages/libpwquality-1.4.4-6.el8.aarch64.rpm
+  - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/aarch64/os/Packages/libpwquality-1.4.4-6.el8.aarch64.rpm
     sha256: a9103aa12129a759bc6c965796b65c00a61bcde9ed4e8d7b2b1d2eeee4f7f433
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/libpwquality-1.4.4-6.el8.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/Source/Packages/libpwquality-1.4.4-6.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 

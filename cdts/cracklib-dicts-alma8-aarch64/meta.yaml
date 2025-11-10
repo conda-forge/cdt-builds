@@ -3,11 +3,11 @@ package:
   version: 2.9.6
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/aarch64/os/Packages/cracklib-dicts-2.9.6-15.el8.aarch64.rpm
+  - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/aarch64/os/Packages/cracklib-dicts-2.9.6-15.el8.aarch64.rpm
     sha256: 9d53e9a58fd53267c2551f3a048c89579554f49f8aa77c94c79d1b066f947e38
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/cracklib-2.9.6-15.el8.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/Source/Packages/cracklib-2.9.6-15.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 

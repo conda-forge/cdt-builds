@@ -3,11 +3,11 @@ package:
   version: 23.1.4
 
 source:
-  - url: https://vault.almalinux.org/8.9/AppStream/x86_64/os/Packages/mesa-libgbm-23.1.4-1.el8.x86_64.rpm
-    sha256: 844c07d9f8d1390af0b3b8177ed5fe28fecc6a5c95d4fb308e62033b82cd8d24
+  - url: https://repo.almalinux.org/almalinux/8.10/AppStream/x86_64/os/Packages/mesa-libgbm-23.1.4-4.el8_10.alma.1.x86_64.rpm
+    sha256: 2b11ce2103f15afad046d30458c5626747ab7eb2ac2475db14ab9579325aa4cd
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/AppStream/Source/Packages/mesa-23.1.4-1.el8.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/8.10/AppStream/Source/Packages/mesa-23.1.4-4.el8_10.alma.1.src.rpm
   #   no_hoist: true
   #   folder: source
 

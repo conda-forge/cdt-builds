@@ -3,11 +3,11 @@ package:
   version: 25
 
 source:
-  - url: https://vault.almalinux.org/8.9/PowerTools/aarch64/os/Packages/kmod-devel-25-19.el8.aarch64.rpm
-    sha256: 1b949bb00733d021379e8f4e293dfb4cfe08efbc7ddf1b46aaeb4dcfb34da9ff
+  - url: https://repo.almalinux.org/almalinux/8.10/PowerTools/aarch64/os/Packages/kmod-devel-25-20.el8.aarch64.rpm
+    sha256: 43d9e69b9241c1c7548eef01cf61320a541cd95108b6779c827d6d839d3a9848
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/PowerTools/Source/Packages/kmod-25-19.el8.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/8.10/PowerTools/Source/Packages/kmod-25-20.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 
