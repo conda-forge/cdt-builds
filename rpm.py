@@ -594,7 +594,7 @@ def tidy_text(text, wrap_at=0):
 
 def _test_rpm_for_license_file(rpm_pth, raise_on_not_found=False):
     c = subprocess.run(
-        "rpm -qlp %s" % rpm_pth,
+        f"rpm -qlp {rpm_pth}",
         shell=True,
         check=True,
         capture_output=True,
@@ -613,7 +613,7 @@ def _test_rpm_for_license_file(rpm_pth, raise_on_not_found=False):
         else:
             print(
                 "WARNING: could not find a suitable "
-                "license file in the RPM %s!" % os.path.basename(rpm_pth)
+                f"license file in the RPM {os.path.basename(rpm_pth)}!"
             )
             license_file = "/LICENSE_NOT_FOUND"
 
@@ -636,9 +636,10 @@ def write_conda_recipes(
     if build_number_bump is None:
         _extra_build_num_str = ""
     else:
-        _extra_build_num_str = " + %s" % build_number_bump
+        _extra_build_num_str = f" + {build_number_bump}"
 
     build_number_jinja2 = (
+        # not using f-strings because escaping double-curlies would make this worse
         "{{ cdt_build_number|int + 1000%s }}" % _extra_build_num_str
     )
 
@@ -767,17 +768,15 @@ def write_conda_recipes(
             if len(dependsstr_run) == 0:
                 dependsstr_run = "  run:\n"
             dependsstr_run += (
-                "    - "
-                "sysroot_%s %s.*" % (
-                    cdt["host_subdir"], cdt["glibc_ver"]))
+                f"    - sysroot_{cdt['host_subdir']} {cdt['glibc_ver']}.*"
+            )
 
             # put sysroot in host
             if len(dependsstr_host) == 0:
                 dependsstr_host = "  host:\n"
             dependsstr_host += (
-                "    - "
-                "sysroot_%s %s.*\n" % (
-                    cdt["host_subdir"], cdt["glibc_ver"]))
+                f"    - sysroot_{cdt['host_subdir']} {cdt['glibc_ver']}.*\n"  # note \n
+            )
 
         dependsstr = (
             "requirements:\n" + dependsstr_build + dependsstr_host + dependsstr_run
