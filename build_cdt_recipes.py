@@ -138,6 +138,9 @@ def _build_cdt(cdt_meta_node, no_temp=False):
                 (
                     "conda build --use-local -m conda_build_config.yaml "
                     + cdt_meta_node["recipe_path"]
+                    # These are exported in the azure pipelines workflow
+                    + " --extra-meta flow_run_id=\"${flow_run_id:-}\""
+                    + " remote_url=\"${remote_url:-}\" sha=\"${sha:-}\""
                 ),
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
@@ -152,7 +155,10 @@ def _build_cdt(cdt_meta_node, no_temp=False):
                             "CONDA_PKGS_DIRS=" + str(pkg_tmpdir) + " "
                             "conda build --use-local -m conda_build_config.yaml "
                             + "--cache-dir " + str(tmpdir) + " "
-                            + cdt_meta_node["recipe_path"]
+                            + cdt_meta_node["recipe_path"] 
+                            # These are exported in the azure pipelines workflow
+                            + " --extra-meta flow_run_id=\"${flow_run_id:-}\""
+                            + " remote_url=\"${remote_url:-}\" sha=\"${sha:-}\""
                         ),
                         stdout=subprocess.PIPE,
                         stderr=subprocess.STDOUT,
