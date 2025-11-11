@@ -1,3 +1,6 @@
+variables:
+- group: anaconda-org
+
 jobs:
 - job: build
   pool:
