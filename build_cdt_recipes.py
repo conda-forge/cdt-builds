@@ -70,24 +70,11 @@ def _get_node_attrs(recipe, channel_index):
     with open(os.path.join(recipe, "meta.yaml"), "r") as fp:
         attrs["meta"] = yaml.load(fp)
 
-    attrs["all_requirements"] = sorted(
-        set(
-            (
-                [
-                    _split_req(req)
-                    for req in attrs["meta"].get("requirements", {}).get("build", [])
-                ]
-                + [
-                    _split_req(req)
-                    for req in attrs["meta"].get("requirements", {}).get("host", [])
-                ]
-                + [
-                    _split_req(req)
-                    for req in attrs["meta"].get("requirements", {}).get("run", [])
-                ]
-            )
-        )
-    )
+    requirements_dict = attrs["meta"].get("requirements", {})
+    build_reqs = [_split_req(req) for req in requirements_dict.get("build", [])]
+    host_reqs = [_split_req(req) for req in requirements_dict.get("host", [])]
+    run_reqs = [_split_req(req) for req in requirements_dict.get("run", [])]
+    attrs["all_requirements"] = set(build_reqs + host_reqs + run_reqs)
 
     attrs["skip"] = _cdt_exists(attrs, channel_index)
     attrs["exists"] = attrs["skip"]
