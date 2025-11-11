@@ -35,6 +35,7 @@ The conda-build license is:
 
     versioneer.py is Public Domain
 """
+
 import os
 from copy import copy
 
@@ -64,22 +65,22 @@ def disable_traceback():
     sys.tracebacklimit = default_value  # revert changes
 
 
-import click
-from conda_build.source import download_to_cache
-from conda_build.license_family import guess_license_family
-from conda_build.config import Config
+import click  # noqa: E402
+from conda_build.source import download_to_cache  # noqa: E402
+from conda_build.license_family import guess_license_family  # noqa: E402
+from conda_build.config import Config  # noqa: E402
 
 # try to import C dumper
 try:
     from yaml import CSafeDumper as SafeDumper
 except ImportError:
     from yaml import SafeDumper
-import yaml
+import yaml  # noqa: E402
 
-from requests import request
-from six import string_types
-from textwrap import wrap
-from xml.etree import cElementTree as ET
+from requests import request  # noqa: E402
+from six import string_types  # noqa: E402
+from textwrap import wrap  # noqa: E402
+from xml.etree import cElementTree as ET  # noqa: E402
 
 # we sometimes hit infinite recursions so we track every recipe made here
 MADE_RECIPES = set()
@@ -294,12 +295,12 @@ def rpm_filename_split(rpmfilename):
     if len(parts) == 2:
         release, platform = parts[0], parts[1]
     elif len(parts) > 2:
-        release, platform = ".".join(parts[0:len(parts) - 1]), ".".join(parts[-1:])
+        release, platform = ".".join(parts[0 : len(parts) - 1]), ".".join(parts[-1:])
     else:
         print("ERROR: Cannot figure out the release and platform for {}".format(base))
     name_version = base.split("-")[0:-1]
     version = name_version[-1]
-    rpm_name = "-".join(name_version[0:len(name_version) - 1])
+    rpm_name = "-".join(name_version[0 : len(name_version) - 1])
     return rpm_name, version, release, platform
 
 
@@ -402,7 +403,7 @@ def dictify_pickled(xml_file, src_cache, dict_massager=None, cdt=None):
 def get_repo_dict(repomd_url, data_type, dict_massager, cdt, src_cache):
     xmlstring = request("get", repomd_url).content
     # Remove the default namespace definition (xmlns="http://some/namespace")
-    xmlstring = re.sub(br'\sxmlns="[^"]+"', b"", xmlstring, count=1)  # noqa
+    xmlstring = re.sub(rb'\sxmlns="[^"]+"', b"", xmlstring, count=1)  # noqa
     repomd = ET.fromstring(xmlstring)
     for child in repomd.findall("*[@type='{}']".format(data_type)):
         open_csum = child.findall("open-checksum")[0].text
@@ -418,10 +419,10 @@ def get_repo_dict(repomd_url, data_type, dict_massager, cdt, src_cache):
             cached_path, cached_csum = cache_file(
                 src_cache, xmlgz_file, None, cdt["checksummer"]
             )
-            assert (
-                csum == cached_csum
-            ), "Checksum for {} does not match value in {}".format(
-                xmlgz_file, repomd_url
+            assert csum == cached_csum, (
+                "Checksum for {} does not match value in {}".format(
+                    xmlgz_file, repomd_url
+                )
             )
             with gzip.open(cached_path, "rb") as gz:
                 xml_content = gz.read()
@@ -632,7 +633,6 @@ def write_conda_recipes(
     conda_forge_style,
     build_number_bump,
 ):
-
     if build_number_bump is None:
         _extra_build_num_str = ""
     else:
@@ -704,7 +704,7 @@ def write_conda_recipes(
         # hack around bad repo data upstream for libXtst-devel
         for tail in ["(x86-64)", "(aarch-64)", "(ppc-64)"]:
             if depend["name"].endswith(tail):
-                depend["name"] = depend["name"][:-len(tail)]
+                depend["name"] = depend["name"][: -len(tail)]
 
         dep_entry, dep_name, dep_arch = find_repo_entry_and_arch(
             repo_primary, architectures, depend
@@ -767,9 +767,7 @@ def write_conda_recipes(
 
             if len(dependsstr_run) == 0:
                 dependsstr_run = "  run:\n"
-            dependsstr_run += (
-                f"    - sysroot_{cdt['host_subdir']} {cdt['glibc_ver']}.*"
-            )
+            dependsstr_run += f"    - sysroot_{cdt['host_subdir']} {cdt['glibc_ver']}.*"
 
             # put sysroot in host
             if len(dependsstr_host) == 0:

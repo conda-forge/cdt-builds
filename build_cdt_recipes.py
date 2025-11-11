@@ -57,7 +57,7 @@ def _cdt_exists(cdt_meta_node, channel_index):
     on_channel = True
     for dist_fname in dist_fnames:
         fname = os.path.basename(dist_fname)
-        on_channel &= (fname in channel_index)
+        on_channel &= fname in channel_index
     return on_channel
 
 
@@ -70,31 +70,34 @@ def _get_node_attrs(recipe, channel_index):
     with open(os.path.join(recipe, "meta.yaml"), "r") as fp:
         attrs["meta"] = yaml.load(fp)
 
-    attrs["all_requirements"] = sorted(set((
-        [
-            _split_req(req)
-            for req in attrs["meta"].get("requirements", {}).get("build", [])
-        ]
-        + [
-            _split_req(req)
-            for req in attrs["meta"].get("requirements", {}).get("host", [])
-        ]
-        + [
-            _split_req(req)
-            for req in attrs["meta"].get("requirements", {}).get("run", [])
-        ]
+    attrs["all_requirements"] = sorted(
+        set(
+            (
+                [
+                    _split_req(req)
+                    for req in attrs["meta"].get("requirements", {}).get("build", [])
+                ]
+                + [
+                    _split_req(req)
+                    for req in attrs["meta"].get("requirements", {}).get("host", [])
+                ]
+                + [
+                    _split_req(req)
+                    for req in attrs["meta"].get("requirements", {}).get("run", [])
+                ]
+            )
+        )
+    )
 
-    )))
-
-    attrs['skip'] = _cdt_exists(attrs, channel_index)
-    attrs['exists'] = attrs['skip']
+    attrs["skip"] = _cdt_exists(attrs, channel_index)
+    attrs["exists"] = attrs["skip"]
 
     return node, attrs
 
 
 def _build_cdt_meta(recipes, dist_arch_slug):
     print("getting conda-forge/label/main channel index...", flush=True)
-    channel_url = '/'.join(['conda-forge', 'label', 'main'])
+    channel_url = "/".join(["conda-forge", "label", "main"])
     channel_index = {
         prec.fn: prec
         for prec in Index(
@@ -102,11 +105,11 @@ def _build_cdt_meta(recipes, dist_arch_slug):
             prepend=False,
             use_cache=False,
         )
-        if prec.subdir == 'noarch'
+        if prec.subdir == "noarch"
     }
 
     cdt_meta = {}
-    for recipe in tqdm.tqdm(recipes, desc='building CDT metadata', ncols=80):
+    for recipe in tqdm.tqdm(recipes, desc="building CDT metadata", ncols=80):
         if dist_arch_slug not in os.path.basename(recipe):
             continue
         node, attrs = _get_node_attrs(recipe, channel_index)
@@ -125,7 +128,7 @@ def _has_all_cdt_deps(node, cdt_meta):
 
 def _is_buildable(node, cdt_meta, pkgs):
     return all(
-        dep in pkgs or cdt_meta[dep]['exists']
+        dep in pkgs or cdt_meta[dep]["exists"]
         for dep in cdt_meta[node]["all_requirements"]
         if dep in cdt_meta
     )
@@ -139,13 +142,13 @@ def _build_cdt(cdt_meta_node, no_temp=False):
                     "conda build --use-local -m conda_build_config.yaml "
                     + cdt_meta_node["recipe_path"]
                     # These are exported in the azure pipelines workflow
-                    + " --extra-meta flow_run_id=\"${flow_run_id:-}\""
-                    + " remote_url=\"${remote_url:-}\" sha=\"${sha:-}\""
+                    + ' --extra-meta flow_run_id="${flow_run_id:-}"'
+                    + ' remote_url="${remote_url:-}" sha="${sha:-}"'
                 ),
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
                 text=True,
-                shell=True
+                shell=True,
             )
         else:
             with tempfile.TemporaryDirectory() as tmpdir:
@@ -154,16 +157,18 @@ def _build_cdt(cdt_meta_node, no_temp=False):
                         (
                             "CONDA_PKGS_DIRS=" + str(pkg_tmpdir) + " "
                             "conda build --use-local -m conda_build_config.yaml "
-                            + "--cache-dir " + str(tmpdir) + " "
-                            + cdt_meta_node["recipe_path"] 
+                            + "--cache-dir "
+                            + str(tmpdir)
+                            + " "
+                            + cdt_meta_node["recipe_path"]
                             # These are exported in the azure pipelines workflow
-                            + " --extra-meta flow_run_id=\"${flow_run_id:-}\""
-                            + " remote_url=\"${remote_url:-}\" sha=\"${sha:-}\""
+                            + ' --extra-meta flow_run_id="${flow_run_id:-}"'
+                            + ' remote_url="${remote_url:-}" sha="${sha:-}"'
                         ),
                         stdout=subprocess.PIPE,
                         stderr=subprocess.STDOUT,
                         text=True,
-                        shell=True
+                        shell=True,
                     )
 
         if c.returncode == 0:
@@ -228,9 +233,7 @@ def _build_cdt_groups(cdt_meta):
     for name, info in cdt_meta.items():
         cdt_reqs = set(info["all_requirements"]) & all_cdts
         cdt_reqs.add(name)
-        curr_groups = set(
-            cdt_to_group[nm] for nm in cdt_reqs
-        )
+        curr_groups = set(cdt_to_group[nm] for nm in cdt_reqs)
         assert len(curr_groups) == 1
     assert len(set(cdt_to_group.values())) <= len(cdt_to_group)
 
@@ -244,10 +247,7 @@ def _cdt_name_to_part(name, num_parts):
 
 
 def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug, part=1, num_parts=1):
-    recipes = (
-        glob.glob(cdt_path + "/*")
-        + glob.glob(custom_cdt_path + "/*")
-    )
+    recipes = glob.glob(cdt_path + "/*") + glob.glob(custom_cdt_path + "/*")
     cdt_meta = _build_cdt_meta(recipes, dist_arch_slug)
     cdt_to_group = _build_cdt_groups(cdt_meta)
 
@@ -273,17 +273,15 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug, part=1, num_parts
     build_logs = ""
 
     with ThreadPoolExecutor(max_workers=num_workers) as exec:
-
         for node in cdt_meta:
             if not _has_all_cdt_deps(node, cdt_meta):
                 raise RuntimeError(
-                    f"CDT {node} cannot be built "
-                    "since not all deps are available!"
+                    f"CDT {node} cannot be built since not all deps are available!"
                 )
 
         built = set()
         with tqdm.tqdm(
-            total=len(cdt_meta) - len(skipped), ncols=80, desc='building recipes'
+            total=len(cdt_meta) - len(skipped), ncols=80, desc="building recipes"
         ) as pbar:
             while not all(node in built or node in skipped for node in cdt_meta):
                 futures = {}
@@ -294,36 +292,22 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug, part=1, num_parts
                         and _is_buildable(node, cdt_meta, built)
                         and node not in built
                     ):
-                        futures[exec.submit(
-                            _build_cdt,
-                            cdt_meta[node],
-                            no_temp=True if num_workers == 1 else False,
-                        )] = node
+                        futures[
+                            exec.submit(
+                                _build_cdt,
+                                cdt_meta[node],
+                                no_temp=True if num_workers == 1 else False,
+                            )
+                        ] = node
 
                 for fut in as_completed(futures):
                     node = futures[fut]
                     c, c_up = fut.result()
-                    build_logs += (
-                        "\n\n"
-                        + LINE_SEP
-                        + "\n"
-                        + c.stdout
-                    )
+                    build_logs += "\n\n" + LINE_SEP + "\n" + c.stdout
                     if c_up is not None:
-                        build_logs += (
-                            "\n\n"
-                            + LINE_SEP
-                            + "\n"
-                            + c_up.stdout
-                        )
+                        build_logs += "\n\n" + LINE_SEP + "\n" + c_up.stdout
 
-                    if (
-                        c.returncode == 0
-                        and (
-                            c_up is None
-                            or c_up.returncode == 0
-                        )
-                    ):
+                    if c.returncode == 0 and (c_up is None or c_up.returncode == 0):
                         if c_up is None:
                             pbar.write(f"built {node}", file=sys.stderr)
                         else:
@@ -368,7 +352,9 @@ def _main(
     part, num_parts = part_to_process.split(":")
     part = int(part)
     num_parts = int(num_parts)
-    _build_all_cdts(CDT_PATH, CUSTOM_CDT_PATH, dist_arch_slug, part=part, num_parts=num_parts)
+    _build_all_cdts(
+        CDT_PATH, CUSTOM_CDT_PATH, dist_arch_slug, part=part, num_parts=num_parts
+    )
 
 
 if __name__ == "__main__":

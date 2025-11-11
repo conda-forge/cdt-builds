@@ -37,20 +37,15 @@ def _get_pkg_name(recipe):
 
 
 def print_names():
-    recipes = set(
-        glob.glob(CDT_PATH + "/*")
-        + glob.glob(CUSTOM_CDT_PATH + "/*")
-    )
-    recipes = sorted(
-        r for r in recipes if not r.endswith("README.md")
-    )
+    recipes = set(glob.glob(CDT_PATH + "/*") + glob.glob(CUSTOM_CDT_PATH + "/*"))
+    recipes = sorted(r for r in recipes if not r.endswith("README.md"))
 
     names = []
-    for recipe in tqdm.tqdm(recipes, desc='rendering recipes'):
+    for recipe in tqdm.tqdm(recipes, desc="rendering recipes"):
         names += _get_pkg_name(recipe)
     for name in sorted(names):
         print(name)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print_names()
