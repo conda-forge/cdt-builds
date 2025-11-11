@@ -1,13 +1,13 @@
 package:
   name: audit-libs-devel-conda-x86_64
-  version: 3.0.7
+  version: 3.1.2
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/x86_64/os/Packages/audit-libs-devel-3.0.7-5.el8.x86_64.rpm
-    sha256: 357e3d6d3fae2c8b214452fd6c4c8f279fb6a2643290a76f7d7535dbe40d037e
+  - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/x86_64/os/Packages/audit-libs-devel-3.1.2-1.el8_10.1.x86_64.rpm
+    sha256: e3fbf8050d8004f1aedf014282f0b4f5bdfa6d2d61ea2866dcf93b6573b69f16
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/audit-3.0.7-5.el8.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/Source/Packages/audit-3.1.2-1.el8_10.1.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - audit-libs-conda-x86_64 ==3.0.7 *_{{ cdt_build_number|int + 1000 }}
+    - audit-libs-conda-x86_64 ==3.1.2 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - audit-libs-conda-x86_64 ==3.0.7 *_{{ cdt_build_number|int + 1000 }}
+    - audit-libs-conda-x86_64 ==3.1.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.28.*
   run:
-    - audit-libs-conda-x86_64 ==3.0.7 *_{{ cdt_build_number|int + 1000 }}
+    - audit-libs-conda-x86_64 ==3.1.2 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.28.*
 test:
   commands:

@@ -13,7 +13,7 @@ import tqdm
 import click
 from ruamel.yaml import YAML
 
-from conda.core.index import get_index
+from conda.core.index import Index
 
 from cdt_config import (
     CDT_PATH,
@@ -97,7 +97,7 @@ def _build_cdt_meta(recipes, dist_arch_slug):
     channel_url = '/'.join(['conda-forge', 'label', 'main'])
     channel_index = {
         prec.fn: prec
-        for prec in get_index(
+        for prec in Index(
             [channel_url],
             prepend=False,
             use_cache=False,
@@ -138,6 +138,9 @@ def _build_cdt(cdt_meta_node, no_temp=False):
                 (
                     "conda build --use-local -m conda_build_config.yaml "
                     + cdt_meta_node["recipe_path"]
+                    # These are exported in the azure pipelines workflow
+                    + " --extra-meta flow_run_id=\"${flow_run_id:-}\""
+                    + " remote_url=\"${remote_url:-}\" sha=\"${sha:-}\""
                 ),
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
@@ -152,7 +155,10 @@ def _build_cdt(cdt_meta_node, no_temp=False):
                             "CONDA_PKGS_DIRS=" + str(pkg_tmpdir) + " "
                             "conda build --use-local -m conda_build_config.yaml "
                             + "--cache-dir " + str(tmpdir) + " "
-                            + cdt_meta_node["recipe_path"]
+                            + cdt_meta_node["recipe_path"] 
+                            # These are exported in the azure pipelines workflow
+                            + " --extra-meta flow_run_id=\"${flow_run_id:-}\""
+                            + " remote_url=\"${remote_url:-}\" sha=\"${sha:-}\""
                         ),
                         stdout=subprocess.PIPE,
                         stderr=subprocess.STDOUT,
@@ -172,13 +178,13 @@ def _build_cdt(cdt_meta_node, no_temp=False):
         recipe = os.path.basename(cdt_meta_node["recipe_path"])
         pkg = folder_to_package(recipe)
         cdt_file = glob.glob(
-            os.path.expandvars("${HOME}/miniforge3/conda-bld/*/%s-*.conda" % pkg)
+            os.path.join(os.environ["HOME"], f"miniforge3/conda-bld/*/{pkg}-*.conda")
         )
         assert len(cdt_file) == 1
         for _ in range(5):
             c_up = subprocess.run(
                 "anaconda --token ${ANACONDA_TOKEN} upload "
-                "--skip-existing %s" % cdt_file[0],
+                f"--skip-existing {cdt_file[0]}",
                 shell=True,
                 text=True,
                 stdout=subprocess.PIPE,
@@ -271,8 +277,8 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug, part=1, num_parts
         for node in cdt_meta:
             if not _has_all_cdt_deps(node, cdt_meta):
                 raise RuntimeError(
-                    "CDT %s cannot be built "
-                    "since not all deps are available!" % node
+                    f"CDT {node} cannot be built "
+                    "since not all deps are available!"
                 )
 
         built = set()
@@ -319,9 +325,9 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug, part=1, num_parts
                         )
                     ):
                         if c_up is None:
-                            pbar.write("built %s" % node, file=sys.stderr)
+                            pbar.write(f"built {node}", file=sys.stderr)
                         else:
-                            pbar.write("built and uploaded %s" % node, file=sys.stderr)
+                            pbar.write(f"built and uploaded {node}", file=sys.stderr)
                         sys.stderr.flush()
                         built.add(node)
                         pbar.update(1)
@@ -329,10 +335,10 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug, part=1, num_parts
                     else:
                         pbar.write(build_logs)
                         sys.stderr.flush()
-                        raise RuntimeError("Could not build CDT %s!" % node)
+                        raise RuntimeError(f"Could not build CDT {node}!")
 
     log_dir = "build_logs"
-    log_pth = os.path.join(log_dir, "build_logs_%s.txt" % dist_arch_slug)
+    log_pth = os.path.join(log_dir, f"build_logs_{dist_arch_slug}.txt")
     os.makedirs(log_dir, exist_ok=True)
     with open(log_pth, "w") as fp:
         fp.write(build_logs)

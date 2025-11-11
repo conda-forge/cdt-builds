@@ -115,6 +115,11 @@ jobs:
 
         mkdir -p build_logs
 
+        export CI=azure
+        export flow_run_id=azure_$(Build.BuildNumber).$(System.JobAttempt)
+        export remote_url=$(Build.Repository.Uri)
+        export sha=$(Build.SourceVersion)
+
         echo "cmd args: ${DISTARCH} ${PTOP}"
         python build_cdt_recipes.py ${DISTARCH} --part-to-process=${PTOP}
     displayName: build and upload CDTs

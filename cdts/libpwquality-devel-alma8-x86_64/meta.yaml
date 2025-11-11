@@ -3,11 +3,11 @@ package:
   version: 1.4.4
 
 source:
-  - url: https://vault.almalinux.org/8.9/PowerTools/x86_64/os/Packages/libpwquality-devel-1.4.4-6.el8.x86_64.rpm
+  - url: https://repo.almalinux.org/almalinux/8.10/PowerTools/x86_64/os/Packages/libpwquality-devel-1.4.4-6.el8.x86_64.rpm
     sha256: ad22bc7c947ef8d18a1396bc846768938854737ff2bad22eb0b9096167ddefd5
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/PowerTools/Source/Packages/libpwquality-1.4.4-6.el8.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/8.10/PowerTools/Source/Packages/libpwquality-1.4.4-6.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 

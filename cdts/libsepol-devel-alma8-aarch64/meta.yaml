@@ -3,11 +3,11 @@ package:
   version: 2.9
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/aarch64/os/Packages/libsepol-devel-2.9-3.el8.aarch64.rpm
+  - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/aarch64/os/Packages/libsepol-devel-2.9-3.el8.aarch64.rpm
     sha256: 22861e6970e9753327ad9b27fb8f51d08918d5eb2da0252d3ed5e394c32b4c45
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/libsepol-2.9-3.el8.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/Source/Packages/libsepol-2.9-3.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 

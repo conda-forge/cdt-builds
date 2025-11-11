@@ -13,7 +13,7 @@ conda activate base
 
 cat .ci_scripts/condarc > $HOME/.condarc
 
-mamba env update -n=base -f=./env.yml
+mamba env update -n base -f ./env.yml -y
 
 conda list
 

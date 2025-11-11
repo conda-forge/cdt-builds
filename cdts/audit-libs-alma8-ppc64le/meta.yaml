@@ -1,13 +1,13 @@
 package:
   name: audit-libs-conda-ppc64le
-  version: 3.0.7
+  version: 3.1.2
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/ppc64le/os/Packages/audit-libs-3.0.7-5.el8.ppc64le.rpm
-    sha256: 345bad84bf2c2564099b70500509ed9e73f84cd5f4a4477b0cd7a4ff85031409
+  - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/ppc64le/os/Packages/audit-libs-3.1.2-1.el8_10.1.ppc64le.rpm
+    sha256: ed0ee9f215144107ed47f076bf8eafac6daec5879c6bcff2e68fc2c4ae543088
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/audit-3.0.7-5.el8.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/Source/Packages/audit-3.1.2-1.el8_10.1.src.rpm
   #   no_hoist: true
   #   folder: source
 

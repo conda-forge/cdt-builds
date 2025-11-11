@@ -3,11 +3,11 @@ package:
   version: 25
 
 source:
-  - url: https://vault.almalinux.org/8.9/BaseOS/x86_64/os/Packages/kmod-25-19.el8.x86_64.rpm
-    sha256: 95b70611327377b76917da6a4ab964f314458fef165d720cc02effe2a50fd48a
+  - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/x86_64/os/Packages/kmod-25-20.el8.x86_64.rpm
+    sha256: 92df9ecd4ba0daa27ed38e9744b13ac1bf61f03fa2282ff9a67725a2897ba1b3
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/8.9/BaseOS/Source/Packages/kmod-25-19.el8.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/Source/Packages/kmod-25-20.el8.src.rpm
   #   no_hoist: true
   #   folder: source
 

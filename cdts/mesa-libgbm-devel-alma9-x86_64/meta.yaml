@@ -1,13 +1,13 @@
 package:
   name: mesa-libgbm-devel-conda-x86_64
-  version: 23.3.3
+  version: 24.2.8
 
 source:
-  - url: https://vault.almalinux.org/9.4/AppStream/x86_64/os/Packages/mesa-libgbm-devel-23.3.3-1.el9.x86_64.rpm
-    sha256: 39c5bdb705ea07d07b560cf91db905139e3dae0a8190a8e5e451818d2263f383
+  - url: https://repo.almalinux.org/almalinux/9.6/AppStream/x86_64/os/Packages/mesa-libgbm-devel-24.2.8-3.el9_6.alma.1.x86_64.rpm
+    sha256: 5c9e7b120e9d073ac43c9560381fe3f397bbce2b26da1f0d086af7a70f7b0902
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.4/AppStream/Source/Packages/mesa-23.3.3-1.el9.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/9.6/AppStream/Source/Packages/mesa-24.2.8-3.el9_6.alma.1.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - mesa-libgbm-conda-x86_64 ==23.3.3 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libgbm-conda-x86_64 ==24.2.8 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - mesa-libgbm-conda-x86_64 ==23.3.3 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libgbm-conda-x86_64 ==24.2.8 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.34.*
   run:
-    - mesa-libgbm-conda-x86_64 ==23.3.3 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libgbm-conda-x86_64 ==24.2.8 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.34.*
 
 test:
@@ -39,8 +39,8 @@ test:
 
 about:
   home: http://www.mesa3d.org
-  license: MIT
-  license_family: MIT
+  license: MIT AND BSD-3-Clause AND SGI-B-2.0
+  license_family: BSD
   license_file: mesa-license
   summary: (CDT) Mesa libgbm development package
   description: |

@@ -3,11 +3,11 @@ package:
   version: 3.6
 
 source:
-  - url: https://vault.almalinux.org/9.4/BaseOS/x86_64/os/Packages/libselinux-3.6-1.el9.x86_64.rpm
-    sha256: b8cf502d7bf3bcb99a1dbfb65b4d2f6df66bf702f5e8c34e5b5d473c37a7c1ad
+  - url: https://repo.almalinux.org/almalinux/9.6/BaseOS/x86_64/os/Packages/libselinux-3.6-3.el9.x86_64.rpm
+    sha256: 636371a0ead5a8c5e5dfcad34c35d95d1ad2c328a654fa2c2cbd12b7bd6948c3
     no_hoist: true
     folder: binary
-  # - url: https://vault.almalinux.org/9.4/BaseOS/Source/Packages/libselinux-3.6-1.el9.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/9.6/BaseOS/Source/Packages/libselinux-3.6-3.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 
