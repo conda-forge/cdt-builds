@@ -124,7 +124,7 @@ jobs:
         python build_cdt_recipes.py ${DISTARCH} --part-to-process=${PTOP}
     displayName: build and upload CDTs
     env:
-      ANACONDA_TOKEN: $(anaconda.token)
+      ANACONDA_TOKEN: $(BINSTAR_TOKEN)
       IS_FORK: $(System.PullRequest.IsFork)
 
   - publish: build_logs/
