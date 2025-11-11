@@ -24,6 +24,7 @@ def render_readme():
 
     with open("current_cdts.json", "w") as fp:
         json.dump(pkgs, fp, indent=2)
+        fp.write("\n")
 
 
 if __name__ == "__main__":
