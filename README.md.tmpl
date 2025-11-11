@@ -4,6 +4,7 @@ make any changes and then rerender the template by running `python render_readme
 -->
 
 # cdt-builds
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/conda-forge/cdt-builds/main.svg)](https://results.pre-commit.ci/latest/github/conda-forge/cdt-builds/main)
 
 conda-forge Core Dependency Tree (CDT) builds
 
@@ -24,7 +25,7 @@ The following options are available when adding a CDT in the configuration file:
    `cos6-x86_64` in this mapping and set the value to `echo 'hi!'` to add `echo 'hi!'` to
    the build script for only `cos6-x86_64`.
  - `dep_remove` (list of strings): Set to a list of strings for deps that should be remove
- - `dep_replace` (dict mapping dep to replace to new dep): Set to a dict of deps to be 
+ - `dep_replace` (dict mapping dep to replace to new dep): Set to a dict of deps to be
    replaced by another dep. this can be used for aliased RPMs.
 
 

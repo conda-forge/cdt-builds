@@ -33,10 +33,9 @@ def _ignore_url_build_changes(base_dir):
             if _is_changed_or_not_tracked(fname):
                 changed_files.add(fname)
 
-        if (
-            len(changed_files) == 1
-            and set([os.path.basename(f) for f in changed_files]) == set(["meta.yaml"])
-        ):
+        if len(changed_files) == 1 and set(
+            [os.path.basename(f) for f in changed_files]
+        ) == set(["meta.yaml"]):
             print("    cdt:", cdt)
             diff = subprocess.run(
                 f"git diff {fname}",
@@ -54,9 +53,8 @@ def _ignore_url_build_changes(base_dir):
             print("        diff:", "\n        " + "\n        ".join(diff_lines))
             bad_line = False
             for line in diff_lines:
-                if (
-                    line.startswith("-")
-                    and not any([line.startswith(s) for s in line_slugs])
+                if line.startswith("-") and not any(
+                    [line.startswith(s) for s in line_slugs]
                 ):
                     bad_line = True
                     break
@@ -94,7 +92,9 @@ def _gen_dist_arch_str(dist, arch):
     return f"{dist}-{arch}"
 
 
-def _make_cdt_recipes(*, extra, cdt_path, dist_arch_tuples, cdts, allowlists, exec, force):
+def _make_cdt_recipes(
+    *, extra, cdt_path, dist_arch_tuples, cdts, allowlists, exec, force
+):
     futures = {}
     for dist, arch in dist_arch_tuples:
         allowlist = allowlists[dist]
@@ -128,18 +128,20 @@ def _make_cdt_recipes(*, extra, cdt_path, dist_arch_tuples, cdts, allowlists, ex
                 flush=True,
             )
 
-            futures[exec.submit(
-                subprocess.run,
-                (
-                    f"python rpm.py {cdt} --output-dir={cdt_path} "
-                    + f"--architecture={arch} --distro={dist} "
-                    + _extra
-                ),
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                text=True,
-                shell=True
-            )] = {"cdt": cdt, "arch": arch, "dist": dist}
+            futures[
+                exec.submit(
+                    subprocess.run,
+                    (
+                        f"python rpm.py {cdt} --output-dir={cdt_path} "
+                        + f"--architecture={arch} --distro={dist} "
+                        + _extra
+                    ),
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                    text=True,
+                    shell=True,
+                )
+            ] = {"cdt": cdt, "arch": arch, "dist": dist}
     return futures
 
 
@@ -197,17 +199,16 @@ def _fix_cdt_licenses(*, cdts, dist_arch_tuples, cdt_path):
     for dist, arch in dist_arch_tuples:
         for cdt, cfg in cdts.items():
             pth = os.path.join(
-                cdt_path,
-                cdt.lower() + "-" + _gen_dist_arch_str(dist, arch)
+                cdt_path, cdt.lower() + "-" + _gen_dist_arch_str(dist, arch)
             )
-            if 'license_file' in cfg and os.path.exists(pth):
+            if "license_file" in cfg and os.path.exists(pth):
                 if cfg["license_file"] is None:
                     pass
                 elif isinstance(cfg["license_file"], collections.abc.MutableSequence):
-                    for lf in cfg['license_file']:
+                    for lf in cfg["license_file"]:
                         shutil.copy2(lf, os.path.join(pth, "."))
                 else:
-                    shutil.copy2(cfg['license_file'], os.path.join(pth, "."))
+                    shutil.copy2(cfg["license_file"], os.path.join(pth, "."))
 
                 try:
                     yaml = YAML(typ="jinja2")
@@ -223,8 +224,7 @@ def _fix_cdt_licenses(*, cdts, dist_arch_tuples, cdt_path):
                         meta["about"].pop("license_file")
                 elif isinstance(cfg["license_file"], collections.abc.MutableSequence):
                     meta["about"]["license_file"] = [
-                        os.path.basename(lf)
-                        for lf in cfg["license_file"]
+                        os.path.basename(lf) for lf in cfg["license_file"]
                     ]
                 else:
                     meta["about"]["license_file"] = os.path.basename(
@@ -243,7 +243,7 @@ def _fix_cdt_deps(*, cdts, dist_arch_tuples, cdt_path):
                 cdt_path,
                 cdt.lower() + "-" + _gen_dist_arch_str(dist, arch),
             )
-            if 'dep_remove' in cfg and os.path.exists(pth):
+            if "dep_remove" in cfg and os.path.exists(pth):
                 try:
                     yaml = YAML(typ="jinja2")
                     yaml.indent(mapping=2, sequence=4, offset=2)
@@ -270,7 +270,7 @@ def _fix_cdt_deps(*, cdts, dist_arch_tuples, cdt_path):
                     with open(os.path.join(pth, "meta.yaml"), "w") as fp:
                         meta = yaml.dump(meta, fp)
 
-            if 'dep_replace' in cfg and os.path.exists(pth):
+            if "dep_replace" in cfg and os.path.exists(pth):
                 try:
                     yaml = YAML(typ="jinja2")
                     yaml.indent(mapping=2, sequence=4, offset=2)
@@ -287,14 +287,13 @@ def _fix_cdt_deps(*, cdts, dist_arch_tuples, cdt_path):
                             new_deps = []
                             for dep in meta["requirements"][sec]:
                                 if not any(
-                                    dep.startswith(d)
-                                    for d in cfg["dep_replace"]
+                                    dep.startswith(d) for d in cfg["dep_replace"]
                                 ):
                                     new_deps.append(dep)
                                 else:
                                     for d, dr in cfg["dep_replace"].items():
                                         if dep.startswith(d):
-                                            new_deps.append(dr + dep[len(d):])
+                                            new_deps.append(dr + dep[len(d) :])
                                             break
                             meta["requirements"][sec] = new_deps
 
@@ -313,7 +312,7 @@ def _fix_cdt_builds(*, cdts, dist_arch_tuples, cdt_path):
             )
             build_pth = os.path.join(pth, "build.sh")
             if (
-                'build_append' in cfg
+                "build_append" in cfg
                 and os.path.exists(pth)
                 and (
                     distarch in cfg["build_append"]
@@ -350,16 +349,19 @@ def _fix_cdt_builds(*, cdts, dist_arch_tuples, cdt_path):
 
 @click.command()
 @click.option(
-    "--force", default=False, is_flag=True,
-    help="Forcibly regenerate all CDT recipes."
+    "--force", default=False, is_flag=True, help="Forcibly regenerate all CDT recipes."
 )
 @click.option(
-    "--fast", default=False, is_flag=True,
-    help="Use a global src cache. May fail due to race conditions."
+    "--fast",
+    default=False,
+    is_flag=True,
+    help="Use a global src cache. May fail due to race conditions.",
 )
 @click.option(
-    "--keep-url-changes", default=False, is_flag=True,
-    help="Keep changes to CDT urls. If you use this, you need to bump the build number!"
+    "--keep-url-changes",
+    default=False,
+    is_flag=True,
+    help="Keep changes to CDT urls. If you use this, you need to bump the build number!",
 )
 def _main(force, fast, keep_url_changes):
     """
@@ -421,8 +423,9 @@ def _main(force, fast, keep_url_changes):
                 cdts=cdts,
                 allowlists=allowlists,
                 exec=exec,
-                force=force)
+                force=force,
             )
+        )
 
         for fut in tqdm.tqdm(as_completed(futures), total=len(futures)):
             c = fut.result()
@@ -430,14 +433,13 @@ def _main(force, fast, keep_url_changes):
             nm = "-".join([pkg["cdt"], pkg["dist"].replace("ent", ""), pkg["arch"]])
             if (
                 c.returncode != 0
-                or "WARNING: Did not find package called (or another one providing)" in c.stdout  # noqa
+                or "WARNING: Did not find package called (or another one providing)"
+                in c.stdout  # noqa
             ):
                 tqdm.tqdm.write(f"WARNING: making CDT recipe {nm} failed!")
                 tqdm.tqdm.write(c.stdout)
 
-            if (
-                "WARNING: could not find a suitable license " in c.stdout
-            ):
+            if "WARNING: could not find a suitable license " in c.stdout:
                 for line in c.stdout.splitlines():
                     if "WARNING: could not find a suitable license " in line:
                         _found_cdt = None
@@ -455,32 +457,17 @@ def _main(force, fast, keep_url_changes):
                             tqdm.tqdm.write(line.strip())
 
     _cleanup_custom_cdt_overlaps(
-        cdt_path=CDT_PATH,
-        dist_arch_tuples=dist_arch_tuples,
-        cdts=cdts)
-
-    _fix_cdt_licenses(
-        cdts=cdts,
-        dist_arch_tuples=dist_arch_tuples,
-        cdt_path=CDT_PATH
+        cdt_path=CDT_PATH, dist_arch_tuples=dist_arch_tuples, cdts=cdts
     )
 
-    _fix_cdt_deps(
-        cdts=cdts,
-        dist_arch_tuples=dist_arch_tuples,
-        cdt_path=CDT_PATH
-    )
+    _fix_cdt_licenses(cdts=cdts, dist_arch_tuples=dist_arch_tuples, cdt_path=CDT_PATH)
 
-    _fix_cdt_builds(
-        cdts=cdts,
-        dist_arch_tuples=dist_arch_tuples,
-        cdt_path=CDT_PATH
-    )
+    _fix_cdt_deps(cdts=cdts, dist_arch_tuples=dist_arch_tuples, cdt_path=CDT_PATH)
+
+    _fix_cdt_builds(cdts=cdts, dist_arch_tuples=dist_arch_tuples, cdt_path=CDT_PATH)
 
     if not (force or keep_url_changes):
-        _ignore_url_build_changes(
-            CDT_PATH
-        )
+        _ignore_url_build_changes(CDT_PATH)
 
     # make the readme
     render_readme()

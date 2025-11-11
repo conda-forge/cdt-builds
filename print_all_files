@@ -21,4 +21,3 @@ for rpm in $(ls rpms/);
      echo "==========";
      tar tf "rpms/${rpm}" | sort;
   done
-

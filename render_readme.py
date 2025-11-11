@@ -12,13 +12,8 @@ from cdt_config import (
 
 
 def render_readme():
-    recipes = set(
-        glob.glob(CDT_PATH + "/*")
-        + glob.glob(CUSTOM_CDT_PATH + "/*")
-    )
-    recipes = set(
-        os.path.basename(r) for r in recipes if not r.endswith("README.md")
-    )
+    recipes = set(glob.glob(CDT_PATH + "/*") + glob.glob(CUSTOM_CDT_PATH + "/*"))
+    recipes = set(os.path.basename(r) for r in recipes if not r.endswith("README.md"))
     pkgs = sorted(list({folder_to_package(x) for x in recipes}))
 
     with open("README.md.tmpl", "r") as fp:
@@ -29,7 +24,8 @@ def render_readme():
 
     with open("current_cdts.json", "w") as fp:
         json.dump(pkgs, fp, indent=2)
+        fp.write("\n")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     render_readme()
