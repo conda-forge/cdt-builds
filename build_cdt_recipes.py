@@ -84,11 +84,10 @@ def _get_node_attrs(recipe, channel_index):
 
 def _build_cdt_meta(recipes, dist_arch_slug):
     print("getting conda-forge/label/main channel index...", flush=True)
-    channel_url = "/".join(["conda-forge", "label", "main"])
     channel_index = {
         prec.fn: prec
         for prec in Index(
-            [channel_url],
+            ["conda-forge"],
             prepend=False,
             use_cache=False,
         )
