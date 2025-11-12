@@ -4,7 +4,7 @@ make any changes and then rerender the template by running `python render_readme
 -->
 
 # cdt-builds
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/conda-forge/cdt-builds/main.svg)](https://results.pre-commit.ci/latest/github/conda-forge/cdt-builds/main)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/conda-forge/cdt-builds/main.svg)](https://results.pre-commit.ci/latest/github/conda-forge/cdt-builds/main) [![Build Status](https://dev.azure.com/conda-forge/cdt-builds/_apis/build/status%2Fcdt-builds?branchName=main)](https://dev.azure.com/conda-forge/cdt-builds/_build/latest?definitionId=10238&branchName=main)
 
 conda-forge Core Dependency Tree (CDT) builds
 
