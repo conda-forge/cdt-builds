@@ -9,6 +9,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from contextlib import redirect_stdout, redirect_stderr
 from wurlitzer import pipes
 
+from rattler_build_conda_compat.render import render as rattler_render
+
 import tqdm
 import click
 from ruamel.yaml import YAML
@@ -38,10 +40,9 @@ def _cdt_exists(cdt_meta_node, channel_index):
     try:
         f = io.StringIO()
         with redirect_stdout(f), redirect_stderr(f), pipes(stdout=f, stderr=f):
-            metas = conda_build.api.render(
+            metas = rattler_render(
                 cdt_meta_node["recipe_path"],
-                variant_config_files=["conda_build_config.yaml"],
-                bypass_env_check=True,
+                variant_config_files=["variants.yaml"],
             )
     except Exception as e:
         print(f.getvalue())
@@ -125,7 +126,7 @@ def _build_cdt(cdt_meta_node, no_temp=False):
         if no_temp:
             c = subprocess.run(
                 (
-                    "conda build --use-local -m conda_build_config.yaml "
+                    "rattler_build--use-local -m conda_build_config.yaml "
                     + cdt_meta_node["recipe_path"]
                     # These are exported in the azure pipelines workflow
                     + ' --extra-meta flow_run_id="${flow_run_id:-}"'
@@ -142,7 +143,7 @@ def _build_cdt(cdt_meta_node, no_temp=False):
                     c = subprocess.run(
                         (
                             "CONDA_PKGS_DIRS=" + str(pkg_tmpdir) + " "
-                            "conda build --use-local -m conda_build_config.yaml "
+                            "rattler_build -m conda_build_config.yaml "
                             + "--cache-dir "
                             + str(tmpdir)
                             + " "
