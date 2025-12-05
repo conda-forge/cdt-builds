@@ -90,6 +90,8 @@ default_architecture = "x86_64"
 default_distro = "centos7"
 
 RPM_META = """\
+schema_version: 1
+
 package:
   name: {packagename}
   version: {version}
@@ -97,35 +99,34 @@ package:
 source:
   - url: {rpmurl}
     {checksum_name}: {checksum}
-    no_hoist: true
-    folder: binary
+    target_directory: binary
   # - url: {srcrpmurl}
-  #   no_hoist: true
-  #   folder: source
+  #   target_directory: source
 
 build:
-  number: {build_number}
-  noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
-  missing_dso_whitelist:
-    - '*'
   # this skip is here because we need different package hashes per distro.
   # we therefore list all possible values in CBC and skip those we don't want;
   # use in a selector ensures that the `distro` variable shows up in the hash
-  skip: true  # [distro != "{distro_name}"]
+  number: {build_number}
+  skip: distro != "{distro_name}"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
 
 {depends}
 
-test:
-  commands:
-    - echo "it installs!"
+tests:
+  - script:
+      - echo "it installs!"
 
 about:
-  home: {home}
+  homepage: {home}
   license: {license}
-  license_family: {license_family}
-  license_file: {{{{ SRC_DIR }}}}/binary{license_file}
+  license_file: binary{license_file}
   summary: {summary}
   description: {description}
 
@@ -139,6 +140,10 @@ BUILDSH = """\
 #!/bin/bash
 
 set -o errexit -o pipefail
+
+cd binary
+bsdtar -x -f *.rpm
+cd -
 
 SYSROOT_DIR="${{PREFIX}}"/{host_machine}/sysroot
 
@@ -645,7 +650,7 @@ def write_conda_recipes(
 
     build_number_jinja2 = (
         # not using f-strings because escaping double-curlies would make this worse
-        "{{ cdt_build_number|int + 1000%s }}" % _extra_build_num_str
+        "${{ cdt_build_number|int + 1000%s }}" % _extra_build_num_str
     )
 
     entry, entry_name, arch = find_repo_entry_and_arch(
@@ -765,6 +770,14 @@ def write_conda_recipes(
             dependsstr_host = ""
             dependsstr_run = ""
 
+        # rattler-build does not unpack .rpm, so we need an unpacker
+        if len(dependsstr_build) > 0:
+            dependsstr_build += "\n"
+
+        if len(dependsstr_build) == 0:
+            dependsstr_build = "  build:\n"
+        dependsstr_build += "    - libarchive\n"
+
         if conda_forge_style:
             # fixup run w/ sysroot
             if len(dependsstr_run) > 0:
@@ -804,7 +817,7 @@ def write_conda_recipes(
             "license_family": license_family,
             "checksum_name": cdt["checksummer_name"],
             "checksum": entry["checksum"],
-            "summary": '"(CDT) ' + tidy_text(entry["summary"]) + '"',
+            "summary": "(CDT) " + tidy_text(entry["summary"]),
             "description": "|\n        "
             + "\n        ".join(tidy_text(entry["description"], 78)),  # noqa
             # Cheeky workaround.  I use ${PREFIX},
@@ -828,7 +841,7 @@ def write_conda_recipes(
         makedirs(odir)
     except Exception:
         pass
-    with open(join(odir, "meta.yaml"), "w") as f:
+    with open(join(odir, "recipe.yaml"), "w") as f:
         f.write(RPM_META.format(**d))
     buildsh = join(odir, "build.sh")
     with open(buildsh, "w") as f:

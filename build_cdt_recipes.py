@@ -2,12 +2,13 @@ import hashlib
 import os
 import subprocess
 import glob
-import tempfile
 import sys
 import io
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from contextlib import redirect_stdout, redirect_stderr
 from wurlitzer import pipes
+
+from rattler_build_conda_compat.render import render as rattler_render
 
 import tqdm
 import click
@@ -38,10 +39,9 @@ def _cdt_exists(cdt_meta_node, channel_index):
     try:
         f = io.StringIO()
         with redirect_stdout(f), redirect_stderr(f), pipes(stdout=f, stderr=f):
-            metas = conda_build.api.render(
+            metas = rattler_render(
                 cdt_meta_node["recipe_path"],
                 variant_config_files=["conda_build_config.yaml"],
-                bypass_env_check=True,
             )
     except Exception as e:
         print(f.getvalue())
@@ -66,8 +66,8 @@ def _get_node_attrs(recipe, channel_index):
     attrs = {}
     attrs["recipe_path"] = recipe
 
-    yaml = YAML(typ="jinja2")
-    with open(os.path.join(recipe, "meta.yaml"), "r") as fp:
+    yaml = YAML()
+    with open(os.path.join(recipe, "recipe.yaml"), "r") as fp:
         attrs["meta"] = yaml.load(fp)
 
     requirements_dict = attrs["meta"].get("requirements", {})
@@ -120,42 +120,28 @@ def _is_buildable(node, cdt_meta, pkgs):
     )
 
 
-def _build_cdt(cdt_meta_node, no_temp=False):
+def _build_cdt(cdt_meta_node):
+    assert "CONDA_PREFIX" in os.environ
+
     for _ in range(5):
-        if no_temp:
-            c = subprocess.run(
-                (
-                    "conda build --use-local -m conda_build_config.yaml "
-                    + cdt_meta_node["recipe_path"]
-                    # These are exported in the azure pipelines workflow
-                    + ' --extra-meta flow_run_id="${flow_run_id:-}"'
-                    + ' remote_url="${remote_url:-}" sha="${sha:-}"'
-                ),
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                text=True,
-                shell=True,
-            )
-        else:
-            with tempfile.TemporaryDirectory() as tmpdir:
-                with tempfile.TemporaryDirectory() as pkg_tmpdir:
-                    c = subprocess.run(
-                        (
-                            "CONDA_PKGS_DIRS=" + str(pkg_tmpdir) + " "
-                            "conda build --use-local -m conda_build_config.yaml "
-                            + "--cache-dir "
-                            + str(tmpdir)
-                            + " "
-                            + cdt_meta_node["recipe_path"]
-                            # These are exported in the azure pipelines workflow
-                            + ' --extra-meta flow_run_id="${flow_run_id:-}"'
-                            + ' remote_url="${remote_url:-}" sha="${sha:-}"'
-                        ),
-                        stdout=subprocess.PIPE,
-                        stderr=subprocess.STDOUT,
-                        text=True,
-                        shell=True,
-                    )
+        c = subprocess.run(
+            "rattler-build build -m conda_build_config.yaml"
+            " --recipe-dir "
+            + cdt_meta_node["recipe_path"]
+            # rattler-build defaults to using cwd, force the conda-build default.
+            + " --output-dir "
+            + os.path.join(os.environ["CONDA_PREFIX"], "conda-bld")
+            # These are exported in the azure pipelines workflow
+            + ' --extra-meta flow_run_id="${flow_run_id:-}"'
+            ' --extra-meta remote_url="${remote_url:-}" '
+            ' --extra-meta sha="${sha:-}"'
+            # Disable QA error
+            " --allow-symlinks-on-windows",
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            shell=True,
+        )
 
         if c.returncode == 0:
             break
@@ -282,7 +268,6 @@ def _build_all_cdts(cdt_path, custom_cdt_path, dist_arch_slug, part=1, num_parts
                             exec.submit(
                                 _build_cdt,
                                 cdt_meta[node],
-                                no_temp=True if num_workers == 1 else False,
                             )
                         ] = node
 
