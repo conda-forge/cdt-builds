@@ -1,0 +1,56 @@
+schema_version: 1
+
+package:
+  name: libxxf86vm-devel-conda-aarch64
+  version: 1.1.4
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libXxf86vm-devel-1.1.4-1.el7.aarch64.rpm
+    sha256: 44be5b49b06848119cc67c198fed8d61f8e6d7ac833bf51225a157b2a6108e6e
+    target_directory: binary
+    no_hoist: true
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXxf86vm-1.1.4-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  build:
+    - libxxf86vm-conda-aarch64 ==1.1.4 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libxxf86vm-conda-aarch64 ==1.1.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - libxxf86vm-conda-aarch64 ==1.1.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: MIT
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: (CDT) X.Org X11 libXxf86vm development package
+  description: |
+        X.Org X11 libXxf86vm development package
+
+
+  homepage: http://www.x.org
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

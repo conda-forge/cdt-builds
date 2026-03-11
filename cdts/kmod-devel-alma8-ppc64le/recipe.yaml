@@ -1,0 +1,57 @@
+schema_version: 1
+
+package:
+  name: kmod-devel-conda-ppc64le
+  version: 25
+
+source:
+  - url: https://repo.almalinux.org/almalinux/8.10/PowerTools/ppc64le/os/Packages/kmod-devel-25-20.el8.ppc64le.rpm
+    sha256: 17be3ba9a6b03cf42b73712f4d8dd7f6bae515996ab0a08ecb274db0dbd8fdfa
+    target_directory: binary
+    no_hoist: true
+  # - url: https://repo.almalinux.org/almalinux/8.10/PowerTools/Source/Packages/kmod-25-20.el8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\alma8"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  build:
+    - kmod-libs-conda-ppc64le ==25 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - kmod-libs-conda-ppc64le ==25 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.28.*
+  run:
+    - kmod-libs-conda-ppc64le ==25 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.28.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: GPL-2.0-or-later
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: (CDT) Header files for kmod development
+  description: |
+        The kmod-devel package provides header files used for development of
+        applications that wish to load or unload Linux kernel modules.
+
+
+  homepage: http://git.kernel.org/?p=utils/kernel/kmod/kmod.git;a=summary
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

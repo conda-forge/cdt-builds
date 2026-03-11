@@ -1,0 +1,60 @@
+schema_version: 1
+
+package:
+  name: audit-libs-devel-conda-aarch64
+  version: 3.1.2
+
+source:
+  - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/aarch64/os/Packages/audit-libs-devel-3.1.2-1.el8_10.1.aarch64.rpm
+    sha256: 23f3397e32d6cc7debf63b6dc06391a367c165a0e18c07f039fc3c91ea90b45c
+    target_directory: binary
+    no_hoist: true
+  # - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/Source/Packages/audit-3.1.2-1.el8_10.1.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\alma8"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  build:
+    - audit-libs-conda-aarch64 ==3.1.2 *_{{ cdt_build_number|int + 1000 }}
+    - kernel-headers-conda-aarch64 >=2.6.29 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - audit-libs-conda-aarch64 ==3.1.2 *_{{ cdt_build_number|int + 1000 }}
+    - kernel-headers-conda-aarch64 >=2.6.29 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.28.*
+  run:
+    - audit-libs-conda-aarch64 ==3.1.2 *_{{ cdt_build_number|int + 1000 }}
+    - kernel-headers-conda-aarch64 >=2.6.29 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.28.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: LGPL-2.0-or-later
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: (CDT) Header files for libaudit
+  description: |
+        The audit-libs-devel package contains the header files needed for developing
+        applications that need to use the audit framework libraries.
+
+
+  homepage: http://people.redhat.com/sgrubb/audit/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

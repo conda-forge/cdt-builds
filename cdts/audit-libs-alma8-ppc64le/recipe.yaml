@@ -1,0 +1,53 @@
+schema_version: 1
+
+package:
+  name: audit-libs-conda-ppc64le
+  version: 3.1.2
+
+source:
+  - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/ppc64le/os/Packages/audit-libs-3.1.2-1.el8_10.1.ppc64le.rpm
+    sha256: ed0ee9f215144107ed47f076bf8eafac6daec5879c6bcff2e68fc2c4ae543088
+    target_directory: binary
+    no_hoist: true
+  # - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/Source/Packages/audit-3.1.2-1.el8_10.1.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\alma8"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.28.*
+  run:
+    - sysroot_linux-ppc64le 2.28.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: LGPL-2.0-or-later
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: (CDT) Dynamic library for libaudit
+  description: |
+        The audit-libs package contains the dynamic libraries needed for applications
+        to use the audit framework.
+
+
+  homepage: http://people.redhat.com/sgrubb/audit/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

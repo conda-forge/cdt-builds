@@ -1,0 +1,52 @@
+schema_version: 1
+
+package:
+  name: harfbuzz-conda-ppc64le
+  version: 1.7.5
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/harfbuzz-1.7.5-2.el7.ppc64le.rpm
+    sha256: c8adb94957c9310a524ec93c6ee04cd42630cfcb3b961d25095b87838dcbfd68
+    target_directory: binary
+    no_hoist: true
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/harfbuzz-1.7.5-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/harfbuzz-1.7.5/COPYING
+  summary: (CDT) Text shaping library
+  description: |
+        HarfBuzz is an implementation of the OpenType Layout engine.
+
+
+  homepage: http://freedesktop.org/wiki/Software/HarfBuzz
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

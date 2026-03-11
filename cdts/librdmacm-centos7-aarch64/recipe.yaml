@@ -1,0 +1,59 @@
+schema_version: 1
+
+package:
+  name: librdmacm-conda-aarch64
+  version: 22.4
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/librdmacm-22.4-5.el7.aarch64.rpm
+    sha256: d3305aeab74999bc7360b2a25e75d766e8149e2d6fb90bcf2b1722fbdccdba86
+    target_directory: binary
+    no_hoist: true
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/rdma-core-22.4-5.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  build:
+    - libibverbs-conda-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-conda-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libibverbs-conda-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-conda-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - libibverbs-conda-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - rdma-core-conda-aarch64 ==22.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: GPLv2 or BSD
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: (CDT) Userspace RDMA Connection Manager
+  description: |
+        librdmacm provides a userspace RDMA Communication Managment API.
+
+
+  homepage: https://github.com/linux-rdma/rdma-core
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

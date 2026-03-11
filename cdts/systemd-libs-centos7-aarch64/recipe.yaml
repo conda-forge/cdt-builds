@@ -1,0 +1,52 @@
+schema_version: 1
+
+package:
+  name: systemd-libs-conda-aarch64
+  version: 219
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/systemd-libs-219-78.el7.aarch64.rpm
+    sha256: 2d74cc808489701fcbaeb9311b6b3ed79af5aa41b7365bad31b3ce0d0aaa13fd
+    target_directory: binary
+    no_hoist: true
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/systemd-219-78.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: LGPLv2+ and MIT
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: (CDT) systemd libraries
+  description: |
+        Libraries for systemd and udev, as well as the systemd PAM module.
+
+
+  homepage: http://www.freedesktop.org/wiki/Software/systemd
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

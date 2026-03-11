@@ -1,0 +1,63 @@
+schema_version: 1
+
+package:
+  name: libbonobo-devel-conda-x86_64
+  version: 2.32.1
+
+source:
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/libbonobo-devel-2.32.1-7.el7.x86_64.rpm
+    sha256: a7188d7886b6e7441f62a01a67ee7a7d1be734ed52be0c74be94cf5c4cb7c144
+    target_directory: binary
+    no_hoist: true
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/libbonobo-2.32.1-7.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  build:
+    - orbit2-devel-conda-x86_64 >=2.7.5 *_{{ cdt_build_number|int + 1000 }}
+    - libbonobo-conda-x86_64 ==2.32.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxml2-devel-conda-x86_64 >=2.4.21 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - orbit2-devel-conda-x86_64 >=2.7.5 *_{{ cdt_build_number|int + 1000 }}
+    - libbonobo-conda-x86_64 ==2.32.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxml2-devel-conda-x86_64 >=2.4.21 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - orbit2-devel-conda-x86_64 >=2.7.5 *_{{ cdt_build_number|int + 1000 }}
+    - libbonobo-conda-x86_64 ==2.32.1 *_{{ cdt_build_number|int + 1000 }}
+    - libxml2-devel-conda-x86_64 >=2.4.21 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: GPLv2+ and LGPLv2+
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: (CDT) Libraries and headers for libbonobo
+  description: |
+        Bonobo is a component system based on CORBA, used by the GNOME desktop.  This
+        package contains header files used to compile programs that use Bonobo.
+
+
+  homepage: http://ftp.gnome.org
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

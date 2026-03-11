@@ -1,0 +1,52 @@
+schema_version: 1
+
+package:
+  name: xorg-x11-proto-devel-conda-aarch64
+  version: 2018.4
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/xorg-x11-proto-devel-2018.4-1.el7.noarch.rpm
+    sha256: ed33c07dd19aae73edaef6cb5daeca44fae87aa7fba16d5de6aad4c244f5232f
+    target_directory: binary
+    no_hoist: true
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/xorg-x11-proto-devel-2018.4-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/xorg-x11-proto-devel-2018.4/COPYING-xineramaproto
+  summary: (CDT) X.Org X11 Protocol headers
+  description: |
+        X.Org X11 Protocol headers
+
+
+  homepage: https://www.x.org
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

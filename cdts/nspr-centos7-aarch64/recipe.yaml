@@ -1,0 +1,55 @@
+schema_version: 1
+
+package:
+  name: nspr-conda-aarch64
+  version: 4.21.0
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/nspr-4.21.0-1.el7.aarch64.rpm
+    sha256: 358f430d3b2ac45d78089ee70f9be181fa1dc67d3b30d8f323041fa9b933e6c2
+    target_directory: binary
+    no_hoist: true
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/nspr-4.21.0-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: MPL-2.0
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: (CDT) Netscape Portable Runtime
+  description: |
+        NSPR provides platform independence for non-GUI operating system facilities.
+        These facilities include threads, thread synchronization, normal file and
+        network I/O, interval timing and calendar time, basic memory management
+        (malloc and free) and shared library linking.
+
+
+  homepage: http://www.mozilla.org/projects/nspr/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

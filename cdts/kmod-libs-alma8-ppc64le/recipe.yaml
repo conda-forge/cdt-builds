@@ -1,0 +1,53 @@
+schema_version: 1
+
+package:
+  name: kmod-libs-conda-ppc64le
+  version: 25
+
+source:
+  - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/ppc64le/os/Packages/kmod-libs-25-20.el8.ppc64le.rpm
+    sha256: 08de49ea7dc32e903134bbf399935ab68711fb98c63c002a57966d599cd9f436
+    target_directory: binary
+    no_hoist: true
+  # - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/Source/Packages/kmod-25-20.el8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\alma8"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.28.*
+  run:
+    - sysroot_linux-ppc64le 2.28.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: LGPL-2.0-or-later
+  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/kmod-libs/COPYING
+  summary: (CDT) Libraries to handle kernel module loading and unloading
+  description: |
+        The kmod-libs package provides runtime libraries for any application that
+        wishes to load or unload Linux kernel modules from the running system.
+
+
+  homepage: http://git.kernel.org/?p=utils/kernel/kmod/kmod.git;a=summary
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

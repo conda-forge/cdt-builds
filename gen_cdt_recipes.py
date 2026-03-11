@@ -214,7 +214,7 @@ def _fix_cdt_licenses(*, cdts, dist_arch_tuples, cdt_path):
                     yaml = YAML(typ="jinja2")
                     yaml.indent(mapping=2, sequence=4, offset=2)
                     yaml.width = 320
-                    with open(os.path.join(pth, "reipe.yaml"), "r") as fp:
+                    with open(os.path.join(pth, "recipe.yaml"), "r") as fp:
                         meta = yaml.load(fp)
                 except Exception as e:
                     print(f"ERROR: could not adjust license for {pth} due to {e!r}")
@@ -267,7 +267,7 @@ def _fix_cdt_deps(*, cdts, dist_arch_tuples, cdt_path):
                                     new_deps.append(dep)
                             meta["requirements"][sec] = new_deps
 
-                    with open(os.path.join(pth, "reipe.yaml"), "w") as fp:
+                    with open(os.path.join(pth, "recipe.yaml"), "w") as fp:
                         meta = yaml.dump(meta, fp)
 
             if "dep_replace" in cfg and os.path.exists(pth):

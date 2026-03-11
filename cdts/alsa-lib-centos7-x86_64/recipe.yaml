@@ -1,0 +1,56 @@
+schema_version: 1
+
+package:
+  name: alsa-lib-conda-x86_64
+  version: 1.1.8
+
+source:
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/alsa-lib-1.1.8-1.el7.x86_64.rpm
+    sha256: 01990da86e8971970800575c029714a2fc6c8245c20085a68c89cec3955b1618
+    target_directory: binary
+    no_hoist: true
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/alsa-lib-1.1.8-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  host:
+    - sysroot_linux-64 2.17.*
+  run:
+    - sysroot_linux-64 2.17.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: LGPL-2.0-or-later
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/alsa-lib-1.1.8/COPYING
+  summary: (CDT) The Advanced Linux Sound Architecture (ALSA) library
+  description: |
+        The Advanced Linux Sound Architecture (ALSA) provides audio and MIDI
+        functionality to the Linux operating system.  This package includes the ALSA
+        runtime libraries to simplify application programming and provide higher level
+        functionality as well as support for the older OSS API, providing binary
+        compatibility for most OSS programs.
+
+
+  homepage: http://www.alsa-project.org/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

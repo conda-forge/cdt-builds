@@ -1,0 +1,57 @@
+schema_version: 1
+
+package:
+  name: libsepol-devel-conda-aarch64
+  version: 2.9
+
+source:
+  - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/aarch64/os/Packages/libsepol-devel-2.9-3.el8.aarch64.rpm
+    sha256: 22861e6970e9753327ad9b27fb8f51d08918d5eb2da0252d3ed5e394c32b4c45
+    target_directory: binary
+    no_hoist: true
+  # - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/Source/Packages/libsepol-2.9-3.el8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\alma8"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  build:
+    - libsepol-conda-aarch64 ==2.9 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libsepol-conda-aarch64 ==2.9 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.28.*
+  run:
+    - libsepol-conda-aarch64 ==2.9 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.28.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: LGPL-2.0-or-later
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: (CDT) Header files and libraries used to build policy manipulation tools
+  description: |
+        The libsepol-devel package contains the libraries and header files needed for
+        developing applications that manipulate binary policies.
+
+
+  homepage: https://github.com/SELinuxProject/selinux/wiki
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

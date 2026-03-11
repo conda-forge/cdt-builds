@@ -1,0 +1,62 @@
+schema_version: 1
+
+package:
+  name: nss-softokn-conda-x86_64
+  version: 3.44.0
+
+source:
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/nss-softokn-3.44.0-8.el7_7.x86_64.rpm
+    sha256: f8d10e879c3bc46ad909f632da2cbb59407afaf1374af36dd268c5d213771905
+    target_directory: binary
+    no_hoist: true
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/nss-softokn-3.44.0-8.el7_7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  build:
+    - nspr-conda-x86_64 >=4.21.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-softokn-freebl-conda-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-util-conda-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - nspr-conda-x86_64 >=4.21.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-softokn-freebl-conda-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-util-conda-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - nspr-conda-x86_64 >=4.21.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-softokn-freebl-conda-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - nss-util-conda-x86_64 >=3.44.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: MPL-2.0
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: (CDT) Network Security Services Softoken Module
+  description: |
+        Network Security Services Softoken Cryptographic Module
+
+
+  homepage: http://www.mozilla.org/projects/security/pki/nss/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

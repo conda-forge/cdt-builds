@@ -1,0 +1,53 @@
+schema_version: 1
+
+package:
+  name: libjpeg-turbo-conda-aarch64
+  version: 1.2.90
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libjpeg-turbo-1.2.90-8.el7.aarch64.rpm
+    sha256: 180b1ded365097616e810bf12a905394e0d275c49d348430ffaf3c014037080b
+    target_directory: binary
+    no_hoist: true
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libjpeg-turbo-1.2.90-8.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: IJG
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: (CDT) A MMX/SSE2 accelerated library for manipulating JPEG image files
+  description: |
+        The libjpeg-turbo package contains a library of functions for manipulating
+        JPEG images.
+
+
+  homepage: http://sourceforge.net/projects/libjpeg-turbo
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

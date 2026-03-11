@@ -1,0 +1,53 @@
+schema_version: 1
+
+package:
+  name: libidl-conda-aarch64
+  version: 0.8.14
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libIDL-0.8.14-8.el7.aarch64.rpm
+    sha256: 1fc9d0a774b1be72486eca5a57580655b6c4f056d594717659642035ac297d5d
+    target_directory: binary
+    no_hoist: true
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libIDL-0.8.14-8.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: LGPL-2.0-or-later
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libIDL-0.8.14/COPYING
+  summary: (CDT) Library for parsing IDL (Interface Definition Language)
+  description: |
+        libIDL is a library for parsing IDL (Interface Definition Language). It can be
+        used for both COM-style and CORBA-style IDL.
+
+
+  homepage: http://ftp.gnome.org/pub/gnome/sources/libIDL/0.8/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

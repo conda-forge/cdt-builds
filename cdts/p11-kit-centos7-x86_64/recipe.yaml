@@ -1,0 +1,54 @@
+schema_version: 1
+
+package:
+  name: p11-kit-conda-x86_64
+  version: 0.23.5
+
+source:
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/p11-kit-0.23.5-3.el7.x86_64.rpm
+    sha256: 8a15990e66c12cfe913f738c87ce772e2e86e67ca27f36ccb43e07eb171c201f
+    target_directory: binary
+    no_hoist: true
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/p11-kit-0.23.5-3.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  host:
+    - sysroot_linux-64 2.17.*
+  run:
+    - sysroot_linux-64 2.17.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: BSD
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/p11-kit-0.23.5/COPYING
+  summary: (CDT) Library for loading and sharing PKCS#11 modules
+  description: |
+        p11-kit provides a way to load and enumerate PKCS#11 modules, as well as a
+        standard configuration setup for installing PKCS#11 modules in such a way that
+        they're discoverable.
+
+
+  homepage: http://p11-glue.freedesktop.org/p11-kit.html
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

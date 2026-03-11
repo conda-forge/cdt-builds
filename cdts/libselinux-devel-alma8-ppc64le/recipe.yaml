@@ -1,0 +1,60 @@
+schema_version: 1
+
+package:
+  name: libselinux-devel-conda-ppc64le
+  version: 2.9
+
+source:
+  - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/ppc64le/os/Packages/libselinux-devel-2.9-9.el8_10.ppc64le.rpm
+    sha256: f286da30525f6f092a38f8240eb873b62206838272b5cab0b72f17966d6e8383
+    target_directory: binary
+    no_hoist: true
+  # - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/Source/Packages/libselinux-2.9-9.el8_10.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\alma8"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  build:
+    - libselinux-conda-ppc64le ==2.9 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-devel-conda-ppc64le >=2.9 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libselinux-conda-ppc64le ==2.9 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-devel-conda-ppc64le >=2.9 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.28.*
+  run:
+    - libselinux-conda-ppc64le ==2.9 *_{{ cdt_build_number|int + 1000 }}
+    - libsepol-devel-conda-ppc64le >=2.9 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.28.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: Public-Domain
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: (CDT) Header files and libraries used to build SELinux
+  description: |
+        The libselinux-devel package contains the libraries and header files needed
+        for developing SELinux applications.
+
+
+  homepage: https://github.com/SELinuxProject/selinux/wiki
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

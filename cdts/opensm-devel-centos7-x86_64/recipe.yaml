@@ -1,0 +1,56 @@
+schema_version: 1
+
+package:
+  name: opensm-devel-conda-x86_64
+  version: 3.3.21
+
+source:
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/opensm-devel-3.3.21-3.el7_8.x86_64.rpm
+    sha256: 64398344ec0e54e3f72344d36a58087df6eb4406365d26b4db01c5016fb36d93
+    target_directory: binary
+    no_hoist: true
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/opensm-3.3.21-3.el7_8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  build:
+    - opensm-libs-conda-x86_64 ==3.3.21 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - opensm-libs-conda-x86_64 ==3.3.21 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - opensm-libs-conda-x86_64 ==3.3.21 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: GPLv2 or BSD
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: (CDT) Development files for the opensm-libs libraries
+  description: |
+        Development environment for the opensm libraries
+
+
+  homepage: https://github.com/linux-rdma/opensm
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,58 @@
+schema_version: 1
+
+package:
+  name: glib-networking-conda-ppc64le
+  version: 2.56.1
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/glib-networking-2.56.1-1.el7.ppc64le.rpm
+    sha256: 8f049ee8775d2ddfca7838f7c576d125ec3b214b50f0a652c0540cd5bfef63bc
+    target_directory: binary
+    no_hoist: true
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/glib-networking-2.56.1-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  build:
+    - glib2-conda-ppc64le >=2.55.1 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - glib2-conda-ppc64le >=2.55.1 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - glib2-conda-ppc64le >=2.55.1 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: LGPL-2.0-or-later
+  license_file: {{ SRC_DIR }}/binary/usr/share/licenses/glib-networking-2.56.1/COPYING
+  summary: (CDT) Networking support for GLib
+  description: |
+        This package contains modules that extend the networking support in GIO. In
+        particular, it contains libproxy- and GSettings-based GProxyResolver
+        implementations and a gnutls-based GTlsConnection implementation.
+
+
+  homepage: http://www.gnome.org
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

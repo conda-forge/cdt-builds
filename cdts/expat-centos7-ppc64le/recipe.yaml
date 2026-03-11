@@ -1,0 +1,56 @@
+schema_version: 1
+
+package:
+  name: expat-conda-ppc64le
+  version: 2.1.0
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/expat-2.1.0-12.el7.ppc64le.rpm
+    sha256: 00893d45ac1ffacb782fdfe82d28106d9df5d202a0daf10a3dea1fcede70fcf2
+    target_directory: binary
+    no_hoist: true
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/expat-2.1.0-12.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/expat-2.1.0/COPYING
+  summary: (CDT) An XML parser library
+  description: |
+        This is expat, the C library for parsing XML, written by James Clark. Expat is
+        a stream oriented XML parser. This means that you register handlers with the
+        parser prior to starting the parse. These handlers are called when the parser
+        discovers the associated structures in the document being parsed. A start tag
+        is an example of the kind of structures for which you may register handlers.
+
+
+  homepage: http://www.libexpat.org/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

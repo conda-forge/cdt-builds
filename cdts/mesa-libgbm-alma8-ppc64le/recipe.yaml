@@ -1,0 +1,52 @@
+schema_version: 1
+
+package:
+  name: mesa-libgbm-conda-ppc64le
+  version: 23.1.4
+
+source:
+  - url: https://repo.almalinux.org/almalinux/8.10/AppStream/ppc64le/os/Packages/mesa-libgbm-23.1.4-4.el8_10.alma.1.ppc64le.rpm
+    sha256: 5906132d1c223198219b248974389dac6fc5ac0bcbabfa1eb4fc362cc25dc5e6
+    target_directory: binary
+    no_hoist: true
+  # - url: https://repo.almalinux.org/almalinux/8.10/AppStream/Source/Packages/mesa-23.1.4-4.el8_10.alma.1.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\alma8"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  host:
+    - sysroot_linux-ppc64le 2.28.*
+  run:
+    - sysroot_linux-ppc64le 2.28.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: MIT
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: (CDT) Mesa gbm runtime library
+  description: |
+        Mesa gbm runtime library.
+
+
+  homepage: http://www.mesa3d.org
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

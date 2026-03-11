@@ -1,0 +1,60 @@
+schema_version: 1
+
+package:
+  name: cracklib-dicts-conda-aarch64
+  version: 2.9.6
+
+source:
+  - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/aarch64/os/Packages/cracklib-dicts-2.9.6-15.el8.aarch64.rpm
+    sha256: 9d53e9a58fd53267c2551f3a048c89579554f49f8aa77c94c79d1b066f947e38
+    target_directory: binary
+    no_hoist: true
+  # - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/Source/Packages/cracklib-2.9.6-15.el8.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\alma8"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  build:
+    - cracklib-conda-aarch64 ==2.9.6 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - cracklib-conda-aarch64 ==2.9.6 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.28.*
+  run:
+    - cracklib-conda-aarch64 ==2.9.6 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.28.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: LGPL-2.0-or-later
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: (CDT) The standard CrackLib dictionaries
+  description: |
+        The cracklib-dicts package includes the CrackLib dictionaries. CrackLib will
+        need to use the dictionary appropriate to your system, which is normally put
+        in /usr/share/dict/words. Cracklib-dicts also contains the utilities necessary
+        for the creation of new dictionaries.  If you are installing CrackLib, you
+        should also install cracklib-dicts.
+
+
+  homepage: http://sourceforge.net/projects/cracklib/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

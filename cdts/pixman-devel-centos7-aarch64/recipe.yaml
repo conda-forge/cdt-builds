@@ -1,0 +1,56 @@
+schema_version: 1
+
+package:
+  name: pixman-devel-conda-aarch64
+  version: 0.34.0
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/pixman-devel-0.34.0-1.el7.aarch64.rpm
+    sha256: 55b2dd7d8f2eb3ae37866d88f4b2b681e38c228002e0e9c8425659250a9c5b9c
+    target_directory: binary
+    no_hoist: true
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/pixman-0.34.0-1.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  build:
+    - pixman-conda-aarch64 ==0.34.0 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - pixman-conda-aarch64 ==0.34.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - pixman-conda-aarch64 ==0.34.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: MIT
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: (CDT) Pixel manipulation library development package
+  description: |
+        Development library for pixman.
+
+
+  homepage: http://cgit.freedesktop.org/pixman/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,59 @@
+schema_version: 1
+
+package:
+  name: xorg-x11-server-xvfb-conda-aarch64
+  version: 1.20.4
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/xorg-x11-server-Xvfb-1.20.4-10.el7.aarch64.rpm
+    sha256: 0bbeba9f74db9dc5adbe6e0b2d70e1c9624fc698fef09525517220fff2562c47
+    target_directory: binary
+    no_hoist: true
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/xorg-x11-server-1.20.4-10.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  build:
+    - xorg-x11-server-common-conda-aarch64 >=1.20.4 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - xorg-x11-server-common-conda-aarch64 >=1.20.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - xorg-x11-server-common-conda-aarch64 >=1.20.4 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: MIT and GPLv2
+  license_file: {{ SRC_DIR }}/binary/LICENSE_NOT_FOUND
+  summary: (CDT) A X Windows System virtual framebuffer X server.
+  description: |
+        Xvfb (X Virtual Frame Buffer) is an X server that is able to run on machines
+        with no display hardware and no physical input devices. Xvfb simulates a dumb
+        framebuffer using virtual memory.  Xvfb does not open any devices, but behaves
+        otherwise as an X display.  Xvfb is normally used for testing servers.
+
+
+  homepage: http://www.x.org
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

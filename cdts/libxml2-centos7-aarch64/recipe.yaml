@@ -1,0 +1,59 @@
+schema_version: 1
+
+package:
+  name: libxml2-conda-aarch64
+  version: 2.9.1
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/libxml2-2.9.1-6.el7.5.aarch64.rpm
+    sha256: 5532556bb4b30f40e9ca2f6d882385b948d81c9a0bdcebbf737fa53457d512ce
+    target_directory: binary
+    no_hoist: true
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libxml2-2.9.1-6.el7.5.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libxml2-2.9.1/Copyright
+  summary: (CDT) Library providing XML and HTML support
+  description: |
+        This library allows to manipulate XML files. It includes support to read,
+        modify and write XML and HTML files. There is DTDs support this includes
+        parsing and validation even with complex DtDs, either at parse time or later
+        once the document has been modified. The output can be a simple SAX stream or
+        and in-memory DOM like representations. In this case one can use the built-in
+        XPath and XPointer implementation to select sub nodes or ranges. A flexible
+        Input/Output mechanism is available, with existing HTTP and FTP modules and
+        combined to an URI library.
+
+
+  homepage: http://xmlsoft.org/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

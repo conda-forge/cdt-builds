@@ -1,0 +1,56 @@
+schema_version: 1
+
+package:
+  name: libxrandr-conda-ppc64le
+  version: 1.5.1
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libXrandr-1.5.1-2.el7.ppc64le.rpm
+    sha256: ec45fc8ae470c0a025b7c38621ce529e41d188379f3985a6eacab356fb9e5122
+    target_directory: binary
+    no_hoist: true
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libXrandr-1.5.1-2.el7.src.rpm
+  #   no_hoist: true
+  #   folder: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: "distro != "\centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  build:
+    - libx11-conda-ppc64le >=1.6.0 *_{{ cdt_build_number|int + 1000 }}
+  host:
+    - libx11-conda-ppc64le >=1.6.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - libx11-conda-ppc64le >=1.6.0 *_{{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+tests:
+  script:
+    - "echo "it installs!""
+
+about:
+  license: MIT
+  license_file: {{ SRC_DIR }}/binary/usr/share/doc/libXrandr-1.5.1/COPYING
+  summary: (CDT) X.Org X11 libXrandr runtime library
+  description: |
+        X.Org X11 libXrandr runtime library
+
+
+  homepage: http://www.x.org
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
