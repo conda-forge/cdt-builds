@@ -401,7 +401,9 @@ def dictify_pickled(xml_file, src_cache, dict_massager=None, cdt=None):
 
 
 def get_repo_dict(repomd_url, data_type, dict_massager, cdt, src_cache):
-    xmlstring = request("get", repomd_url).content
+    response = request("get", repomd_url)
+    response.raise_for_status()
+    xmlstring = response.content
     # Remove the default namespace definition (xmlns="http://some/namespace")
     xmlstring = re.sub(rb'\sxmlns="[^"]+"', b"", xmlstring, count=1)  # noqa
     try:
