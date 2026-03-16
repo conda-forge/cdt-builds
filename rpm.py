@@ -407,7 +407,7 @@ def get_repo_dict(repomd_url, data_type, dict_massager, cdt, src_cache):
     repomd = ET.fromstring(xmlstring)
     for child in repomd.findall("*[@type='{}']".format(data_type)):
         open_csum = child.findall("open-checksum")[0].text
-        xml_file = join(src_cache, open_csum)
+        xml_file = join(src_cache, f"{open_csum}.xml")
         try:
             xml_file, xml_csum = cache_file(
                 src_cache, xml_file, None, cdt["checksummer"]
