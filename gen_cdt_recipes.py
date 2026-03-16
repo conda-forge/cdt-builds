@@ -363,7 +363,12 @@ def _fix_cdt_builds(*, cdts, dist_arch_tuples, cdt_path):
     is_flag=True,
     help="Keep changes to CDT urls. If you use this, you need to bump the build number!",
 )
-def _main(force, fast, keep_url_changes):
+@click.option(
+    "--max-workers",
+    default=16,
+    help="Max number of workers to use (default: 16)",
+)
+def _main(force: bool, fast: bool, keep_url_changes: bool, max_workers: int) -> None:
     """
     Generate all CDT recipes.
     """
@@ -406,7 +411,7 @@ def _main(force, fast, keep_url_changes):
 
     print("generating CDT recipes...")
     futures = {}
-    with ThreadPoolExecutor(max_workers=16) as exec:
+    with ThreadPoolExecutor(max_workers=max_workers) as exec:
         # new CDTs for the new compilers with a single sysroot
         # if force:
         #     _clear_gen_cdts(CDT_PATH)
