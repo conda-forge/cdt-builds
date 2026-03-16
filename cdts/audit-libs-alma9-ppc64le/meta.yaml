@@ -3,11 +3,11 @@ package:
   version: 3.1.5
 
 source:
-  - url: https://repo.almalinux.org/almalinux/9.6/BaseOS/ppc64le/os/Packages/audit-libs-3.1.5-4.el9.ppc64le.rpm
-    sha256: f5475220336133e02c25e6e955ad6402492b9d25b6ef34cc8f8280b699b25468
+  - url: https://repo.almalinux.org/almalinux/9.7/BaseOS/ppc64le/os/Packages/audit-libs-3.1.5-7.el9.ppc64le.rpm
+    sha256: 4647fd935d22377b35a831debf28d5bef3b5a33d436c65dcc2f347cb3acfa873
     no_hoist: true
     folder: binary
-  # - url: https://repo.almalinux.org/almalinux/9.6/BaseOS/Source/Packages/audit-3.1.5-4.el9.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/9.7/BaseOS/Source/Packages/audit-3.1.5-7.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 

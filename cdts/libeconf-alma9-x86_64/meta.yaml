@@ -3,11 +3,11 @@ package:
   version: 0.4.1
 
 source:
-  - url: https://repo.almalinux.org/almalinux/9.6/BaseOS/x86_64/os/Packages/libeconf-0.4.1-4.el9.x86_64.rpm
+  - url: https://repo.almalinux.org/almalinux/9.7/BaseOS/x86_64/os/Packages/libeconf-0.4.1-4.el9.x86_64.rpm
     sha256: 11464e955e108d782c68355e163eede4b00f40d50a9fd7f8d3598386e0fc86f1
     no_hoist: true
     folder: binary
-  # - url: https://repo.almalinux.org/almalinux/9.6/BaseOS/Source/Packages/libeconf-0.4.1-4.el9.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/9.7/BaseOS/Source/Packages/libeconf-0.4.1-4.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 

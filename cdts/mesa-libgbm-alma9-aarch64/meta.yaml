@@ -1,13 +1,13 @@
 package:
   name: mesa-libgbm-conda-aarch64
-  version: 24.2.8
+  version: 25.0.7
 
 source:
-  - url: https://repo.almalinux.org/almalinux/9.6/AppStream/aarch64/os/Packages/mesa-libgbm-24.2.8-3.el9_6.alma.1.aarch64.rpm
-    sha256: 2881012d763c893dd950db53cf896d0db679e99be14ac1a12835ba117365fc59
+  - url: https://repo.almalinux.org/almalinux/9.7/AppStream/aarch64/os/Packages/mesa-libgbm-25.0.7-5.el9_7.alma.1.aarch64.rpm
+    sha256: 6f451404356905797b38af76d087ae75a8aa19fcd0a39f638e9f65064b4c0ac0
     no_hoist: true
     folder: binary
-  # - url: https://repo.almalinux.org/almalinux/9.6/AppStream/Source/Packages/mesa-24.2.8-3.el9_6.alma.1.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/9.7/AppStream/Source/Packages/mesa-25.0.7-5.el9_7.alma.1.src.rpm
   #   no_hoist: true
   #   folder: source
 

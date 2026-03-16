@@ -3,11 +3,11 @@ package:
   version: 3.6
 
 source:
-  - url: https://repo.almalinux.org/almalinux/9.6/BaseOS/ppc64le/os/Packages/libsepol-3.6-2.el9.ppc64le.rpm
-    sha256: fdd87030d6e48e6d9e4f0be4ee3d57558b82c8f34b002dcd99362bd43a1966c1
+  - url: https://repo.almalinux.org/almalinux/9.7/BaseOS/ppc64le/os/Packages/libsepol-3.6-3.el9.ppc64le.rpm
+    sha256: 9b22550db0c2095bda7be01a511fff6bf91e6cc2d624cb72f5e82949080bd28a
     no_hoist: true
     folder: binary
-  # - url: https://repo.almalinux.org/almalinux/9.6/BaseOS/Source/Packages/libsepol-3.6-2.el9.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/9.7/BaseOS/Source/Packages/libsepol-3.6-3.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 

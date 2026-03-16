@@ -1,13 +1,13 @@
 package:
   name: mesa-libgbm-devel-conda-x86_64
-  version: 24.2.8
+  version: 25.0.7
 
 source:
-  - url: https://repo.almalinux.org/almalinux/9.6/AppStream/x86_64/os/Packages/mesa-libgbm-devel-24.2.8-3.el9_6.alma.1.x86_64.rpm
-    sha256: 5c9e7b120e9d073ac43c9560381fe3f397bbce2b26da1f0d086af7a70f7b0902
+  - url: https://repo.almalinux.org/almalinux/9.7/AppStream/x86_64/os/Packages/mesa-libgbm-devel-25.0.7-5.el9_7.alma.1.x86_64.rpm
+    sha256: 0bd5de791def2e2c4c3c50ac9faaf2ab23af3d7e6bcfba32d0908aa085287876
     no_hoist: true
     folder: binary
-  # - url: https://repo.almalinux.org/almalinux/9.6/AppStream/Source/Packages/mesa-24.2.8-3.el9_6.alma.1.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/9.7/AppStream/Source/Packages/mesa-25.0.7-5.el9_7.alma.1.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - mesa-libgbm-conda-x86_64 ==24.2.8 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libgbm-conda-x86_64 ==25.0.7 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - mesa-libgbm-conda-x86_64 ==24.2.8 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libgbm-conda-x86_64 ==25.0.7 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.34.*
   run:
-    - mesa-libgbm-conda-x86_64 ==24.2.8 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libgbm-conda-x86_64 ==25.0.7 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-64 2.34.*
 
 test:

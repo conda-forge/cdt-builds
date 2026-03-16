@@ -3,11 +3,11 @@ package:
   version: 28
 
 source:
-  - url: https://repo.almalinux.org/almalinux/9.6/BaseOS/aarch64/os/Packages/kmod-28-10.el9.aarch64.rpm
-    sha256: 0b0594a6dec6964cf2374301ed7e377f59a87f71bc6163aac9bdb52979881864
+  - url: https://repo.almalinux.org/almalinux/9.7/BaseOS/aarch64/os/Packages/kmod-28-11.el9.aarch64.rpm
+    sha256: 48510e198ac991ffd581ffda94392ff693a4a19abafd939735f284f54a9fe797
     no_hoist: true
     folder: binary
-  # - url: https://repo.almalinux.org/almalinux/9.6/BaseOS/Source/Packages/kmod-28-10.el9.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/9.7/BaseOS/Source/Packages/kmod-28-11.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 

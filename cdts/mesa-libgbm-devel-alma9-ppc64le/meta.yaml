@@ -1,13 +1,13 @@
 package:
   name: mesa-libgbm-devel-conda-ppc64le
-  version: 24.2.8
+  version: 25.0.7
 
 source:
-  - url: https://repo.almalinux.org/almalinux/9.6/AppStream/ppc64le/os/Packages/mesa-libgbm-devel-24.2.8-3.el9_6.alma.1.ppc64le.rpm
-    sha256: 6318eac9e537897b41e34aa365a8e58d99de4919778c0cf3f86f804567a06ebf
+  - url: https://repo.almalinux.org/almalinux/9.7/AppStream/ppc64le/os/Packages/mesa-libgbm-devel-25.0.7-5.el9_7.alma.1.ppc64le.rpm
+    sha256: c53b0dc8b7dcaddf328aa93d256e97594fa087c8a83557347ae7a6867e4c2b48
     no_hoist: true
     folder: binary
-  # - url: https://repo.almalinux.org/almalinux/9.6/AppStream/Source/Packages/mesa-24.2.8-3.el9_6.alma.1.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/9.7/AppStream/Source/Packages/mesa-25.0.7-5.el9_7.alma.1.src.rpm
   #   no_hoist: true
   #   folder: source
 
@@ -25,12 +25,12 @@ build:
 
 requirements:
   build:
-    - mesa-libgbm-conda-ppc64le ==24.2.8 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libgbm-conda-ppc64le ==25.0.7 *_{{ cdt_build_number|int + 1000 }}
   host:
-    - mesa-libgbm-conda-ppc64le ==24.2.8 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libgbm-conda-ppc64le ==25.0.7 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.34.*
   run:
-    - mesa-libgbm-conda-ppc64le ==24.2.8 *_{{ cdt_build_number|int + 1000 }}
+    - mesa-libgbm-conda-ppc64le ==25.0.7 *_{{ cdt_build_number|int + 1000 }}
     - sysroot_linux-ppc64le 2.34.*
 
 test:

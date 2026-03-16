@@ -3,11 +3,11 @@ package:
   version: 3.6
 
 source:
-  - url: https://repo.almalinux.org/almalinux/9.6/AppStream/aarch64/os/Packages/libsepol-devel-3.6-2.el9.aarch64.rpm
-    sha256: 3ca7cc95cc2c61cc0ce4fdd5c2ca075f4d4005c79f1813c7f32c282a5d4ef5be
+  - url: https://repo.almalinux.org/almalinux/9.7/AppStream/aarch64/os/Packages/libsepol-devel-3.6-3.el9.aarch64.rpm
+    sha256: 402e808e4a7b4ed0ddffbcd187d2787896d228443524e84bc9b51c78ebed66a8
     no_hoist: true
     folder: binary
-  # - url: https://repo.almalinux.org/almalinux/9.6/AppStream/Source/Packages/libsepol-3.6-2.el9.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/9.7/AppStream/Source/Packages/libsepol-3.6-3.el9.src.rpm
   #   no_hoist: true
   #   folder: source
 

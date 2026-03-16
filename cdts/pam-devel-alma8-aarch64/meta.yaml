@@ -3,11 +3,11 @@ package:
   version: 1.3.1
 
 source:
-  - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/aarch64/os/Packages/pam-devel-1.3.1-38.el8_10.aarch64.rpm
-    sha256: 4c10368b24441268da08ccdadbcd9792baca717e140faaaaddf0193b627af036
+  - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/aarch64/os/Packages/pam-devel-1.3.1-39.el8_10.aarch64.rpm
+    sha256: a28b335cccc4709bfb460183287b395d3711aced26f85440d30024b8e1ece831
     no_hoist: true
     folder: binary
-  # - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/Source/Packages/pam-1.3.1-38.el8_10.src.rpm
+  # - url: https://repo.almalinux.org/almalinux/8.10/BaseOS/Source/Packages/pam-1.3.1-39.el8_10.src.rpm
   #   no_hoist: true
   #   folder: source
 
