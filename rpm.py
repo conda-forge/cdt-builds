@@ -404,7 +404,10 @@ def get_repo_dict(repomd_url, data_type, dict_massager, cdt, src_cache):
     xmlstring = request("get", repomd_url).content
     # Remove the default namespace definition (xmlns="http://some/namespace")
     xmlstring = re.sub(rb'\sxmlns="[^"]+"', b"", xmlstring, count=1)  # noqa
-    repomd = ET.fromstring(xmlstring)
+    try:
+        repomd = ET.fromstring(xmlstring)
+    except ET.ParseError as parse_error:
+        raise RuntimeError(f"Error parsing {repomd_url}") from parse_error
     for child in repomd.findall("*[@type='{}']".format(data_type)):
         open_csum = child.findall("open-checksum")[0].text
         xml_file = join(src_cache, f"{open_csum}.xml")
