@@ -56,6 +56,8 @@ import sys
 import tempfile
 import subprocess
 
+from packaging.licenses import canonicalize_license_expression
+
 
 @contextmanager
 def disable_traceback():
@@ -564,26 +566,53 @@ def valid_depends(depends):
     return False
 
 
-def remap_license(rpm_license):
+def remap_one_license(rpm_license: str) -> str:
     mapping = {
-        "gplv3": "GPL-3.0-only",
+        "asl 1.1": "Apache-1.1",
+        "asl 2.0": "Apache-2.0",
+        "bsd-3-clause": "BSD-3-Clause",
+        "ftl": "FTL",
         "gplv2": "GPL-2.0-only",
-        "lgplv2+": "LGPL-2.0-or-later",
         "gplv2+": "GPL-2.0-or-later",
-        "public domain (uncopyrighted)": "Public-Domain",
-        "public domain": "Public-Domain",
+        "gplv3": "GPL-3.0-only",
+        "ijg": "IJG",
+        "libtiff": "libtiff",
+        "mit": "MIT",
         "mit/x11": "MIT",
-        "the open group license": "The Open Group License",
+        "mplv1.1": "MPL-1.1",
         "mplv2.0": "MPL-2.0",
+        "sgi-b-2.0": "SGI-B-2.0",
+        "ucd": "LicenseRef-scancode-unicode-ucd",
+        "zlib with acknowledgement": "zlib-acknowledgement",
+        "zlib": "Zlib",
+        # these are used in some openjdk packages
+        "gpl+": "GPL-2.0-only",
+        "gplv2 with exceptions": "GPL-2.0-only WITH Classpath-exception-2.0",
+        "w3c": "W3C",
+        # https://docs.fedoraproject.org/en-US/legal/update-existing-packages/#_updating_callaway_umbrella_names
+        "bsd": "LicenseRef-Callaway-BSD",
+        "bsd with advertising": "LicenseRef-Callaway-BSD",
+        "lgplv2": "LGPL-2.0-only",
+        "lgplv2+": "LGPL-2.0-or-later",
+        "public domain (uncopyrighted)": "LicenseRef-Callaway-Public-Domain",
+        "public domain": "LicenseRef-Callaway-Public-Domain",
+        "redistributable, no modification permitted": "LicenseRef-Callaway-Redistributable-no-modification-permitted",
+        # special SPDX-2.0 terms
+        "and": "AND",
+        "or": "OR",
+        "(": "(",
+        ")": ")",
     }
-    l_rpm_license = rpm_license.lower()
-    if l_rpm_license in mapping:
-        license, family = (
-            mapping[l_rpm_license],
-            guess_license_family(mapping[l_rpm_license]),
-        )
-    else:
-        license, family = rpm_license, guess_license_family(rpm_license)
+    return mapping[rpm_license.strip()]
+
+
+def remap_license(rpm_license):
+    license = " ".join(
+        remap_one_license(x)
+        for x in re.split(r"(\(|\)|AND|OR)", rpm_license.lower(), flags=re.IGNORECASE)
+        if x.strip()
+    )
+    family = guess_license_family(license)
     # Yuck:
     if family == "APACHE":
         family = "Apache"
@@ -800,7 +829,13 @@ def write_conda_recipes(
 
     package_l = package.lower().replace("+", "x")
     package_cdt_name = package_l + "-" + sn
-    license, license_family = remap_license(entry["license"])
+    # Verify that we're getting a valid SPDX-2.0 license expression
+    # (rattler-build requires that, so better check early).
+    try:
+        license, license_family = remap_license(entry["license"])
+        canonicalize_license_expression(license)
+    except Exception as error:
+        raise RuntimeError(f"license mapping error from {package}: {error}") from None
     d = dict(
         {
             "version": entry["version"]["ver"],
