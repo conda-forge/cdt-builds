@@ -189,3 +189,7 @@ stages:
 
 - stage: Check
   dependsOn: Build
+  jobs:
+    - job: check
+      steps:
+        - bash: echo okay.
