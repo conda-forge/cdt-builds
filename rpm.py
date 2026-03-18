@@ -94,6 +94,11 @@ default_distro = "centos7"
 RPM_META = """\
 schema_version: 1
 
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: {distro_name}
+
 package:
   name: {packagename}
   version: {version}
