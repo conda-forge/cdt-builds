@@ -852,7 +852,8 @@ def write_conda_recipes(
             "depends": dependsstr,
             "rpmurl": rpm_url,
             "srcrpmurl": srpm_url,
-            "home": entry["home"] or package_cdt_name,
+            # TODO: a better fallback URL?
+            "home": entry["home"] or rpm_url,
             "license": license,
             "license_family": license_family,
             "checksum_name": cdt["checksummer_name"],
