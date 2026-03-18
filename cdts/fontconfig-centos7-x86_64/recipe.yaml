@@ -1,0 +1,59 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: fontconfig-conda-x86_64
+  version: 2.13.0
+
+source:
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/fontconfig-2.13.0-4.3.el7.x86_64.rpm
+    sha256: adf21042079dd4754a2d77f5ddf83b8537407081e95edeb553b1b0e8130aa558
+    target_directory: binary
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/fontconfig-2.13.0-4.3.el7.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  build:
+    - freetype-conda-x86_64 >=2.8 *_${{ cdt_build_number|int + 1000 }}
+    - libarchive
+  host:
+    - freetype-conda-x86_64 >=2.8 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - freetype-conda-x86_64 >=2.8 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://fontconfig.org
+  license: MIT AND LicenseRef-Callaway-Public-Domain AND LicenseRef-scancode-unicode-ucd
+  license_file: binary/usr/share/doc/fontconfig-2.13.0/COPYING
+  summary: (CDT) Font configuration and customization library
+  description: |
+        Fontconfig is designed to locate fonts within the system and select them
+        according to requirements specified by applications.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

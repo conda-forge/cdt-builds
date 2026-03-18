@@ -1,0 +1,61 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: alma9
+
+package:
+  name: libselinux-devel-conda-aarch64
+  version: 3.6
+
+source:
+  - url: https://repo.almalinux.org/almalinux/9.7/AppStream/aarch64/os/Packages/libselinux-devel-3.6-3.el9.aarch64.rpm
+    sha256: 0bc1a70a68203118753a0859ab4c9a85e6598cc843b94c6348856f9834899c21
+    target_directory: binary
+  # - url: https://repo.almalinux.org/almalinux/9.7/AppStream/Source/Packages/libselinux-3.6-3.el9.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "alma9"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - libselinux-conda-aarch64 ==3.6 *_${{ cdt_build_number|int + 1000 }}
+    - libsepol-devel-conda-aarch64 >=3.6 *_${{ cdt_build_number|int + 1000 }}
+    - libarchive
+  host:
+    - libselinux-conda-aarch64 ==3.6 *_${{ cdt_build_number|int + 1000 }}
+    - libsepol-devel-conda-aarch64 >=3.6 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.34.*
+  run:
+    - libselinux-conda-aarch64 ==3.6 *_${{ cdt_build_number|int + 1000 }}
+    - libsepol-devel-conda-aarch64 >=3.6 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.34.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: https://github.com/SELinuxProject/selinux/wiki
+  license: LicenseRef-Callaway-Public-Domain
+  summary: (CDT) Header files and libraries used to build SELinux
+  description: |
+    The libselinux-devel package contains the libraries and header files needed
+    for developing SELinux applications.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

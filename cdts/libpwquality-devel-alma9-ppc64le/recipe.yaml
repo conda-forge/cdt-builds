@@ -1,0 +1,59 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: alma9
+
+package:
+  name: libpwquality-devel-conda-ppc64le
+  version: 1.4.4
+
+source:
+  - url: https://repo.almalinux.org/almalinux/9.7/CRB/ppc64le/os/Packages/libpwquality-devel-1.4.4-8.el9.ppc64le.rpm
+    sha256: 853057462cf7606030d1c952f82a9ac8631e885e3661af35fe3bd2ef26344861
+    target_directory: binary
+  # - url: https://repo.almalinux.org/almalinux/9.7/CRB/Source/Packages/libpwquality-1.4.4-8.el9.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "alma9"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - libpwquality-conda-ppc64le ==1.4.4 *_${{ cdt_build_number|int + 1000 }}
+    - libarchive
+  host:
+    - libpwquality-conda-ppc64le ==1.4.4 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.34.*
+  run:
+    - libpwquality-conda-ppc64le ==1.4.4 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.34.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: https://github.com/libpwquality/libpwquality/
+  license: LicenseRef-Callaway-BSD OR GPL-2.0-or-later
+  license_file: libpwquality-copying
+  summary: (CDT) Support for development of applications using the libpwquality library
+  description: |
+    Files needed for development of applications using the libpwquality library.
+    See the pwquality.h header file for the API.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

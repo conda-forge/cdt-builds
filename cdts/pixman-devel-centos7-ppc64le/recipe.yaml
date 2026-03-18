@@ -1,0 +1,58 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: pixman-devel-conda-ppc64le
+  version: 0.34.0
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/pixman-devel-0.34.0-1.el7.ppc64le.rpm
+    sha256: fe7c2d41ff1fdd421844e1d3ec4c609d5c403252a2e6246cd8d3788a627a97ec
+    target_directory: binary
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/pixman-0.34.0-1.el7.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - pixman-conda-ppc64le ==0.34.0 *_${{ cdt_build_number|int + 1000 }}
+    - libarchive
+  host:
+    - pixman-conda-ppc64le ==0.34.0 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - pixman-conda-ppc64le ==0.34.0 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://cgit.freedesktop.org/pixman/
+  license: MIT
+  license_file: pixman-license
+  summary: (CDT) Pixel manipulation library development package
+  description: |
+    Development library for pixman.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

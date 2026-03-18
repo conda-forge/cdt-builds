@@ -1,0 +1,59 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: atk-devel-conda-aarch64
+  version: 2.28.1
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/atk-devel-2.28.1-2.el7.aarch64.rpm
+    sha256: db0b1852181f6c6fa3c11b32ba1e6701b8f1a095dd8c0c67cf0cda2616aaa22d
+    target_directory: binary
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/atk-2.28.1-2.el7.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - atk-conda-aarch64 ==2.28.1 *_${{ cdt_build_number|int + 1000 }}
+    - libarchive
+  host:
+    - atk-conda-aarch64 ==2.28.1 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - atk-conda-aarch64 ==2.28.1 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://developer.gnome.org/platform-overview/stable/atk
+  license: LGPL-2.0-or-later
+  license_file: atk-copying
+  summary: (CDT) Development files for the ATK accessibility toolkit
+  description: |
+    This package includes libraries, header files, and developer documentation
+    needed for development of applications or toolkits which use ATK.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,65 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: systemd-devel-conda-ppc64le
+  version: 219
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/systemd-devel-219-78.el7.ppc64le.rpm
+    sha256: 8d00a0b7182f1010ef09a0f37231bcbd1ecb35bdc07d59422fadc1e129a4cf96
+    target_directory: binary
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/systemd-219-78.el7.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - systemd-conda-ppc64le ==219 *_${{ cdt_build_number|int + 1000 }}
+    - systemd-libs-conda-ppc64le ==219 *_${{ cdt_build_number|int + 1000 }}
+    - libarchive
+  host:
+    - systemd-conda-ppc64le ==219 *_${{ cdt_build_number|int + 1000 }}
+    - systemd-libs-conda-ppc64le ==219 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - systemd-conda-ppc64le ==219 *_${{ cdt_build_number|int + 1000 }}
+    - systemd-libs-conda-ppc64le ==219 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://www.freedesktop.org/wiki/Software/systemd
+  license: LGPL-2.0-or-later AND MIT
+  license_file:
+    - LICENSE.GPL2
+    - LICENSE.LGPL2.1
+    - LICENSE.MIT
+  summary: (CDT) Development headers for systemd
+  description: |
+    Development headers and auxiliary files for developing applications for
+    systemd.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

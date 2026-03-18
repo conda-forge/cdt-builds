@@ -1,0 +1,66 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: libxml2-devel-conda-x86_64
+  version: 2.9.1
+
+source:
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/libxml2-devel-2.9.1-6.el7.5.x86_64.rpm
+    sha256: 7d950d5df5125f76ff94df054c7cafcb30fefd49f9d43fd8fc044aed52e00556
+    target_directory: binary
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/libxml2-2.9.1-6.el7.5.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - libxml2-conda-x86_64 ==2.9.1 *_${{ cdt_build_number|int + 1000 }}
+    - libarchive
+  host:
+    - libxml2-conda-x86_64 ==2.9.1 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+  run:
+    - libxml2-conda-x86_64 ==2.9.1 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.17.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://xmlsoft.org/
+  license: MIT
+  license_file: libxml2-license
+  summary: (CDT) Libraries, includes, etc. to develop XML and HTML applications
+  description: |
+    Libraries, include files, etc you can use to develop XML applications. This
+    library allows to manipulate XML files. It includes support to read, modify
+    and write XML and HTML files. There is DTDs support this includes parsing and
+    validation even with complex DtDs, either at parse time or later once the
+    document has been modified. The output can be a simple SAX stream or and in-
+    memory DOM like representations. In this case one can use the built-in XPath
+    and XPointer implementation to select sub nodes or ranges. A flexible
+    Input/Output mechanism is available, with existing HTTP and FTP modules and
+    combined to an URI library.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

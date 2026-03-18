@@ -1,0 +1,60 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: glib-networking-conda-aarch64
+  version: 2.56.1
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/glib-networking-2.56.1-1.el7.aarch64.rpm
+    sha256: a483489b819f044b773d0b20bf48364bcffffeec8c81751f0732a55e1064b64b
+    target_directory: binary
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/glib-networking-2.56.1-1.el7.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  build:
+    - glib2-conda-aarch64 >=2.55.1 *_${{ cdt_build_number|int + 1000 }}
+    - libarchive
+  host:
+    - glib2-conda-aarch64 >=2.55.1 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - glib2-conda-aarch64 >=2.55.1 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://www.gnome.org
+  license: LGPL-2.0-or-later
+  license_file: binary/usr/share/licenses/glib-networking-2.56.1/COPYING
+  summary: (CDT) Networking support for GLib
+  description: |
+        This package contains modules that extend the networking support in GIO. In
+        particular, it contains libproxy- and GSettings-based GProxyResolver
+        implementations and a gnutls-based GTlsConnection implementation.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

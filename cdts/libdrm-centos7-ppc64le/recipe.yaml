@@ -1,0 +1,54 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: libdrm-conda-ppc64le
+  version: 2.4.97
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libdrm-2.4.97-2.el7.ppc64le.rpm
+    sha256: bd230232e9cb70f70cb04f123d00701f57c2c850f6eceda851171aa17af11c6b
+    target_directory: binary
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libdrm-2.4.97-2.el7.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - libarchive
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://dri.sourceforge.net
+  license: MIT
+  summary: (CDT) Direct Rendering Manager runtime library
+  description: |
+    Direct Rendering Manager runtime library
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

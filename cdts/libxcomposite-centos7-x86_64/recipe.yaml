@@ -1,0 +1,55 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: libxcomposite-conda-x86_64
+  version: 0.4.4
+
+source:
+  - url: https://vault.centos.org/7.9.2009/os/x86_64/Packages/libXcomposite-0.4.4-4.1.el7.x86_64.rpm
+    sha256: 81357f494edca6c828f541cf9d229d97ac5e496fbb23a28a86535b5b9cd49a41
+    target_directory: binary
+  # - url: https://vault.centos.org/7.9.2009/os/Source/SPackages/libXcomposite-0.4.4-4.1.el7.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  build:
+    - libarchive
+  host:
+    - sysroot_linux-64 2.17.*
+  run:
+    - sysroot_linux-64 2.17.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://www.x.org
+  license: MIT
+  license_file: binary/usr/share/doc/libXcomposite-0.4.4/COPYING
+  summary: (CDT) X Composite Extension library
+  description: |
+        X Composite Extension library
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

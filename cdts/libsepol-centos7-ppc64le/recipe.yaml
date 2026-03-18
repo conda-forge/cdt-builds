@@ -1,0 +1,66 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: libsepol-conda-ppc64le
+  version: 2.5
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libsepol-2.5-10.el7.ppc64le.rpm
+    sha256: f3578f4b8b1659ffbc76148cec3db6edc7efc28b1e6bcdb9a2a9845201ce27d9
+    target_directory: binary
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libsepol-2.5-10.el7.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - libarchive
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: https://github.com/SELinuxProject/selinux/wiki
+  license: LGPL-2.0-or-later
+  license_file: libsepol-license
+  summary: (CDT) SELinux binary policy manipulation library
+  description: |
+    Security-enhanced Linux is a feature of the Linux® kernel and a number of
+    utilities with enhanced security functionality designed to add mandatory
+    access controls to Linux.  The Security-enhanced Linux kernel contains new
+    architectural components originally developed to improve the security of the
+    Flask operating system. These architectural components provide general support
+    for the enforcement of many kinds of mandatory access control policies,
+    including those based on the concepts of Type Enforcement®, Role-based Access
+    Control, and Multi-level Security.  libsepol provides an API for the
+    manipulation of SELinux binary policies. It is used by checkpolicy (the policy
+    compiler) and similar tools, as well as by programs like load_policy that need
+    to perform specific transformations on binary policies such as customizing
+    policy boolean settings.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

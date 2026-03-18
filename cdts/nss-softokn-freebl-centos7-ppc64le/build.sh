@@ -2,6 +2,10 @@
 
 set -o errexit -o pipefail
 
+cd binary
+bsdtar -x -f *.rpm
+cd -
+
 SYSROOT_DIR="${PREFIX}"/powerpc64le-conda-linux-gnu/sysroot
 
 mkdir -p "${SYSROOT_DIR}"

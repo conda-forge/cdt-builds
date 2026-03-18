@@ -1,0 +1,58 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: alma9
+
+package:
+  name: mesa-libgbm-devel-conda-ppc64le
+  version: 25.0.7
+
+source:
+  - url: https://repo.almalinux.org/almalinux/9.7/AppStream/ppc64le/os/Packages/mesa-libgbm-devel-25.0.7-5.el9_7.alma.1.ppc64le.rpm
+    sha256: c53b0dc8b7dcaddf328aa93d256e97594fa087c8a83557347ae7a6867e4c2b48
+    target_directory: binary
+  # - url: https://repo.almalinux.org/almalinux/9.7/AppStream/Source/Packages/mesa-25.0.7-5.el9_7.alma.1.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "alma9"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - mesa-libgbm-conda-ppc64le ==25.0.7 *_${{ cdt_build_number|int + 1000 }}
+    - libarchive
+  host:
+    - mesa-libgbm-conda-ppc64le ==25.0.7 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.34.*
+  run:
+    - mesa-libgbm-conda-ppc64le ==25.0.7 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.34.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://www.mesa3d.org
+  license: MIT AND BSD-3-Clause AND SGI-B-2.0
+  license_file: mesa-license
+  summary: (CDT) Mesa libgbm development package
+  description: |
+    Mesa libgbm development package.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

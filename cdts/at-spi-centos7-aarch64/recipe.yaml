@@ -1,0 +1,69 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: at-spi-conda-aarch64
+  version: 1.32.0
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/at-spi-1.32.0-12.el7.aarch64.rpm
+    sha256: 3a016b08364d3235508a9e96ab95bb4ae10a10c19528507fefa79fc9d3e5d5d8
+    target_directory: binary
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/at-spi-1.32.0-12.el7.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - orbit2-conda-aarch64 >=2.6.0 *_${{ cdt_build_number|int + 1000 }}
+    - atk-conda-aarch64 >=1.29.2 *_${{ cdt_build_number|int + 1000 }}
+    - gtk2-conda-aarch64 >=2.10.0 *_${{ cdt_build_number|int + 1000 }}
+    - libbonobo-conda-aarch64 >=2.4.0 *_${{ cdt_build_number|int + 1000 }}
+    - libarchive
+  host:
+    - orbit2-conda-aarch64 >=2.6.0 *_${{ cdt_build_number|int + 1000 }}
+    - atk-conda-aarch64 >=1.29.2 *_${{ cdt_build_number|int + 1000 }}
+    - gtk2-conda-aarch64 >=2.10.0 *_${{ cdt_build_number|int + 1000 }}
+    - libbonobo-conda-aarch64 >=2.4.0 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - orbit2-conda-aarch64 >=2.6.0 *_${{ cdt_build_number|int + 1000 }}
+    - atk-conda-aarch64 >=1.29.2 *_${{ cdt_build_number|int + 1000 }}
+    - gtk2-conda-aarch64 >=2.10.0 *_${{ cdt_build_number|int + 1000 }}
+    - libbonobo-conda-aarch64 >=2.4.0 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://developer.gnome.org/projects/gap/
+  license: LGPL-2.0-or-later
+  license_file: at-spi-license
+  summary: (CDT) Assistive Technology Service Provider Interface
+  description: |
+    at-spi allows assistive technologies to access GTK-based applications.
+    Essentially it exposes the internals of applications for automation, so tools
+    such as screen readers, magnifiers, or even scripting interfaces can query and
+    interact with GUI controls.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

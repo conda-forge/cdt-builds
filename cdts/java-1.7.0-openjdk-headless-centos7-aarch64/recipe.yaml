@@ -1,0 +1,72 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: java-1.7.0-openjdk-headless-conda-aarch64
+  version: 1.7.0.261
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/java-1.7.0-openjdk-headless-1.7.0.261-2.6.22.2.el7_8.aarch64.rpm
+    sha256: a8de10493e86973aa3251d8fdc268b8a1dd7e9e79c563835506b7ee1a008e50d
+    target_directory: binary
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/java-1.7.0-openjdk-1.7.0.261-2.6.22.2.el7_8.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - chkconfig-conda-aarch64 >=1.7 *_${{ cdt_build_number|int + 1000 }}
+    - chkconfig-conda-aarch64 >=1.7 *_${{ cdt_build_number|int + 1000 }}
+    - copy-jdk-configs-conda-aarch64 >=3.3 *_${{ cdt_build_number|int + 1000 }}
+    - javapackages-tools-conda-aarch64 >=3.4.1 *_${{ cdt_build_number|int + 1000 }}
+    - nss-conda-aarch64 >=3.44.0 *_${{ cdt_build_number|int + 1000 }}
+    - nss-softokn-conda-aarch64 >=3.44.0 *_${{ cdt_build_number|int + 1000 }}
+    - libarchive
+  host:
+    - chkconfig-conda-aarch64 >=1.7 *_${{ cdt_build_number|int + 1000 }}
+    - chkconfig-conda-aarch64 >=1.7 *_${{ cdt_build_number|int + 1000 }}
+    - copy-jdk-configs-conda-aarch64 >=3.3 *_${{ cdt_build_number|int + 1000 }}
+    - javapackages-tools-conda-aarch64 >=3.4.1 *_${{ cdt_build_number|int + 1000 }}
+    - nss-conda-aarch64 >=3.44.0 *_${{ cdt_build_number|int + 1000 }}
+    - nss-softokn-conda-aarch64 >=3.44.0 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - chkconfig-conda-aarch64 >=1.7 *_${{ cdt_build_number|int + 1000 }}
+    - chkconfig-conda-aarch64 >=1.7 *_${{ cdt_build_number|int + 1000 }}
+    - copy-jdk-configs-conda-aarch64 >=3.3 *_${{ cdt_build_number|int + 1000 }}
+    - javapackages-tools-conda-aarch64 >=3.4.1 *_${{ cdt_build_number|int + 1000 }}
+    - nss-conda-aarch64 >=3.44.0 *_${{ cdt_build_number|int + 1000 }}
+    - nss-softokn-conda-aarch64 >=3.44.0 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.17.*
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://openjdk.java.net/
+  license: Apache-1.1 AND Apache-2.0 AND LicenseRef-Callaway-BSD AND LicenseRef-Callaway-BSD AND GPL-2.0-only AND GPL-2.0-only AND GPL-2.0-only WITH Classpath-exception-2.0 AND IJG AND LGPL-2.0-or-later AND MIT AND MPL-1.1 AND MPL-2.0 AND LicenseRef-Callaway-Public-Domain AND W3C AND Zlib
+  license_file: binary/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.261-2.6.22.2.el7_8.aarch64/LICENSE
+  summary: (CDT) The OpenJDK runtime environment without audio and video support
+  description: |
+    The OpenJDK runtime environment without audio and video
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
