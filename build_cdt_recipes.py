@@ -125,22 +125,29 @@ def _build_cdt(cdt_meta_node):
 
     for _ in range(5):
         c = subprocess.run(
-            "rattler-build build -m conda_build_config.yaml"
-            " --recipe-dir "
-            + cdt_meta_node["recipe_path"]
-            # rattler-build defaults to using cwd, force the conda-build default.
-            + " --output-dir "
-            + os.path.join(os.environ["CONDA_PREFIX"], "conda-bld")
-            # These are exported in the azure pipelines workflow
-            + ' --extra-meta flow_run_id="${flow_run_id:-}"'
-            ' --extra-meta remote_url="${remote_url:-}" '
-            ' --extra-meta sha="${sha:-}"'
-            # Disable QA error
-            " --allow-symlinks-on-windows",
+            [
+                "rattler-build",
+                "build",
+                "-m",
+                "conda_build_config.yaml",
+                "--recipe-dir",
+                cdt_meta_node["recipe_path"],
+                # rattler-build defaults to using cwd, force the conda-build default.
+                "--output-dir",
+                os.path.join(os.environ["CONDA_PREFIX"], "conda-bld"),
+                # These are exported in the azure pipelines workflow
+                "--extra-meta",
+                f"flow_run_id={os.environ.get('flow_run_id', '')}",
+                "--extra-meta",
+                f"remote_url={os.environ.get('remote_url', '')}",
+                "--extra-meta",
+                f"sha={os.environ.get('sha', '')}",
+                # Disable QA error
+                "--allow-symlinks-on-windows",
+            ],
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True,
-            shell=True,
         )
 
         if c.returncode == 0:
