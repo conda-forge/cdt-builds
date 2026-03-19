@@ -75,8 +75,10 @@ from conda_build.config import Config  # noqa: E402
 # try to import C dumper
 try:
     from yaml import CSafeDumper as SafeDumper
+    from yaml import CSafeLoader as SafeLoader
 except ImportError:
     from yaml import SafeDumper
+    from yaml import SafeLoader
 import yaml  # noqa: E402
 
 from requests import request  # noqa: E402
@@ -96,7 +98,7 @@ schema_version: 1
 
 # TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
 context:
-  cdt_build_number: 111
+  cdt_build_number: {cdt_build_number}
   distro: {distro_name}
 
 package:
@@ -676,6 +678,7 @@ def write_conda_recipes(
     build_number,
     conda_forge_style,
     build_number_bump,
+    cdt_build_number: str,
 ):
     if build_number_bump is None:
         _extra_build_num_str = ""
@@ -845,6 +848,7 @@ def write_conda_recipes(
         {
             "version": entry["version"]["ver"],
             "build_number": build_number_jinja2,
+            "cdt_build_number": cdt_build_number,
             "license_file": license_file,
             "packagename": package_cdt_name,
             "distro_name": cdt["full_name"],
@@ -920,6 +924,12 @@ def write_conda_recipe(
     # centos7 has an extra url-portion for non-x64
     extra_url_chunk = "" if architecture == "x86_64" else "altarch/"
 
+    with open("conda_build_config.yaml", "r") as f:
+        conda_build_config = yaml.load(f, SafeLoader)
+    assert set(conda_build_config["distro"]) == cdt_info.keys()
+    assert len(conda_build_config["cdt_build_number"]) == 1
+    cdt_build_number = conda_build_config["cdt_build_number"][0]
+
     formatting_bits = dict(
         {
             "architecture": architecture,
@@ -970,6 +980,7 @@ def write_conda_recipe(
             build_number,
             conda_forge_style,
             build_number_bump,
+            cdt_build_number,
         )
 
 
