@@ -127,7 +127,6 @@ build:
       - "*"
 
 {depends}
-
 tests:
   - script:
       - echo "it installs!"
@@ -782,9 +781,10 @@ def write_conda_recipes(
             )
 
     sn = cdt["short_name"] + "-" + arch
-    dependsstr = ""
-    if len(depends) or conda_forge_style:
-        depends_specs = [
+
+    dependsstr = "requirements:\n"
+    dependencies = {
+        "build": [
             "{}-{}-{} {}{} *_{}".format(
                 depend["name"].lower().replace("+", "x"),
                 cdt["short_name"],
@@ -795,45 +795,24 @@ def write_conda_recipes(
             )
             for depend in depends
         ]
-        dependsstr_part = "\n".join(
-            ["    - {}".format(depends_spec) for depends_spec in depends_specs]
-        )
-        if len(dependsstr_part) > 0:
-            dependsstr_build = "  build:\n" + dependsstr_part + "\n"
-            dependsstr_host = "  host:\n" + dependsstr_part + "\n"
-            dependsstr_run = "  run:\n" + dependsstr_part
-        else:
-            dependsstr_build = ""
-            dependsstr_host = ""
-            dependsstr_run = ""
+    }
+    dependencies["host"] = list(dependencies["build"])
+    dependencies["run"] = list(dependencies["build"])
 
-        # rattler-build does not unpack .rpm, so we need an unpacker
-        if len(dependsstr_build) > 0:
-            dependsstr_build += "\n"
+    # rattler-build does not unpack .rpm, so we need an unpacker
+    dependencies["build"].append("libarchive")
+    if conda_forge_style:
+        # put sysroot in host and run
+        sysroot_dep = f"sysroot_{cdt['host_subdir']} {cdt['glibc_ver']}.*"
+        dependencies["host"].append(sysroot_dep)
+        dependencies["run"].append(sysroot_dep)
 
-        if len(dependsstr_build) == 0:
-            dependsstr_build = "  build:\n"
-        dependsstr_build += "    - libarchive\n"
+    for label, dep_list in dependencies.items():
+        if not dep_list:
+            continue
 
-        if conda_forge_style:
-            # fixup run w/ sysroot
-            if len(dependsstr_run) > 0:
-                dependsstr_run += "\n"
-
-            if len(dependsstr_run) == 0:
-                dependsstr_run = "  run:\n"
-            dependsstr_run += f"    - sysroot_{cdt['host_subdir']} {cdt['glibc_ver']}.*"
-
-            # put sysroot in host
-            if len(dependsstr_host) == 0:
-                dependsstr_host = "  host:\n"
-            dependsstr_host += (
-                f"    - sysroot_{cdt['host_subdir']} {cdt['glibc_ver']}.*\n"  # note \n
-            )
-
-        dependsstr = (
-            "requirements:\n" + dependsstr_build + dependsstr_host + dependsstr_run
-        )
+        dependsstr += f"  {label}:\n"
+        dependsstr += "".join(f"    - {x}\n" for x in dep_list)
 
     package_l = package.lower().replace("+", "x")
     package_cdt_name = package_l + "-" + sn
