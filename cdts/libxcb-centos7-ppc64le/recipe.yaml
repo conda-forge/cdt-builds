@@ -1,0 +1,57 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: libxcb-conda-ppc64le
+  version: 1.13
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libxcb-1.13-1.el7.ppc64le.rpm
+    sha256: 52af7fb2a025fcd24013bb007db047c54cba76a082d4735a576ac23a093cd7f1
+    target_directory: binary
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libxcb-1.13-1.el7.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - libarchive
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: https://xcb.freedesktop.org/
+  license: MIT
+  license_file: libxcb-license
+  summary: (CDT) A C binding to the X11 protocol
+  description: |
+    The X protocol C-language Binding (XCB) is a replacement for Xlib featuring a
+    small footprint, latency hiding, direct access to the protocol, improved
+    threading support, and extensibility.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

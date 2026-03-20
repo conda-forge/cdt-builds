@@ -1,0 +1,61 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: rdma-core-conda-aarch64
+  version: 22.4
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/aarch64/Packages/rdma-core-22.4-5.el7.aarch64.rpm
+    sha256: 50754c50386e111904aa0d662f6392321c0e3dbd81c23bab58740c9b051c2963
+    target_directory: binary
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/rdma-core-22.4-5.el7.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - libarchive
+  host:
+    - sysroot_linux-aarch64 2.17.*
+  run:
+    - sysroot_linux-aarch64 2.17.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: https://github.com/linux-rdma/rdma-core
+  license: GPL-2.0-only OR LicenseRef-Callaway-BSD
+  license_file:
+    - COPYING.BSD_FB
+    - COPYING.BSD_MIT
+    - COPYING.GPL2
+    - COPYING.md
+  summary: (CDT) RDMA core userspace libraries and daemons
+  description: |
+    RDMA core userspace infrastructure and documentation, including initscripts,
+    kernel driver-specific modprobe override configs, IPoIB network scripts,
+    dracut rules, and the rdma-ndd utility.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

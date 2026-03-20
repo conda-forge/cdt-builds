@@ -1,0 +1,58 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: alma9
+
+package:
+  name: audit-libs-devel-conda-x86_64
+  version: 3.1.5
+
+source:
+  - url: https://repo.almalinux.org/almalinux/9.7/AppStream/x86_64/os/Packages/audit-libs-devel-3.1.5-7.el9.x86_64.rpm
+    sha256: dcad239ab11a20ccfd88b9c16da907861da2cfcb49149701e6a5c1a5cb451a54
+    target_directory: binary
+  # - url: https://repo.almalinux.org/almalinux/9.7/AppStream/Source/Packages/audit-3.1.5-7.el9.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "alma9"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - audit-libs-conda-x86_64 ==3.1.5 *_${{ cdt_build_number|int + 1000 }}
+    - libarchive
+  host:
+    - audit-libs-conda-x86_64 ==3.1.5 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.34.*
+  run:
+    - audit-libs-conda-x86_64 ==3.1.5 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-64 2.34.*
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://people.redhat.com/sgrubb/audit/
+  license: LGPL-2.0-or-later
+  license_file: audit-libs-copying.lib
+  summary: (CDT) Header files for libaudit
+  description: |
+    The audit-libs-devel package contains the header files needed for developing
+    applications that need to use the audit framework libraries.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

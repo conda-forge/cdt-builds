@@ -56,6 +56,8 @@ import sys
 import tempfile
 import subprocess
 
+from packaging.licenses import canonicalize_license_expression
+
 
 @contextmanager
 def disable_traceback():
@@ -73,8 +75,10 @@ from conda_build.config import Config  # noqa: E402
 # try to import C dumper
 try:
     from yaml import CSafeDumper as SafeDumper
+    from yaml import CSafeLoader as SafeLoader
 except ImportError:
     from yaml import SafeDumper
+    from yaml import SafeLoader
 import yaml  # noqa: E402
 
 from requests import request  # noqa: E402
@@ -90,6 +94,13 @@ default_architecture = "x86_64"
 default_distro = "centos7"
 
 RPM_META = """\
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: {cdt_build_number}
+  distro: {distro_name}
+
 package:
   name: {packagename}
   version: {version}
@@ -97,35 +108,33 @@ package:
 source:
   - url: {rpmurl}
     {checksum_name}: {checksum}
-    no_hoist: true
-    folder: binary
+    target_directory: binary
   # - url: {srcrpmurl}
-  #   no_hoist: true
-  #   folder: source
+  #   target_directory: source
 
 build:
-  number: {build_number}
-  noarch: generic
-  binary_relocation: False
-  detect_binary_files_with_prefix: False
-  missing_dso_whitelist:
-    - '*'
   # this skip is here because we need different package hashes per distro.
   # we therefore list all possible values in CBC and skip those we don't want;
   # use in a selector ensures that the `distro` variable shows up in the hash
-  skip: true  # [distro != "{distro_name}"]
+  number: {build_number}
+  skip: distro != "{distro_name}"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
 
 {depends}
-
-test:
-  commands:
-    - echo "it installs!"
+tests:
+  - script:
+      - echo "it installs!"
 
 about:
-  home: {home}
+  homepage: {home}
   license: {license}
-  license_family: {license_family}
-  license_file: {{{{ SRC_DIR }}}}/binary{license_file}
+  license_file: binary{license_file}
   summary: {summary}
   description: {description}
 
@@ -139,6 +148,10 @@ BUILDSH = """\
 #!/bin/bash
 
 set -o errexit -o pipefail
+
+cd binary
+bsdtar -x -f *.rpm
+cd -
 
 SYSROOT_DIR="${{PREFIX}}"/{host_machine}/sysroot
 
@@ -238,9 +251,9 @@ def _gen_cdts():
             "alma9": {
                 "full_name": "alma9",
                 "short_name": "conda",
-                "base_url": "https://repo.almalinux.org/almalinux/9.6/{subfolder}/{architecture}/os/Packages/",  # noqa
-                "sbase_url": "https://repo.almalinux.org/almalinux/9.6/{subfolder}/Source/Packages/",
-                "repomd_url": "https://repo.almalinux.org/almalinux/9.6/{subfolder}/{architecture}/os/repodata/repomd.xml",  # noqa
+                "base_url": "https://repo.almalinux.org/almalinux/9.7/{subfolder}/{architecture}/os/Packages/",  # noqa
+                "sbase_url": "https://repo.almalinux.org/almalinux/9.7/{subfolder}/Source/Packages/",
+                "repomd_url": "https://repo.almalinux.org/almalinux/9.7/{subfolder}/{architecture}/os/repodata/repomd.xml",  # noqa
                 "extra_subfolders": ["CRB", "devel"],
                 "host_machine": "{gnu_architecture}-conda-linux-gnu",
                 "host_subdir": "linux-{conda_architecture}",
@@ -401,13 +414,18 @@ def dictify_pickled(xml_file, src_cache, dict_massager=None, cdt=None):
 
 
 def get_repo_dict(repomd_url, data_type, dict_massager, cdt, src_cache):
-    xmlstring = request("get", repomd_url).content
+    response = request("get", repomd_url)
+    response.raise_for_status()
+    xmlstring = response.content
     # Remove the default namespace definition (xmlns="http://some/namespace")
     xmlstring = re.sub(rb'\sxmlns="[^"]+"', b"", xmlstring, count=1)  # noqa
-    repomd = ET.fromstring(xmlstring)
+    try:
+        repomd = ET.fromstring(xmlstring)
+    except ET.ParseError as parse_error:
+        raise RuntimeError(f"Error parsing {repomd_url}") from parse_error
     for child in repomd.findall("*[@type='{}']".format(data_type)):
         open_csum = child.findall("open-checksum")[0].text
-        xml_file = join(src_cache, open_csum)
+        xml_file = join(src_cache, f"{open_csum}.xml")
         try:
             xml_file, xml_csum = cache_file(
                 src_cache, xml_file, None, cdt["checksummer"]
@@ -554,26 +572,53 @@ def valid_depends(depends):
     return False
 
 
-def remap_license(rpm_license):
+def remap_one_license(rpm_license: str) -> str:
     mapping = {
-        "gplv3": "GPL-3.0-only",
+        "asl 1.1": "Apache-1.1",
+        "asl 2.0": "Apache-2.0",
+        "bsd-3-clause": "BSD-3-Clause",
+        "ftl": "FTL",
         "gplv2": "GPL-2.0-only",
-        "lgplv2+": "LGPL-2.0-or-later",
         "gplv2+": "GPL-2.0-or-later",
-        "public domain (uncopyrighted)": "Public-Domain",
-        "public domain": "Public-Domain",
+        "gplv3": "GPL-3.0-only",
+        "ijg": "IJG",
+        "libtiff": "libtiff",
+        "mit": "MIT",
         "mit/x11": "MIT",
-        "the open group license": "The Open Group License",
+        "mplv1.1": "MPL-1.1",
         "mplv2.0": "MPL-2.0",
+        "sgi-b-2.0": "SGI-B-2.0",
+        "ucd": "LicenseRef-scancode-unicode-ucd",
+        "zlib with acknowledgement": "zlib-acknowledgement",
+        "zlib": "Zlib",
+        # these are used in some openjdk packages
+        "gpl+": "GPL-2.0-only",
+        "gplv2 with exceptions": "GPL-2.0-only WITH Classpath-exception-2.0",
+        "w3c": "W3C",
+        # https://docs.fedoraproject.org/en-US/legal/update-existing-packages/#_updating_callaway_umbrella_names
+        "bsd": "LicenseRef-Callaway-BSD",
+        "bsd with advertising": "LicenseRef-Callaway-BSD",
+        "lgplv2": "LGPL-2.0-only",
+        "lgplv2+": "LGPL-2.0-or-later",
+        "public domain (uncopyrighted)": "LicenseRef-Callaway-Public-Domain",
+        "public domain": "LicenseRef-Callaway-Public-Domain",
+        "redistributable, no modification permitted": "LicenseRef-Callaway-Redistributable-no-modification-permitted",
+        # special SPDX-2.0 terms
+        "and": "AND",
+        "or": "OR",
+        "(": "(",
+        ")": ")",
     }
-    l_rpm_license = rpm_license.lower()
-    if l_rpm_license in mapping:
-        license, family = (
-            mapping[l_rpm_license],
-            guess_license_family(mapping[l_rpm_license]),
-        )
-    else:
-        license, family = rpm_license, guess_license_family(rpm_license)
+    return mapping[rpm_license.strip()]
+
+
+def remap_license(rpm_license):
+    license = " ".join(
+        remap_one_license(x)
+        for x in re.split(r"(\(|\)|AND|OR)", rpm_license.lower(), flags=re.IGNORECASE)
+        if x.strip()
+    )
+    family = guess_license_family(license)
     # Yuck:
     if family == "APACHE":
         family = "Apache"
@@ -632,6 +677,7 @@ def write_conda_recipes(
     build_number,
     conda_forge_style,
     build_number_bump,
+    cdt_build_number: str,
 ):
     if build_number_bump is None:
         _extra_build_num_str = ""
@@ -640,7 +686,7 @@ def write_conda_recipes(
 
     build_number_jinja2 = (
         # not using f-strings because escaping double-curlies would make this worse
-        "{{ cdt_build_number|int + 1000%s }}" % _extra_build_num_str
+        "${{ cdt_build_number|int + 1000%s }}" % _extra_build_num_str
     )
 
     entry, entry_name, arch = find_repo_entry_and_arch(
@@ -735,9 +781,10 @@ def write_conda_recipes(
             )
 
     sn = cdt["short_name"] + "-" + arch
-    dependsstr = ""
-    if len(depends) or conda_forge_style:
-        depends_specs = [
+
+    dependsstr = "requirements:\n"
+    dependencies = {
+        "build": [
             "{}-{}-{} {}{} *_{}".format(
                 depend["name"].lower().replace("+", "x"),
                 cdt["short_name"],
@@ -748,45 +795,39 @@ def write_conda_recipes(
             )
             for depend in depends
         ]
-        dependsstr_part = "\n".join(
-            ["    - {}".format(depends_spec) for depends_spec in depends_specs]
-        )
-        if len(dependsstr_part) > 0:
-            dependsstr_build = "  build:\n" + dependsstr_part + "\n"
-            dependsstr_host = "  host:\n" + dependsstr_part + "\n"
-            dependsstr_run = "  run:\n" + dependsstr_part
-        else:
-            dependsstr_build = ""
-            dependsstr_host = ""
-            dependsstr_run = ""
+    }
+    dependencies["host"] = list(dependencies["build"])
+    dependencies["run"] = list(dependencies["build"])
 
-        if conda_forge_style:
-            # fixup run w/ sysroot
-            if len(dependsstr_run) > 0:
-                dependsstr_run += "\n"
+    # rattler-build does not unpack .rpm, so we need an unpacker
+    dependencies["build"].append("libarchive")
+    if conda_forge_style:
+        # put sysroot in host and run
+        sysroot_dep = f"sysroot_{cdt['host_subdir']} {cdt['glibc_ver']}.*"
+        dependencies["host"].append(sysroot_dep)
+        dependencies["run"].append(sysroot_dep)
 
-            if len(dependsstr_run) == 0:
-                dependsstr_run = "  run:\n"
-            dependsstr_run += f"    - sysroot_{cdt['host_subdir']} {cdt['glibc_ver']}.*"
+    for label, dep_list in dependencies.items():
+        if not dep_list:
+            continue
 
-            # put sysroot in host
-            if len(dependsstr_host) == 0:
-                dependsstr_host = "  host:\n"
-            dependsstr_host += (
-                f"    - sysroot_{cdt['host_subdir']} {cdt['glibc_ver']}.*\n"  # note \n
-            )
-
-        dependsstr = (
-            "requirements:\n" + dependsstr_build + dependsstr_host + dependsstr_run
-        )
+        dependsstr += f"  {label}:\n"
+        dependsstr += "".join(f"    - {x}\n" for x in dep_list)
 
     package_l = package.lower().replace("+", "x")
     package_cdt_name = package_l + "-" + sn
-    license, license_family = remap_license(entry["license"])
+    # Verify that we're getting a valid SPDX-2.0 license expression
+    # (rattler-build requires that, so better check early).
+    try:
+        license, license_family = remap_license(entry["license"])
+        canonicalize_license_expression(license)
+    except Exception as error:
+        raise RuntimeError(f"license mapping error from {package}: {error}") from None
     d = dict(
         {
             "version": entry["version"]["ver"],
             "build_number": build_number_jinja2,
+            "cdt_build_number": cdt_build_number,
             "license_file": license_file,
             "packagename": package_cdt_name,
             "distro_name": cdt["full_name"],
@@ -794,12 +835,13 @@ def write_conda_recipes(
             "depends": dependsstr,
             "rpmurl": rpm_url,
             "srcrpmurl": srpm_url,
-            "home": entry["home"] or package_cdt_name,
+            # TODO: a better fallback URL?
+            "home": entry["home"] or rpm_url,
             "license": license,
             "license_family": license_family,
             "checksum_name": cdt["checksummer_name"],
             "checksum": entry["checksum"],
-            "summary": '"(CDT) ' + tidy_text(entry["summary"]) + '"',
+            "summary": "(CDT) " + tidy_text(entry["summary"]),
             "description": "|\n        "
             + "\n        ".join(tidy_text(entry["description"], 78)),  # noqa
             # Cheeky workaround.  I use ${PREFIX},
@@ -823,7 +865,7 @@ def write_conda_recipes(
         makedirs(odir)
     except Exception:
         pass
-    with open(join(odir, "meta.yaml"), "w") as f:
+    with open(join(odir, "recipe.yaml"), "w") as f:
         f.write(RPM_META.format(**d))
     buildsh = join(odir, "build.sh")
     with open(buildsh, "w") as f:
@@ -860,6 +902,12 @@ def write_conda_recipe(
     gnu_architecture = gnu_architectures.get(architecture, architecture)
     # centos7 has an extra url-portion for non-x64
     extra_url_chunk = "" if architecture == "x86_64" else "altarch/"
+
+    with open("conda_build_config.yaml", "r") as f:
+        conda_build_config = yaml.load(f, SafeLoader)
+    assert set(conda_build_config["distro"]) == cdt_info.keys()
+    assert len(conda_build_config["cdt_build_number"]) == 1
+    cdt_build_number = conda_build_config["cdt_build_number"][0]
 
     formatting_bits = dict(
         {
@@ -911,6 +959,7 @@ def write_conda_recipe(
             build_number,
             conda_forge_style,
             build_number_bump,
+            cdt_build_number,
         )
 
 

@@ -1,0 +1,67 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: alma9
+
+package:
+  name: libselinux-conda-aarch64
+  version: 3.6
+
+source:
+  - url: https://repo.almalinux.org/almalinux/9.7/BaseOS/aarch64/os/Packages/libselinux-3.6-3.el9.aarch64.rpm
+    sha256: 0e49abcf946ae02d888643ae79d94adca45fdb81319a78a49c4a432ca074e35c
+    target_directory: binary
+  # - url: https://repo.almalinux.org/almalinux/9.7/BaseOS/Source/Packages/libselinux-3.6-3.el9.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "alma9"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - libsepol-conda-aarch64 >=3.6 *_${{ cdt_build_number|int + 1000 }}
+    - libarchive
+  host:
+    - libsepol-conda-aarch64 >=3.6 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.34.*
+  run:
+    - libsepol-conda-aarch64 >=3.6 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-aarch64 2.34.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: https://github.com/SELinuxProject/selinux/wiki
+  license: LicenseRef-Callaway-Public-Domain
+  summary: (CDT) SELinux library and simple utilities
+  description: |
+    Security-enhanced Linux is a feature of the Linux® kernel and a number of
+    utilities with enhanced security functionality designed to add mandatory
+    access controls to Linux.  The Security-enhanced Linux kernel contains new
+    architectural components originally developed to improve the security of the
+    Flask operating system. These architectural components provide general support
+    for the enforcement of many kinds of mandatory access control policies,
+    including those based on the concepts of Type Enforcement®, Role-based Access
+    Control, and Multi-level Security.  libselinux provides an API for SELinux
+    applications to get and set process and file security contexts and to obtain
+    security policy decisions.  Required for any applications that use the SELinux
+    API.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

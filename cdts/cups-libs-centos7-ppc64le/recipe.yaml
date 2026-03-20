@@ -1,0 +1,60 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: cups-libs-conda-ppc64le
+  version: 1.6.3
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/cups-libs-1.6.3-51.el7.ppc64le.rpm
+    sha256: 001c42a45b103738b467ff9653c0e38bf590d5721f660189dca4eb503b6a5a43
+    target_directory: binary
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/cups-1.6.3-51.el7.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - libarchive
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://www.cups.org/
+  license: LGPL-2.0-only AND Zlib
+  license_file: cups-license
+  summary: (CDT) CUPS printing system - libraries
+  description: |
+    CUPS printing system provides a portable printing layer for UNIX® operating
+    systems. It has been developed by Apple Inc. to promote a standard printing
+    solution for all UNIX vendors and users. CUPS provides the System V and
+    Berkeley command-line interfaces. The cups-libs package provides libraries
+    used by applications to use CUPS natively, without needing the lp/lpr
+    commands.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

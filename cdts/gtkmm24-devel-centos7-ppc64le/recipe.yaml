@@ -1,0 +1,61 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: gtkmm24-devel-conda-ppc64le
+  version: 2.24.5
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/gtkmm24-devel-2.24.5-1.el7.ppc64le.rpm
+    sha256: 947ad0070c19422dec46f54e817da5b7379a33179d5537e9a12cec50ff56df22
+    target_directory: binary
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/gtkmm24-2.24.5-1.el7.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - gtkmm24-conda-ppc64le ==2.24.5 *_${{ cdt_build_number|int + 1000 }}
+    - libarchive
+  host:
+    - gtkmm24-conda-ppc64le ==2.24.5 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - gtkmm24-conda-ppc64le ==2.24.5 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://www.gtkmm.org/
+  license: LGPL-2.0-or-later
+  license_file:
+    - gtkmm-license
+    - gtkmm-tools-license
+  summary: (CDT) Headers for developing programs that will use gtkmm24.
+  description: |
+    This package contains the static libraries and header files needed for
+    developing gtkmm applications.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

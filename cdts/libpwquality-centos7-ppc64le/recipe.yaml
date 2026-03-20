@@ -1,0 +1,60 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: libpwquality-conda-ppc64le
+  version: 1.2.3
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libpwquality-1.2.3-5.el7.ppc64le.rpm
+    sha256: 28a2a967016e384fcdd7c667abafa7ff775d6f18451a98bfda35fc7e7b611b8a
+    target_directory: binary
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libpwquality-1.2.3-5.el7.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  build:
+    - cracklib-dicts-conda-ppc64le >=2.8 *_${{ cdt_build_number|int + 1000 }}
+    - libarchive
+  host:
+    - cracklib-dicts-conda-ppc64le >=2.8 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - cracklib-dicts-conda-ppc64le >=2.8 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: https://github.com/libpwquality/libpwquality/
+  license: LicenseRef-Callaway-BSD OR GPL-2.0-or-later
+  license_file: binary/usr/share/doc/libpwquality-1.2.3/COPYING
+  summary: (CDT) A library for password generation and password quality checking
+  description: |
+        This is a library for password quality checks and generation of random
+        passwords that pass the checks. This library uses the cracklib and cracklib
+        dictionaries to perform some of the checks.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

@@ -1,0 +1,57 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: alma9
+
+package:
+  name: libeconf-conda-ppc64le
+  version: 0.4.1
+
+source:
+  - url: https://repo.almalinux.org/almalinux/9.7/BaseOS/ppc64le/os/Packages/libeconf-0.4.1-4.el9.ppc64le.rpm
+    sha256: fde83ee5682369172b22b773d3bd2f02aaa62a518a8654d102de50b79beaeeea
+    target_directory: binary
+  # - url: https://repo.almalinux.org/almalinux/9.7/BaseOS/Source/Packages/libeconf-0.4.1-4.el9.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "alma9"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - "*"
+
+requirements:
+  build:
+    - libarchive
+  host:
+    - sysroot_linux-ppc64le 2.34.*
+  run:
+    - sysroot_linux-ppc64le 2.34.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: https://github.com/openSUSE/libeconf
+  license: MIT
+  license_file: binary/usr/share/licenses/libeconf/LICENSE
+  summary: (CDT) Enhanced config file parser library
+  description: |
+        libeconf is a highly flexible and configurable library to parse and manage
+        key=value configuration files. It reads configuration file snippets from
+        different directories and builds the final configuration file from it.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

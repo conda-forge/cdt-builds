@@ -35,7 +35,7 @@ def _ignore_url_build_changes(base_dir):
 
         if len(changed_files) == 1 and set(
             [os.path.basename(f) for f in changed_files]
-        ) == set(["meta.yaml"]):
+        ) == set(["recipe.yaml"]):
             print("    cdt:", cdt)
             diff = subprocess.run(
                 f"git diff {fname}",
@@ -214,7 +214,7 @@ def _fix_cdt_licenses(*, cdts, dist_arch_tuples, cdt_path):
                     yaml = YAML(typ="jinja2")
                     yaml.indent(mapping=2, sequence=4, offset=2)
                     yaml.width = 320
-                    with open(os.path.join(pth, "meta.yaml"), "r") as fp:
+                    with open(os.path.join(pth, "recipe.yaml"), "r") as fp:
                         meta = yaml.load(fp)
                 except Exception as e:
                     print(f"ERROR: could not adjust license for {pth} due to {e!r}")
@@ -231,7 +231,7 @@ def _fix_cdt_licenses(*, cdts, dist_arch_tuples, cdt_path):
                         cfg["license_file"]
                     )
 
-                with open(os.path.join(pth, "meta.yaml"), "w") as fp:
+                with open(os.path.join(pth, "recipe.yaml"), "w") as fp:
                     meta = yaml.dump(meta, fp)
 
 
@@ -248,7 +248,7 @@ def _fix_cdt_deps(*, cdts, dist_arch_tuples, cdt_path):
                     yaml = YAML(typ="jinja2")
                     yaml.indent(mapping=2, sequence=4, offset=2)
                     yaml.width = 320
-                    with open(os.path.join(pth, "meta.yaml"), "r") as fp:
+                    with open(os.path.join(pth, "recipe.yaml"), "r") as fp:
                         meta = yaml.load(fp)
                 except Exception as e:
                     print(f"ERROR: could not adjust deps for {pth} due to {e!r}")
@@ -267,7 +267,7 @@ def _fix_cdt_deps(*, cdts, dist_arch_tuples, cdt_path):
                                     new_deps.append(dep)
                             meta["requirements"][sec] = new_deps
 
-                    with open(os.path.join(pth, "meta.yaml"), "w") as fp:
+                    with open(os.path.join(pth, "recipe.yaml"), "w") as fp:
                         meta = yaml.dump(meta, fp)
 
             if "dep_replace" in cfg and os.path.exists(pth):
@@ -275,7 +275,7 @@ def _fix_cdt_deps(*, cdts, dist_arch_tuples, cdt_path):
                     yaml = YAML(typ="jinja2")
                     yaml.indent(mapping=2, sequence=4, offset=2)
                     yaml.width = 320
-                    with open(os.path.join(pth, "meta.yaml"), "r") as fp:
+                    with open(os.path.join(pth, "recipe.yaml"), "r") as fp:
                         meta = yaml.load(fp)
                 except Exception as e:
                     print(f"ERROR: could not adjust deps for {pth} due to {e!r}")
@@ -297,7 +297,7 @@ def _fix_cdt_deps(*, cdts, dist_arch_tuples, cdt_path):
                                             break
                             meta["requirements"][sec] = new_deps
 
-                    with open(os.path.join(pth, "meta.yaml"), "w") as fp:
+                    with open(os.path.join(pth, "recipe.yaml"), "w") as fp:
                         meta = yaml.dump(meta, fp)
 
 
@@ -363,7 +363,12 @@ def _fix_cdt_builds(*, cdts, dist_arch_tuples, cdt_path):
     is_flag=True,
     help="Keep changes to CDT urls. If you use this, you need to bump the build number!",
 )
-def _main(force, fast, keep_url_changes):
+@click.option(
+    "--max-workers",
+    default=16,
+    help="Max number of workers to use (default: 16)",
+)
+def _main(force: bool, fast: bool, keep_url_changes: bool, max_workers: int) -> None:
     """
     Generate all CDT recipes.
     """
@@ -406,7 +411,7 @@ def _main(force, fast, keep_url_changes):
 
     print("generating CDT recipes...")
     futures = {}
-    with ThreadPoolExecutor(max_workers=16) as exec:
+    with ThreadPoolExecutor(max_workers=max_workers) as exec:
         # new CDTs for the new compilers with a single sysroot
         # if force:
         #     _clear_gen_cdts(CDT_PATH)

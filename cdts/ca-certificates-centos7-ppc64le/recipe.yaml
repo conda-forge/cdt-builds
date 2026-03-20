@@ -1,0 +1,61 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: ca-certificates-conda-ppc64le
+  version: 2020.2.41
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/ca-certificates-2020.2.41-70.0.el7_8.noarch.rpm
+    sha256: 1095e8edd8713c148159831eda79522d8eae5c52f1930b7a570a157f3ccf2fc2
+    target_directory: binary
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/ca-certificates-2020.2.41-70.0.el7_8.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - p11-kit-conda-ppc64le >=0.23.5 *_${{ cdt_build_number|int + 1000 }}
+    - p11-kit-trust-conda-ppc64le >=0.23.5 *_${{ cdt_build_number|int + 1000 }}
+    - libarchive
+  host:
+    - p11-kit-conda-ppc64le >=0.23.5 *_${{ cdt_build_number|int + 1000 }}
+    - p11-kit-trust-conda-ppc64le >=0.23.5 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - p11-kit-conda-ppc64le >=0.23.5 *_${{ cdt_build_number|int + 1000 }}
+    - p11-kit-trust-conda-ppc64le >=0.23.5 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://www.mozilla.org/
+  license: LicenseRef-Callaway-Public-Domain
+  summary: (CDT) The Mozilla CA root certificate bundle
+  description: |
+    This package contains the set of CA certificates chosen by the Mozilla
+    Foundation for use with the Internet PKI.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

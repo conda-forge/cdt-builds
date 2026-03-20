@@ -1,0 +1,56 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: libnl3-conda-ppc64le
+  version: 3.2.28
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/libnl3-3.2.28-4.el7.ppc64le.rpm
+    sha256: 810cb86a0f4ecceab68ef69265858b8ca5ee765cd891d77e737f5c90d86cbc75
+    target_directory: binary
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/libnl3-3.2.28-4.el7.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - libarchive
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://www.infradead.org/~tgr/libnl/
+  license: LGPL-2.0-only
+  license_file: libnl3-license
+  summary: (CDT) Convenience library for kernel netlink sockets
+  description: |
+    This package contains a convenience library to simplify using the Linux
+    kernel's netlink sockets interface for network manipulation
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

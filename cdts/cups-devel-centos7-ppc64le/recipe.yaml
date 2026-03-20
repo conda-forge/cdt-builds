@@ -1,0 +1,60 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: cups-devel-conda-ppc64le
+  version: 1.6.3
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/cups-devel-1.6.3-51.el7.ppc64le.rpm
+    sha256: 472607d505e5b7321d8697c893310a79f7c1947dea33e73da677d96341ec6174
+    target_directory: binary
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/cups-1.6.3-51.el7.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - cups-libs-conda-ppc64le ==1.6.3 *_${{ cdt_build_number|int + 1000 }}
+    - libarchive
+  host:
+    - cups-libs-conda-ppc64le ==1.6.3 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - cups-libs-conda-ppc64le ==1.6.3 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://www.cups.org/
+  license: LGPL-2.0-only
+  license_file: cups-license
+  summary: (CDT) CUPS printing system - development environment
+  description: |
+    CUPS printing system provides a portable printing layer for UNIX® operating
+    systems. This is the development package for creating additional printer
+    drivers, and other CUPS services.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

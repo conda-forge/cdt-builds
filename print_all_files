@@ -13,7 +13,7 @@
 
 rm -rf rpms/ 2>/dev/null
 mkdir rpms
-for url in $(grep 'url:' cdts/*/meta.yaml | cut -f 2- -w | grep '^-' | cut -f 3 -w);
+for url in $(grep 'url:' cdts/*/recipe.yaml | cut -f 2- -w | grep '^-' | cut -f 3 -w);
   do curl --output "rpms/${url##*/}" $url;
   done
 for rpm in $(ls rpms/);

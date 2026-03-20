@@ -1,0 +1,64 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: nss-softokn-conda-ppc64le
+  version: 3.44.0
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/nss-softokn-3.44.0-8.el7_7.ppc64le.rpm
+    sha256: 41748393f94251d2d58988c94f7503576fa28920094e0f0498486422c91e155b
+    target_directory: binary
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/nss-softokn-3.44.0-8.el7_7.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - nspr-conda-ppc64le >=4.21.0 *_${{ cdt_build_number|int + 1000 }}
+    - nss-softokn-freebl-conda-ppc64le >=3.44.0 *_${{ cdt_build_number|int + 1000 }}
+    - nss-util-conda-ppc64le >=3.44.0 *_${{ cdt_build_number|int + 1000 }}
+    - libarchive
+  host:
+    - nspr-conda-ppc64le >=4.21.0 *_${{ cdt_build_number|int + 1000 }}
+    - nss-softokn-freebl-conda-ppc64le >=3.44.0 *_${{ cdt_build_number|int + 1000 }}
+    - nss-util-conda-ppc64le >=3.44.0 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - nspr-conda-ppc64le >=4.21.0 *_${{ cdt_build_number|int + 1000 }}
+    - nss-softokn-freebl-conda-ppc64le >=3.44.0 *_${{ cdt_build_number|int + 1000 }}
+    - nss-util-conda-ppc64le >=3.44.0 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.17.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://www.mozilla.org/projects/security/pki/nss/
+  license: MPL-2.0
+  license_file: nss-license
+  summary: (CDT) Network Security Services Softoken Module
+  description: |
+    Network Security Services Softoken Cryptographic Module
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

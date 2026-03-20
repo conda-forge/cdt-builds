@@ -1,0 +1,56 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: centos7
+
+package:
+  name: xcb-util-renderutil-conda-ppc64le
+  version: 0.3.9
+
+source:
+  - url: https://vault.centos.org/altarch/7.9.2009/os/ppc64le/Packages/xcb-util-renderutil-0.3.9-3.el7.ppc64le.rpm
+    sha256: 10dadc592a16472290207ec44781c6e652f8db4f4da3772792fbf6976b46216e
+    target_directory: binary
+  # - url: https://vault.centos.org/altarch/7.9.2009/os/Source/SPackages/xcb-util-renderutil-0.3.9-3.el7.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "centos7"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - libarchive
+  host:
+    - sysroot_linux-ppc64le 2.17.*
+  run:
+    - sysroot_linux-ppc64le 2.17.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://xcb.freedesktop.org
+  license: MIT
+  license_file: xcb-util-renderutil-license
+  summary: (CDT) Convenience functions for the Render extension
+  description: |
+    XCB util-renderutil module provides the following library:    - renderutil:
+    Convenience functions for the Render extension.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

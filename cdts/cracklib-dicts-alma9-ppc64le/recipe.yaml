@@ -1,0 +1,62 @@
+schema_version: 1
+
+# TODO: hack to workaround https://github.com/conda-forge/rattler-build-conda-compat/issues/112
+context:
+  cdt_build_number: 111
+  distro: alma9
+
+package:
+  name: cracklib-dicts-conda-ppc64le
+  version: 2.9.6
+
+source:
+  - url: https://repo.almalinux.org/almalinux/9.7/BaseOS/ppc64le/os/Packages/cracklib-dicts-2.9.6-27.el9.ppc64le.rpm
+    sha256: 8885d87f48ae2ae43d63a43401fd860557e55f89da3b04a687faf2ec5cfad6d2
+    target_directory: binary
+  # - url: https://repo.almalinux.org/almalinux/9.7/BaseOS/Source/Packages/cracklib-2.9.6-27.el9.src.rpm
+  #   target_directory: source
+
+build:
+  # this skip is here because we need different package hashes per distro.
+  # we therefore list all possible values in CBC and skip those we don't want;
+  # use in a selector ensures that the `distro` variable shows up in the hash
+  number: ${{ cdt_build_number|int + 1000 }}
+  skip: distro != "alma9"
+  noarch: generic
+  prefix_detection:
+    ignore_binary_files: false
+  dynamic_linking:
+    binary_relocation: false
+    missing_dso_allowlist:
+      - '*'
+
+requirements:
+  build:
+    - cracklib-conda-ppc64le ==2.9.6 *_${{ cdt_build_number|int + 1000 }}
+    - libarchive
+  host:
+    - cracklib-conda-ppc64le ==2.9.6 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.34.*
+  run:
+    - cracklib-conda-ppc64le ==2.9.6 *_${{ cdt_build_number|int + 1000 }}
+    - sysroot_linux-ppc64le 2.34.*
+
+tests:
+  - script:
+      - echo "it installs!"
+
+about:
+  homepage: http://sourceforge.net/projects/cracklib/
+  license: LGPL-2.0-or-later
+  license_file: cracklib-copying.lib
+  summary: (CDT) The standard CrackLib dictionaries
+  description: |
+    The cracklib-dicts package includes the CrackLib dictionaries. CrackLib will
+    need to use the dictionary appropriate to your system, which is normally put
+    in /usr/share/dict/words. Cracklib-dicts also contains the utilities necessary
+    for the creation of new dictionaries.  If you are installing CrackLib, you
+    should also install cracklib-dicts.
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
