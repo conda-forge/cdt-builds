@@ -1,108 +1,119 @@
 variables:
 - group: anaconda-org
 
-jobs:
-- job: build
-  pool:
-    vmImage: 'ubuntu-latest'
-  timeoutInMinutes: 360
-  condition: or(and(eq(variables['System.PullRequest.IsFork'], 'True'), eq(variables['Build.Reason'], 'PullRequest')), and(ne(variables['System.PullRequest.IsFork'], 'True'), ne(variables['Build.Reason'], 'PullRequest')))
-  strategy:
-    matrix:
-      cos7_x86_64:
-        DISTARCH: 'centos7-x86_64'
-        PTOP: '1:1'
-      cos7_aarch64:
-        DISTARCH: 'centos7-aarch64'
-        PTOP: '1:1'
-      cos7_ppc64le:
-        DISTARCH: 'centos7-ppc64le'
-        PTOP: '1:1'
-      alma8_x86_64:
-        DISTARCH: 'alma8-x86_64'
-        PTOP: '1:1'
-      alma8_aarch64:
-        DISTARCH: 'alma8-aarch64'
-        PTOP: '1:1'
-      alma8_ppc64le:
-        DISTARCH: 'alma8-ppc64le'
-        PTOP: '1:1'
-      alma9_x86_64:
-        DISTARCH: 'alma9-x86_64'
-        PTOP: '1:1'
-      alma9_aarch64:
-        DISTARCH: 'alma9-aarch64'
-        PTOP: '1:1'
-      alma9_ppc64le:
-        DISTARCH: 'alma9-ppc64le'
-        PTOP: '1:1'
-    maxParallel: 0
+stages:
+  - stage: Build
+    jobs:
+    - job: build
+      pool:
+        vmImage: 'ubuntu-latest'
+      timeoutInMinutes: 360
+      condition: or(and(eq(variables['System.PullRequest.IsFork'], 'True'), eq(variables['Build.Reason'], 'PullRequest')), and(ne(variables['System.PullRequest.IsFork'], 'True'), ne(variables['Build.Reason'], 'PullRequest')))
+      strategy:
+        matrix:
+          cos7_x86_64:
+            DISTARCH: 'centos7-x86_64'
+            PTOP: '1:1'
+          cos7_aarch64:
+            DISTARCH: 'centos7-aarch64'
+            PTOP: '1:1'
+          cos7_ppc64le:
+            DISTARCH: 'centos7-ppc64le'
+            PTOP: '1:1'
+          alma8_x86_64:
+            DISTARCH: 'alma8-x86_64'
+            PTOP: '1:1'
+          alma8_aarch64:
+            DISTARCH: 'alma8-aarch64'
+            PTOP: '1:1'
+          alma8_ppc64le:
+            DISTARCH: 'alma8-ppc64le'
+            PTOP: '1:1'
+          alma9_x86_64:
+            DISTARCH: 'alma9-x86_64'
+            PTOP: '1:1'
+          alma9_aarch64:
+            DISTARCH: 'alma9-aarch64'
+            PTOP: '1:1'
+          alma9_ppc64le:
+            DISTARCH: 'alma9-ppc64le'
+            PTOP: '1:1'
+        maxParallel: 0
 
-  steps:
+      steps:
 
-  - checkout: self
-    clean: true
+      - checkout: self
+        clean: true
 
-  # skip cleaning disk space for now - MRB 2025-11-12
-  # - script: |
-  #        sudo mkdir -p /opt/empty_dir || true
-  #        for d in \
-  #                 /opt/ghc \
-  #                 /opt/hostedtoolcache \
-  #                 /usr/lib/jvm \
-  #                 /usr/local/.ghcup \
-  #                 /usr/local/lib/android \
-  #                 /usr/local/share/powershell \
-  #                 /usr/share/dotnet \
-  #                 /usr/share/swift \
-  #                 ; do
-  #          sudo rsync --stats -a --delete /opt/empty_dir/ $d || true
-  #        done
-  #        sudo apt-get purge -y -f firefox \
-  #                                 google-chrome-stable \
-  #                                 microsoft-edge-stable
-  #        sudo apt-get autoremove -y >& /dev/null
-  #        sudo apt-get autoclean -y >& /dev/null
-  #        df -h
-  #   displayName: Manage disk space
+      # skip cleaning disk space for now - MRB 2025-11-12
+      # - script: |
+      #        sudo mkdir -p /opt/empty_dir || true
+      #        for d in \
+      #                 /opt/ghc \
+      #                 /opt/hostedtoolcache \
+      #                 /usr/lib/jvm \
+      #                 /usr/local/.ghcup \
+      #                 /usr/local/lib/android \
+      #                 /usr/local/share/powershell \
+      #                 /usr/share/dotnet \
+      #                 /usr/share/swift \
+      #                 ; do
+      #          sudo rsync --stats -a --delete /opt/empty_dir/ $d || true
+      #        done
+      #        sudo apt-get purge -y -f firefox \
+      #                                 google-chrome-stable \
+      #                                 microsoft-edge-stable
+      #        sudo apt-get autoremove -y >& /dev/null
+      #        sudo apt-get autoclean -y >& /dev/null
+      #        df -h
+      #   displayName: Manage disk space
 
-  - script: |
-         sudo fallocate -l 15GiB /swapfile || true
-         sudo chmod 600 /swapfile || true
-         sudo mkswap /swapfile || true
-         sudo swapon /swapfile || true
-    displayName: Create swap file
+      - script: |
+             sudo fallocate -l 15GiB /swapfile || true
+             sudo chmod 600 /swapfile || true
+             sudo mkswap /swapfile || true
+             sudo swapon /swapfile || true
+        displayName: Create swap file
 
-  - bash: |
-        sudo apt-get remove -y --auto-remove gcc
-        sudo apt-get purge -y --auto-remove gcc
-        sed -h
-        echo `uname -s`
-    displayName: removing system compilers
+      - bash: |
+            sudo apt-get remove -y --auto-remove gcc
+            sudo apt-get purge -y --auto-remove gcc
+            sed -h
+            echo `uname -s`
+        displayName: removing system compilers
 
-  - bash: .ci_scripts/install_miniconda.sh
-    displayName: install miniconda
+      - bash: .ci_scripts/install_miniconda.sh
+        displayName: install miniconda
 
-  - bash: |
-        set -e
+      - bash: |
+            set -e
 
-        source $HOME/miniforge3/etc/profile.d/conda.sh
-        conda activate base
-        cat .ci_scripts/condarc > $HOME/.condarc
+            source $HOME/miniforge3/etc/profile.d/conda.sh
+            conda activate base
+            cat .ci_scripts/condarc > $HOME/.condarc
 
-        mkdir -p build_logs
+            mkdir -p build_logs
 
-        export CI=azure
-        export flow_run_id=azure_$(Build.BuildNumber).$(System.JobAttempt)
-        export remote_url=$(Build.Repository.Uri)
-        export sha=$(Build.SourceVersion)
+            export CI=azure
+            export flow_run_id=azure_$(Build.BuildNumber).$(System.JobAttempt)
+            export remote_url=$(Build.Repository.Uri)
+            export sha=$(Build.SourceVersion)
 
-        echo "cmd args: ${DISTARCH} ${PTOP}"
-        python build_cdt_recipes.py ${DISTARCH} --part-to-process=${PTOP}
-    displayName: build and upload CDTs
-    env:
-      ANACONDA_TOKEN: $(BINSTAR_TOKEN)
-      IS_FORK: $(System.PullRequest.IsFork)
+            echo "cmd args: ${DISTARCH} ${PTOP}"
+            python build_cdt_recipes.py ${DISTARCH} --part-to-process=${PTOP}
+        displayName: build and upload CDTs
+        env:
+          ANACONDA_TOKEN: $(BINSTAR_TOKEN)
+          IS_FORK: $(System.PullRequest.IsFork)
 
-  - publish: build_logs/
-    artifact: build-logs-$(DISTARCH)-azurejob$(system.JobId)
+      - publish: build_logs/
+        artifact: build-logs-$(DISTARCH)-azurejob$(system.JobId)
+
+  - stage: Check
+    dependsOn: build
+    jobs:
+    - job: check
+      pool:
+        vmImage: 'ubuntu-latest'
+      steps:
+      - bash: echo okay
